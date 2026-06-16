@@ -53,6 +53,16 @@ function cancelEdit(): void {
   productToEdit.value = null
 }
 
+const emit = defineEmits<{
+  goToRegisterProduct: []
+}>()
+
+const companyName = computed(() => {
+  return companyStore.selectedCompany?.business_name ?? ''
+})
+
+const totalProducts = computed(() => productStore.products.length)
+
 const filteredProducts = computed(() => {
   const q = searchQuery.value.toLowerCase().trim()
   if (!q) return productStore.products
@@ -120,7 +130,34 @@ const filteredProducts = computed(() => {
       <p class="text-sm">No hay productos registrados{{ companyStore.selectedCompany ? ' para esta empresa' : '' }}.</p>
     </div>
 
-    <div v-else class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div v-else class="mb-6 rounded-xl border border-emerald-200/70 bg-gradient-to-r from-emerald-50 to-teal-50 px-5 py-4 dark:border-emerald-800/40 dark:from-emerald-950/40 dark:to-teal-950/40">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+            {{ totalProducts }} producto{{ totalProducts !== 1 ? 's' : '' }} registrado{{ totalProducts !== 1 ? 's' : '' }}
+            <template v-if="companyName">para <span class="font-semibold">{{ companyName }}</span></template>.
+          </p>
+          <p class="mt-1 text-xs leading-relaxed text-emerald-600 dark:text-emerald-300">
+            Cada producto registrado consolida la identidad de tu negocio, proyecta
+            profesionalismo ante tus clientes y construye la base de datos que convierte
+            una idea en una empresa formal. Los negocios que gestionan su inventario con
+            orden transmiten confianza y crecen m&aacute;s r&aacute;pido.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-500"
+          @click="emit('goToRegisterProduct')"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+          </svg>
+          Registrar producto
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
           <thead>

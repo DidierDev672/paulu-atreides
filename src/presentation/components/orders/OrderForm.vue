@@ -3,25 +3,38 @@ import { ref, onMounted } from 'vue'
 import { useOrderStore } from '@/presentation/stores/orderStore'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
-import ProductSelectionModal from '@/presentation/components/productEntries/ProductSelectionModal.vue'
+import { useShipmentStore } from '@/presentation/stores/shipmentStore'
+import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
 import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
-import type { CreateOrderRequest, OrderDetail } from '@/application/services/orderService'
-import type { ProductResponse } from '@/application/services/productService'
+import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
+import AutomationConfirmModal from '@/presentation/components/orders/AutomationConfirmModal.vue'
+import DispatchSummaryModal from '@/presentation/components/orders/DispatchSummaryModal.vue'
+import type { CreateOrderRequest, OrderDetail, OrderResponse } from '@/application/services/orderService'
+import type { ProductEntryResponse } from '@/application/services/productEntryService'
 import type { ProviderResponse } from '@/application/services/providerService'
+import type { WineryResponse } from '@/application/services/wineryService'
 
 const emit = defineEmits<{ saved: []; goToProviderRegistration: [] }>()
 
 const orderStore = useOrderStore()
 const authStore = useAuthStore()
 const companyStore = useCompanyStore()
+const shipmentStore = useShipmentStore()
 
 const VAT_RATE = 0.19
 
-const showProductModal = ref(false)
+const showEntryModal = ref(false)
 const showProviderModal = ref(false)
 const selectedProviderName = ref('')
 const showDialog = ref(false)
-const dialogResult = ref<{ success: true; order: any } | { success: false; error: string } | null>(null)
+const dialogResult = ref<{ success: true; order: any; shipment?: any } | { success: false; error: string } | null>(null)
+
+const selectedEntryIds = ref<string[]>([])
+const showAutomationConfirm = ref(false)
+const showWineryModal = ref(false)
+const showDispatchSummary = ref(false)
+const createdOrder = ref<OrderResponse | null>(null)
+const selectedWarehouseId = ref('')
 
 const form = ref<CreateOrderRequest>({
   order_numeric: '',
@@ -61,8 +74,8 @@ const statuses = [
   { value: 'COMPLETED', label: 'Completado' },
 ] as const
 
-function openProductModal(): void {
-  showProductModal.value = true
+function openEntryModal(): void {
+  showEntryModal.value = true
 }
 
 function openProviderModal(): void {
@@ -75,19 +88,22 @@ function onProviderSelected(provider: ProviderResponse): void {
   form.value.requested_by = provider.business_name
 }
 
-function onProductsSelected(products: ProductResponse[]): void {
-  showProductModal.value = false
-  for (const p of products) {
-    const exists = form.value.details.some((d) => d.code === p.product_code)
-    if (!exists) {
-      form.value.details.push({
-        code: p.product_code,
-        product: p.name,
-        unit: p.unit,
-        quantity_requested: 1,
-        estimated_cost: 0,
-        subtotal: 0,
-      })
+function onEntriesSelected(entries: ProductEntryResponse[]): void {
+  showEntryModal.value = false
+  selectedEntryIds.value = entries.map((e) => e.id)
+  for (const entry of entries) {
+    for (const detail of entry.details) {
+      const exists = form.value.details.some((d) => d.code === detail.code)
+      if (!exists) {
+        form.value.details.push({
+          code: detail.code,
+          product: detail.product,
+          unit: detail.unit,
+          quantity_requested: detail.quantity,
+          estimated_cost: detail.unitCost,
+          subtotal: detail.quantity * detail.unitCost,
+        })
+      }
     }
   }
   recalcSummary()
@@ -120,9 +136,64 @@ function recalcSummary(): void {
 async function handleSubmit(): Promise<void> {
   const result = await orderStore.createOrder(form.value)
   if (result) {
-    dialogResult.value = { success: true, order: result }
+    createdOrder.value = result
+    showAutomationConfirm.value = true
   } else {
     dialogResult.value = { success: false, error: orderStore.error || 'Error desconocido al registrar la orden.' }
+    showDialog.value = true
+  }
+}
+
+function onAutomationConfirm(automate: boolean): void {
+  showAutomationConfirm.value = false
+  if (automate) {
+    showWineryModal.value = true
+  } else {
+    dialogResult.value = { success: true, order: createdOrder.value! }
+    showDialog.value = true
+  }
+}
+
+function onWinerySelected(winery: WineryResponse): void {
+  showWineryModal.value = false
+  selectedWarehouseId.value = winery.id
+  showDispatchSummary.value = true
+}
+
+async function onDispatchConfirm(payload: { discount: number; remarks: string; recipient_type: string; recipient_id: string }): Promise<void> {
+  showDispatchSummary.value = false
+  const order = createdOrder.value!
+  const shipmentData = {
+    shipment_number: `DES-${order.order_numeric}`,
+    record_date: new Date().toISOString().slice(0, 10),
+    movement_type: 'SALE',
+    status: 'DRAFT',
+    company_id: order.company_id,
+    warehouse_id: selectedWarehouseId.value,
+    responsible_id: order.user_id,
+    source_document: { entry_ids: selectedEntryIds.value },
+    recipient: { recipient_type: payload.recipient_type, recipient_id: payload.recipient_id },
+    details: order.details.map((d) => ({
+      code: d.code,
+      product: d.product,
+      unit: d.unit,
+      quantity: d.quantity_requested,
+      unit_cost: d.estimated_cost,
+      subtotal: d.subtotal,
+    })),
+    financial_summary: {
+      subtotal: order.financial_summary.purchase_subtotal,
+      vat: order.financial_summary.vat,
+      discount: payload.discount,
+      total: order.financial_summary.purchase_subtotal + order.financial_summary.vat - payload.discount,
+    },
+    remarks: payload.remarks,
+  }
+  const shipment = await shipmentStore.createShipment(shipmentData)
+  if (shipment) {
+    dialogResult.value = { success: true, order, shipment }
+  } else {
+    dialogResult.value = { success: false, error: shipmentStore.error || 'La orden se creó pero no se pudo generar el despacho automático.' }
   }
   showDialog.value = true
 }
@@ -131,7 +202,11 @@ function resetForm(): void {
   dialogResult.value = null
   showDialog.value = false
   selectedProviderName.value = ''
+  selectedEntryIds.value = []
+  selectedWarehouseId.value = ''
+  createdOrder.value = null
   orderStore.clearError()
+  shipmentStore.clearError()
   form.value = {
     order_numeric: '',
     order_type: 'PURCHASE',
@@ -222,11 +297,11 @@ function formatCOP(value: number): string {
       <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         <div class="mb-4 flex items-center justify-between">
           <h2 class="text-lg font-semibold">Detalles del producto</h2>
-          <button type="button" class="rounded-xl bg-stellar-500/10 px-4 py-2 text-sm font-medium text-stellar-600 transition hover:bg-stellar-500/20 dark:text-stellar-300" @click="openProductModal">+ Agregar producto</button>
+          <button type="button" class="rounded-xl bg-stellar-500/10 px-4 py-2 text-sm font-medium text-stellar-600 transition hover:bg-stellar-500/20 dark:text-stellar-300" @click="openEntryModal">+ Agregar producto</button>
         </div>
 
         <div v-if="form.details.length === 0" class="py-8 text-center text-sm text-slate-400">
-          No hay productos agregados. Presione "Agregar producto" para seleccionar del listado.
+          No hay productos agregados. Presione "Agregar producto" para seleccionar una entrada y cargar sus productos.
         </div>
 
         <div v-else class="overflow-x-auto">
@@ -259,7 +334,7 @@ function formatCOP(value: number): string {
         </div>
 
         <div class="mt-2">
-          <button type="button" class="text-sm text-stellar-600 hover:text-stellar-700 dark:text-stellar-400" @click="openProductModal">+ Agregar más productos</button>
+          <button type="button" class="text-sm text-stellar-600 hover:text-stellar-700 dark:text-stellar-400" @click="openEntryModal">+ Agregar más productos</button>
         </div>
       </div>
 
@@ -318,6 +393,12 @@ function formatCOP(value: number): string {
             <p class="mb-1 text-center text-sm text-slate-600 dark:text-slate-300">
               <span class="font-semibold">{{ dialogResult.order.order_numeric }}</span> — {{ formatCOP(dialogResult.order.financial_summary.purchase_total) }}
             </p>
+            <p v-if="dialogResult.shipment" class="mb-2 mt-2 inline-flex items-center gap-1.5 rounded-full bg-cosmic-100 px-3 py-1 text-xs font-medium text-cosmic-700 dark:bg-cosmic-500/20 dark:text-cosmic-300">
+              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+              Despacho automático creado: <span class="font-semibold">{{ dialogResult.shipment.shipment_number }}</span>
+            </p>
             <p class="mb-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
               Cada orden que registras es un paso firme hacia el control total de tu inventario.<br />
               <span class="font-medium text-stellar-600 dark:text-stellar-400">La organización de hoy construye la eficiencia del mañana.</span>
@@ -352,12 +433,11 @@ function formatCOP(value: number): string {
       </div>
     </Teleport>
 
-    <ProductSelectionModal
-      v-if="showProductModal"
+    <EntrySelectionModal
+      v-if="showEntryModal"
       :company-id="form.company_id"
-      @confirm="onProductsSelected"
-      @close="showProductModal = false"
-      @go-to-product-registration="showProductModal = false"
+      @confirm="onEntriesSelected"
+      @close="showEntryModal = false"
     />
 
     <ProviderSelectionModal
@@ -365,6 +445,28 @@ function formatCOP(value: number): string {
       @confirm="onProviderSelected"
       @close="showProviderModal = false"
       @go-to-provider-registration="emit('goToProviderRegistration')"
+    />
+
+    <AutomationConfirmModal
+      v-if="showAutomationConfirm"
+      @confirm="onAutomationConfirm"
+      @close="showAutomationConfirm = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
+    />
+
+    <WinerySelectionModal
+      v-if="showWineryModal"
+      :company-id="form.company_id"
+      @confirm="onWinerySelected"
+      @close="showWineryModal = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
+    />
+
+    <DispatchSummaryModal
+      v-if="showDispatchSummary && createdOrder"
+      :order="createdOrder"
+      :warehouse-id="selectedWarehouseId"
+      :selected-entry-ids="selectedEntryIds"
+      @confirm="onDispatchConfirm"
+      @close="showDispatchSummary = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
     />
   </div>
 </template>

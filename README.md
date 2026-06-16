@@ -1,8 +1,17 @@
-# Paulus
+# Paulus — El Primer Miembro de Paulu
 
 > *"El control del patrimonio mediante el honor y la estrategia."*
+>
+> Así como Paul Atreides unió a los fremen de Arrakis bajo una visión compartida,
+> **Paulus** unifica la gestión empresarial colombiana en una sola plataforma.
 
-**Paulus** es el primer miembro de **Paulu**. Es una aplicación web construida con Vue 3 para la gestión empresarial colombiana.
+**Paulus** es el primer miembro de **Paulu**, el ecosistema digital inspirado en
+el viaje de Paul Atreides (*Muad'Dib*, el que guía a través del desierto).
+Construido con Vue 3, transforma el caos del inventario en orden — porque
+*"la especia debe fluir"* y el patrimonio debe controlarse.
+
+> *"Quien controla el patrimonio, controla el futuro."*
+> — Liturgia Paulu (adaptación del Juramento Fremen)
 
 ## Stack
 
@@ -44,15 +53,20 @@ npm run build       # Type check + build
 npm run preview     # Vista previa del build
 ```
 
-## ¿Qué puedes hacer en Paulus?
+## ¿Qué puedes hacer en Paulus? — *El Camino del Muad'Dib*
 
-- Registrarte e iniciar sesión
-- Registrar tu empresa (con NIT, dirección, actividad económica, info tributaria)
-- Gestionar productos (crear, editar, listar, eliminar)
-- Asociar proveedores y bodegas a tus productos
-- Registrar entradas de producto con detalle financiero
-- Gestionar tu perfil y el de tu empresa
+> Como Paul Atreides aprendió el camino de los fremen antes de liderarlos,
+> Paulus te guía paso a paso en el dominio de tu negocio:
 
-## Conexión con el backend
+- **Registrarte e iniciar sesión** — *El primer paso es cruzar el desierto*
+- **Registrar tu empresa** (NIT, dirección, actividad económica, info tributaria) — *Establece tu Casa*
+- **Gestionar productos** (crear, editar, listar, eliminar) — *Controla tu especia*
+- **Asociar proveedores y bodegas** — *Forja alianzas en el Landsraad*
+- **Registrar entradas de producto con detalle financiero** — *La contabilidad debe fluir*
+- **Gestionar tu perfil y el de tu empresa** — *Conócete a ti mismo*
 
-Paulus se conecta a la API **Paulu** (Go + PostgreSQL) corriendo en `localhost:8080`.
+## Conexión con el backend — *La Casa Paulu*
+
+Paulus se conecta a la API **Paulu** (Go + PostgreSQL) — el corazón de la
+**Casa Paulu** — corriendo en `localhost:8080`. Como el Halcón Atreides que vela
+por Arrakis, Paulu sostiene la infraestructura para que Paulus lidere.

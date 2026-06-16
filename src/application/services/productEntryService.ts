@@ -70,3 +70,10 @@ export async function updateProductEntry(id: string, data: CreateProductEntryReq
 export async function deleteProductEntry(id: string): Promise<void> {
   await axiosInstance.delete(`/product-entries/${id}`)
 }
+
+export async function getProductEntriesByCodes(codes: string[], companyId: string): Promise<ProductEntryResponse[]> {
+  const response = await axiosInstance.get<ProductEntryResponse[]>('/product-entries/by-product-codes', {
+    params: { codes: codes.join(','), company_id: companyId },
+  })
+  return response.data
+}

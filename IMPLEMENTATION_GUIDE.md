@@ -6,10 +6,13 @@
 
 ## 1. Resumen del proyecto
 
-| Componente | Nombre | Stack | Ubicación |
-|---|---|---|---|
-| Frontend | **Paulus** | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 | `D:\Vue\book-coffee-shop\` |
-| Backend API | **Paulu** | Go + PostgreSQL + JWT | `D:\Go\api-book-coffee-shop\` |
+> *Inspirado en el viaje de Paul Atreides — de heredero de la Casa Atreides a líder de los fremen.
+> Paulus (frontend) es la voz visible; Paulu (backend) es la maquinaria que sostiene el poder.*
+
+| Componente | Nombre | Inspiración Dune | Stack | Ubicación |
+|---|---|---|---|---|
+| Frontend | **Paulus** | *"El Primer Miembro"* — como Paul al unir a los fremen | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 | `D:\Vue\book-coffee-shop\` |
+| Backend API | **Paulu** | *"La Casa"* — la infraestructura Atreides que lo sostiene todo | Go + PostgreSQL + JWT | `D:\Go\api-book-coffee-shop\` |
 
 ---
 
@@ -373,8 +376,11 @@ graphify update .
 
 ## 10. Referencias
 
+> *"Una referencia sin contexto es como un fremen sin desierto."*
+
 | Recurso | Ubicación |
 |---|---|
+| Dune Lore — Paul Atreides | `raw/dune-lore-paul-atreides.md` |
 | Documentación API | `D:\Go\api-book-coffee-shop\Paulu.md` |
 | Guía de usuario Paulus | `D:\Vue\book-coffee-shop\PAULU_USER_GUIDE.md` |
 | Graph Report (Go) | `D:\Go\api-book-coffee-shop\graphify-out\GRAPH_REPORT.md` |

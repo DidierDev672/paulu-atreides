@@ -1,7 +1,7 @@
 # Graph Report - book-coffee-shop  (2026-06-16)
 
 ## Corpus Check
-- 104 files · ~61,259 words
+- 104 files · ~60,927 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -180,7 +180,7 @@ Nodes (9): 2.1 Arquitectura, 2.2 Patrón de inyección de dependencias, 2.3 Serv
 
 ### Community 70 - "Community 70"
 Cohesion: 0.22
-Nodes (8): Build, Conexión con el backend — *La Casa Paulu*, Inicio rápido, Paulus — El Primer Miembro de Paulu, ¿Qué puedes hacer en Paulus? — *El Camino del Muad'Dib*, Requisitos, Stack, Variables de entorno
+Nodes (8): Build, Conexión con el backend, Inicio rápido, Paulus, ¿Qué puedes hacer en Paulus?, Requisitos, Stack, Variables de entorno
 
 ### Community 71 - "Community 71"
 Cohesion: 0.22

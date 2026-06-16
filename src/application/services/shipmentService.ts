@@ -10,7 +10,7 @@ export interface ShipmentDetail {
 }
 
 export interface SourceDocument {
-  entry_id: string
+  entry_ids: string[]
 }
 
 export interface Recipient {

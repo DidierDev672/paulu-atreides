@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { ProductResponse } from '@/application/services/productService'
 import type { ProviderResponse } from '@/application/services/providerService'
 import CompanyRequiredModal from '@/presentation/components/company/CompanyRequiredModal.vue'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { useShipmentStore } from '@/presentation/stores/shipmentStore'
 import { computed, onMounted, reactive, ref } from 'vue'
-import ProductSelectionModal from '@/presentation/components/productEntries/ProductSelectionModal.vue'
+import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
 import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
+import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
 import type { ShipmentDetail } from '@/application/services/shipmentService'
+import type { ProductEntryResponse } from '@/application/services/productEntryService'
 
 function formatCOP(value: number): string {
   return value.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -22,7 +23,6 @@ function parseCOP(raw: string): number {
 
 const emit = defineEmits<{
   saved: []
-  goToProductRegistration: []
   goToProviderRegistration: []
 }>()
 
@@ -50,7 +50,7 @@ const form = reactive({
   company_id: '',
   warehouse_id: '',
   responsible_id: '',
-  source_document: { entry_id: '' },
+  source_document: { entry_ids: [] },
   recipient: { recipient_type: 'CUSTOMER', recipient_id: '' },
   details: [] as ShipmentDetail[],
   financial_summary: { subtotal: 0, vat: 0, discount: 0, total: 0 },
@@ -59,8 +59,10 @@ const form = reactive({
 
 const fieldErrors = reactive<Record<string, string>>({})
 const showCompanyModal = ref(false)
-const showProductModal = ref(false)
+const showEntryModal = ref(false)
 const showProviderModal = ref(false)
+const showWineryModal = ref(false)
+const selectedEntries = ref<ProductEntryResponse[]>([])
 const isSubmitting = ref(false)
 
 const movementTypes: { value: string; label: string }[] = [
@@ -116,21 +118,27 @@ function handleDiscountInput(raw: string): void {
   updateFinancialSummary()
 }
 
-function handleProductsSelected(products: ProductResponse[]): void {
-  for (const p of products) {
-    const exists = form.details.some((d) => d.code === p.product_code)
-    if (!exists) {
-      form.details.push({
-        code: p.product_code,
-        product: p.name,
-        unit: p.unit,
-        quantity: 0,
-        unit_cost: 0,
-        subtotal: 0,
-      })
+function handleEntriesSelected(entries: ProductEntryResponse[]): void {
+  selectedEntries.value = entries
+  form.source_document.entry_ids = entries.map((e) => e.id)
+  showEntryModal.value = false
+
+  const existingCodes = new Set(form.details.map((d) => d.code))
+  for (const entry of entries) {
+    for (const detail of entry.details) {
+      if (!existingCodes.has(detail.code)) {
+        form.details.push({
+          code: detail.code,
+          product: detail.product,
+          unit: detail.unit,
+          quantity: detail.quantity,
+          unit_cost: detail.unitCost,
+          subtotal: detail.quantity * detail.unitCost,
+        })
+        existingCodes.add(detail.code)
+      }
     }
   }
-  showProductModal.value = false
   updateFinancialSummary()
 }
 
@@ -222,6 +230,11 @@ function handleProviderSelected(provider: ProviderResponse): void {
   showProviderModal.value = false
 }
 
+function handleWinerySelected(winery: { id: string }): void {
+  form.warehouse_id = winery.id
+  showWineryModal.value = false
+}
+
 function handleCreateAnother(): void {
   form.shipment_number = ''
   form.record_date = ''
@@ -229,7 +242,8 @@ function handleCreateAnother(): void {
   form.status = 'DRAFT'
   form.warehouse_id = ''
   form.recipient = { recipient_type: 'CUSTOMER', recipient_id: '' }
-  form.source_document = { entry_id: '' }
+  form.source_document = { entry_ids: [] }
+  selectedEntries.value = []
   form.details = []
   form.financial_summary = { subtotal: 0, vat: 0, discount: 0, total: 0 }
   form.remarks = ''
@@ -245,12 +259,11 @@ function handleGoToList(): void {
   <div class="relative mx-auto max-w-5xl">
     <CompanyRequiredModal v-if="showCompanyModal" @close="showCompanyModal = false" />
 
-    <ProductSelectionModal
-      v-if="showProductModal"
+    <EntrySelectionModal
+      v-if="showEntryModal"
       :company-id="form.company_id"
-      @close="showProductModal = false"
-      @confirm="handleProductsSelected"
-      @go-to-product-registration="emit('goToProductRegistration')"
+      @close="showEntryModal = false"
+      @confirm="handleEntriesSelected"
     />
 
     <ProviderSelectionModal
@@ -258,6 +271,13 @@ function handleGoToList(): void {
       @close="showProviderModal = false"
       @confirm="handleProviderSelected"
       @go-to-provider-registration="emit('goToProviderRegistration')"
+    />
+
+    <WinerySelectionModal
+      v-if="showWineryModal"
+      :company-id="form.company_id"
+      @close="showWineryModal = false"
+      @confirm="handleWinerySelected"
     />
 
     <form @submit.prevent="handleSubmit" class="space-y-8">
@@ -306,9 +326,19 @@ function handleGoToList(): void {
         <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">ID de bodega</label>
-            <input v-model="form.warehouse_id" type="text"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-              :class="{ 'border-red-400 dark:border-red-500': fieldErrors.warehouse_id }" />
+            <div class="flex gap-2">
+              <input v-model="form.warehouse_id" type="text" readonly
+                class="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-600 outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                :class="{ 'border-red-400 dark:border-red-500': fieldErrors.warehouse_id }" />
+              <button type="button" title="Seleccionar bodega"
+                class="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-3 py-2.5 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
+                @click="showWineryModal = true">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                </svg>
+                Seleccionar
+              </button>
+            </div>
             <p v-if="fieldErrors.warehouse_id" class="mt-1 text-xs text-red-500">{{ fieldErrors.warehouse_id }}</p>
           </div>
           <div>
@@ -325,11 +355,41 @@ function handleGoToList(): void {
 
       <!-- Documento de origen -->
       <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-        <h3 class="mb-4 text-base font-semibold text-slate-800 dark:text-slate-100">Documento de origen</h3>
-        <div>
-          <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">ID de entrada (opcional)</label>
-          <input v-model="form.source_document.entry_id" type="text" placeholder="ID de la entrada que origina este despacho"
-            class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" />
+        <div class="mb-4 flex items-center justify-between">
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100">Documento de origen</h3>
+          <button type="button"
+            class="inline-flex items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-4 py-2 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
+            @click="showEntryModal = true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Seleccionar entrada(s)
+          </button>
+        </div>
+        <div v-if="selectedEntries.length === 0" class="rounded-xl border-2 border-dashed border-slate-200 px-4 py-6 text-center dark:border-slate-700">
+          <svg class="mx-auto mb-2 h-6 w-6 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <p class="text-sm text-slate-400 dark:text-slate-500">
+            Seleccione una o varias entradas para cargar autom\u00e1ticamente sus productos.
+          </p>
+        </div>
+        <div v-else class="space-y-3">
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            {{ selectedEntries.length }} entrada{{ selectedEntries.length !== 1 ? 's' : '' }} seleccionada{{ selectedEntries.length !== 1 ? 's' : '' }}:
+          </p>
+          <div v-for="entry in selectedEntries" :key="entry.id"
+            class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-700 dark:bg-slate-800/50">
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800 dark:text-slate-100">{{ entry.entry_number }}</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                {{ entry.registered_date }} &middot; {{ entry.movement_type }}
+              </p>
+            </div>
+            <span class="ml-3 shrink-0 rounded-full bg-stellar-100 px-2.5 py-0.5 text-xs font-medium text-stellar-700 dark:bg-stellar-500/10 dark:text-stellar-300">
+              {{ entry.details.length }} producto{{ entry.details.length !== 1 ? 's' : '' }}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -368,14 +428,9 @@ function handleGoToList(): void {
       <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100">Productos a despachar</h3>
-          <button type="button"
-            class="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-stellar-500 to-cosmic-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:from-stellar-400 hover:to-cosmic-400"
-            @click="showProductModal = true">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            Agregar producto
-          </button>
+          <p class="text-xs text-slate-400 dark:text-slate-500">
+            {{ form.details.length }} producto{{ form.details.length !== 1 ? 's' : '' }}
+          </p>
         </div>
 
         <p v-if="fieldErrors.details" class="mb-3 text-xs text-red-500">{{ fieldErrors.details }}</p>
@@ -385,7 +440,7 @@ function handleGoToList(): void {
           <svg class="mb-3 h-8 w-8 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
-          <p class="text-sm text-slate-400 dark:text-slate-500">No hay productos agregados. Presione "Agregar producto" para empezar.</p>
+          <p class="text-sm text-slate-400 dark:text-slate-500">No hay productos. Seleccione una entrada de origen para cargar sus productos.</p>
         </div>
 
         <div v-else class="overflow-x-auto">

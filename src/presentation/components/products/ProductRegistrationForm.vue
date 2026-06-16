@@ -211,7 +211,7 @@ const filteredSuggestions = computed(() => {
   const input = form.categories_input.trim().toLowerCase()
   if (!input) return []
   return Object.entries(categoryFrequencies.value)
-    .filter(([cat, count]) => count >= 3 && cat.toLowerCase().includes(input) && !form.categories.includes(cat))
+    .filter(([cat, count]) => count >= 3 && cat.toLowerCase().includes(input) && Array.isArray(form.categories) && !form.categories.includes(cat))
     .map(([cat]) => cat)
     .slice(0, 6)
 })
@@ -226,6 +226,7 @@ const isFormValid = computed(() => {
   return (
     form.name.trim() !== '' &&
     form.product_code.trim() !== '' &&
+    Array.isArray(form.categories) &&
     form.categories.length > 0 &&
     form.unit !== '' &&
     form.quantity >= 0 &&
@@ -235,7 +236,9 @@ const isFormValid = computed(() => {
 
 function addCategory(): void {
   const val = form.categories_input.trim()
-  if (val && !form.categories.includes(val)) {
+  if (!val) return
+  if (!Array.isArray(form.categories)) form.categories = []
+  if (!form.categories.includes(val)) {
     form.categories.push(val)
     form.categories_input = ''
     fieldErrors.categories = ''
@@ -245,6 +248,7 @@ function addCategory(): void {
 }
 
 function removeCategory(index: number): void {
+  if (!Array.isArray(form.categories)) return
   form.categories.splice(index, 1)
 }
 

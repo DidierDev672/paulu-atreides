@@ -23,6 +23,7 @@ import WineryRegistrationForm from '@/presentation/components/wineries/WineryReg
 import OrderForm from '@/presentation/components/orders/OrderForm.vue'
 import OrderList from '@/presentation/components/orders/OrderList.vue'
 import ShipmentForm from '@/presentation/components/shipments/ShipmentForm.vue'
+import ShipmentList from '@/presentation/components/shipments/ShipmentList.vue'
 
 // ─── Theme ───────────────────────────────────────────────────────────────────
 const isDark = ref(false)
@@ -166,7 +167,8 @@ const navItems = [
   { id: 'product-entries', label: 'Entradas', icon: 'clipboard' },
   { id: 'register-order', label: 'Registrar orden', icon: 'inbox' },
   { id: 'orders', label: 'Órdenes', icon: 'clipboard' },
-  { id: 'register-shipment', label: 'Registrar salidas', icon: 'export' },
+  { id: 'shipments', label: 'Salidas', icon: 'export' },
+  { id: 'register-shipment', label: 'Registrar salida', icon: 'plus' },
 ]
 
 // ─── Stat cards ──────────────────────────────────────────────────────────────
@@ -368,6 +370,9 @@ const searchQuery = ref('')
           </svg>
           <svg v-else-if="item.icon === 'export'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          <svg v-else-if="item.icon === 'plus'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
           </svg>
           <svg v-else class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -879,7 +884,7 @@ const searchQuery = ref('')
 
       <!-- Products list view -->
       <div v-else-if="activeNav === 'products'">
-        <ProductList />
+        <ProductList @go-to-register-product="activeNav = 'register-product'" />
       </div>
 
       <!-- Register order view -->
@@ -895,6 +900,11 @@ const searchQuery = ref('')
       <!-- Orders list view -->
       <div v-else-if="activeNav === 'orders'">
         <OrderList />
+      </div>
+
+      <!-- Shipments list view -->
+      <div v-else-if="activeNav === 'shipments'">
+        <ShipmentList />
       </div>
 
       <!-- Register shipment view -->

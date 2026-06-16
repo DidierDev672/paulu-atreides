@@ -1,8 +1,19 @@
 # Paulus — Guía de usuario
 
 > *"El control del patrimonio mediante el honor y la estrategia."*
+>
+> *"El miedo es la mente-asesina. El miedo es la pequeña muerte que conduce a la
+> destrucción total. Enfrentaré mi miedo. Permitiré que pase sobre mí y a través
+> de mí."* — Litany Against Fear, adaptada por Paul Atreides
+>
+> Así mismo, el **miedo a perder el control del inventario** es la mente-asesina
+> del empresario. Paulus te da la visión para ver a través del desierto fiscal.
 
-**Paulus** es el primer miembro de **Paulu**. Una aplicación web para la gestión empresarial colombiana. Te ayuda a controlar tu patrimonio: productos, proveedores, bodegas, entradas de inventario y más. Construida con **Vue 3**, **TypeScript**, **Pinia** y **TailwindCSS 4**.
+**Paulus** es el primer miembro de **Paulu**. Como Paul Atreides fue el primer
+forastero en unir a los fremen, Paulus es la primera aplicación en unificar la
+gestión empresarial colombiana. Te ayuda a controlar tu patrimonio: productos,
+proveedores, bodegas, entradas de inventario y más. Construida con **Vue 3**,
+**TypeScript**, **Pinia** y **TailwindCSS 4**.
 
 ---
 
