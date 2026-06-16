@@ -1,0 +1,324 @@
+{
+  "communities": {
+    "0": [
+      "di_container",
+      "di_container_authrepository",
+      "di_container_container",
+      "di_container_httpclient",
+      "http_axioshttpclient",
+      "http_axioshttpclient_axioshttpclient",
+      "http_axioshttpclient_axioshttpclient_constructor",
+      "http_axioshttpclient_axioshttpclient_request",
+      "http_axiosinstance",
+      "http_axiosinstance_axiosinstance",
+      "http_httperror",
+      "http_httperror_httperror",
+      "http_httperror_httperror_constructor",
+      "http_ihttpclient",
+      "http_ihttpclient_httprequestoptions",
+      "http_ihttpclient_ihttpclient",
+      "repositories_authrepository",
+      "repositories_authrepository_authapiresponse",
+      "repositories_authrepository_authapiuser",
+      "repositories_authrepository_authrepository",
+      "repositories_authrepository_authrepository_constructor",
+      "repositories_authrepository_authrepository_login",
+      "repositories_authrepository_authrepository_maptosession",
+      "repositories_authrepository_authrepository_register"
+    ],
+    "1": [
+      "pages_dashboardpage",
+      "pages_dashboardpage_activities",
+      "pages_dashboardpage_authstore",
+      "pages_dashboardpage_currentpage",
+      "pages_dashboardpage_gotopage",
+      "pages_dashboardpage_handleonboardingdismiss",
+      "pages_dashboardpage_handleonboardingproceed",
+      "pages_dashboardpage_loadingcompany",
+      "pages_dashboardpage_navitems",
+      "pages_dashboardpage_notifications",
+      "pages_dashboardpage_paginatedtransactions",
+      "pages_dashboardpage_showonboarding",
+      "pages_dashboardpage_showregistrationform",
+      "pages_dashboardpage_statcards",
+      "pages_dashboardpage_string",
+      "pages_dashboardpage_totalpages",
+      "pages_dashboardpage_userid",
+      "pages_dashboardpage_userinitials",
+      "pages_dashboardpage_username"
+    ],
+    "2": [
+      "entities_authsession",
+      "entities_authsession_authsession",
+      "entities_user",
+      "entities_user_user",
+      "repositories_iauthrepository",
+      "repositories_iauthrepository_iauthrepository",
+      "value_objects_logincredentials",
+      "value_objects_logincredentials_logincredentials",
+      "value_objects_registerdata",
+      "value_objects_registerdata_registerdata"
+    ],
+    "3": [
+      "validators_iloginvalidator",
+      "validators_iloginvalidator_iloginvalidator",
+      "validators_iloginvalidator_loginfielderrors",
+      "validators_iloginvalidator_loginvalidationresult",
+      "validators_loginvalidator",
+      "validators_loginvalidator_loginvalidator",
+      "validators_loginvalidator_loginvalidator_validate",
+      "validators_loginvalidator_loginvalidator_validateemail",
+      "validators_loginvalidator_loginvalidator_validatepassword"
+    ],
+    "4": [
+      "validators_iregistervalidator",
+      "validators_iregistervalidator_iregistervalidator",
+      "validators_iregistervalidator_registervalidationresult",
+      "validators_registervalidator",
+      "validators_registervalidator_registervalidator",
+      "validators_registervalidator_registervalidator_isempty",
+      "validators_registervalidator_registervalidator_validate",
+      "validators_registervalidator_required_fields"
+    ],
+    "5": [
+      "auth_tokenstorage",
+      "auth_tokenstorage_clearstoredsession",
+      "auth_tokenstorage_clearstoredtoken",
+      "auth_tokenstorage_getstoredsession",
+      "auth_tokenstorage_getstoredtoken",
+      "auth_tokenstorage_setstoredsession",
+      "auth_tokenstorage_setstoredtoken"
+    ],
+    "6": [
+      "dtos_registerdto",
+      "dtos_registerdto_registerdto",
+      "use_cases_registerusecase",
+      "use_cases_registerusecase_registerusecase",
+      "use_cases_registerusecase_registerusecase_constructor",
+      "use_cases_registerusecase_registerusecase_execute",
+      "use_cases_registerusecase_registerusecase_validate"
+    ],
+    "7": [
+      "services_companyservice",
+      "services_companyservice_companyrequest",
+      "services_companyservice_companyresponse",
+      "services_companyservice_createcompany",
+      "services_companyservice_getcompanybyuser",
+      "services_companyservice_geterrormessage",
+      "services_companyservice_updatecompany"
+    ],
+    "8": [
+      "dtos_logindto",
+      "dtos_logindto_logindto",
+      "use_cases_loginusecase",
+      "use_cases_loginusecase_loginusecase",
+      "use_cases_loginusecase_loginusecase_constructor",
+      "use_cases_loginusecase_loginusecase_execute"
+    ],
+    "9": [
+      "auth_authalertmessages",
+      "auth_authalertmessages_authalertmessage",
+      "auth_authalertmessages_matches",
+      "auth_authalertmessages_resolveloginalertmessage",
+      "auth_authalertmessages_resolveregisteralertmessage"
+    ],
+    "10": [
+      "services_userservice",
+      "services_userservice_updateuser",
+      "services_userservice_updateuserrequest",
+      "services_userservice_userresponse"
+    ],
+    "11": [
+      "app",
+      "main",
+      "main_app"
+    ],
+    "12": [
+      "router_index",
+      "router_index_router",
+      "router_index_routes"
+    ],
+    "13": [
+      "stores_authstore",
+      "stores_authstore_useauthstore"
+    ],
+    "14": [
+      "ui_appalert_types",
+      "ui_appalert_types_appalertvariant"
+    ],
+    "15": [
+      "auth_authbutton"
+    ],
+    "16": [
+      "auth_authinput"
+    ],
+    "17": [
+      "auth_loginform"
+    ],
+    "18": [
+      "auth_registerform"
+    ],
+    "19": [
+      "company_companyregistrationform"
+    ],
+    "20": [
+      "company_onboardingmodal"
+    ],
+    "21": [
+      "config_api"
+    ],
+    "22": [
+      "pages_authpage"
+    ],
+    "23": [
+      "profile_editprofilemodal"
+    ],
+    "24": [
+      "profile_userprofile"
+    ],
+    "25": [
+      "ui_appalert"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12681159420289856,
+    "1": 0.1111111111111111,
+    "2": 0.3111111111111111,
+    "3": 0.3888888888888889,
+    "4": 0.42857142857142855,
+    "5": 0.2857142857142857,
+    "6": 0.42857142857142855,
+    "7": 0.2857142857142857,
+    "8": 0.4666666666666667,
+    "9": 0.6,
+    "10": 0.5,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0,
+    "16": 1.0,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "25": 1.0
+  },
+  "gods": [
+    {
+      "id": "repositories_authrepository_authrepository",
+      "label": "AuthRepository",
+      "degree": 7
+    },
+    {
+      "id": "http_ihttpclient_ihttpclient",
+      "label": "IHttpClient",
+      "degree": 6
+    },
+    {
+      "id": "http_axioshttpclient_axioshttpclient",
+      "label": "AxiosHttpClient",
+      "degree": 5
+    },
+    {
+      "id": "validators_loginvalidator_loginvalidator",
+      "label": "LoginValidator",
+      "degree": 5
+    },
+    {
+      "id": "use_cases_registerusecase_registerusecase",
+      "label": "RegisterUseCase",
+      "degree": 4
+    },
+    {
+      "id": "validators_registervalidator_registervalidator",
+      "label": "RegisterValidator",
+      "degree": 4
+    },
+    {
+      "id": "dtos_logindto_logindto",
+      "label": "LoginDto",
+      "degree": 3
+    },
+    {
+      "id": "dtos_registerdto_registerdto",
+      "label": "RegisterDto",
+      "degree": 3
+    },
+    {
+      "id": "use_cases_loginusecase_loginusecase",
+      "label": "LoginUseCase",
+      "degree": 3
+    },
+    {
+      "id": "entities_authsession_authsession",
+      "label": "AuthSession",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "AuthSession",
+      "target": "User",
+      "source_files": [
+        "domain/entities/AuthSession.ts",
+        "domain/entities/User.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "AxiosHttpClient",
+      "target": "IHttpClient",
+      "source_files": [
+        "infrastructure/http/AxiosHttpClient.ts",
+        "infrastructure/http/IHttpClient.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "implements",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "AuthRepository",
+      "target": "IHttpClient",
+      "source_files": [
+        "infrastructure/repositories/AuthRepository.ts",
+        "infrastructure/http/IHttpClient.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "LoginValidator",
+      "target": "ILoginValidator",
+      "source_files": [
+        "presentation/validators/LoginValidator.ts",
+        "presentation/validators/ILoginValidator.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "implements",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "RegisterValidator",
+      "target": "IRegisterValidator",
+      "source_files": [
+        "presentation/validators/RegisterValidator.ts",
+        "presentation/validators/IRegisterValidator.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "implements",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
