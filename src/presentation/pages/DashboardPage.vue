@@ -24,25 +24,13 @@ import OrderForm from '@/presentation/components/orders/OrderForm.vue'
 import OrderList from '@/presentation/components/orders/OrderList.vue'
 import ShipmentForm from '@/presentation/components/shipments/ShipmentForm.vue'
 import ShipmentList from '@/presentation/components/shipments/ShipmentList.vue'
+import { useHistoryStore } from '@/presentation/stores/historyStore'
+import HistoryTimeline from '@/presentation/components/history/HistoryTimeline.vue'
 
 // ─── Theme ───────────────────────────────────────────────────────────────────
-const isDark = ref(false)
-
-function applyTheme(dark: boolean): void {
-  document.documentElement.classList.toggle('dark', dark)
-  localStorage.setItem('dashboard-theme', dark ? 'dark' : 'light')
-}
-
-function toggleTheme(): void {
-  isDark.value = !isDark.value
-}
-
-watch(isDark, applyTheme)
-
-onMounted(() => {
-  const stored = localStorage.getItem('dashboard-theme')
-  isDark.value = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
-})
+import { useTheme } from '@/presentation/composables/useTheme'
+const { isDark, toggleTheme, initTheme } = useTheme()
+onMounted(initTheme)
 
 // ─── Sidebar ─────────────────────────────────────────────────────────────────
 const sidebarCollapsed = ref(false)
@@ -77,6 +65,7 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 
 const authStore = useAuthStore()
 const companyStore = useCompanyStore()
+const historyStore = useHistoryStore()
 const userId = computed(() => authStore.session?.user.id ?? '')
 const userName = computed(() => authStore.session?.user.fullName ?? 'Admin User')
 const userInitials = computed(() =>
@@ -114,6 +103,8 @@ onMounted(async () => {
   } finally {
     loadingCompany.value = false
   }
+  // Fetch recent history
+  historyStore.fetchEntries({ limit: 10 })
 })
 
 function handleCompanySelect(company: CompanyResponse): void {
@@ -152,24 +143,79 @@ function goToProfile(): void {
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 const activeNav = ref('dashboard')
+const expandedGroups = ref<Set<string>>(new Set())
 
-const navItems = [
+watch(activeNav, (nav) => {
+  if (nav === 'transactions') {
+    historyStore.fetchEntries({ limit: 200 })
+  }
+})
+
+function toggleGroup(id: string): void {
+  const s = expandedGroups.value
+  if (s.has(id)) s.delete(id)
+  else s.add(id)
+  expandedGroups.value = new Set(s)
+}
+
+interface NavChild {
+  id: string
+  label: string
+  children?: NavChild[]
+}
+
+interface NavGroup {
+  id: string
+  label: string
+  icon: string
+  children?: NavChild[]
+}
+
+const navGroups: NavGroup[] = [
   { id: 'dashboard', label: 'Dashboard', icon: 'grid' },
-  { id: 'analytics', label: 'Analytics', icon: 'chart' },
-  { id: 'users', label: 'Users', icon: 'users' },
+  {
+    id: 'providers', label: 'Proveedores', icon: 'truck',
+    children: [
+      { id: 'providers', label: 'Lista de Proveedores' },
+      { id: 'register-provider', label: 'Registrar proveedores' },
+    ],
+  },
+  {
+    id: 'products', label: 'Productos', icon: 'package',
+    children: [
+      { id: 'products', label: 'Productos' },
+      { id: 'register-product', label: 'Registrar productos' },
+      {
+        id: 'entries', label: 'Entradas',
+        children: [
+          { id: 'product-entries', label: 'Entradas' },
+          { id: 'register-product-entry', label: 'Registrar entradas' },
+        ],
+      },
+      {
+        id: 'exits', label: 'Salida',
+        children: [
+          { id: 'shipments', label: 'Salidas' },
+          { id: 'register-shipment', label: 'Registrar salida' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'orders', label: 'Órdenes (Compra/Venta)', icon: 'clipboard',
+    children: [
+      { id: 'orders', label: 'Órdenes' },
+      { id: 'register-order', label: 'Registrar Orden' },
+    ],
+  },
   { id: 'transactions', label: 'Transactions', icon: 'wallet' },
   { id: 'profile', label: 'Profile', icon: 'profile' },
-  { id: 'products', label: 'Productos', icon: 'list' },
-  { id: 'register-product', label: 'Registrar productos', icon: 'package' },
-  { id: 'register-provider', label: 'Registrar proveedores', icon: 'truck' },
-  { id: 'register-product-entry', label: 'Registrar entradas', icon: 'inbox' },
-  { id: 'register-winery', label: 'Registrar bodega', icon: 'warehouse' },
-  { id: 'product-entries', label: 'Entradas', icon: 'clipboard' },
-  { id: 'register-order', label: 'Registrar orden', icon: 'inbox' },
-  { id: 'orders', label: 'Órdenes', icon: 'clipboard' },
-  { id: 'shipments', label: 'Salidas', icon: 'export' },
-  { id: 'register-shipment', label: 'Registrar salida', icon: 'plus' },
 ]
+
+function handleNavClick(id: string): void {
+  activeNav.value = id
+  closeMobileSidebar()
+}
 
 // ─── Stat cards ──────────────────────────────────────────────────────────────
 const statCards = [
@@ -248,21 +294,59 @@ function goToPage(page: number): void {
   if (page >= 1 && page <= totalPages.value) currentPage.value = page
 }
 
-// ─── Activity feed ───────────────────────────────────────────────────────────
-const activities = [
-  { id: 1, type: 'success', message: 'New user registration: Ana López', time: '2 min ago' },
-  { id: 2, type: 'warning', message: 'Server load above 80% threshold', time: '15 min ago' },
-  { id: 3, type: 'info', message: 'Monthly report generated successfully', time: '1 hour ago' },
-  { id: 4, type: 'success', message: 'Payment of $2,150.00 received', time: '2 hours ago' },
-  { id: 5, type: 'error', message: 'Failed transaction TXN-004 flagged', time: '3 hours ago' },
-]
-
-const activityDot: Record<string, string> = {
-  success: 'bg-emerald-500',
-  warning: 'bg-amber-500',
-  info: 'bg-blue-500',
-  error: 'bg-red-500',
+// --- Activity feed -----------------------------------------------------------
+const actionDot: Record<string, string> = {
+  CREATE: 'bg-emerald-500',
+  UPDATE: 'bg-blue-500',
+  DELETE: 'bg-red-500',
+  APPROVE: 'bg-teal-500',
+  DEDUCT: 'bg-amber-500',
+  LOGIN: 'bg-indigo-500',
+  LOGOUT: 'bg-gray-500',
+  REGISTER: 'bg-purple-500',
+  SHIPMENT_CREATED: 'bg-cyan-500',
+  ORDER_CREATED: 'bg-amber-500',
+  ENTRY_CREATED: 'bg-green-500',
+  RELATION_CREATED: 'bg-pink-500',
 }
+
+const actionLabels: Record<string, string> = {
+  CREATE: 'Creación',
+  UPDATE: 'Actualización',
+  DELETE: 'Eliminación',
+  APPROVE: 'Aprobación',
+  DEDUCT: 'Deducción',
+  LOGIN: 'Inicio de sesión',
+  LOGOUT: 'Cierre de sesión',
+  REGISTER: 'Registro',
+  SHIPMENT_CREATED: 'Despacho creado',
+  ORDER_CREATED: 'Orden creada',
+  ENTRY_CREATED: 'Entrada creada',
+  RELATION_CREATED: 'Relación creada',
+}
+
+function formatTimeAgo(iso: string): string {
+  const now = Date.now()
+  const then = new Date(iso).getTime()
+  const diff = now - then
+  const minutes = Math.floor(diff / 60000)
+  if (minutes < 1) return 'Ahora'
+  if (minutes < 60) return `Hace ${minutes} min`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 24) return `Hace ${hours} h`
+  const days = Math.floor(hours / 24)
+  if (days === 1) return 'Ayer'
+  return `Hace ${days} días`
+}
+
+const activities = computed(() =>
+  historyStore.entries.slice(0, 10).map((entry) => ({
+    id: entry.id,
+    type: actionDot[entry.action] ? entry.action.toLowerCase() : 'info',
+    message: entry.details,
+    time: formatTimeAgo(entry.timestamp),
+  }))
+)
 
 const notifications = [
   { id: 1, title: 'New order received', body: 'Order #4821 from María García', time: '5m' },
@@ -312,74 +396,141 @@ const searchQuery = ref('')
 
       <!-- Nav links -->
       <nav class="flex-1 space-y-1 overflow-y-auto p-3">
-        <button
-          v-for="item in navItems"
-          :key="item.id"
-          type="button"
-          class="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200"
-          :class="[
-            activeNav === item.id
-              ? 'bg-stellar-500/10 text-stellar-600 shadow-sm dark:bg-stellar-500/20 dark:text-stellar-300'
-              : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
-            sidebarCollapsed ? 'justify-center' : '',
-          ]"
-          :title="sidebarCollapsed ? item.label : undefined"
-          @click="activeNav = item.id; closeMobileSidebar()"
-        >
-          <!-- Grid icon -->
-          <svg v-if="item.icon === 'grid'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-          </svg>
-          <!-- Chart icon -->
-          <svg v-else-if="item.icon === 'chart'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
-          <!-- Users icon -->
-          <svg v-else-if="item.icon === 'users'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <!-- Wallet icon -->
-          <svg v-else-if="item.icon === 'wallet'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-          </svg>
-          <!-- Profile icon -->
-          <svg v-else-if="item.icon === 'profile'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-          </svg>
-          <!-- Package icon -->
-          <svg v-else-if="item.icon === 'package'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-          </svg>
-          <svg v-else-if="item.icon === 'truck'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-            <circle cx="9" cy="16" r="2" />
-            <circle cx="15" cy="16" r="2" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 12v-2a2 2 0 00-2-2H9a2 2 0 00-2 2v2" />
-          </svg>
-          <svg v-else-if="item.icon === 'inbox'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-          </svg>
-          <svg v-else-if="item.icon === 'clipboard'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
-          <svg v-else-if="item.icon === 'list'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-          </svg>
-          <svg v-else-if="item.icon === 'warehouse'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21V7l9-4 9 4v14M9 17h6v4H9zm0-6h6" />
-          </svg>
-          <svg v-else-if="item.icon === 'export'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-          </svg>
-          <svg v-else-if="item.icon === 'plus'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          <svg v-else class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span v-if="!sidebarCollapsed">{{ item.label }}</span>
-        </button>
+        <template v-for="group in navGroups" :key="group.id">
+          <!-- ── Dropdown group ── -->
+          <div v-if="group.children">
+            <!-- Group header -->
+            <button
+              type="button"
+              class="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200"
+              :class="[
+                'text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
+                sidebarCollapsed ? 'justify-center' : '',
+              ]"
+              :title="sidebarCollapsed ? group.label : undefined"
+              @click="toggleGroup(group.id)"
+            >
+              <!-- Truck icon -->
+              <svg v-if="group.icon === 'truck'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                <circle cx="9" cy="16" r="2" />
+                <circle cx="15" cy="16" r="2" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 12v-2a2 2 0 00-2-2H9a2 2 0 00-2 2v2" />
+              </svg>
+              <!-- Package icon -->
+              <svg v-else-if="group.icon === 'package'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+              <!-- Clipboard icon -->
+              <svg v-else-if="group.icon === 'clipboard'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+              <span v-if="!sidebarCollapsed" class="flex-1 text-left">{{ group.label }}</span>
+              <svg
+                v-if="!sidebarCollapsed"
+                class="h-4 w-4 transition-transform duration-200"
+                :class="expandedGroups.has(group.id) ? 'rotate-180' : ''"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <!-- Group children -->
+            <Transition
+              enter-active-class="transition-opacity duration-200 ease-out"
+              leave-active-class="transition-opacity duration-150 ease-in"
+              enter-from-class="opacity-0"
+              leave-to-class="opacity-0"
+            >
+              <div v-if="!sidebarCollapsed && expandedGroups.has(group.id)" class="ml-3 mt-1 space-y-0.5 border-l-2 border-slate-200 pl-2 dark:border-slate-700">
+              <template v-for="child in group.children" :key="child.id">
+                <!-- Sub-dropdown -->
+                <div v-if="child.children" class="space-y-0.5">
+                  <button
+                    type="button"
+                    class="group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+                    @click="toggleGroup(child.id)"
+                  >
+                    <span class="flex-1 text-left">{{ child.label }}</span>
+                    <svg
+                      class="h-3.5 w-3.5 transition-transform duration-200"
+                      :class="expandedGroups.has(child.id) ? 'rotate-180' : ''"
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <Transition
+                    enter-active-class="transition-opacity duration-200 ease-out"
+                    leave-active-class="transition-opacity duration-150 ease-in"
+                    enter-from-class="opacity-0"
+                    leave-to-class="opacity-0"
+                  >
+                    <div v-if="expandedGroups.has(child.id)" class="ml-3 space-y-0.5">
+                      <button
+                        v-for="sub in child.children"
+                        :key="sub.id"
+                        type="button"
+                        class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200"
+                        :class="[
+                          activeNav === sub.id
+                            ? 'bg-stellar-500/10 text-stellar-600 dark:bg-stellar-500/20 dark:text-stellar-300'
+                            : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
+                        ]"
+                        @click="handleNavClick(sub.id)"
+                      >
+                        <span>{{ sub.label }}</span>
+                      </button>
+                    </div>
+                  </Transition>
+                </div>
+                <!-- Regular child -->
+                <button
+                  v-else
+                  type="button"
+                  class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200"
+                  :class="[
+                    activeNav === child.id
+                      ? 'bg-stellar-500/10 text-stellar-600 dark:bg-stellar-500/20 dark:text-stellar-300'
+                      : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
+                  ]"
+                  @click="handleNavClick(child.id)"
+                >
+                  <span>{{ child.label }}</span>
+                </button>
+              </template>
+            </div>
+            </Transition>
+          </div>
+          <!-- ── Flat item ── -->
+          <button
+            v-else
+            type="button"
+            class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200"
+            :class="[
+              activeNav === group.id
+                ? 'bg-stellar-500/10 text-stellar-600 shadow-sm dark:bg-stellar-500/20 dark:text-stellar-300'
+                : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100',
+              sidebarCollapsed ? 'justify-center' : '',
+            ]"
+            :title="sidebarCollapsed ? group.label : undefined"
+            @click="handleNavClick(group.id)"
+          >
+            <!-- Grid icon -->
+            <svg v-if="group.icon === 'grid'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+            </svg>
+            <!-- Wallet icon -->
+            <svg v-else-if="group.icon === 'wallet'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+            <!-- Profile icon -->
+            <svg v-else-if="group.icon === 'profile'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span v-if="!sidebarCollapsed">{{ group.label }}</span>
+          </button>
+        </template>
       </nav>
 
       <!-- Collapse toggle (desktop) -->
@@ -807,7 +958,7 @@ const searchQuery = ref('')
                 class="flex gap-3"
               >
                 <div class="relative flex flex-col items-center">
-                  <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" :class="activityDot[activity.type]" />
+                  <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" :class="actionDot[activity.type.toUpperCase()] || 'bg-slate-400'" />
                   <span v-if="index < activities.length - 1" class="mt-1 w-px flex-1 bg-slate-200 dark:bg-slate-700" />
                 </div>
                 <div class="pb-4">
@@ -915,6 +1066,24 @@ const searchQuery = ref('')
         :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
       >
         <ShipmentForm @saved="activeNav = 'register-shipment'" @go-to-product-registration="activeNav = 'register-product'" @go-to-provider-registration="activeNav = 'register-provider'" />
+      </div>
+
+      <!-- Transactions / Inventory History view -->
+      <div
+        v-else-if="activeNav === 'transactions'"
+        v-motion
+        :initial="{ opacity: 0, y: 8 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
+      >
+        <div class="mb-6">
+          <h1 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">Historial de Inventario</h1>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Cada orden y salida deja una huella. Explora el flujo completo de tu inventario.</p>
+        </div>
+        <HistoryTimeline
+          :entries="historyStore.entries"
+          :is-loading="historyStore.isLoading"
+          title="Historial de Actividad"
+        />
       </div>
       </main>
     </div>

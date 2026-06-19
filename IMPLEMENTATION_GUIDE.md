@@ -1,10 +1,13 @@
 # Guía de Implementación — Paulus + Paulu
 
-> Versión 2.0 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus), backend Go (Paulu), y herramientas de análisis (graphify).
+> Versión 2.1 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus), backend Go (Paulu), y herramientas de análisis (graphify).
+>
+> Cada sección incluye su paralelo en la saga *Dune*. Glosario canónico:
+> [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md)
 
 ---
 
-## 1. Resumen del proyecto
+## 1. Resumen del proyecto — *El ascenso de Muad'Dib*
 
 > *Inspirado en el viaje de Paul Atreides — de heredero de la Casa Atreides a líder de los fremen.
 > Paulus (frontend) es la voz visible; Paulu (backend) es la maquinaria que sostiene el poder.*
@@ -16,22 +19,22 @@
 
 ---
 
-## 2. Frontend — Paulus (Vue 3)
+## 2. Frontend — Paulus (Vue 3) — *Rostro de Paul ante los fremen*
 
-### 2.1 Arquitectura
+### 2.1 Arquitectura — *Caladan: estructura noble en cuatro capas*
 
 Clean Architecture con 4 capas:
 
 ```
 src/
-├── presentation/     # Componentes Vue, Pages, Stores, Router, Validators
-├── application/      # Use Cases, Services (HTTP), DTOs
-├── domain/           # Entities, Value Objects, Repository Interfaces
-├── infrastructure/   # HTTP Client (Axios), Repository Impl, DI Container
-├── shared/           # Config, Token Storage
+├── presentation/     # Componentes Vue, Pages, Stores, Router — *Rostro visible de Muad'Dib*
+├── application/      # Use Cases, Services (HTTP), DTOs — *Estrategia de Thufir Hawat*
+├── domain/           # Entities, Value Objects, Repository Interfaces — *Código de honor Atreides*
+├── infrastructure/   # HTTP Client (Axios), Repository Impl, DI Container — *Fortaleza Sardaukar*
+├── shared/           # Config, Token Storage — *Reservas de agua del sietch*
 ```
 
-### 2.2 Patrón de inyección de dependencias
+### 2.2 Patrón de inyección de dependencias — *Mentat Thufir*
 
 `src/infrastructure/di/container.ts` — contenedor manual:
 
@@ -45,75 +48,96 @@ Los stores (Pinia) importan el container directamente:
 import { container } from '@/infrastructure/di/container'
 ```
 
-### 2.3 Servicios HTTP (capa application)
+### 2.3 Servicios HTTP (capa application) — *Exploradores fremen*
 
-A diferencia del patrón de repositorio usado para auth, los servicios de producto, empresa y usuario llaman directamente a `axiosInstance` (NO usan el contenedor DI ni `IHttpClient`):
+A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — protocolo formal*), los servicios de producto, empresa, órdenes y despachos llaman directamente a `axiosInstance` via *Gurney Halleck* (NO usan el contenedor DI ni `IHttpClient`):
 
-| Servicio | Archivo | Endpoints |
+| Servicio | Archivo | Endpoints | Referencia Dune |
 |---|---|---|---|
-| `productService` | `src/application/services/productService.ts` | GET/POST/PUT/DELETE `/products` |
-| `companyService` | `src/application/services/companyService.ts` | GET `/companies/user/{id}`, POST/PUT `/companies` |
-| `wineryService` | `src/application/services/wineryService.ts` | GET/POST/PUT/DELETE `/wineries` |
-| `mainAddressService` | `src/application/services/mainAddressService.ts` | POST `/main-addresses` |
-| `taxInformationService` | `src/application/services/taxInformationService.ts` | POST `/tax-information` |
-| `economicActivityService` | `src/application/services/economicActivityService.ts` | POST `/economic-activities` |
-| `userService` | `src/application/services/userService.ts` | PUT `/users/{id}` |
-| `providerService` | `src/application/services/providerService.ts` | GET/POST/PUT/DELETE `/providers` |
-| `productEntryService` | `src/application/services/productEntryService.ts` | GET/POST/PUT/DELETE `/product-entries` |
+| `productService` | `src/application/services/productService.ts` | GET/POST/PUT/DELETE `/products` | *Cosecha de melange* |
+| `companyService` | `src/application/services/companyService.ts` | GET `/companies/user/{id}`, POST/PUT `/companies` | *Fundar Casa en Arrakis* |
+| `wineryService` | `src/application/services/wineryService.ts` | GET/POST/PUT/DELETE `/wineries` | *Sietch Tabr* |
+| `mainAddressService` | `src/application/services/mainAddressService.ts` | POST `/main-addresses` | *Coordenadas del bled* |
+| `taxInformationService` | `src/application/services/taxInformationService.ts` | POST `/tax-information` | *Desierto fiscal* |
+| `economicActivityService` | `src/application/services/economicActivityService.ts` | POST `/economic-activities` | *Actividad CHOAM* |
+| `userService` | `src/application/services/userService.ts` | PUT `/users/{id}` | *Identidad de Usul* |
+| `providerService` | `src/application/services/providerService.ts` | GET/POST/PUT/DELETE `/providers` | *Tratados del Landsraad* |
+| `productEntryService` | `src/application/services/productEntryService.ts` | GET/POST/PUT/DELETE `/product-entries` | *Ecosistema de Kynes* |
+| `orderService` | `src/application/services/orderService.ts` | GET/POST/PUT/DELETE `/orders`, PATCH `/orders/{id}/approve` | *Contratos CHOAM + Fedaykin* |
+| `shipmentService` | `src/application/services/shipmentService.ts` | GET/POST/PUT/DELETE `/shipments` | *Ornitópteros de salida* |
 
-### 2.4 Stores (Pinia)
+### 2.4 Stores (Pinia) — *Sietch Tabr: memoria colectiva*
 
-| Store | Archivo | Propósito |
+| Store | Archivo | Propósito | Referencia Dune |
 |---|---|---|---|
-| `useAuthStore` | `src/presentation/stores/authStore.ts` | Login, register, logout, sesión persistente |
-| `useProductStore` | `src/presentation/stores/productStore.ts` | CRUD de productos con estado |
-| `useCompanyStore` | `src/presentation/stores/companyStore.ts` | companyId global |
-| `useProviderStore` | `src/presentation/stores/providerStore.ts` | CRUD de proveedores |
-| `useProductEntryStore` | `src/presentation/stores/productEntryStore.ts` | CRUD de entradas de producto |
-| `useWineryStore` | `src/presentation/stores/wineryStore.ts` | CRUD de bodegas |
+| `useAuthStore` | `src/presentation/stores/authStore.ts` | Login, register, logout, sesión persistente | *Memoria de Duncan Idaho* |
+| `useProductStore` | `src/presentation/stores/productStore.ts` | CRUD de productos con estado | *Reserva de melange* |
+| `useCompanyStore` | `src/presentation/stores/companyStore.ts` | companyId global, multi-empresa | *Casa activa del Landsraad* |
+| `useProviderStore` | `src/presentation/stores/providerStore.ts` | CRUD de proveedores | *Rolodex del Landsraad* |
+| `useProductEntryStore` | `src/presentation/stores/productEntryStore.ts` | CRUD de entradas de producto | *Cisternas de Kynes* |
+| `useWineryStore` | `src/presentation/stores/wineryStore.ts` | CRUD de bodegas | *Mapa de sietchs* |
+| `useOrderStore` | `src/presentation/stores/orderStore.ts` | CRUD de órdenes + `approveOrder` | *Archivo CHOAM* |
+| `useShipmentStore` | `src/presentation/stores/shipmentStore.ts` | CRUD de despachos | *Hangar de ornitópteros* |
 
-### 2.5 Enrutamiento
+### 2.5 Composables — *Weirding Way*
+
+| Composable | Archivo | Propósito | Referencia Dune |
+|---|---|---|---|
+| `useQuantityValidation` | `src/presentation/composables/useQuantityValidation.ts` | Valida cantidades de despacho vs stock de entradas | *Disciplina del agua fremen* |
+
+### 2.6 Enrutamiento — *Navegadores Guild*
 
 - 2 rutas: `/` (Dashboard) y `/auth` (Auth)
-- Guardia `beforeEach` que redirige según sesión
-- Transiciones animadas con `mode="out-in"`
+- Guardia `beforeEach` que redirige según sesión — *Duncan Idaho en la puerta*
+- Transiciones animadas con `mode="out-in"` — *Weirding Way entre vistas*
 
-### 2.6 Componentes principales
+### 2.7 Componentes principales — *Arsenal del sietch*
 
-| Componente | Archivo | Propósito |
+| Componente | Archivo | Propósito | Referencia Dune |
 |---|---|---|---|
-| DashboardPage | `src/presentation/pages/DashboardPage.vue` | Panel principal con sidebar, nav, vistas dinámicas (productos, bodegas, perfil) |
-| AuthPage | `src/presentation/pages/AuthPage.vue` | Login/register con tabs animados |
-| ProductRegistrationForm | `src/presentation/components/products/ProductRegistrationForm.vue` | Formulario completo de producto con multi-empresa, selección proveedor/bodega, auto-winery prompt |
-| ProductEditModal | `src/presentation/components/products/ProductEditModal.vue` | Modal edición producto con todos los campos |
-| ProductList | `src/presentation/components/products/ProductList.vue` | Tabla de productos con búsqueda, editar, eliminar |
-| ConfirmDeleteModal | `src/presentation/components/products/ConfirmDeleteModal.vue` | Confirmación con psicología de inventario |
-| SupplierSelectionModal | `src/presentation/components/products/SupplierSelectionModal.vue` | Modal selección proveedor |
-| WinerySelectionModal | `src/presentation/components/products/WinerySelectionModal.vue` | Modal selección bodega |
-| WineryRegistrationForm | `src/presentation/components/wineries/WineryRegistrationForm.vue` | Formulario registro bodega (fecha, área, unidades) |
-| CompanyRegistrationForm | `src/presentation/components/company/CompanyRegistrationForm.vue` | Wizard 6 pasos + 4 llamadas API paralelas |
-| UserProfile | `src/presentation/components/profile/UserProfile.vue` | Perfil de usuario + datos de empresa |
-| EditProfileModal | `src/presentation/components/profile/EditProfileModal.vue` | Modal editar perfil + empresa |
-| ProductEntryForm | `src/presentation/components/productEntries/ProductEntryForm.vue` | Formulario entrada producto con tabla dinámica |
-| ProviderRegistrationForm | `src/presentation/components/providers/ProviderRegistrationForm.vue` | Formulario registro proveedor |
+| DashboardPage | `src/presentation/pages/DashboardPage.vue` | Panel con sidebar, nav, vistas dinámicas | *Sala de mando de Muad'Dib* |
+| AuthPage | `src/presentation/pages/AuthPage.vue` | Login/register con tabs animados | *Puerta de Duncan Idaho* |
+| ProductRegistrationForm | `src/presentation/components/products/ProductRegistrationForm.vue` | Formulario producto multi-empresa | *Cosecha de especia* |
+| ProductEditModal | `src/presentation/components/products/ProductEditModal.vue` | Modal edición producto | *Refinar la cosecha* |
+| ProductList | `src/presentation/components/products/ProductList.vue` | Tabla productos con búsqueda | *Inventario del sietch* |
+| ConfirmDeleteModal | `src/presentation/components/products/ConfirmDeleteModal.vue` | Confirmación con psicología de inventario | *Agua derramada* |
+| SupplierSelectionModal | `src/presentation/components/products/SupplierSelectionModal.vue` | Modal selección proveedor | *Elegir aliado fremen* |
+| WinerySelectionModal | `src/presentation/components/products/WinerySelectionModal.vue` | Modal selección bodega | *Elegir sietch destino* |
+| WineryRegistrationForm | `src/presentation/components/wineries/WineryRegistrationForm.vue` | Formulario bodega | *Fundar sietch* |
+| CompanyRegistrationForm | `src/presentation/components/company/CompanyRegistrationForm.vue` | Wizard 6 pasos + 4 API paralelas | *Duke Leto funda la Casa* |
+| UserProfile | `src/presentation/components/profile/UserProfile.vue` | Perfil + datos empresa | *Identidad de Usul* |
+| EditProfileModal | `src/presentation/components/profile/EditProfileModal.vue` | Modal editar perfil + empresa | *Renacer en el sietch* |
+| ProductEntryForm | `src/presentation/components/productEntries/ProductEntryForm.vue` | Entrada con tabla dinámica | *Dr. Kynes* |
+| ProductEntryList | `src/presentation/components/productEntries/ProductEntryList.vue` | Lista de entradas | *Registro de cosechas* |
+| ProviderRegistrationForm | `src/presentation/components/providers/ProviderRegistrationForm.vue` | Registro proveedor | *Tratado Landsraad* |
+| OrderForm | `src/presentation/components/orders/OrderForm.vue` | Orden compra/venta | *Contrato CHOAM* |
+| OrderList | `src/presentation/components/orders/OrderList.vue` | Lista órdenes + aprobación | *Archivo imperial* |
+| OrderEditModal | `src/presentation/components/orders/OrderEditModal.vue` | Edición de orden | *Thufir revisa estrategia* |
+| DispatchSummaryModal | `src/presentation/components/orders/DispatchSummaryModal.vue` | Resumen post-despacho | *Informe post-batalla* |
+| AutomationConfirmModal | `src/presentation/components/orders/AutomationConfirmModal.vue` | Confirmación automatización | *Profecía de Muad'Dib* |
+| ShipmentForm | `src/presentation/components/shipments/ShipmentForm.vue` | Despacho con validación stock | *Ornitóptero cargado* |
+| ShipmentList | `src/presentation/components/shipments/ShipmentList.vue` | Lista despachos | *Registro de vuelos* |
+| ShipmentEditModal | `src/presentation/components/shipments/ShipmentEditModal.vue` | Edición despacho | *Recalcular ruta* |
+| ShipmentDetailModal | `src/presentation/components/shipments/ShipmentDetailModal.vue` | Detalle despacho | *Manifiesto de carga* |
+| EntrySelectionModal | `src/presentation/components/shipments/EntrySelectionModal.vue` | Selección entradas origen | *Cisternas de agua* |
 
-### 2.7 Manejo de errores
+### 2.8 Manejo de errores — *Voz Bene Gesserit*
 
-- `HttpError` class con status code
-- `authAlertMessages.ts` traduce errores crudos a alertas con variante, título y botones
-- `AppAlert.vue` banner reutilizable con 4 variantes (error, warning, info, success)
-- Validación por campo en formularios con `fieldErrors` reactivo
+- `HttpError` class con status code — *Barón Harkonnen contenido*
+- `authAlertMessages.ts` traduce errores crudos a alertas — *Traducción de profecías*
+- `AppAlert.vue` banner reutilizable con 4 variantes — *Voz Bene Gesserit*
+- Validación por campo con `fieldErrors` reactivo — *Prueba de Lady Jessica*
 
-### 2.8 Autenticación
+### 2.9 Autenticación — *Sello Atreides*
 
-- JWT HS256, 24h expiración
-- Token inyectado automáticamente via Axios interceptor
-- Sesión persistida en `localStorage` (`auth_token`, `auth_session`)
-- Store inicializa sesión desde `localStorage` al cargar
+- JWT HS256, 24h expiración — *Anillo de sello Atreides*
+- Token inyectado via Axios interceptor — *Gurney lleva el mensaje*
+- Sesión en `localStorage` (`auth_token`, `auth_session`) — *Traje stillsuit*
+- Store inicializa sesión al cargar — *Duncan recuerda al visitante*
 
 ---
 
-## 3. Backend — Paulu (Go API)
+## 3. Backend — Paulu (Go API) — *Sardaukar: disciplina del desierto*
 
 ### 3.1 Arquitectura
 
@@ -253,7 +277,7 @@ ProductRegistrationForm (mount)
 
 ---
 
-## 5. Graphify — Análisis de grafos de código
+## 5. Graphify — Análisis de grafos de código — *Mentat Thufir*
 
 ### 5.1 Herramienta
 
@@ -304,9 +328,9 @@ Generado en `C:\Users\Aizen\Desktop\paulu\src\` (42 archivos).
 
 ---
 
-## 7. Convenciones del código
+## 7. Convenciones del código — *Código de honor Atreides*
 
-### 7.1 Frontend
+### 7.1 Frontend — *Lenguaje de Usul*
 
 - **Idioma:** Español (UI, validaciones, comentarios)
 - **Estilo:** Composition API con `<script setup lang="ts">`
@@ -317,7 +341,7 @@ Generado en `C:\Users\Aizen\Desktop\paulu\src\` (42 archivos).
 - **Estilos:** Tailwind CSS v4 con clases utilitarias
 - **Store pattern:** Pinia composition stores con arrow functions
 
-### 7.2 Backend
+### 7.2 Backend — *Lenguaje del Imperio*
 
 - **Idioma:** Inglés (código), Español (mensajes de error al usuario)
 - **Nomenclatura:** camelCase en Go (`ProductCode`, `MinimumStock`), snake_case en JSON (`product_code`, `minimum_stock`)
@@ -327,7 +351,7 @@ Generado en `C:\Users\Aizen\Desktop\paulu\src\` (42 archivos).
 
 ---
 
-## 8. Variables de entorno
+## 8. Variables de entorno — *Coordenadas del Guild Navigator*
 
 | Variable | Default | Propósito |
 |---|---|---|
@@ -337,7 +361,7 @@ Generado en `C:\Users\Aizen\Desktop\paulu\src\` (42 archivos).
 
 ---
 
-## 9. Comandos útiles
+## 9. Comandos útiles — *Manual del ornitóptero*
 
 ### Frontend (Paulus)
 

@@ -35,6 +35,11 @@ export interface ProductEntryResponse {
   updatedAt: string
 }
 
+export interface Deduction {
+  code: string
+  quantity: number
+}
+
 export interface CreateProductEntryRequest {
   entry_number: string
   registered_date: string
@@ -75,5 +80,10 @@ export async function getProductEntriesByCodes(codes: string[], companyId: strin
   const response = await axiosInstance.get<ProductEntryResponse[]>('/product-entries/by-product-codes', {
     params: { codes: codes.join(','), company_id: companyId },
   })
+  return response.data
+}
+
+export async function deductProductEntry(id: string, deductions: Deduction[]): Promise<ProductEntryResponse> {
+  const response = await axiosInstance.patch<ProductEntryResponse>(`/product-entries/${id}/deduct`, { deductions })
   return response.data
 }

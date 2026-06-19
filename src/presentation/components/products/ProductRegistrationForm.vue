@@ -8,6 +8,7 @@ import type { CompanyResponse } from '@/application/services/companyService'
 import { getWineriesByCompany } from '@/application/services/wineryService'
 import SupplierSelectionModal from '@/presentation/components/products/SupplierSelectionModal.vue'
 import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
+import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
 
 const emit = defineEmits<{
   saved: []
@@ -18,6 +19,7 @@ const emit = defineEmits<{
 const productStore = useProductStore()
 const productEntryStore = useProductEntryStore()
 const authStore = useAuthStore()
+const { logCreate } = useHistoryLogger()
 
 const companyId = ref('')
 const loadingCompany = ref(true)
@@ -352,6 +354,11 @@ async function handleSubmit(): Promise<void> {
     })
 
     if (result) {
+      logCreate({
+        entityType: 'PRODUCT',
+        entityId: result.id,
+        details: `Producto ${result.name} (${result.product_code}) creado.`,
+      })
       autoEntry.unit_cost = 0
       autoEntry.commercial_policy = ''
       autoEntry.profit_margin = 0

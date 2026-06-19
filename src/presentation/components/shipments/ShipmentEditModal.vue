@@ -191,7 +191,7 @@ async function handleSubmit(): Promise<void> {
                     <td class="px-3 py-2">
                       <input v-model.number="detail.unit_cost" type="number" min="0" step="0.01" class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" @input="updateDetailSubtotal(index)" />
                     </td>
-                    <td class="px-3 py-2 text-xs">${{ formatCOP(detail.subtotal) }}</td>
+                    <td class="px-3 py-2 text-xs dark:text-white">${{ formatCOP(detail.subtotal) }}</td>
                     <td class="px-3 py-2">
                       <button type="button" class="text-red-500 hover:text-red-700" @click="removeDetail(index)">✕</button>
                     </td>

@@ -47,8 +47,8 @@ export const useOrderStore = defineStore('order', () => {
       const created = await apiCreateOrder(data)
       orders.value.push(created)
       return created
-    } catch (err) {
-      error.value = err instanceof Error ? err.message : 'Error al crear la orden.'
+    } catch (err: any) {
+      error.value = err?.response?.data?.error || (err instanceof Error ? err.message : 'Error al crear la orden.')
       return null
     } finally {
       isLoading.value = false

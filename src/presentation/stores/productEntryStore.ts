@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { ProductEntryResponse, CreateProductEntryRequest } from '@/application/services/productEntryService'
+import type { ProductEntryResponse, CreateProductEntryRequest, Deduction } from '@/application/services/productEntryService'
 import {
   getProductEntries as apiGetProductEntries,
   getProductEntryById as apiGetProductEntryById,
   createProductEntry as apiCreateProductEntry,
   updateProductEntry as apiUpdateProductEntry,
   deleteProductEntry as apiDeleteProductEntry,
+  deductProductEntry as apiDeductProductEntry,
 } from '@/application/services/productEntryService'
 
 export const useProductEntryStore = defineStore('productEntry', () => {
@@ -87,6 +88,23 @@ export const useProductEntryStore = defineStore('productEntry', () => {
     }
   }
 
+  async function deductEntryQuantity(id: string, deductions: Deduction[]): Promise<ProductEntryResponse | null> {
+    isLoading.value = true
+    error.value = null
+    try {
+      const updated = await apiDeductProductEntry(id, deductions)
+      const index = entries.value.findIndex((e) => e.id === id)
+      if (index !== -1) entries.value[index] = updated
+      if (currentEntry.value?.id === id) currentEntry.value = updated
+      return updated
+    } catch (err: any) {
+      error.value = err?.response?.data?.error || (err instanceof Error ? err.message : 'Error al descontar inventario.')
+      return null
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   function clearError(): void {
     error.value = null
   }
@@ -101,6 +119,7 @@ export const useProductEntryStore = defineStore('productEntry', () => {
     createEntry,
     updateEntry,
     removeEntry,
+    deductEntryQuantity,
     clearError,
   }
 })

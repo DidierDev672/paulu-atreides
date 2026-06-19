@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/presentation/components/products/ProductRegistrationForm.vue": {
-    "mtime": 1781751382.4918127,
-    "ast_hash": "51bf356ff9460e055319d379fd71a745",
+    "mtime": 1781628822.5757873,
+    "ast_hash": "33bd2e39bfa813b59cbe2ac59709ee86",
     "semantic_hash": ""
   },
   "src/presentation/components/profile/EditProfileModal.vue": {
@@ -165,8 +165,8 @@
     "semantic_hash": ""
   },
   "src/presentation/pages/DashboardPage.vue": {
-    "mtime": 1781751286.0156147,
-    "ast_hash": "99e0208d27bee60415befeeb1d99dca4",
+    "mtime": 1781637213.547128,
+    "ast_hash": "2b3cb078de7e44fef11eac62a19da2ff",
     "semantic_hash": ""
   },
   "src/presentation/router/index.ts": {
@@ -175,9 +175,9 @@
     "semantic_hash": ""
   },
   "src/presentation/stores/authStore.ts": {
-    "mtime": 1781751313.6422071,
-    "ast_hash": "c6ec8164a7d61a41466cc23b2ed95425",
-    "semantic_hash": ""
+    "mtime": 1781238159.4528651,
+    "ast_hash": "b63c7cf5b106669af662d6e032f90c17",
+    "semantic_hash": "b63c7cf5b106669af662d6e032f90c17"
   },
   "src/presentation/stores/productStore.ts": {
     "mtime": 1781569742.738467,
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "src/application/services/productEntryService.ts": {
-    "mtime": 1781668388.1898525,
-    "ast_hash": "d4725bfdda911e24dfa8b9bc68532cbb",
+    "mtime": 1781635920.608273,
+    "ast_hash": "599c7f11d8955744c196fc8c62844700",
     "semantic_hash": ""
   },
   "src/application/services/providerService.ts": {
@@ -275,8 +275,8 @@
     "semantic_hash": ""
   },
   "src/presentation/stores/productEntryStore.ts": {
-    "mtime": 1781672994.7546866,
-    "ast_hash": "27254e60227bb64ef0a1fe469b103085",
+    "mtime": 1781569748.9646547,
+    "ast_hash": "bb1c174a4be144a6392fc6d3998fa4c7",
     "semantic_hash": ""
   },
   "src/presentation/stores/providerStore.ts": {
@@ -360,13 +360,13 @@
     "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
   },
   "IMPLEMENTATION_GUIDE.md": {
-    "mtime": 1781719947.765142,
-    "ast_hash": "6f8188069accf0e95c2cfaba9755636a",
+    "mtime": 1781642609.0849998,
+    "ast_hash": "15e2096be37fe341892bc94d93555d62",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1781719959.1447651,
-    "ast_hash": "5485e52ca38c8e073ce3491affe3e560",
+    "mtime": 1781642589.4402106,
+    "ast_hash": "5cffdef8ce214863cbd08b68ea90e2c7",
     "semantic_hash": ""
   },
   "index.html": {
@@ -420,18 +420,18 @@
     "semantic_hash": ""
   },
   "src/presentation/components/orders/DispatchSummaryModal.vue": {
-    "mtime": 1781674201.0588822,
-    "ast_hash": "7dec9c1dc0d6e61621f995ee09a87b34",
+    "mtime": 1781640367.8718047,
+    "ast_hash": "fd723307264ff545089ce64e53942a2b",
     "semantic_hash": ""
   },
   "src/presentation/components/orders/OrderForm.vue": {
-    "mtime": 1781751213.1228786,
-    "ast_hash": "0061aa6112910013657a41beb6c0601b",
+    "mtime": 1781640364.3868628,
+    "ast_hash": "cb0cfc12618f91d9076fb469c084c569",
     "semantic_hash": ""
   },
   "src/presentation/components/orders/OrderList.vue": {
-    "mtime": 1781751469.7076657,
-    "ast_hash": "e71e8bf4ecb6e82cf2fb5c0c33474ab0",
+    "mtime": 1781569216.8742728,
+    "ast_hash": "f1dc8a4cb3558fec2fd10095dcc9b740",
     "semantic_hash": ""
   },
   "src/presentation/components/products/ConfirmDeleteModal.vue": {
@@ -445,8 +445,8 @@
     "semantic_hash": ""
   },
   "src/presentation/components/products/ProductList.vue": {
-    "mtime": 1781751398.288721,
-    "ast_hash": "cae3f97eff7a21b449c078c497d387bf",
+    "mtime": 1781613883.9183054,
+    "ast_hash": "73788bdd3ad6e2d1ea97f489fc3d89a2",
     "semantic_hash": ""
   },
   "src/presentation/components/products/WinerySelectionModal.vue": {
@@ -460,8 +460,8 @@
     "semantic_hash": ""
   },
   "src/presentation/components/shipments/EntrySelectionModal.vue": {
-    "mtime": 1781699555.382427,
-    "ast_hash": "b1d91aed83f466e68924c51b5966d9b2",
+    "mtime": 1781637888.9989674,
+    "ast_hash": "6d7b3d448369e4f14aa6a8b0cf892534",
     "semantic_hash": ""
   },
   "src/presentation/components/shipments/ShipmentDetailModal.vue": {
@@ -470,18 +470,18 @@
     "semantic_hash": ""
   },
   "src/presentation/components/shipments/ShipmentEditModal.vue": {
-    "mtime": 1781712385.3977334,
-    "ast_hash": "a6b2fe2e3638aed3fee3d83dd16feeb4",
+    "mtime": 1781641466.287798,
+    "ast_hash": "f02e53f4cdd71157f12d297c5efce3b9",
     "semantic_hash": ""
   },
   "src/presentation/components/shipments/ShipmentForm.vue": {
-    "mtime": 1781751366.4187956,
-    "ast_hash": "528b8049046a3752374f1ad73f3b1cd7",
+    "mtime": 1781636647.8570204,
+    "ast_hash": "7a95fd5863dd2a16a072bb6a54dd661b",
     "semantic_hash": ""
   },
   "src/presentation/components/shipments/ShipmentList.vue": {
-    "mtime": 1781712466.675008,
-    "ast_hash": "7017f4256346e6fc57ed13e9dce190d5",
+    "mtime": 1781642126.393047,
+    "ast_hash": "07ae52608e16a484d24df3daa66890e6",
     "semantic_hash": ""
   },
   "src/presentation/components/wineries/WineryRegistrationForm.vue": {
@@ -500,13 +500,13 @@
     "semantic_hash": ""
   },
   "src/presentation/stores/orderStore.ts": {
-    "mtime": 1781673760.0253952,
-    "ast_hash": "d67c4f730799ddc5e8a5bfd3581fb1b4",
+    "mtime": 1781569739.4625182,
+    "ast_hash": "c87619c9c0d96495a7ffb0bc64b04b04",
     "semantic_hash": ""
   },
   "src/presentation/stores/shipmentStore.ts": {
-    "mtime": 1781672990.5933735,
-    "ast_hash": "dca79221da7b2f528488a4b54b5e8f06",
+    "mtime": 1781581082.7966359,
+    "ast_hash": "591f17ff66b25e07d82240520d000a14",
     "semantic_hash": ""
   },
   "src/presentation/stores/wineryStore.ts": {
@@ -515,53 +515,13 @@
     "semantic_hash": ""
   },
   "PAULU_USER_GUIDE.md": {
-    "mtime": 1781719905.4051516,
-    "ast_hash": "6b02c96609a34ba08e6a45d689d79ec2",
+    "mtime": 1781642597.107458,
+    "ast_hash": "b1c8e6022446fb48e84817c564c3a8b2",
     "semantic_hash": ""
   },
   "raw/dune-lore-paul-atreides.md": {
-    "mtime": 1781719860.1058922,
-    "ast_hash": "a7783655e8f15719f467808bf37a121d",
-    "semantic_hash": ""
-  },
-  "src/application/services/historyService.ts": {
-    "mtime": 1781750997.0499225,
-    "ast_hash": "42857624c1beb5abfcd25beccb2e449f",
-    "semantic_hash": ""
-  },
-  "src/domain/entities/HistoryEntry.ts": {
-    "mtime": 1781750993.1938267,
-    "ast_hash": "5943aa816d85b3fc8082296cdb16603a",
-    "semantic_hash": ""
-  },
-  "src/presentation/components/history/HistoryDetailModal.vue": {
-    "mtime": 1781751031.9144752,
-    "ast_hash": "8a0d6343b7b7e2d45aa82ce4f5b6ee5b",
-    "semantic_hash": ""
-  },
-  "src/presentation/components/history/HistoryTimeline.vue": {
-    "mtime": 1781751027.399714,
-    "ast_hash": "d9e6352f966780646476606a83f6ae4d",
-    "semantic_hash": ""
-  },
-  "src/presentation/components/orders/OrderEditModal.vue": {
-    "mtime": 1781751348.980492,
-    "ast_hash": "856772c1d7039dd4718b17b6c5cd8e8a",
-    "semantic_hash": ""
-  },
-  "src/presentation/composables/useHistoryLogger.ts": {
-    "mtime": 1781751008.41183,
-    "ast_hash": "5c2368c453143ead4ae3d9f89afadfbc",
-    "semantic_hash": ""
-  },
-  "src/presentation/composables/useQuantityValidation.ts": {
-    "mtime": 1781672987.3655145,
-    "ast_hash": "35bee1de7b5e97b949e0afc6b4f53bc8",
-    "semantic_hash": ""
-  },
-  "src/presentation/stores/historyStore.ts": {
-    "mtime": 1781751001.938712,
-    "ast_hash": "d9d2bb0456fc9ce9795f8931e818fd18",
+    "mtime": 1781642563.5750191,
+    "ast_hash": "6086799cad2c9a901be3264937eb4653",
     "semantic_hash": ""
   }
 }

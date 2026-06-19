@@ -5,9 +5,11 @@ import { useCompanyStore } from '@/presentation/stores/companyStore'
 import type { ProductResponse } from '@/application/services/productService'
 import ConfirmDeleteModal from '@/presentation/components/products/ConfirmDeleteModal.vue'
 import ProductEditModal from '@/presentation/components/products/ProductEditModal.vue'
+import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
 
 const productStore = useProductStore()
 const companyStore = useCompanyStore()
+const { logDelete } = useHistoryLogger()
 const searchQuery = ref('')
 
 const productToDelete = ref<ProductResponse | null>(null)
@@ -34,6 +36,11 @@ async function confirmDelete(): Promise<void> {
   const id = productToDelete.value.id
   productToDelete.value = null
   await productStore.removeProduct(id)
+  logDelete({
+    entityType: 'PRODUCT',
+    entityId: id,
+    details: `Producto ${productToDelete.value?.name ?? id.slice(0, 8)} eliminado.`,
+  })
 }
 
 function cancelDelete(): void {

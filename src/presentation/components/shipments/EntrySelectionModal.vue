@@ -22,9 +22,18 @@ const movementLabels: Record<string, string> = {
 
 const entries = ref<ProductEntryResponse[]>([])
 const selectedIds = ref<Set<string>>(new Set())
+const expandedId = ref<string | null>(null)
 const loading = ref(true)
 const error = ref('')
 const search = ref('')
+
+function toggleExpand(id: string): void {
+  expandedId.value = expandedId.value === id ? null : id
+}
+
+function formatCOP(value: number): string {
+  return value.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
 
 const filteredEntries = computed(() => {
   const q = search.value.toLowerCase().trim()
@@ -157,30 +166,65 @@ onMounted(async () => {
               </tr>
             </thead>
             <tbody>
-              <tr
-                v-for="entry in filteredEntries"
-                :key="entry.id"
-                class="cursor-pointer border-b border-slate-100 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/30"
-                :class="{ 'bg-stellar-50/50 dark:bg-stellar-500/5': selectedIds.has(entry.id) }"
-                @click="toggle(entry.id)"
-              >
-                <td class="px-2 py-3">
-                  <input
-                    type="checkbox"
-                    :checked="selectedIds.has(entry.id)"
-                    class="h-4 w-4 rounded border-slate-300 text-stellar-500 focus:ring-stellar-400"
-                    @change="toggle(entry.id)"
-                  />
-                </td>
-                <td class="px-2 py-3 font-mono text-xs font-medium text-slate-800 dark:text-slate-100">{{ entry.entry_number }}</td>
-                <td class="px-2 py-3 text-slate-600 dark:text-slate-300">{{ entry.registered_date }}</td>
-                <td class="px-2 py-3 text-slate-600 dark:text-slate-300">{{ movementLabels[entry.movement_type] || entry.movement_type }}</td>
-                <td class="px-2 py-3">
-                  <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                    {{ entry.details.length }}
-                  </span>
-                </td>
-              </tr>
+              <template v-for="entry in filteredEntries" :key="entry.id">
+                <tr
+                  class="cursor-pointer border-b border-slate-100 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/30"
+                  :class="{ 'bg-stellar-50/50 dark:bg-stellar-500/5': selectedIds.has(entry.id) }"
+                  @click="toggleExpand(entry.id)"
+                >
+                  <td class="px-2 py-3">
+                    <input
+                      type="checkbox"
+                      :checked="selectedIds.has(entry.id)"
+                      class="h-4 w-4 rounded border-slate-300 text-stellar-500 focus:ring-stellar-400"
+                      @click.stop
+                      @change="toggle(entry.id)"
+                    />
+                  </td>
+                  <td class="px-2 py-3 font-mono text-xs font-medium text-slate-800 dark:text-slate-100">{{ entry.entry_number }}</td>
+                  <td class="px-2 py-3 text-slate-600 dark:text-slate-300">{{ entry.registered_date }}</td>
+                  <td class="px-2 py-3 text-slate-600 dark:text-slate-300">{{ movementLabels[entry.movement_type] || entry.movement_type }}</td>
+                  <td class="px-2 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                        {{ entry.details.length }}
+                      </span>
+                      <svg
+                        class="h-4 w-4 text-slate-400 transition"
+                        :class="expandedId === entry.id ? 'rotate-180' : ''"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </td>
+                </tr>
+                <tr v-if="expandedId === entry.id" class="accordion-row">
+                  <td colspan="5" class="bg-slate-50 px-6 py-4 dark:bg-slate-800/50">
+                    <div class="overflow-x-auto rounded-xl border border-slate-200 animate-fade-in dark:border-slate-700">
+                      <table class="w-full text-left text-xs">
+                        <thead>
+                          <tr class="border-b border-slate-200 bg-white text-xs font-semibold uppercase tracking-wider text-slate-400 dark:border-slate-700 dark:bg-slate-900">
+                            <th class="px-4 py-2">Producto</th>
+                            <th class="px-4 py-2">Cantidad</th>
+                            <th class="px-4 py-2">Precio a la venta</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(detail, index) in entry.details" :key="detail.code" class="border-b border-slate-100 bg-white last:border-0 dark:border-slate-800 dark:bg-slate-900 product-row" :style="{ animationDelay: index * 0.08 + 's' }">
+                            <td class="px-4 py-2">
+                              <p class="font-medium text-slate-800 dark:text-slate-100">{{ detail.product }}</p>
+                              <p class="text-slate-400">{{ detail.code }}</p>
+                            </td>
+                            <td class="px-4 py-2 text-slate-600 dark:text-slate-300">{{ detail.quantity }} {{ detail.unit }}</td>
+                            <td class="px-4 py-2 font-medium text-stellar-600 dark:text-stellar-400">{{ formatCOP(detail.suggested_selling_price) }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </template>
             </tbody>
           </table>
         </div>
@@ -212,3 +256,35 @@ onMounted(async () => {
     </div>
   </Teleport>
 </template>
+
+<style scoped>
+.accordion-row {
+  animation: accordionFadeIn 0.3s ease-out;
+}
+
+@keyframes accordionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-row {
+  animation: productFadeIn 0.4s ease-out both;
+}
+
+@keyframes productFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>

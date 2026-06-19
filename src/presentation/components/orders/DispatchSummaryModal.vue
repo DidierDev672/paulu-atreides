@@ -78,7 +78,7 @@ function handleConfirm(): void {
             </div>
             <div class="flex items-center justify-between">
               <span class="text-slate-500">Descuento</span>
-              <input v-model.number="discount" type="number" min="0" step="0.01" class="w-28 rounded-lg border border-slate-200 bg-white px-2 py-1 text-right text-xs outline-none focus:border-stellar-400 dark:border-slate-600 dark:bg-slate-700" />
+              <input v-model.number="discount" type="number" min="0" step="0.01" class="w-28 rounded-lg border border-slate-200 bg-white px-2 py-1 text-right text-xs outline-none focus:border-stellar-400 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100" />
             </div>
             <hr class="border-slate-200 dark:border-slate-600" />
             <div class="flex justify-between text-base font-bold">
@@ -91,13 +91,13 @@ function handleConfirm(): void {
         <!-- Remarks -->
         <div class="mb-4">
           <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Observaciones</label>
-          <textarea v-model="remarks" rows="2" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800" placeholder="Notas adicionales para el despacho..." />
+          <textarea v-model="remarks" rows="2" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100" placeholder="Notas adicionales para el despacho..." />
         </div>
 
         <!-- Recipient -->
         <div class="mb-6">
           <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Tipo de destinatario</label>
-          <select v-model="recipient_type" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800">
+          <select v-model="recipient_type" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
             <option v-for="r in recipientTypes" :key="r.value" :value="r.value">{{ r.label }}</option>
           </select>
           <p class="mt-1 text-xs text-slate-400">El ID del destinatario se asociará a la compañía actual.</p>

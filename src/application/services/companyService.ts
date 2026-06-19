@@ -40,6 +40,11 @@ export function getErrorMessage(err: unknown): string {
   return 'Error al procesar la solicitud.'
 }
 
+export async function getCompanyById(id: string): Promise<CompanyResponse> {
+  const response = await axiosInstance.get<CompanyResponse>(`/companies/${id}`)
+  return response.data
+}
+
 export async function getCompanyByUser(userId: string): Promise<CompanyResponse[]> {
   try {
     const response = await axiosInstance.get<CompanyResponse[]>(`/companies/user/${userId}`)

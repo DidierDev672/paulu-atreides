@@ -46,8 +46,8 @@ export const useShipmentStore = defineStore('shipment', () => {
       const created = await apiCreateShipment(data)
       shipments.value.push(created)
       return created
-    } catch (err) {
-      error.value = err instanceof Error ? err.message : 'Error al crear el despacho.'
+    } catch (err: any) {
+      error.value = err?.response?.data?.error || (err instanceof Error ? err.message : 'Error al crear el despacho.')
       return null
     } finally {
       isLoading.value = false

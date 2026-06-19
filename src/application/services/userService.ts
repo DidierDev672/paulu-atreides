@@ -19,6 +19,11 @@ export interface UserResponse {
   updatedAt: string
 }
 
+export async function getUserById(id: string): Promise<UserResponse> {
+  const response = await axiosInstance.get<UserResponse>(`/users/${id}`)
+  return response.data
+}
+
 export async function updateUser(id: string, data: UpdateUserRequest): Promise<UserResponse> {
   const response = await axiosInstance.put<UserResponse>(`/users/${id}`, data)
   return response.data

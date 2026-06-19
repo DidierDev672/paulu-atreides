@@ -1,16 +1,16 @@
-# Graph Report - book-coffee-shop  (2026-06-17)
+# Graph Report - book-coffee-shop  (2026-06-16)
 
 ## Corpus Check
-- 112 files · ~69,444 words
+- 104 files · ~61,259 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 524 nodes · 469 edges · 93 communities (69 shown, 24 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 4 edges (avg confidence: 0.8)
+- 493 nodes · 442 edges · 88 communities (63 shown, 25 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `da75db71`
+- Built from commit: `e385a021`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -51,13 +51,13 @@
 - [[_COMMUNITY_Leaf shipmentStore.ts|Leaf: shipmentStore.ts]]
 - [[_COMMUNITY_Leaf wineryStore.ts|Leaf: wineryStore.ts]]
 - [[_COMMUNITY_Leaf appAlert.types.ts|Leaf: appAlert.types.ts]]
-- [[_COMMUNITY_Leaf OrderList.vue|Leaf: OrderList.vue]]
 - [[_COMMUNITY_Community 66|Community 66]]
 - [[_COMMUNITY_Community 67|Community 67]]
 - [[_COMMUNITY_Community 68|Community 68]]
 - [[_COMMUNITY_Community 69|Community 69]]
 - [[_COMMUNITY_Community 70|Community 70]]
 - [[_COMMUNITY_Community 71|Community 71]]
+- [[_COMMUNITY_Community 72|Community 72]]
 - [[_COMMUNITY_Community 73|Community 73]]
 - [[_COMMUNITY_Community 74|Community 74]]
 - [[_COMMUNITY_Community 75|Community 75]]
@@ -68,36 +68,35 @@
 - [[_COMMUNITY_Community 80|Community 80]]
 - [[_COMMUNITY_Community 81|Community 81]]
 - [[_COMMUNITY_Community 87|Community 87]]
-- [[_COMMUNITY_Community 88|Community 88]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Componentes globales — *Arsenal del sietch*` - 30 edges
-2. `[]` - 26 edges
-3. `compilerOptions` - 25 edges
+1. `compilerOptions` - 25 edges
+2. `[]` - 24 edges
+3. `Componentes globales` - 22 edges
 4. `compilerOptions` - 16 edges
 5. `/graphify` - 11 edges
 6. `What You Must Do When Invoked` - 11 edges
 7. `Guía de Implementación — Paulus + Paulu` - 11 edges
-8. `Dune Lore — Paul Atreides y el Ecosistema Paulu` - 11 edges
-9. `2. Frontend — Paulus (Vue 3) — *Rostro de Paul ante los fremen*` - 10 edges
-10. `Paulus — El Primer Miembro de Paulu` - 9 edges
+8. `2. Frontend — Paulus (Vue 3)` - 9 edges
+9. `graphify reference: extra exports and benchmark` - 8 edges
+10. `3. Backend — Paulu (Go API)` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `formatDate()` --calls--> `formatCOP()`  [INFERRED]
-  src/presentation/components/orders/OrderList.vue → src/presentation/components/orders/DispatchSummaryModal.vue
-- `formatDate()` --calls--> `formatCOP()`  [INFERRED]
   src/presentation/pages/OrdersPage.vue → src/presentation/components/orders/DispatchSummaryModal.vue
-- `useHistoryLogger()` --calls--> `useAuthStore`  [INFERRED]
-  src/presentation/composables/useHistoryLogger.ts → src/presentation/stores/authStore.ts
-- `useHistoryLogger()` --calls--> `useHistoryStore`  [INFERRED]
-  src/presentation/composables/useHistoryLogger.ts → src/presentation/stores/historyStore.ts
 - `AuthSession` --references--> `User`  [EXTRACTED]
   src/domain/entities/AuthSession.ts → src/domain/entities/User.ts
+- `AxiosHttpClient` --implements--> `IHttpClient`  [EXTRACTED]
+  src/infrastructure/http/AxiosHttpClient.ts → src/infrastructure/http/IHttpClient.ts
+- `AuthRepository` --references--> `IHttpClient`  [EXTRACTED]
+  src/infrastructure/repositories/AuthRepository.ts → src/infrastructure/http/IHttpClient.ts
+- `LoginValidator` --implements--> `ILoginValidator`  [EXTRACTED]
+  src/presentation/validators/LoginValidator.ts → src/presentation/validators/ILoginValidator.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (93 total, 24 thin omitted)
+## Communities (88 total, 25 thin omitted)
 
 ### Community 0 - "Module: tsconfig.app.json"
 Cohesion: 0.07
@@ -112,8 +111,8 @@ Cohesion: 0.13
 Nodes (11): authRepository, container, httpClient, AxiosHttpClient, axiosInstance, HttpError, HttpRequestOptions, IHttpClient (+3 more)
 
 ### Community 3 - "Module: []"
-Cohesion: 0.08
-Nodes (18): [], activities, authStore, companyStore, currentPage, historyStore, loadingCompany, notifications (+10 more)
+Cohesion: 0.09
+Nodes (18): [], activities, authStore, companyStore, currentPage, loadingCompany, navItems, notifications (+10 more)
 
 ### Community 4 - "Module: tsconfig.node.json"
 Cohesion: 0.11
@@ -132,8 +131,8 @@ Cohesion: 0.31
 Nodes (5): AuthSession, User, IAuthRepository, LoginCredentials, RegisterData
 
 ### Community 8 - "Group: productEntryService.ts"
-Cohesion: 0.15
-Nodes (5): CreateProductEntryRequest, Deduction, FinancialSummary, ProductEntryDetail, ProductEntryResponse
+Cohesion: 0.18
+Nodes (4): CreateProductEntryRequest, FinancialSummary, ProductEntryDetail, ProductEntryResponse
 
 ### Community 9 - "Group: productService.ts"
 Cohesion: 0.20
@@ -163,41 +162,33 @@ Nodes (4): IRegisterValidator, RegisterValidationResult, RegisterValidator, REQU
 Cohesion: 0.60
 Nodes (4): AuthAlertMessage, matches(), resolveLoginAlertMessage(), resolveRegisterAlertMessage()
 
-### Community 27 - "Leaf: OrdersPage.vue"
-Cohesion: 0.29
-Nodes (3): formatCOP(), formatDate(), formatDate()
-
-### Community 28 - "Leaf: authStore.ts"
-Cohesion: 0.33
-Nodes (3): useHistoryLogger(), useAuthStore, useHistoryStore
-
-### Community 47 - "Leaf: OrderList.vue"
-Cohesion: 0.07
-Nodes (30): `AppAlert.vue` — Alerta contextual reutilizable — *Voz Bene Gesserit*, `AuthButton.vue` — Botón con loading y variantes — *Grito de batalla fremen*, `AuthInput.vue` — Input de formulario con tema auth — *Prueba Bene Gesserit*, `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos — *Duke Leto funda la Casa*, `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida — *Shadout Mapes*, Componentes globales — *Arsenal del sietch*, `ConfirmDeleteModal.vue` — Confirmación de eliminación — *Agua derramada*, `DispatchSummaryModal.vue` — Resumen de despacho — *Informe post-batalla* (+22 more)
-
 ### Community 66 - "Community 66"
-Cohesion: 0.05
-Nodes (37): 10. Referencias, 1. Resumen del proyecto — *El ascenso de Muad'Dib*, 2.1 Arquitectura — *Caladan: estructura noble en cuatro capas*, 2.2 Patrón de inyección de dependencias — *Mentat Thufir*, 2.3 Servicios HTTP (capa application) — *Exploradores fremen*, 2.4 Stores (Pinia) — *Sietch Tabr: memoria colectiva*, 2.5 Composables — *Weirding Way*, 2.6 Enrutamiento — *Navegadores Guild* (+29 more)
+Cohesion: 0.07
+Nodes (27): 10. Referencias, 1. Resumen del proyecto, 3.1 Arquitectura, 3.2 Productos — Modelo de dominio, 3.3 Productos — Use case, 3.4 Productos — Handler HTTP, 3.5 Productos — Base de datos, 3.6 Helpers compartidos (+19 more)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.08
 Nodes (25): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+17 more)
 
 ### Community 68 - "Community 68"
-Cohesion: 0.15
-Nodes (12): 1. Clonar y acceder al proyecto, 2. Instalar dependencias, 3. Configurar variables de entorno, 4. Iniciar servidor de desarrollo, 5. Compilar para producción, Convenciones del proyecto — *Código de honor Atreides*, Estructura de carpetas — *Caladan: arquitectura noble antes de Arrakis*, Flujo de autenticación — *Duncan Idaho guarda la puerta* (+4 more)
+Cohesion: 0.06
+Nodes (34): 1. Clonar y acceder al proyecto, 2. Instalar dependencias, 3. Configurar variables de entorno, 4. Iniciar servidor de desarrollo, 5. Compilar para producción, `AppAlert.vue` — Alerta contextual reutilizable, `AppAlert.vue` — Alerta contextual reutilizable, `AuthButton.vue` — Botón con loading y variantes (+26 more)
 
 ### Community 69 - "Community 69"
-Cohesion: 0.50
-Nodes (4): createHistoryEntry(), CreateHistoryRequest, HistoryApiResponse, mapToHistoryEntry()
+Cohesion: 0.22
+Nodes (9): 2.1 Arquitectura, 2.2 Patrón de inyección de dependencias, 2.3 Servicios HTTP (capa application), 2.4 Stores (Pinia), 2.5 Enrutamiento, 2.6 Componentes principales, 2.7 Manejo de errores, 2.8 Autenticación (+1 more)
 
 ### Community 70 - "Community 70"
-Cohesion: 0.20
-Nodes (9): Build, Conexión con el backend — *La Casa Paulu*, Documentación, Inicio rápido, Paulus — El Primer Miembro de Paulu, ¿Qué puedes hacer en Paulus? — *El Camino del Muad'Dib*, Requisitos, Stack — *Arsenal de Muad'Dib* (+1 more)
+Cohesion: 0.22
+Nodes (8): Build, Conexión con el backend — *La Casa Paulu*, Inicio rápido, Paulus — El Primer Miembro de Paulu, ¿Qué puedes hacer en Paulus? — *El Camino del Muad'Dib*, Requisitos, Stack, Variables de entorno
 
 ### Community 71 - "Community 71"
 Cohesion: 0.22
 Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
+
+### Community 72 - "Community 72"
+Cohesion: 0.29
+Nodes (4): error, filteredEntries, loading, search
 
 ### Community 73 - "Community 73"
 Cohesion: 0.50
@@ -216,23 +207,21 @@ Cohesion: 0.50
 Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
 
 ### Community 87 - "Community 87"
-Cohesion: 0.15
-Nodes (12): Cómo usar este documento, Dune Lore — Paul Atreides y el Ecosistema Paulu, El Juramento Paulu, La Casa Paulu, La especia debe fluir — El inventario debe controlarse, Paralelismos técnicos — Backend Paulu (Go API), Paralelismos técnicos — Herramientas y convenciones, Paralelismos técnicos — Módulos de negocio (+4 more)
+Cohesion: 0.25
+Nodes (7): Dune Lore — Paul Atreides y el Proyecto Paulus, El Juramento Paulu, La Casa Paulu, La especia debe fluir — El inventario debe controlarse, Paralelismos con Paulus (Vue), Paul Atreides — El Fundador, Paulus — El Primer Miembro
 
 ## Knowledge Gaps
-- **273 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+268 more)
+- **257 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+252 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Componentes globales — *Arsenal del sietch*` connect `Leaf: OrderList.vue` to `Community 68`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Why does `Paulus — Guía de usuario` connect `Community 68` to `Leaf: OrderList.vue`?**
-  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **Why does `Guía de Implementación — Paulus + Paulu` connect `Community 66` to `Community 69`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _273 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _257 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Module: tsconfig.app.json` be split into smaller, more focused modules?**
   _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
 - **Should `Module: package.json` be split into smaller, more focused modules?**
@@ -240,4 +229,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Module: container.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.12681159420289856 - nodes in this community are weakly interconnected._
 - **Should `Module: []` be split into smaller, more focused modules?**
-  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._
+- **Should `Module: tsconfig.node.json` be split into smaller, more focused modules?**
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

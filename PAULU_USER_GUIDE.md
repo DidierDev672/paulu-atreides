@@ -12,27 +12,30 @@
 **Paulus** es el primer miembro de **Paulu**. Como Paul Atreides fue el primer
 forastero en unir a los fremen, Paulus es la primera aplicación en unificar la
 gestión empresarial colombiana. Te ayuda a controlar tu patrimonio: productos,
-proveedores, bodegas, entradas de inventario y más. Construida con **Vue 3**,
-**TypeScript**, **Pinia** y **TailwindCSS 4**.
+proveedores, bodegas, entradas de inventario, órdenes, despachos y más.
+Construida con **Vue 3**, **TypeScript**, **Pinia** y **TailwindCSS 4**.
+
+> Cada concepto técnico de esta guía lleva una referencia a la saga *Dune*.
+> Glosario completo: [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md)
 
 ---
 
-## Stack tecnológico
+## Stack tecnológico — *Arsenal de Muad'Dib*
 
-| Capa | Tecnología |
-|------|-----------|
-| Framework | **Vue 3.5** + Composition API (`<script setup>`) |
-| Lenguaje | **TypeScript 6.0** (strict mode) |
-| Build | **Vite 8** |
-| UI | **TailwindCSS 4.1** (tema oscuro stellar/cósmico) |
-| Estado | **Pinia 3** |
-| Router | **Vue Router 5.1** |
-| HTTP | **Axios 1.17** con interceptor Bearer token |
-| Animación | **@vueuse/motion 3** |
+| Capa | Tecnología | Referencia Dune |
+|------|-----------|-----------------|
+| Framework | **Vue 3.5** + Composition API (`<script setup>`) | *Visión de Muad'Dib* — reactividad que anticipa el estado |
+| Lenguaje | **TypeScript 6.0** (strict mode) | *Crysknife* — precisión forjada, tipos que no fallan |
+| Build | **Vite 8** | *Ornitóptero* — compilación veloz sobre el desierto |
+| UI | **TailwindCSS 4.1** (tema oscuro stellar/cósmico) | *Traje stillsuit* — capas adaptativas al entorno |
+| Estado | **Pinia 3** | *Sietch Tabr* — memoria colectiva del clan |
+| Router | **Vue Router 5.1** | *Navegadores Guild* — rutas sagradas entre vistas |
+| HTTP | **Axios 1.17** con interceptor Bearer token | *Gurney Halleck* — mensajero leal con sello Atreides |
+| Animación | **@vueuse/motion 3** | *Weirding Way* — movimiento con propósito |
 
 ---
 
-## Guía de instalación
+## Guía de instalación — *Primer vuelo en ornitóptero*
 
 ### 1. Clonar y acceder al proyecto
 
@@ -72,7 +75,7 @@ npm run preview     # vite preview
 
 ---
 
-## Estructura de carpetas
+## Estructura de carpetas — *Caladan: arquitectura noble antes de Arrakis*
 
 ```
 src/
@@ -92,9 +95,11 @@ src/
 │
 ├── application/                   # Casos de uso y servicios
 │   ├── services/                  # Llamadas HTTP directas via axiosInstance
-│   │   ├── productService.ts      # CRUD productos
-│   │   ├── providerService.ts     # CRUD proveedores
-│   │   ├── productEntryService.ts # CRUD entradas de producto
+│   │   ├── productService.ts      # CRUD productos — *Cosecha de melange*
+│   │   ├── providerService.ts     # CRUD proveedores — *Tratados del Landsraad*
+│   │   ├── productEntryService.ts # CRUD entradas de producto — *Ecosistema de Kynes*
+│   │   ├── orderService.ts        # CRUD órdenes + approve — *Contratos CHOAM*
+│   │   ├── shipmentService.ts     # CRUD despachos — *Ornitópteros de salida*
 │   │   ├── companyService.ts      # CRUD compañías + getCompanyByUser
 │   │   ├── userService.ts         # GET / PUT perfil usuario
 │   │   ├── wineryService.ts       # CRUD bodegas
@@ -143,7 +148,20 @@ src/
 │   │   │   └── WinerySelectionModal.vue    # Modal selección bodega (radio, búsqueda)
 │   │   ├── productEntries/
 │   │   │   ├── ProductEntryForm.vue        # Formulario entrada producto con tabla dinámica
+│   │   │   ├── ProductEntryList.vue        # Lista de entradas — *Registro de cosechas*
 │   │   │   └── ProductSelectionModal.vue   # Modal selección productos (multi-select, búsqueda)
+│   │   ├── orders/
+│   │   │   ├── OrderForm.vue               # Formulario orden compra/venta — *Contrato CHOAM*
+│   │   │   ├── OrderList.vue               # Lista de órdenes — *Archivo imperial*
+│   │   │   ├── OrderEditModal.vue          # Modal edición orden — *Thufir revisa estrategia*
+│   │   │   ├── DispatchSummaryModal.vue    # Resumen de despacho — *Informe post-batalla*
+│   │   │   └── AutomationConfirmModal.vue  # Confirmación automatización — *Profecía de Muad'Dib*
+│   │   ├── shipments/
+│   │   │   ├── ShipmentForm.vue            # Formulario despacho — *Ornitóptero cargado*
+│   │   │   ├── ShipmentList.vue            # Lista de despachos — *Registro de vuelos*
+│   │   │   ├── ShipmentEditModal.vue       # Modal edición despacho
+│   │   │   ├── ShipmentDetailModal.vue     # Detalle completo — *Manifiesto de carga*
+│   │   │   └── EntrySelectionModal.vue     # Selección entradas origen — *Cisternas de agua*
 │   │   ├── wineries/
 │   │   │   └── WineryRegistrationForm.vue  # Formulario bodega con fecha, área, unidades
 │   │   ├── providers/
@@ -156,13 +174,17 @@ src/
 │   │       └── appAlert.types.ts  # Tipo AppAlertVariant
 │   ├── router/
 │   │   └── index.ts               # 2 rutas: / (dashboard, auth), /auth
+│   ├── composables/
+│   │   └── useQuantityValidation.ts # Validación stock — *Disciplina del agua fremen*
 │   ├── stores/
-│   │   ├── authStore.ts           # Sesión, login, register, logout
-│   │   ├── companyStore.ts        # companyId global
-│   │   ├── productStore.ts        # CRUD productos
-│   │   ├── productEntryStore.ts   # CRUD entradas producto
-│   │   ├── providerStore.ts       # CRUD proveedores
-│   │   └── wineryStore.ts         # CRUD bodegas
+│   │   ├── authStore.ts           # Sesión, login, register, logout — *Memoria de Duncan*
+│   │   ├── companyStore.ts        # companyId global — *Casa activa del Landsraad*
+│   │   ├── productStore.ts        # CRUD productos — *Reserva de melange*
+│   │   ├── productEntryStore.ts   # CRUD entradas producto — *Cisternas de Kynes*
+│   │   ├── providerStore.ts       # CRUD proveedores — *Rolodex del Landsraad*
+│   │   ├── wineryStore.ts         # CRUD bodegas — *Mapa de sietchs*
+│   │   ├── orderStore.ts          # CRUD órdenes + approve — *Archivo CHOAM*
+│   │   └── shipmentStore.ts       # CRUD despachos — *Hangar de ornitópteros*
 │   └── validators/
 │       ├── ILoginValidator.ts     # Interface validator login
 │       ├── IRegisterValidator.ts  # Interface validator register
@@ -178,7 +200,7 @@ src/
 
 ---
 
-## Variables de entorno (`.env`)
+## Variables de entorno (`.env`) — *Coordenadas del Guild Navigator*
 
 | Variable | Descripción | Valor por defecto |
 |----------|-------------|-------------------|
@@ -192,9 +214,9 @@ server: { port: 3000 }  // Opcional
 
 ---
 
-## Componentes globales
+## Componentes globales — *Arsenal del sietch*
 
-### `AuthInput.vue` — Input de formulario con tema auth
+### `AuthInput.vue` — Input de formulario con tema auth — *Prueba Bene Gesserit*
 
 ```vue
 <AuthInput
@@ -229,7 +251,7 @@ server: { port: 3000 }  // Opcional
 
 ---
 
-### `AuthButton.vue` — Botón con loading y variantes
+### `AuthButton.vue` — Botón con loading y variantes — *Grito de batalla fremen*
 
 ```vue
 <AuthButton type="submit" :loading="saving" variant="primary">
@@ -249,7 +271,7 @@ server: { port: 3000 }  // Opcional
 
 ---
 
-### `LoginForm.vue` — Formulario de inicio de sesión
+### `LoginForm.vue` — Formulario de inicio de sesión — *Duncan Idaho en la puerta*
 
 ```vue
 <LoginForm
@@ -285,7 +307,7 @@ server: { port: 3000 }  // Opcional
 
 ---
 
-### `RegisterForm.vue` — Formulario de registro
+### `RegisterForm.vue` — Formulario de registro — *Iniciación al sietch*
 
 ```vue
 <RegisterForm
@@ -337,9 +359,7 @@ La respuesta esperada del endpoint `POST /auth/register` es `{ token, user }`.
 
 ---
 
-### `AppAlert.vue` — Alerta contextual reutilizable
-
-### `AppAlert.vue` — Alerta contextual reutilizable
+### `AppAlert.vue` — Alerta contextual reutilizable — *Voz Bene Gesserit*
 
 ```vue
 <AppAlert
@@ -368,7 +388,7 @@ La respuesta esperada del endpoint `POST /auth/register` es `{ token, user }`.
 
 ---
 
-### `SupplierSelectionModal.vue` — Modal de selección de proveedor (Teleport a body)
+### `SupplierSelectionModal.vue` — Modal de selección de proveedor — *Elegir aliado fremen*
 
 ```vue
 <SupplierSelectionModal
@@ -391,7 +411,7 @@ Internamente:
 
 ---
 
-### `ProductSelectionModal.vue` — Modal de selección múltiple de productos
+### `ProductSelectionModal.vue` — Modal de selección múltiple de productos — *Elegir grano de melange*
 
 ```vue
 <ProductSelectionModal
@@ -418,7 +438,7 @@ Características:
 
 ---
 
-### `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida
+### `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida — *Shadout Mapes*
 
 ```vue
 <CompanyRequiredModal @register="goToCompanyRegistration" @close="showModal = false" />
@@ -433,7 +453,7 @@ Usa psicología persuasiva: pérdida ("Sin empresa no puedes gestionar inventari
 
 ---
 
-### `OnboardingModal.vue` — Modal de onboarding con beneficios
+### `OnboardingModal.vue` — Modal de onboarding con beneficios — *Litany Against Fear*
 
 ```vue
 <OnboardingModal @register="goToCompanyRegistration" @close="showOnboarding = false" />
@@ -448,7 +468,7 @@ Muestra 4 tarjetas de beneficios con iconos: facturación fiscal, control de inv
 
 ---
 
-### `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos
+### `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos — *Duke Leto funda la Casa*
 
 ```vue
 <CompanyRegistrationForm @saved="onCompanySaved" />
@@ -476,7 +496,7 @@ Al guardar, envía 4 llamadas paralelas via `Promise.all`:
 
 ---
 
-### `ProviderRegistrationForm.vue` — Formulario de registro de proveedor
+### `ProviderRegistrationForm.vue` — Formulario de registro de proveedor — *Tratado del Landsraad*
 
 ```vue
 <ProviderRegistrationForm @saved="onProviderSaved" />
@@ -490,7 +510,7 @@ Campos: código (auto-generado), tipo persona, tipo documento, número documento
 
 ---
 
-### `ProductRegistrationForm.vue` — Formulario de registro de producto
+### `ProductRegistrationForm.vue` — Formulario de registro de producto — *Cosecha de especia*
 
 ```vue
 <ProductRegistrationForm
@@ -529,7 +549,7 @@ Campos: código (auto-generado), tipo persona, tipo documento, número documento
 
 ---
 
-### `ProductEditModal.vue` — Modal de edición de producto
+### `ProductEditModal.vue` — Modal de edición de producto — *Refinar la cosecha*
 
 ```vue
 <ProductEditModal :product="product" @saved="refreshList" @cancel="closeModal" />
@@ -548,7 +568,7 @@ Campos editables: código, nombre, unidad, cantidad, stock mínimo, categorías,
 
 ---
 
-### `ProductList.vue` — Lista de productos con búsqueda
+### `ProductList.vue` — Lista de productos con búsqueda — *Inventario del sietch*
 
 ```vue
 <ProductList
@@ -566,7 +586,7 @@ Muestra tabla con columnas: código, nombre, categorías, unidad, cantidad, stoc
 
 ---
 
-### `ConfirmDeleteModal.vue` — Confirmación de eliminación
+### `ConfirmDeleteModal.vue` — Confirmación de eliminación — *Agua derramada*
 
 ```vue
 <ConfirmDeleteModal :product="product" @confirm="deleteProduct" @cancel="closeModal" />
@@ -585,7 +605,7 @@ Modal oscuro con mensaje psicológico: explica las consecuencias de eliminar (p�
 
 ---
 
-### `WineryRegistrationForm.vue` — Formulario de registro de bodega
+### `WineryRegistrationForm.vue` — Formulario de registro de bodega — *Fundar un sietch*
 
 ```vue
 <WineryRegistrationForm @saved="onWinerySaved" />
@@ -604,7 +624,7 @@ Los valores de área y unidades están en español para coincidir con la validac
 
 ---
 
-### `WinerySelectionModal.vue` — Modal de selección de bodega
+### `WinerySelectionModal.vue` — Modal de selección de bodega — *Elegir sietch destino*
 
 ```vue
 <WinerySelectionModal :company-id="id" @close="close" @confirm="onSelect" />
@@ -623,7 +643,7 @@ Carga bodegas por compañía, tabla con radio-button, búsqueda por área, boton
 
 ---
 
-### `ProductEntryForm.vue` — Formulario de entrada de producto
+### `ProductEntryForm.vue` — Formulario de entrada de producto — *Dr. Kynes: equilibrio ecológico*
 
 ```vue
 <ProductEntryForm @saved="onEntrySaved" />
@@ -642,7 +662,7 @@ Secciones:
 
 ---
 
-### `UserProfile.vue` — Vista de perfil de usuario
+### `UserProfile.vue` — Vista de perfil de usuario — *Identidad de Usul*
 
 ```vue
 <UserProfile @open-edit="showEditModal = true" />
@@ -656,7 +676,7 @@ Muestra: cover image, avatar iniciales, nombre, email, ID, teléfono, y tarjetas
 
 ---
 
-### `EditProfileModal.vue` — Modal de edición de perfil
+### `EditProfileModal.vue` — Modal de edición de perfil — *Renacer en el sietch*
 
 ```vue
 <EditProfileModal @saved="refreshProfile" @close="showEditModal = false" />
@@ -671,7 +691,133 @@ Campos editables: nombre, teléfono, email, y datos de compañía (NIT, razón s
 
 ---
 
-## Flujo de autenticación
+### `ProductEntryList.vue` — Lista de entradas de producto — *Registro de cosechas*
+
+```vue
+<ProductEntryList />
+```
+
+Muestra tabla con entradas registradas: número, fecha, tipo de movimiento, bodega, responsable y totales. Permite consultar el histórico de lo que entró al ecosistema del inventario — como Kynes registraba cada transformación de Arrakis.
+
+---
+
+### `OrderForm.vue` — Formulario de orden de compra/venta — *Contrato CHOAM*
+
+```vue
+<OrderForm
+  @saved="onOrderSaved"
+  @go-to-provider-registration="showProviderForm"
+/>
+```
+
+| Evento | Payload | Descripción |
+|--------|---------|-------------|
+| `saved` | — | Orden registrada exitosamente |
+| `go-to-provider-registration` | — | Redirige a registro de proveedor si falta aliado |
+
+Secciones:
+- **Encabezado**: Número de orden, fecha, tipo (compra/venta), solicitante
+- **Detalle dinámico**: Productos con cantidad solicitada, costo estimado, subtotal
+- **Resumen financiero**: Subtotal, IVA, descuento, total
+- **Motivo de la orden**: Textarea con justificación
+
+Como los contratos CHOAM regulaban la economía imperial, cada orden formaliza la intención comercial antes de que los Fedaykin (aprobación) la ejecuten.
+
+---
+
+### `OrderList.vue` — Lista de órdenes — *Archivo de contratos imperiales*
+
+```vue
+<OrderList />
+```
+
+Tabla con órdenes registradas. Acciones: ver, editar (`OrderEditModal`), aprobar (`approveOrder` — *Fedaykin confirman la misión*), eliminar. Filtros por estado y búsqueda.
+
+---
+
+### `OrderEditModal.vue` — Modal de edición de orden — *Thufir revisa la estrategia*
+
+```vue
+<OrderEditModal :order="order" @saved="refreshList" @cancel="closeModal" />
+```
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `order` | `OrderResponse` | Orden a editar |
+
+Permite modificar detalle, resumen financiero y motivo antes de la aprobación final.
+
+---
+
+### `DispatchSummaryModal.vue` — Resumen de despacho — *Informe post-batalla*
+
+Modal que muestra el resumen tras completar un despacho vinculado a una orden: productos despachados, cantidades y totales.
+
+---
+
+### `ShipmentForm.vue` — Formulario de despacho (salida) — *Ornitóptero cargado de especia*
+
+```vue
+<ShipmentForm
+  @saved="onShipmentSaved"
+  @go-to-product-registration="showProductForm"
+  @go-to-provider-registration="showProviderForm"
+/>
+```
+
+| Evento | Payload | Descripción |
+|--------|---------|-------------|
+| `saved` | — | Despacho registrado exitosamente |
+| `go-to-product-registration` | — | Ir a registro de producto |
+| `go-to-provider-registration` | — | Ir a registro de proveedor |
+
+Secciones:
+- **Encabezado**: Número de despacho, fecha, tipo de movimiento, bodega, responsable
+- **Documento origen**: Selección de entradas vía `EntrySelectionModal` (*cisternas de agua*)
+- **Destinatario**: Tipo e ID del receptor
+- **Tabla dinámica de detalles**: Código, producto, cantidad, costo unitario, subtotal
+- **Resumen financiero** y observaciones
+
+Usa `useQuantityValidation` (*disciplina del agua fremen*) para impedir despachar más unidades de las disponibles en las entradas seleccionadas.
+
+---
+
+### `ShipmentList.vue` — Lista de despachos — *Registro de vuelos del desierto*
+
+```vue
+<ShipmentList />
+```
+
+Tabla con despachos: número, fecha, tipo, bodega, destinatario, total. Acciones: ver detalle (`ShipmentDetailModal`), editar (`ShipmentEditModal`), eliminar.
+
+---
+
+### `EntrySelectionModal.vue` — Selección de entradas origen — *Elegir cisterna de agua*
+
+```vue
+<EntrySelectionModal
+  :company-id="companyId"
+  @close="close"
+  @confirm="onEntriesSelected"
+/>
+```
+
+Multi-select de entradas de producto que servirán como origen del despacho. Las cantidades disponibles alimentan la validación de stock.
+
+---
+
+### `useQuantityValidation.ts` — Composable de validación de cantidades — *Disciplina del agua*
+
+```typescript
+const { availableQuantities, quantityErrors, validateQuantity, clearQuantityErrors } =
+  useQuantityValidation(selectedEntries)
+```
+
+Como los fremen no desperdician una gota de agua, este composable impide que la cantidad despachada supere el stock disponible en las entradas seleccionadas. Retorna errores por código de producto con mensaje persuasivo.
+
+---
+
+## Flujo de autenticación — *Duncan Idaho guarda la puerta*
 
 ```
                     localStorage
@@ -709,7 +855,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 ---
 
-## Convenciones del proyecto
+## Convenciones del proyecto — *Código de honor Atreides*
 
 - **Componentes**: Composition API con `<script setup lang="ts">`, props tipadas con `defineProps<T>()`, eventos con `defineEmits<T>()`
 - **Eventos**: `defineEmits()` debe capturarse como `const emit = defineEmits<...>()`

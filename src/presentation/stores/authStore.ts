@@ -28,6 +28,15 @@ export const useAuthStore = defineStore('auth', () => {
       session.value = authSession
       setStoredToken(authSession.token)
       setStoredSession(authSession)
+      // Log login event (non-blocking)
+      createHistoryEntry({
+        entity_type: 'USER',
+        entity_id: authSession.user.id,
+        action: 'LOGIN',
+        user_id: authSession.user.id,
+        user_name: authSession.user.fullName,
+        details: `Inicio de sesión: ${authSession.user.email}`,
+      }).catch(() => {})
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Error al iniciar sesión.'
       throw err
@@ -55,6 +64,15 @@ export const useAuthStore = defineStore('auth', () => {
       session.value = authSession
       setStoredToken(authSession.token)
       setStoredSession(authSession)
+      // Log register event (non-blocking)
+      createHistoryEntry({
+        entity_type: 'USER',
+        entity_id: authSession.user.id,
+        action: 'REGISTER',
+        user_id: authSession.user.id,
+        user_name: authSession.user.fullName,
+        details: `Registro de cuenta: ${authSession.user.email}`,
+      }).catch(() => {})
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Error al registrar la cuenta.'
       throw err
@@ -68,10 +86,22 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function logout(): void {
+    const prevSession = session.value
     session.value = null
     error.value = null
     clearStoredToken()
     clearStoredSession()
+    // Log logout event (non-blocking)
+    if (prevSession) {
+      createHistoryEntry({
+        entity_type: 'USER',
+        entity_id: prevSession.user.id,
+        action: 'LOGOUT',
+        user_id: prevSession.user.id,
+        user_name: prevSession.user.fullName,
+        details: `Cierre de sesión: ${prevSession.user.email}`,
+      }).catch(() => {})
+    }
   }
 
   return {

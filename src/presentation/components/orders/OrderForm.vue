@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useOrderStore } from '@/presentation/stores/orderStore'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { useShipmentStore } from '@/presentation/stores/shipmentStore'
+import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
+import { useQuantityValidation } from '@/presentation/composables/useQuantityValidation'
+import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
 import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
 import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
 import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
@@ -11,15 +15,21 @@ import AutomationConfirmModal from '@/presentation/components/orders/AutomationC
 import DispatchSummaryModal from '@/presentation/components/orders/DispatchSummaryModal.vue'
 import type { CreateOrderRequest, OrderDetail, OrderResponse } from '@/application/services/orderService'
 import type { ProductEntryResponse } from '@/application/services/productEntryService'
-import type { ProviderResponse } from '@/application/services/providerService'
+import type { ProviderResponse } from '@/application/services/providerResponse'
 import type { WineryResponse } from '@/application/services/wineryService'
 
+const router = useRouter()
 const emit = defineEmits<{ saved: []; goToProviderRegistration: [] }>()
 
 const orderStore = useOrderStore()
 const authStore = useAuthStore()
 const companyStore = useCompanyStore()
 const shipmentStore = useShipmentStore()
+const productEntryStore = useProductEntryStore()
+const { logCreate, logDeduct } = useHistoryLogger()
+
+const selectedEntries = ref<ProductEntryResponse[]>([])
+const { quantityErrors, validateQuantity, clearQuantityErrors } = useQuantityValidation(selectedEntries)
 
 const VAT_RATE = 0.19
 
@@ -91,6 +101,7 @@ function onProviderSelected(provider: ProviderResponse): void {
 function onEntriesSelected(entries: ProductEntryResponse[]): void {
   showEntryModal.value = false
   selectedEntryIds.value = entries.map((e) => e.id)
+  selectedEntries.value = entries
   for (const entry of entries) {
     for (const detail of entry.details) {
       const exists = form.value.details.some((d) => d.code === detail.code)
@@ -100,9 +111,9 @@ function onEntriesSelected(entries: ProductEntryResponse[]): void {
           product: detail.product,
           unit: detail.unit,
           quantity_requested: detail.quantity,
-          estimated_cost: detail.unitCost,
-          subtotal: detail.quantity * detail.unitCost,
-        })
+          estimated_cost: detail.unit_cost,
+          subtotal: detail.quantity * detail.unit_cost,
+      })
       }
     }
   }
@@ -133,10 +144,36 @@ function recalcSummary(): void {
   }
 }
 
+const formErrors = reactive<Record<string, string>>({})
+
+function validateForm(): boolean {
+  Object.keys(formErrors).forEach((k) => delete formErrors[k])
+  clearQuantityErrors()
+
+  if (form.value.details.length === 0) formErrors.details = 'Debe agregar al menos un producto.'
+
+  for (let i = 0; i < form.value.details.length; i++) {
+    const d = form.value.details[i]
+    if (d.quantity_requested <= 0) formErrors[`qty_${i}`] = 'Cantidad debe ser mayor a 0.'
+    if (d.quantity_requested > 0 && !validateQuantity(d.code, d.quantity_requested)) {
+      formErrors[`qty_${i}`] = quantityErrors[d.code]
+    }
+  }
+
+  return Object.keys(formErrors).length === 0
+}
+
 async function handleSubmit(): Promise<void> {
+  if (!validateForm()) return
+
   const result = await orderStore.createOrder(form.value)
   if (result) {
     createdOrder.value = result
+    logCreate({
+      entityType: 'ORDER',
+      entityId: result.id,
+      details: `Orden ${result.order_numeric} creada por ${form.value.requested_by || form.value.user_id} con ${form.value.details.length} producto(s).`,
+    })
     showAutomationConfirm.value = true
   } else {
     dialogResult.value = { success: false, error: orderStore.error || 'Error desconocido al registrar la orden.' }
@@ -191,11 +228,50 @@ async function onDispatchConfirm(payload: { discount: number; remarks: string; r
   }
   const shipment = await shipmentStore.createShipment(shipmentData)
   if (shipment) {
-    dialogResult.value = { success: true, order, shipment }
+    logCreate({
+      entityType: 'SHIPMENT',
+      entityId: shipment.id,
+      details: `Despacho autom�tico ${shipment.shipment_number} generado desde la orden ${order.order_numeric}.`,
+    })
+    const deducted = await deductEntryQuantities()
+    if (!deducted) {
+      dialogResult.value = { success: true, order, shipment }
+    } else {
+      dialogResult.value = { success: true, order, shipment }
+    }
   } else {
     dialogResult.value = { success: false, error: shipmentStore.error || 'La orden se creó pero no se pudo generar el despacho automático.' }
   }
   showDialog.value = true
+}
+
+async function deductEntryQuantities(): Promise<boolean> {
+  const codeToEntryMap: Record<string, string> = {}
+  for (const entry of selectedEntries.value) {
+    for (const detail of entry.details) {
+      if (!(detail.code in codeToEntryMap)) {
+        codeToEntryMap[detail.code] = entry.id
+      }
+    }
+  }
+  const deductionsByEntry: Record<string, { code: string; quantity: number }[]> = {}
+  for (const detail of form.value.details) {
+    const entryId = codeToEntryMap[detail.code]
+    if (!entryId) continue
+    if (!deductionsByEntry[entryId]) deductionsByEntry[entryId] = []
+    deductionsByEntry[entryId].push({ code: detail.code, quantity: detail.quantity_requested })
+  }
+  for (const [entryId, deductions] of Object.entries(deductionsByEntry)) {
+    const result = await productEntryStore.deductEntryQuantity(entryId, deductions)
+    if (!result) return false
+    logDeduct({
+      entityType: 'PRODUCT_ENTRY',
+      entityId: entryId,
+      details: `Se dedujeron ${deductions.reduce((sum, d) => sum + d.quantity, 0)} unidades de la entrada ${entryId.slice(0, 8)}.`,
+      changes: { quantity: { old: null, new: deductions } },
+    })
+  }
+  return true
 }
 
 function resetForm(): void {
@@ -203,10 +279,12 @@ function resetForm(): void {
   showDialog.value = false
   selectedProviderName.value = ''
   selectedEntryIds.value = []
+  selectedEntries.value = []
   selectedWarehouseId.value = ''
   createdOrder.value = null
   orderStore.clearError()
   shipmentStore.clearError()
+  clearQuantityErrors()
   form.value = {
     order_numeric: '',
     order_type: 'PURCHASE',
@@ -224,7 +302,7 @@ function resetForm(): void {
 function goToList(): void {
   showDialog.value = false
   dialogResult.value = null
-  emit('saved')
+  router.push({ name: 'orders' })
 }
 
 function generateCode(): void {
@@ -300,6 +378,8 @@ function formatCOP(value: number): string {
           <button type="button" class="rounded-xl bg-stellar-500/10 px-4 py-2 text-sm font-medium text-stellar-600 transition hover:bg-stellar-500/20 dark:text-stellar-300" @click="openEntryModal">+ Agregar producto</button>
         </div>
 
+        <p v-if="formErrors.details" class="mb-3 text-xs text-red-500">{{ formErrors.details }}</p>
+
         <div v-if="form.details.length === 0" class="py-8 text-center text-sm text-slate-400">
           No hay productos agregados. Presione "Agregar producto" para seleccionar una entrada y cargar sus productos.
         </div>
@@ -322,7 +402,13 @@ function formatCOP(value: number): string {
                 <td class="px-3 py-2 text-xs font-mono text-slate-500">{{ detail.code }}</td>
                 <td class="px-3 py-2 text-sm font-medium">{{ detail.product }}</td>
                 <td class="px-3 py-2 text-xs">{{ detail.unit }}</td>
-                <td class="px-3 py-2"><input v-model.number="detail.quantity_requested" type="number" min="0" step="0.01" class="w-20 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800" @input="recalcRow(index)" /></td>
+                <td class="px-3 py-2">
+                  <input v-model.number="detail.quantity_requested" type="number" min="0" step="0.01"
+                    class="w-20 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800"
+                    :class="{ 'border-red-400': formErrors['qty_' + index] || quantityErrors[detail.code] }"
+                    @input="recalcRow(index)" />
+                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-amber-600">{{ quantityErrors[detail.code] }}</p>
+                </td>
                 <td class="px-3 py-2"><input v-model.number="detail.estimated_cost" type="number" min="0" step="0.01" class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800" @input="recalcRow(index)" /></td>
                 <td class="px-3 py-2 text-xs">{{ formatCOP(detail.subtotal) }}</td>
                 <td class="px-3 py-2">
@@ -393,7 +479,7 @@ function formatCOP(value: number): string {
             <p class="mb-1 text-center text-sm text-slate-600 dark:text-slate-300">
               <span class="font-semibold">{{ dialogResult.order.order_numeric }}</span> — {{ formatCOP(dialogResult.order.financial_summary.purchase_total) }}
             </p>
-            <p v-if="dialogResult.shipment" class="mb-2 mt-2 inline-flex items-center gap-1.5 rounded-full bg-cosmic-100 px-3 py-1 text-xs font-medium text-cosmic-700 dark:bg-cosmic-500/20 dark:text-cosmic-300">
+            <p v-if="dialogResult.shipment" class="mb-2 mt-2 inline-flex items-center gap-1.5 rounded-full bg-cosmic-100 px-3 py-1 text-xs font-medium text-white dark:bg-cosmic-500/20">
               <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
               </svg>
@@ -470,3 +556,8 @@ function formatCOP(value: number): string {
     />
   </div>
 </template>
+
+
+
+
+

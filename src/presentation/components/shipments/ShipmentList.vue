@@ -11,6 +11,8 @@ const statusFilter = ref('')
 const expandedId = ref<string | null>(null)
 const detailShipment = ref<ShipmentResponse | null>(null)
 const editShipment = ref<ShipmentResponse | null>(null)
+const deletingShipmentId = ref<string | null>(null)
+const deleting = ref(false)
 
 onMounted(() => {
   shipmentStore.fetchShipments()
@@ -38,9 +40,24 @@ function toggleExpand(id: string): void {
   expandedId.value = expandedId.value === id ? null : id
 }
 
-async function handleDelete(id: string): Promise<void> {
-  if (!confirm('\u00bfEliminar este despacho?')) return
-  await shipmentStore.removeShipment(id)
+function confirmDelete(id: string): void {
+  deletingShipmentId.value = id
+}
+
+function cancelDelete(): void {
+  deletingShipmentId.value = null
+}
+
+async function executeDelete(): Promise<void> {
+  const id = deletingShipmentId.value
+  if (!id) return
+  deleting.value = true
+  try {
+    await shipmentStore.removeShipment(id)
+    deletingShipmentId.value = null
+  } finally {
+    deleting.value = false
+  }
 }
 
 function openDetail(shipment: ShipmentResponse): void {
@@ -209,7 +226,7 @@ const summaryStats = computed(() => {
             <button
               type="button"
               class="rounded-xl px-3 py-1.5 text-xs font-medium text-red-500 transition hover:bg-red-50 dark:hover:bg-red-500/10"
-              @click.stop="handleDelete(shipment.id)"
+              @click.stop="confirmDelete(shipment.id)"
             >
               Eliminar
             </button>
@@ -276,7 +293,7 @@ const summaryStats = computed(() => {
                     <td class="px-2 py-1">{{ d.unit }}</td>
                     <td class="px-2 py-1">{{ d.quantity }}</td>
                     <td class="px-2 py-1">${{ formatCOP(d.unit_cost) }}</td>
-                    <td class="px-2 py-1">${{ formatCOP(d.subtotal) }}</td>
+                    <td class="px-2 py-1 dark:text-white">${{ formatCOP(d.subtotal) }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -291,6 +308,46 @@ const summaryStats = computed(() => {
       </div>
     </div>
   </div>
+
+  <Teleport v-if="deletingShipmentId" to="body">
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+      <div class="w-full max-w-md rounded-2xl border bg-white p-6 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+        <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-500/20">
+          <svg class="h-6 w-6 text-red-600 dark:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Eliminar salida</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          Esta acci&oacute;n no se puede deshacer. Al eliminar este registro de salida, perder&aacute;s
+          la trazabilidad del movimiento de inventario, los costos asociados y el historial
+          financiero de esta transacci&oacute;n. Los reportes contables y de existencias pueden
+          quedar desincronizados, afectando la precisi&oacute;n de tu control de stock.
+        </p>
+        <p class="mt-3 text-sm font-medium text-amber-600 dark:text-amber-400">
+          Revisa que esta salida no haya sido utilizada como referencia en otros procesos antes de eliminarla.
+        </p>
+        <div class="mt-6 flex justify-end gap-3">
+          <button
+            type="button"
+            class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            :disabled="deleting"
+            @click="cancelDelete"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            :disabled="deleting"
+            class="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 disabled:opacity-50"
+            @click="executeDelete"
+          >
+            {{ deleting ? 'Eliminando...' : 'Sí, eliminar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </Teleport>
 
   <ShipmentDetailModal
     v-if="detailShipment"

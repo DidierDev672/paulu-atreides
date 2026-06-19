@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.20",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.17.0",
     "pinia": "^3.0.4",

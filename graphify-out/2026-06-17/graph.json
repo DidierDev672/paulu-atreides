@@ -414,56 +414,6 @@
       "norm_label": "createeconomicactivity()"
     },
     {
-      "label": "historyService.ts",
-      "file_type": "code",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "services_historyservice",
-      "community": 69,
-      "norm_label": "historyservice.ts"
-    },
-    {
-      "label": "HistoryApiResponse",
-      "file_type": "code",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "services_historyservice_historyapiresponse",
-      "community": 69,
-      "norm_label": "historyapiresponse"
-    },
-    {
-      "label": "CreateHistoryRequest",
-      "file_type": "code",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L18",
-      "_origin": "ast",
-      "id": "services_historyservice_createhistoryrequest",
-      "community": 69,
-      "norm_label": "createhistoryrequest"
-    },
-    {
-      "label": "mapToHistoryEntry()",
-      "file_type": "code",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "services_historyservice_maptohistoryentry",
-      "community": 69,
-      "norm_label": "maptohistoryentry()"
-    },
-    {
-      "label": "createHistoryEntry()",
-      "file_type": "code",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "services_historyservice_createhistoryentry",
-      "community": 69,
-      "norm_label": "createhistoryentry()"
-    },
-    {
       "label": "mainAddressService.ts",
       "file_type": "code",
       "source_file": "src/application/services/mainAddressService.ts",
@@ -654,20 +604,10 @@
       "norm_label": "productentryresponse"
     },
     {
-      "label": "Deduction",
-      "file_type": "code",
-      "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L38",
-      "_origin": "ast",
-      "id": "services_productentryservice_deduction",
-      "community": 8,
-      "norm_label": "deduction"
-    },
-    {
       "label": "CreateProductEntryRequest",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L43",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "services_productentryservice_createproductentryrequest",
       "community": 8,
@@ -677,7 +617,7 @@
       "label": "getProductEntries()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L55",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "services_productentryservice_getproductentries",
       "community": 8,
@@ -687,7 +627,7 @@
       "label": "getProductEntryById()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L60",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "services_productentryservice_getproductentrybyid",
       "community": 8,
@@ -697,7 +637,7 @@
       "label": "createProductEntry()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L65",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "services_productentryservice_createproductentry",
       "community": 8,
@@ -707,7 +647,7 @@
       "label": "updateProductEntry()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L70",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "services_productentryservice_updateproductentry",
       "community": 8,
@@ -717,7 +657,7 @@
       "label": "deleteProductEntry()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L75",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "services_productentryservice_deleteproductentry",
       "community": 8,
@@ -727,21 +667,11 @@
       "label": "getProductEntriesByCodes()",
       "file_type": "code",
       "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L79",
+      "source_location": "L74",
       "_origin": "ast",
       "id": "services_productentryservice_getproductentriesbycodes",
       "community": 8,
       "norm_label": "getproductentriesbycodes()"
-    },
-    {
-      "label": "deductProductEntry()",
-      "file_type": "code",
-      "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L86",
-      "_origin": "ast",
-      "id": "services_productentryservice_deductproductentry",
-      "community": 8,
-      "norm_label": "deductproductentry()"
     },
     {
       "label": "productService.ts",
@@ -1344,36 +1274,6 @@
       "norm_label": "authsession"
     },
     {
-      "label": "HistoryEntry.ts",
-      "file_type": "code",
-      "source_file": "src/domain/entities/HistoryEntry.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "entities_historyentry",
-      "community": 88,
-      "norm_label": "historyentry.ts"
-    },
-    {
-      "label": "HistoryChange",
-      "file_type": "code",
-      "source_file": "src/domain/entities/HistoryEntry.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "entities_historyentry_historychange",
-      "community": 88,
-      "norm_label": "historychange"
-    },
-    {
-      "label": "HistoryEntry",
-      "file_type": "code",
-      "source_file": "src/domain/entities/HistoryEntry.ts",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "entities_historyentry_historyentry",
-      "community": 88,
-      "norm_label": "historyentry"
-    },
-    {
       "label": "User.ts",
       "file_type": "code",
       "source_file": "src/domain/entities/User.ts",
@@ -1844,26 +1744,6 @@
       "norm_label": "onboardingmodal.vue"
     },
     {
-      "label": "HistoryDetailModal.vue",
-      "file_type": "code",
-      "source_file": "src/presentation/components/history/HistoryDetailModal.vue",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "history_historydetailmodal",
-      "community": 90,
-      "norm_label": "historydetailmodal.vue"
-    },
-    {
-      "label": "HistoryTimeline.vue",
-      "file_type": "code",
-      "source_file": "src/presentation/components/history/HistoryTimeline.vue",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "history_historytimeline",
-      "community": 91,
-      "norm_label": "historytimeline.vue"
-    },
-    {
       "label": "AutomationConfirmModal.vue",
       "file_type": "code",
       "source_file": "src/presentation/components/orders/AutomationConfirmModal.vue",
@@ -1904,16 +1784,6 @@
       "norm_label": "handleconfirm()"
     },
     {
-      "label": "OrderEditModal.vue",
-      "file_type": "code",
-      "source_file": "src/presentation/components/orders/OrderEditModal.vue",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "orders_ordereditmodal",
-      "community": 92,
-      "norm_label": "ordereditmodal.vue"
-    },
-    {
       "label": "OrderForm.vue",
       "file_type": "code",
       "source_file": "src/presentation/components/orders/OrderForm.vue",
@@ -1927,7 +1797,7 @@
       "label": "for()",
       "file_type": "code",
       "source_file": "src/presentation/components/orders/OrderForm.vue",
-      "source_location": "L106",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "orders_orderform_for",
       "community": 46,
@@ -1940,18 +1810,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orders_orderlist",
-      "community": 27,
+      "community": 47,
       "norm_label": "orderlist.vue"
-    },
-    {
-      "label": "formatDate()",
-      "file_type": "code",
-      "source_file": "src/presentation/components/orders/OrderList.vue",
-      "source_location": "L200",
-      "_origin": "ast",
-      "id": "orders_orderlist_formatdate",
-      "community": 27,
-      "norm_label": "formatdate()"
     },
     {
       "label": "ProductEntryForm.vue",
@@ -2174,6 +2034,66 @@
       "norm_label": "entryselectionmodal.vue"
     },
     {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_loading",
+      "community": 72,
+      "norm_label": "loading"
+    },
+    {
+      "label": "error",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_error",
+      "community": 72,
+      "norm_label": "error"
+    },
+    {
+      "label": "search",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_search",
+      "community": 72,
+      "norm_label": "search"
+    },
+    {
+      "label": "filteredEntries",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_filteredentries",
+      "community": 72,
+      "norm_label": "filteredentries"
+    },
+    {
+      "label": "toggle()",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_toggle",
+      "community": 72,
+      "norm_label": "toggle()"
+    },
+    {
+      "label": "handleConfirm()",
+      "file_type": "code",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "shipments_entryselectionmodal_handleconfirm",
+      "community": 72,
+      "norm_label": "handleconfirm()"
+    },
+    {
       "label": "ShipmentDetailModal.vue",
       "file_type": "code",
       "source_file": "src/presentation/components/shipments/ShipmentDetailModal.vue",
@@ -2207,7 +2127,7 @@
       "label": "for()",
       "file_type": "code",
       "source_file": "src/presentation/components/shipments/ShipmentForm.vue",
-      "source_location": "L135",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "shipments_shipmentform_for",
       "community": 62,
@@ -2264,46 +2184,6 @@
       "norm_label": "wineryregistrationform.vue"
     },
     {
-      "label": "useHistoryLogger.ts",
-      "file_type": "code",
-      "source_file": "src/presentation/composables/useHistoryLogger.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "composables_usehistorylogger",
-      "community": 28,
-      "norm_label": "usehistorylogger.ts"
-    },
-    {
-      "label": "useHistoryLogger()",
-      "file_type": "code",
-      "source_file": "src/presentation/composables/useHistoryLogger.ts",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "composables_usehistorylogger_usehistorylogger",
-      "community": 28,
-      "norm_label": "usehistorylogger()"
-    },
-    {
-      "label": "useQuantityValidation.ts",
-      "file_type": "code",
-      "source_file": "src/presentation/composables/useQuantityValidation.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "composables_usequantityvalidation",
-      "community": 89,
-      "norm_label": "usequantityvalidation.ts"
-    },
-    {
-      "label": "useQuantityValidation()",
-      "file_type": "code",
-      "source_file": "src/presentation/composables/useQuantityValidation.ts",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "composables_usequantityvalidation_usequantityvalidation",
-      "community": 89,
-      "norm_label": "usequantityvalidation()"
-    },
-    {
       "label": "AuthPage.vue",
       "file_type": "code",
       "source_file": "src/presentation/pages/AuthPage.vue",
@@ -2317,7 +2197,7 @@
       "label": "[]",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L275",
+      "source_location": "L222",
       "_origin": "ast",
       "id": "pages_dashboardpage",
       "community": 3,
@@ -2327,7 +2207,7 @@
       "label": "authStore",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L79",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "pages_dashboardpage_authstore",
       "community": 3,
@@ -2337,27 +2217,17 @@
       "label": "companyStore",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L80",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "pages_dashboardpage_companystore",
       "community": 3,
       "norm_label": "companystore"
     },
     {
-      "label": "historyStore",
-      "file_type": "code",
-      "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L81",
-      "_origin": "ast",
-      "id": "pages_dashboardpage_historystore",
-      "community": 3,
-      "norm_label": "historystore"
-    },
-    {
       "label": "userId",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L82",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "pages_dashboardpage_userid",
       "community": 3,
@@ -2367,7 +2237,7 @@
       "label": "userName",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L83",
+      "source_location": "L81",
       "_origin": "ast",
       "id": "pages_dashboardpage_username",
       "community": 3,
@@ -2377,7 +2247,7 @@
       "label": "userInitials",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L84",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "pages_dashboardpage_userinitials",
       "community": 3,
@@ -2387,7 +2257,7 @@
       "label": "showOnboarding",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L94",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "pages_dashboardpage_showonboarding",
       "community": 3,
@@ -2397,7 +2267,7 @@
       "label": "showRegistrationForm",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L95",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "pages_dashboardpage_showregistrationform",
       "community": 3,
@@ -2407,7 +2277,7 @@
       "label": "showCompanySelection",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L96",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "pages_dashboardpage_showcompanyselection",
       "community": 3,
@@ -2417,7 +2287,7 @@
       "label": "loadingCompany",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L97",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "pages_dashboardpage_loadingcompany",
       "community": 3,
@@ -2427,7 +2297,7 @@
       "label": "handleCompanySelect()",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L123",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "pages_dashboardpage_handlecompanyselect",
       "community": 3,
@@ -2437,7 +2307,7 @@
       "label": "handleSelectionRegister()",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L128",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "pages_dashboardpage_handleselectionregister",
       "community": 3,
@@ -2447,7 +2317,7 @@
       "label": "handleOnboardingProceed()",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L133",
+      "source_location": "L129",
       "_origin": "ast",
       "id": "pages_dashboardpage_handleonboardingproceed",
       "community": 3,
@@ -2457,27 +2327,27 @@
       "label": "handleOnboardingDismiss()",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L138",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "pages_dashboardpage_handleonboardingdismiss",
       "community": 3,
       "norm_label": "handleonboardingdismiss()"
     },
     {
-      "label": "toggleGroup()",
+      "label": "navItems",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L161",
+      "source_location": "L156",
       "_origin": "ast",
-      "id": "pages_dashboardpage_togglegroup",
+      "id": "pages_dashboardpage_navitems",
       "community": 3,
-      "norm_label": "togglegroup()"
+      "norm_label": "navitems"
     },
     {
       "label": "statCards",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L228",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "pages_dashboardpage_statcards",
       "community": 3,
@@ -2487,7 +2357,7 @@
       "label": "string",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L286",
+      "source_location": "L233",
       "_origin": "ast",
       "id": "pages_dashboardpage_string",
       "community": 3,
@@ -2497,7 +2367,7 @@
       "label": "currentPage",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L292",
+      "source_location": "L239",
       "_origin": "ast",
       "id": "pages_dashboardpage_currentpage",
       "community": 3,
@@ -2507,7 +2377,7 @@
       "label": "totalPages",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L294",
+      "source_location": "L241",
       "_origin": "ast",
       "id": "pages_dashboardpage_totalpages",
       "community": 3,
@@ -2517,7 +2387,7 @@
       "label": "paginatedTransactions",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L295",
+      "source_location": "L242",
       "_origin": "ast",
       "id": "pages_dashboardpage_paginatedtransactions",
       "community": 3,
@@ -2527,27 +2397,17 @@
       "label": "goToPage()",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L300",
+      "source_location": "L247",
       "_origin": "ast",
       "id": "pages_dashboardpage_gotopage",
       "community": 3,
       "norm_label": "gotopage()"
     },
     {
-      "label": "formatTimeAgo()",
-      "file_type": "code",
-      "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L327",
-      "_origin": "ast",
-      "id": "pages_dashboardpage_formattimeago",
-      "community": 3,
-      "norm_label": "formattimeago()"
-    },
-    {
       "label": "activities",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L341",
+      "source_location": "L252",
       "_origin": "ast",
       "id": "pages_dashboardpage_activities",
       "community": 3,
@@ -2557,7 +2417,7 @@
       "label": "notifications",
       "file_type": "code",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L350",
+      "source_location": "L267",
       "_origin": "ast",
       "id": "pages_dashboardpage_notifications",
       "community": 3,
@@ -2664,26 +2524,6 @@
       "norm_label": "usecompanystore"
     },
     {
-      "label": "historyStore.ts",
-      "file_type": "code",
-      "source_file": "src/presentation/stores/historyStore.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "stores_historystore",
-      "community": 28,
-      "norm_label": "historystore.ts"
-    },
-    {
-      "label": "useHistoryStore",
-      "file_type": "code",
-      "source_file": "src/presentation/stores/historyStore.ts",
-      "source_location": "L11",
-      "_origin": "ast",
-      "id": "stores_historystore_usehistorystore",
-      "community": 28,
-      "norm_label": "usehistorystore"
-    },
-    {
       "label": "orderStore.ts",
       "file_type": "code",
       "source_file": "src/presentation/stores/orderStore.ts",
@@ -2717,7 +2557,7 @@
       "label": "useProductEntryStore",
       "file_type": "code",
       "source_file": "src/presentation/stores/productEntryStore.ts",
-      "source_location": "L13",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "stores_productentrystore_useproductentrystore",
       "community": 31,
@@ -4214,130 +4054,120 @@
       "norm_label": "guia de implementacion \u2014 paulus + paulu"
     },
     {
-      "label": "1. Resumen del proyecto \u2014 *El ascenso de Muad'Dib*",
+      "label": "1. Resumen del proyecto",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L10",
+      "source_location": "L7",
       "_origin": "ast",
-      "id": "implementation_guide_1_resumen_del_proyecto_el_ascenso_de_muad_dib",
+      "id": "implementation_guide_1_resumen_del_proyecto",
       "community": 66,
-      "norm_label": "1. resumen del proyecto \u2014 *el ascenso de muad'dib*"
+      "norm_label": "1. resumen del proyecto"
     },
     {
-      "label": "2. Frontend \u2014 Paulus (Vue 3) \u2014 *Rostro de Paul ante los fremen*",
+      "label": "2. Frontend \u2014 Paulus (Vue 3)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L22",
+      "source_location": "L19",
       "_origin": "ast",
-      "id": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "community": 66,
-      "norm_label": "2. frontend \u2014 paulus (vue 3) \u2014 *rostro de paul ante los fremen*"
+      "id": "implementation_guide_2_frontend_paulus_vue_3",
+      "community": 69,
+      "norm_label": "2. frontend \u2014 paulus (vue 3)"
     },
     {
-      "label": "2.1 Arquitectura \u2014 *Caladan: estructura noble en cuatro capas*",
+      "label": "2.1 Arquitectura",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L24",
+      "source_location": "L21",
       "_origin": "ast",
-      "id": "implementation_guide_2_1_arquitectura_caladan_estructura_noble_en_cuatro_capas",
-      "community": 66,
-      "norm_label": "2.1 arquitectura \u2014 *caladan: estructura noble en cuatro capas*"
+      "id": "implementation_guide_2_1_arquitectura",
+      "community": 69,
+      "norm_label": "2.1 arquitectura"
     },
     {
-      "label": "2.2 Patr\u00f3n de inyecci\u00f3n de dependencias \u2014 *Mentat Thufir*",
+      "label": "2.2 Patr\u00f3n de inyecci\u00f3n de dependencias",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L37",
+      "source_location": "L34",
       "_origin": "ast",
-      "id": "implementation_guide_2_2_patr\u00f3n_de_inyecci\u00f3n_de_dependencias_mentat_thufir",
-      "community": 66,
-      "norm_label": "2.2 patron de inyeccion de dependencias \u2014 *mentat thufir*"
+      "id": "implementation_guide_2_2_patr\u00f3n_de_inyecci\u00f3n_de_dependencias",
+      "community": 69,
+      "norm_label": "2.2 patron de inyeccion de dependencias"
     },
     {
-      "label": "2.3 Servicios HTTP (capa application) \u2014 *Exploradores fremen*",
+      "label": "2.3 Servicios HTTP (capa application)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L51",
+      "source_location": "L48",
       "_origin": "ast",
-      "id": "implementation_guide_2_3_servicios_http_capa_application_exploradores_fremen",
-      "community": 66,
-      "norm_label": "2.3 servicios http (capa application) \u2014 *exploradores fremen*"
+      "id": "implementation_guide_2_3_servicios_http_capa_application",
+      "community": 69,
+      "norm_label": "2.3 servicios http (capa application)"
     },
     {
-      "label": "2.4 Stores (Pinia) \u2014 *Sietch Tabr: memoria colectiva*",
+      "label": "2.4 Stores (Pinia)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L69",
+      "source_location": "L64",
       "_origin": "ast",
-      "id": "implementation_guide_2_4_stores_pinia_sietch_tabr_memoria_colectiva",
-      "community": 66,
-      "norm_label": "2.4 stores (pinia) \u2014 *sietch tabr: memoria colectiva*"
+      "id": "implementation_guide_2_4_stores_pinia",
+      "community": 69,
+      "norm_label": "2.4 stores (pinia)"
     },
     {
-      "label": "2.5 Composables \u2014 *Weirding Way*",
+      "label": "2.5 Enrutamiento",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L82",
+      "source_location": "L75",
       "_origin": "ast",
-      "id": "implementation_guide_2_5_composables_weirding_way",
-      "community": 66,
-      "norm_label": "2.5 composables \u2014 *weirding way*"
+      "id": "implementation_guide_2_5_enrutamiento",
+      "community": 69,
+      "norm_label": "2.5 enrutamiento"
     },
     {
-      "label": "2.6 Enrutamiento \u2014 *Navegadores Guild*",
+      "label": "2.6 Componentes principales",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L88",
+      "source_location": "L81",
       "_origin": "ast",
-      "id": "implementation_guide_2_6_enrutamiento_navegadores_guild",
-      "community": 66,
-      "norm_label": "2.6 enrutamiento \u2014 *navegadores guild*"
+      "id": "implementation_guide_2_6_componentes_principales",
+      "community": 69,
+      "norm_label": "2.6 componentes principales"
     },
     {
-      "label": "2.7 Componentes principales \u2014 *Arsenal del sietch*",
+      "label": "2.7 Manejo de errores",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L94",
+      "source_location": "L100",
       "_origin": "ast",
-      "id": "implementation_guide_2_7_componentes_principales_arsenal_del_sietch",
-      "community": 66,
-      "norm_label": "2.7 componentes principales \u2014 *arsenal del sietch*"
+      "id": "implementation_guide_2_7_manejo_de_errores",
+      "community": 69,
+      "norm_label": "2.7 manejo de errores"
     },
     {
-      "label": "2.8 Manejo de errores \u2014 *Voz Bene Gesserit*",
+      "label": "2.8 Autenticaci\u00f3n",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L124",
+      "source_location": "L107",
       "_origin": "ast",
-      "id": "implementation_guide_2_8_manejo_de_errores_voz_bene_gesserit",
-      "community": 66,
-      "norm_label": "2.8 manejo de errores \u2014 *voz bene gesserit*"
+      "id": "implementation_guide_2_8_autenticaci\u00f3n",
+      "community": 69,
+      "norm_label": "2.8 autenticacion"
     },
     {
-      "label": "2.9 Autenticaci\u00f3n \u2014 *Sello Atreides*",
+      "label": "3. Backend \u2014 Paulu (Go API)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L131",
+      "source_location": "L116",
       "_origin": "ast",
-      "id": "implementation_guide_2_9_autenticaci\u00f3n_sello_atreides",
+      "id": "implementation_guide_3_backend_paulu_go_api",
       "community": 66,
-      "norm_label": "2.9 autenticacion \u2014 *sello atreides*"
-    },
-    {
-      "label": "3. Backend \u2014 Paulu (Go API) \u2014 *Sardaukar: disciplina del desierto*",
-      "file_type": "document",
-      "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L140",
-      "_origin": "ast",
-      "id": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "community": 66,
-      "norm_label": "3. backend \u2014 paulu (go api) \u2014 *sardaukar: disciplina del desierto*"
+      "norm_label": "3. backend \u2014 paulu (go api)"
     },
     {
       "label": "3.1 Arquitectura",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L142",
+      "source_location": "L118",
       "_origin": "ast",
       "id": "implementation_guide_3_1_arquitectura",
       "community": 66,
@@ -4347,7 +4177,7 @@
       "label": "3.2 Productos \u2014 Modelo de dominio",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L158",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "implementation_guide_3_2_productos_modelo_de_dominio",
       "community": 66,
@@ -4357,7 +4187,7 @@
       "label": "3.3 Productos \u2014 Use case",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L174",
+      "source_location": "L150",
       "_origin": "ast",
       "id": "implementation_guide_3_3_productos_use_case",
       "community": 66,
@@ -4367,7 +4197,7 @@
       "label": "3.4 Productos \u2014 Handler HTTP",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L199",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "implementation_guide_3_4_productos_handler_http",
       "community": 66,
@@ -4377,7 +4207,7 @@
       "label": "3.5 Productos \u2014 Base de datos",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L209",
+      "source_location": "L185",
       "_origin": "ast",
       "id": "implementation_guide_3_5_productos_base_de_datos",
       "community": 66,
@@ -4387,7 +4217,7 @@
       "label": "3.6 Helpers compartidos",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L226",
+      "source_location": "L202",
       "_origin": "ast",
       "id": "implementation_guide_3_6_helpers_compartidos",
       "community": 66,
@@ -4397,7 +4227,7 @@
       "label": "3.7 Configuraci\u00f3n",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L234",
+      "source_location": "L210",
       "_origin": "ast",
       "id": "implementation_guide_3_7_configuraci\u00f3n",
       "community": 66,
@@ -4407,7 +4237,7 @@
       "label": "4. Registro de productos \u2014 Flujo completo",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L245",
+      "source_location": "L221",
       "_origin": "ast",
       "id": "implementation_guide_4_registro_de_productos_flujo_completo",
       "community": 66,
@@ -4417,7 +4247,7 @@
       "label": "4.1 Frontend \u2192 Backend",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L247",
+      "source_location": "L223",
       "_origin": "ast",
       "id": "implementation_guide_4_1_frontend_backend",
       "community": 66,
@@ -4427,27 +4257,27 @@
       "label": "4.2 Consideraciones de dise\u00f1o",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L271",
+      "source_location": "L247",
       "_origin": "ast",
       "id": "implementation_guide_4_2_consideraciones_de_dise\u00f1o",
       "community": 66,
       "norm_label": "4.2 consideraciones de diseno"
     },
     {
-      "label": "5. Graphify \u2014 An\u00e1lisis de grafos de c\u00f3digo \u2014 *Mentat Thufir*",
+      "label": "5. Graphify \u2014 An\u00e1lisis de grafos de c\u00f3digo",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L280",
+      "source_location": "L256",
       "_origin": "ast",
-      "id": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
+      "id": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo",
       "community": 66,
-      "norm_label": "5. graphify \u2014 analisis de grafos de codigo \u2014 *mentat thufir*"
+      "norm_label": "5. graphify \u2014 analisis de grafos de codigo"
     },
     {
       "label": "5.1 Herramienta",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L282",
+      "source_location": "L258",
       "_origin": "ast",
       "id": "implementation_guide_5_1_herramienta",
       "community": 66,
@@ -4457,7 +4287,7 @@
       "label": "5.2 Resultados",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L291",
+      "source_location": "L267",
       "_origin": "ast",
       "id": "implementation_guide_5_2_resultados",
       "community": 66,
@@ -4467,7 +4297,7 @@
       "label": "5.3 Archivos generados",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L298",
+      "source_location": "L274",
       "_origin": "ast",
       "id": "implementation_guide_5_3_archivos_generados",
       "community": 66,
@@ -4477,7 +4307,7 @@
       "label": "5.4 Skills de OpenCode",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L307",
+      "source_location": "L283",
       "_origin": "ast",
       "id": "implementation_guide_5_4_skills_de_opencode",
       "community": 66,
@@ -4487,67 +4317,67 @@
       "label": "6. Nuevo proyecto generado \u2014 Paulu (Vue)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L321",
+      "source_location": "L297",
       "_origin": "ast",
       "id": "implementation_guide_6_nuevo_proyecto_generado_paulu_vue",
       "community": 66,
       "norm_label": "6. nuevo proyecto generado \u2014 paulu (vue)"
     },
     {
-      "label": "7. Convenciones del c\u00f3digo \u2014 *C\u00f3digo de honor Atreides*",
+      "label": "7. Convenciones del c\u00f3digo",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L331",
+      "source_location": "L307",
       "_origin": "ast",
-      "id": "implementation_guide_7_convenciones_del_c\u00f3digo_c\u00f3digo_de_honor_atreides",
+      "id": "implementation_guide_7_convenciones_del_c\u00f3digo",
       "community": 66,
-      "norm_label": "7. convenciones del codigo \u2014 *codigo de honor atreides*"
+      "norm_label": "7. convenciones del codigo"
     },
     {
-      "label": "7.1 Frontend \u2014 *Lenguaje de Usul*",
+      "label": "7.1 Frontend",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L333",
+      "source_location": "L309",
       "_origin": "ast",
-      "id": "implementation_guide_7_1_frontend_lenguaje_de_usul",
+      "id": "implementation_guide_7_1_frontend",
       "community": 66,
-      "norm_label": "7.1 frontend \u2014 *lenguaje de usul*"
+      "norm_label": "7.1 frontend"
     },
     {
-      "label": "7.2 Backend \u2014 *Lenguaje del Imperio*",
+      "label": "7.2 Backend",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L344",
+      "source_location": "L320",
       "_origin": "ast",
-      "id": "implementation_guide_7_2_backend_lenguaje_del_imperio",
+      "id": "implementation_guide_7_2_backend",
       "community": 66,
-      "norm_label": "7.2 backend \u2014 *lenguaje del imperio*"
+      "norm_label": "7.2 backend"
     },
     {
-      "label": "8. Variables de entorno \u2014 *Coordenadas del Guild Navigator*",
+      "label": "8. Variables de entorno",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L354",
+      "source_location": "L330",
       "_origin": "ast",
-      "id": "implementation_guide_8_variables_de_entorno_coordenadas_del_guild_navigator",
+      "id": "implementation_guide_8_variables_de_entorno",
       "community": 66,
-      "norm_label": "8. variables de entorno \u2014 *coordenadas del guild navigator*"
+      "norm_label": "8. variables de entorno"
     },
     {
-      "label": "9. Comandos \u00fatiles \u2014 *Manual del ornit\u00f3ptero*",
+      "label": "9. Comandos \u00fatiles",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L364",
+      "source_location": "L340",
       "_origin": "ast",
-      "id": "implementation_guide_9_comandos_\u00fatiles_manual_del_ornit\u00f3ptero",
+      "id": "implementation_guide_9_comandos_\u00fatiles",
       "community": 66,
-      "norm_label": "9. comandos utiles \u2014 *manual del ornitoptero*"
+      "norm_label": "9. comandos utiles"
     },
     {
       "label": "Frontend (Paulus)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L366",
+      "source_location": "L342",
       "_origin": "ast",
       "id": "implementation_guide_frontend_paulus",
       "community": 66,
@@ -4557,7 +4387,7 @@
       "label": "Backend (Paulu)",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L384",
+      "source_location": "L360",
       "_origin": "ast",
       "id": "implementation_guide_backend_paulu",
       "community": 66,
@@ -4567,7 +4397,7 @@
       "label": "10. Referencias",
       "file_type": "document",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L401",
+      "source_location": "L377",
       "_origin": "ast",
       "id": "implementation_guide_10_referencias",
       "community": 66,
@@ -4594,30 +4424,30 @@
       "norm_label": "paulus \u2014 guia de usuario"
     },
     {
-      "label": "Stack tecnol\u00f3gico \u2014 *Arsenal de Muad'Dib*",
+      "label": "Stack tecnol\u00f3gico",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L23",
+      "source_location": "L20",
       "_origin": "ast",
-      "id": "paulu_user_guide_stack_tecnol\u00f3gico_arsenal_de_muad_dib",
+      "id": "paulu_user_guide_stack_tecnol\u00f3gico",
       "community": 68,
-      "norm_label": "stack tecnologico \u2014 *arsenal de muad'dib*"
+      "norm_label": "stack tecnologico"
     },
     {
-      "label": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
+      "label": "Gu\u00eda de instalaci\u00f3n",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L38",
+      "source_location": "L35",
       "_origin": "ast",
-      "id": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
+      "id": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
       "community": 68,
-      "norm_label": "guia de instalacion \u2014 *primer vuelo en ornitoptero*"
+      "norm_label": "guia de instalacion"
     },
     {
       "label": "1. Clonar y acceder al proyecto",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L40",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "paulu_user_guide_1_clonar_y_acceder_al_proyecto",
       "community": 68,
@@ -4627,7 +4457,7 @@
       "label": "2. Instalar dependencias",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L47",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "paulu_user_guide_2_instalar_dependencias",
       "community": 68,
@@ -4637,7 +4467,7 @@
       "label": "3. Configurar variables de entorno",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L53",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "paulu_user_guide_3_configurar_variables_de_entorno",
       "community": 68,
@@ -4647,7 +4477,7 @@
       "label": "4. Iniciar servidor de desarrollo",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L61",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "paulu_user_guide_4_iniciar_servidor_de_desarrollo",
       "community": 68,
@@ -4657,351 +4487,271 @@
       "label": "5. Compilar para producci\u00f3n",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L69",
+      "source_location": "L66",
       "_origin": "ast",
       "id": "paulu_user_guide_5_compilar_para_producci\u00f3n",
       "community": 68,
       "norm_label": "5. compilar para produccion"
     },
     {
-      "label": "Estructura de carpetas \u2014 *Caladan: arquitectura noble antes de Arrakis*",
+      "label": "Estructura de carpetas",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L78",
+      "source_location": "L75",
       "_origin": "ast",
-      "id": "paulu_user_guide_estructura_de_carpetas_caladan_arquitectura_noble_antes_de_arrakis",
+      "id": "paulu_user_guide_estructura_de_carpetas",
       "community": 68,
-      "norm_label": "estructura de carpetas \u2014 *caladan: arquitectura noble antes de arrakis*"
+      "norm_label": "estructura de carpetas"
     },
     {
-      "label": "Variables de entorno (`.env`) \u2014 *Coordenadas del Guild Navigator*",
+      "label": "Variables de entorno (`.env`)",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L203",
+      "source_location": "L181",
       "_origin": "ast",
-      "id": "paulu_user_guide_variables_de_entorno_env_coordenadas_del_guild_navigator",
+      "id": "paulu_user_guide_variables_de_entorno_env",
       "community": 68,
-      "norm_label": "variables de entorno (`.env`) \u2014 *coordenadas del guild navigator*"
+      "norm_label": "variables de entorno (`.env`)"
     },
     {
-      "label": "Componentes globales \u2014 *Arsenal del sietch*",
+      "label": "Componentes globales",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L217",
+      "source_location": "L195",
       "_origin": "ast",
-      "id": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "community": 47,
-      "norm_label": "componentes globales \u2014 *arsenal del sietch*"
-    },
-    {
-      "label": "`AuthInput.vue` \u2014 Input de formulario con tema auth \u2014 *Prueba Bene Gesserit*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L219",
-      "_origin": "ast",
-      "id": "paulu_user_guide_authinput_vue_input_de_formulario_con_tema_auth_prueba_bene_gesserit",
-      "community": 47,
-      "norm_label": "`authinput.vue` \u2014 input de formulario con tema auth \u2014 *prueba bene gesserit*"
-    },
-    {
-      "label": "`AuthButton.vue` \u2014 Bot\u00f3n con loading y variantes \u2014 *Grito de batalla fremen*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L254",
-      "_origin": "ast",
-      "id": "paulu_user_guide_authbutton_vue_bot\u00f3n_con_loading_y_variantes_grito_de_batalla_fremen",
-      "community": 47,
-      "norm_label": "`authbutton.vue` \u2014 boton con loading y variantes \u2014 *grito de batalla fremen*"
-    },
-    {
-      "label": "`LoginForm.vue` \u2014 Formulario de inicio de sesi\u00f3n \u2014 *Duncan Idaho en la puerta*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L274",
-      "_origin": "ast",
-      "id": "paulu_user_guide_loginform_vue_formulario_de_inicio_de_sesi\u00f3n_duncan_idaho_en_la_puerta",
-      "community": 47,
-      "norm_label": "`loginform.vue` \u2014 formulario de inicio de sesion \u2014 *duncan idaho en la puerta*"
-    },
-    {
-      "label": "`RegisterForm.vue` \u2014 Formulario de registro \u2014 *Iniciaci\u00f3n al sietch*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L310",
-      "_origin": "ast",
-      "id": "paulu_user_guide_registerform_vue_formulario_de_registro_iniciaci\u00f3n_al_sietch",
-      "community": 47,
-      "norm_label": "`registerform.vue` \u2014 formulario de registro \u2014 *iniciacion al sietch*"
-    },
-    {
-      "label": "`AppAlert.vue` \u2014 Alerta contextual reutilizable \u2014 *Voz Bene Gesserit*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L362",
-      "_origin": "ast",
-      "id": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable_voz_bene_gesserit",
-      "community": 47,
-      "norm_label": "`appalert.vue` \u2014 alerta contextual reutilizable \u2014 *voz bene gesserit*"
-    },
-    {
-      "label": "`SupplierSelectionModal.vue` \u2014 Modal de selecci\u00f3n de proveedor \u2014 *Elegir aliado fremen*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L391",
-      "_origin": "ast",
-      "id": "paulu_user_guide_supplierselectionmodal_vue_modal_de_selecci\u00f3n_de_proveedor_elegir_aliado_fremen",
-      "community": 47,
-      "norm_label": "`supplierselectionmodal.vue` \u2014 modal de seleccion de proveedor \u2014 *elegir aliado fremen*"
-    },
-    {
-      "label": "`ProductSelectionModal.vue` \u2014 Modal de selecci\u00f3n m\u00faltiple de productos \u2014 *Elegir grano de melange*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L414",
-      "_origin": "ast",
-      "id": "paulu_user_guide_productselectionmodal_vue_modal_de_selecci\u00f3n_m\u00faltiple_de_productos_elegir_grano_de_melange",
-      "community": 47,
-      "norm_label": "`productselectionmodal.vue` \u2014 modal de seleccion multiple de productos \u2014 *elegir grano de melange*"
-    },
-    {
-      "label": "`CompanyRequiredModal.vue` \u2014 Modal persuasivo de empresa requerida \u2014 *Shadout Mapes*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L441",
-      "_origin": "ast",
-      "id": "paulu_user_guide_companyrequiredmodal_vue_modal_persuasivo_de_empresa_requerida_shadout_mapes",
-      "community": 47,
-      "norm_label": "`companyrequiredmodal.vue` \u2014 modal persuasivo de empresa requerida \u2014 *shadout mapes*"
-    },
-    {
-      "label": "`OnboardingModal.vue` \u2014 Modal de onboarding con beneficios \u2014 *Litany Against Fear*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L456",
-      "_origin": "ast",
-      "id": "paulu_user_guide_onboardingmodal_vue_modal_de_onboarding_con_beneficios_litany_against_fear",
-      "community": 47,
-      "norm_label": "`onboardingmodal.vue` \u2014 modal de onboarding con beneficios \u2014 *litany against fear*"
-    },
-    {
-      "label": "`CompanyRegistrationForm.vue` \u2014 Formulario multi-step de 6 pasos \u2014 *Duke Leto funda la Casa*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L471",
-      "_origin": "ast",
-      "id": "paulu_user_guide_companyregistrationform_vue_formulario_multi_step_de_6_pasos_duke_leto_funda_la_casa",
-      "community": 47,
-      "norm_label": "`companyregistrationform.vue` \u2014 formulario multi-step de 6 pasos \u2014 *duke leto funda la casa*"
-    },
-    {
-      "label": "`ProviderRegistrationForm.vue` \u2014 Formulario de registro de proveedor \u2014 *Tratado del Landsraad*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L499",
-      "_origin": "ast",
-      "id": "paulu_user_guide_providerregistrationform_vue_formulario_de_registro_de_proveedor_tratado_del_landsraad",
-      "community": 47,
-      "norm_label": "`providerregistrationform.vue` \u2014 formulario de registro de proveedor \u2014 *tratado del landsraad*"
-    },
-    {
-      "label": "`ProductRegistrationForm.vue` \u2014 Formulario de registro de producto \u2014 *Cosecha de especia*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L513",
-      "_origin": "ast",
-      "id": "paulu_user_guide_productregistrationform_vue_formulario_de_registro_de_producto_cosecha_de_especia",
-      "community": 47,
-      "norm_label": "`productregistrationform.vue` \u2014 formulario de registro de producto \u2014 *cosecha de especia*"
-    },
-    {
-      "label": "`ProductEditModal.vue` \u2014 Modal de edici\u00f3n de producto \u2014 *Refinar la cosecha*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L552",
-      "_origin": "ast",
-      "id": "paulu_user_guide_producteditmodal_vue_modal_de_edici\u00f3n_de_producto_refinar_la_cosecha",
-      "community": 47,
-      "norm_label": "`producteditmodal.vue` \u2014 modal de edicion de producto \u2014 *refinar la cosecha*"
-    },
-    {
-      "label": "`ProductList.vue` \u2014 Lista de productos con b\u00fasqueda \u2014 *Inventario del sietch*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L571",
-      "_origin": "ast",
-      "id": "paulu_user_guide_productlist_vue_lista_de_productos_con_b\u00fasqueda_inventario_del_sietch",
-      "community": 47,
-      "norm_label": "`productlist.vue` \u2014 lista de productos con busqueda \u2014 *inventario del sietch*"
-    },
-    {
-      "label": "`ConfirmDeleteModal.vue` \u2014 Confirmaci\u00f3n de eliminaci\u00f3n \u2014 *Agua derramada*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L589",
-      "_origin": "ast",
-      "id": "paulu_user_guide_confirmdeletemodal_vue_confirmaci\u00f3n_de_eliminaci\u00f3n_agua_derramada",
-      "community": 47,
-      "norm_label": "`confirmdeletemodal.vue` \u2014 confirmacion de eliminacion \u2014 *agua derramada*"
-    },
-    {
-      "label": "`WineryRegistrationForm.vue` \u2014 Formulario de registro de bodega \u2014 *Fundar un sietch*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L608",
-      "_origin": "ast",
-      "id": "paulu_user_guide_wineryregistrationform_vue_formulario_de_registro_de_bodega_fundar_un_sietch",
-      "community": 47,
-      "norm_label": "`wineryregistrationform.vue` \u2014 formulario de registro de bodega \u2014 *fundar un sietch*"
-    },
-    {
-      "label": "`WinerySelectionModal.vue` \u2014 Modal de selecci\u00f3n de bodega \u2014 *Elegir sietch destino*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L627",
-      "_origin": "ast",
-      "id": "paulu_user_guide_wineryselectionmodal_vue_modal_de_selecci\u00f3n_de_bodega_elegir_sietch_destino",
-      "community": 47,
-      "norm_label": "`wineryselectionmodal.vue` \u2014 modal de seleccion de bodega \u2014 *elegir sietch destino*"
-    },
-    {
-      "label": "`ProductEntryForm.vue` \u2014 Formulario de entrada de producto \u2014 *Dr. Kynes: equilibrio ecol\u00f3gico*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L646",
-      "_origin": "ast",
-      "id": "paulu_user_guide_productentryform_vue_formulario_de_entrada_de_producto_dr_kynes_equilibrio_ecol\u00f3gico",
-      "community": 47,
-      "norm_label": "`productentryform.vue` \u2014 formulario de entrada de producto \u2014 *dr. kynes: equilibrio ecologico*"
-    },
-    {
-      "label": "`UserProfile.vue` \u2014 Vista de perfil de usuario \u2014 *Identidad de Usul*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L665",
-      "_origin": "ast",
-      "id": "paulu_user_guide_userprofile_vue_vista_de_perfil_de_usuario_identidad_de_usul",
-      "community": 47,
-      "norm_label": "`userprofile.vue` \u2014 vista de perfil de usuario \u2014 *identidad de usul*"
-    },
-    {
-      "label": "`EditProfileModal.vue` \u2014 Modal de edici\u00f3n de perfil \u2014 *Renacer en el sietch*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L679",
-      "_origin": "ast",
-      "id": "paulu_user_guide_editprofilemodal_vue_modal_de_edici\u00f3n_de_perfil_renacer_en_el_sietch",
-      "community": 47,
-      "norm_label": "`editprofilemodal.vue` \u2014 modal de edicion de perfil \u2014 *renacer en el sietch*"
-    },
-    {
-      "label": "`ProductEntryList.vue` \u2014 Lista de entradas de producto \u2014 *Registro de cosechas*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L694",
-      "_origin": "ast",
-      "id": "paulu_user_guide_productentrylist_vue_lista_de_entradas_de_producto_registro_de_cosechas",
-      "community": 47,
-      "norm_label": "`productentrylist.vue` \u2014 lista de entradas de producto \u2014 *registro de cosechas*"
-    },
-    {
-      "label": "`OrderForm.vue` \u2014 Formulario de orden de compra/venta \u2014 *Contrato CHOAM*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L704",
-      "_origin": "ast",
-      "id": "paulu_user_guide_orderform_vue_formulario_de_orden_de_compra_venta_contrato_choam",
-      "community": 47,
-      "norm_label": "`orderform.vue` \u2014 formulario de orden de compra/venta \u2014 *contrato choam*"
-    },
-    {
-      "label": "`OrderList.vue` \u2014 Lista de \u00f3rdenes \u2014 *Archivo de contratos imperiales*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L728",
-      "_origin": "ast",
-      "id": "paulu_user_guide_orderlist_vue_lista_de_\u00f3rdenes_archivo_de_contratos_imperiales",
-      "community": 47,
-      "norm_label": "`orderlist.vue` \u2014 lista de ordenes \u2014 *archivo de contratos imperiales*"
-    },
-    {
-      "label": "`OrderEditModal.vue` \u2014 Modal de edici\u00f3n de orden \u2014 *Thufir revisa la estrategia*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L738",
-      "_origin": "ast",
-      "id": "paulu_user_guide_ordereditmodal_vue_modal_de_edici\u00f3n_de_orden_thufir_revisa_la_estrategia",
-      "community": 47,
-      "norm_label": "`ordereditmodal.vue` \u2014 modal de edicion de orden \u2014 *thufir revisa la estrategia*"
-    },
-    {
-      "label": "`DispatchSummaryModal.vue` \u2014 Resumen de despacho \u2014 *Informe post-batalla*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L752",
-      "_origin": "ast",
-      "id": "paulu_user_guide_dispatchsummarymodal_vue_resumen_de_despacho_informe_post_batalla",
-      "community": 47,
-      "norm_label": "`dispatchsummarymodal.vue` \u2014 resumen de despacho \u2014 *informe post-batalla*"
-    },
-    {
-      "label": "`ShipmentForm.vue` \u2014 Formulario de despacho (salida) \u2014 *Ornit\u00f3ptero cargado de especia*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L758",
-      "_origin": "ast",
-      "id": "paulu_user_guide_shipmentform_vue_formulario_de_despacho_salida_ornit\u00f3ptero_cargado_de_especia",
-      "community": 47,
-      "norm_label": "`shipmentform.vue` \u2014 formulario de despacho (salida) \u2014 *ornitoptero cargado de especia*"
-    },
-    {
-      "label": "`ShipmentList.vue` \u2014 Lista de despachos \u2014 *Registro de vuelos del desierto*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L785",
-      "_origin": "ast",
-      "id": "paulu_user_guide_shipmentlist_vue_lista_de_despachos_registro_de_vuelos_del_desierto",
-      "community": 47,
-      "norm_label": "`shipmentlist.vue` \u2014 lista de despachos \u2014 *registro de vuelos del desierto*"
-    },
-    {
-      "label": "`EntrySelectionModal.vue` \u2014 Selecci\u00f3n de entradas origen \u2014 *Elegir cisterna de agua*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L795",
-      "_origin": "ast",
-      "id": "paulu_user_guide_entryselectionmodal_vue_selecci\u00f3n_de_entradas_origen_elegir_cisterna_de_agua",
-      "community": 47,
-      "norm_label": "`entryselectionmodal.vue` \u2014 seleccion de entradas origen \u2014 *elegir cisterna de agua*"
-    },
-    {
-      "label": "`useQuantityValidation.ts` \u2014 Composable de validaci\u00f3n de cantidades \u2014 *Disciplina del agua*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L809",
-      "_origin": "ast",
-      "id": "paulu_user_guide_usequantityvalidation_ts_composable_de_validaci\u00f3n_de_cantidades_disciplina_del_agua",
-      "community": 47,
-      "norm_label": "`usequantityvalidation.ts` \u2014 composable de validacion de cantidades \u2014 *disciplina del agua*"
-    },
-    {
-      "label": "Flujo de autenticaci\u00f3n \u2014 *Duncan Idaho guarda la puerta*",
-      "file_type": "document",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L820",
-      "_origin": "ast",
-      "id": "paulu_user_guide_flujo_de_autenticaci\u00f3n_duncan_idaho_guarda_la_puerta",
+      "id": "paulu_user_guide_componentes_globales",
       "community": 68,
-      "norm_label": "flujo de autenticacion \u2014 *duncan idaho guarda la puerta*"
+      "norm_label": "componentes globales"
     },
     {
-      "label": "Convenciones del proyecto \u2014 *C\u00f3digo de honor Atreides*",
+      "label": "`AuthInput.vue` \u2014 Input de formulario con tema auth",
       "file_type": "document",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L858",
+      "source_location": "L197",
       "_origin": "ast",
-      "id": "paulu_user_guide_convenciones_del_proyecto_c\u00f3digo_de_honor_atreides",
+      "id": "paulu_user_guide_authinput_vue_input_de_formulario_con_tema_auth",
       "community": 68,
-      "norm_label": "convenciones del proyecto \u2014 *codigo de honor atreides*"
+      "norm_label": "`authinput.vue` \u2014 input de formulario con tema auth"
+    },
+    {
+      "label": "`AuthButton.vue` \u2014 Bot\u00f3n con loading y variantes",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L232",
+      "_origin": "ast",
+      "id": "paulu_user_guide_authbutton_vue_bot\u00f3n_con_loading_y_variantes",
+      "community": 68,
+      "norm_label": "`authbutton.vue` \u2014 boton con loading y variantes"
+    },
+    {
+      "label": "`LoginForm.vue` \u2014 Formulario de inicio de sesi\u00f3n",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L252",
+      "_origin": "ast",
+      "id": "paulu_user_guide_loginform_vue_formulario_de_inicio_de_sesi\u00f3n",
+      "community": 68,
+      "norm_label": "`loginform.vue` \u2014 formulario de inicio de sesion"
+    },
+    {
+      "label": "`RegisterForm.vue` \u2014 Formulario de registro",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L288",
+      "_origin": "ast",
+      "id": "paulu_user_guide_registerform_vue_formulario_de_registro",
+      "community": 68,
+      "norm_label": "`registerform.vue` \u2014 formulario de registro"
+    },
+    {
+      "label": "`AppAlert.vue` \u2014 Alerta contextual reutilizable",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L340",
+      "_origin": "ast",
+      "id": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable",
+      "community": 68,
+      "norm_label": "`appalert.vue` \u2014 alerta contextual reutilizable"
+    },
+    {
+      "label": "`AppAlert.vue` \u2014 Alerta contextual reutilizable",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L342",
+      "_origin": "ast",
+      "id": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable_342",
+      "community": 68,
+      "norm_label": "`appalert.vue` \u2014 alerta contextual reutilizable"
+    },
+    {
+      "label": "`SupplierSelectionModal.vue` \u2014 Modal de selecci\u00f3n de proveedor (Teleport a body)",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L371",
+      "_origin": "ast",
+      "id": "paulu_user_guide_supplierselectionmodal_vue_modal_de_selecci\u00f3n_de_proveedor_teleport_a_body",
+      "community": 68,
+      "norm_label": "`supplierselectionmodal.vue` \u2014 modal de seleccion de proveedor (teleport a body)"
+    },
+    {
+      "label": "`ProductSelectionModal.vue` \u2014 Modal de selecci\u00f3n m\u00faltiple de productos",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L394",
+      "_origin": "ast",
+      "id": "paulu_user_guide_productselectionmodal_vue_modal_de_selecci\u00f3n_m\u00faltiple_de_productos",
+      "community": 68,
+      "norm_label": "`productselectionmodal.vue` \u2014 modal de seleccion multiple de productos"
+    },
+    {
+      "label": "`CompanyRequiredModal.vue` \u2014 Modal persuasivo de empresa requerida",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L421",
+      "_origin": "ast",
+      "id": "paulu_user_guide_companyrequiredmodal_vue_modal_persuasivo_de_empresa_requerida",
+      "community": 68,
+      "norm_label": "`companyrequiredmodal.vue` \u2014 modal persuasivo de empresa requerida"
+    },
+    {
+      "label": "`OnboardingModal.vue` \u2014 Modal de onboarding con beneficios",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L436",
+      "_origin": "ast",
+      "id": "paulu_user_guide_onboardingmodal_vue_modal_de_onboarding_con_beneficios",
+      "community": 68,
+      "norm_label": "`onboardingmodal.vue` \u2014 modal de onboarding con beneficios"
+    },
+    {
+      "label": "`CompanyRegistrationForm.vue` \u2014 Formulario multi-step de 6 pasos",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L451",
+      "_origin": "ast",
+      "id": "paulu_user_guide_companyregistrationform_vue_formulario_multi_step_de_6_pasos",
+      "community": 68,
+      "norm_label": "`companyregistrationform.vue` \u2014 formulario multi-step de 6 pasos"
+    },
+    {
+      "label": "`ProviderRegistrationForm.vue` \u2014 Formulario de registro de proveedor",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L479",
+      "_origin": "ast",
+      "id": "paulu_user_guide_providerregistrationform_vue_formulario_de_registro_de_proveedor",
+      "community": 68,
+      "norm_label": "`providerregistrationform.vue` \u2014 formulario de registro de proveedor"
+    },
+    {
+      "label": "`ProductRegistrationForm.vue` \u2014 Formulario de registro de producto",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L493",
+      "_origin": "ast",
+      "id": "paulu_user_guide_productregistrationform_vue_formulario_de_registro_de_producto",
+      "community": 68,
+      "norm_label": "`productregistrationform.vue` \u2014 formulario de registro de producto"
+    },
+    {
+      "label": "`ProductEditModal.vue` \u2014 Modal de edici\u00f3n de producto",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L532",
+      "_origin": "ast",
+      "id": "paulu_user_guide_producteditmodal_vue_modal_de_edici\u00f3n_de_producto",
+      "community": 68,
+      "norm_label": "`producteditmodal.vue` \u2014 modal de edicion de producto"
+    },
+    {
+      "label": "`ProductList.vue` \u2014 Lista de productos con b\u00fasqueda",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L551",
+      "_origin": "ast",
+      "id": "paulu_user_guide_productlist_vue_lista_de_productos_con_b\u00fasqueda",
+      "community": 68,
+      "norm_label": "`productlist.vue` \u2014 lista de productos con busqueda"
+    },
+    {
+      "label": "`ConfirmDeleteModal.vue` \u2014 Confirmaci\u00f3n de eliminaci\u00f3n",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L569",
+      "_origin": "ast",
+      "id": "paulu_user_guide_confirmdeletemodal_vue_confirmaci\u00f3n_de_eliminaci\u00f3n",
+      "community": 68,
+      "norm_label": "`confirmdeletemodal.vue` \u2014 confirmacion de eliminacion"
+    },
+    {
+      "label": "`WineryRegistrationForm.vue` \u2014 Formulario de registro de bodega",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L588",
+      "_origin": "ast",
+      "id": "paulu_user_guide_wineryregistrationform_vue_formulario_de_registro_de_bodega",
+      "community": 68,
+      "norm_label": "`wineryregistrationform.vue` \u2014 formulario de registro de bodega"
+    },
+    {
+      "label": "`WinerySelectionModal.vue` \u2014 Modal de selecci\u00f3n de bodega",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L607",
+      "_origin": "ast",
+      "id": "paulu_user_guide_wineryselectionmodal_vue_modal_de_selecci\u00f3n_de_bodega",
+      "community": 68,
+      "norm_label": "`wineryselectionmodal.vue` \u2014 modal de seleccion de bodega"
+    },
+    {
+      "label": "`ProductEntryForm.vue` \u2014 Formulario de entrada de producto",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L626",
+      "_origin": "ast",
+      "id": "paulu_user_guide_productentryform_vue_formulario_de_entrada_de_producto",
+      "community": 68,
+      "norm_label": "`productentryform.vue` \u2014 formulario de entrada de producto"
+    },
+    {
+      "label": "`UserProfile.vue` \u2014 Vista de perfil de usuario",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L645",
+      "_origin": "ast",
+      "id": "paulu_user_guide_userprofile_vue_vista_de_perfil_de_usuario",
+      "community": 68,
+      "norm_label": "`userprofile.vue` \u2014 vista de perfil de usuario"
+    },
+    {
+      "label": "`EditProfileModal.vue` \u2014 Modal de edici\u00f3n de perfil",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L659",
+      "_origin": "ast",
+      "id": "paulu_user_guide_editprofilemodal_vue_modal_de_edici\u00f3n_de_perfil",
+      "community": 68,
+      "norm_label": "`editprofilemodal.vue` \u2014 modal de edicion de perfil"
+    },
+    {
+      "label": "Flujo de autenticaci\u00f3n",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L674",
+      "_origin": "ast",
+      "id": "paulu_user_guide_flujo_de_autenticaci\u00f3n",
+      "community": 68,
+      "norm_label": "flujo de autenticacion"
+    },
+    {
+      "label": "Convenciones del proyecto",
+      "file_type": "document",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L712",
+      "_origin": "ast",
+      "id": "paulu_user_guide_convenciones_del_proyecto",
+      "community": 68,
+      "norm_label": "convenciones del proyecto"
     },
     {
       "label": "README.md",
@@ -5024,20 +4774,20 @@
       "norm_label": "paulus \u2014 el primer miembro de paulu"
     },
     {
-      "label": "Stack \u2014 *Arsenal de Muad'Dib*",
+      "label": "Stack",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "readme_stack_arsenal_de_muad_dib",
+      "id": "readme_stack",
       "community": 70,
-      "norm_label": "stack \u2014 *arsenal de muad'dib*"
+      "norm_label": "stack"
     },
     {
       "label": "Requisitos",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L31",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "readme_requisitos",
       "community": 70,
@@ -5047,7 +4797,7 @@
       "label": "Inicio r\u00e1pido",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L36",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "readme_inicio_r\u00e1pido",
       "community": 70,
@@ -5057,7 +4807,7 @@
       "label": "Variables de entorno",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L45",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "readme_variables_de_entorno",
       "community": 70,
@@ -5067,7 +4817,7 @@
       "label": "Build",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L53",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "readme_build",
       "community": 70,
@@ -5077,7 +4827,7 @@
       "label": "\u00bfQu\u00e9 puedes hacer en Paulus? \u2014 *El Camino del Muad'Dib*",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L60",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "readme_qu\u00e9_puedes_hacer_en_paulus_el_camino_del_muad_dib",
       "community": 70,
@@ -5087,21 +4837,11 @@
       "label": "Conexi\u00f3n con el backend \u2014 *La Casa Paulu*",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L74",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "readme_conexi\u00f3n_con_el_backend_la_casa_paulu",
       "community": 70,
       "norm_label": "conexion con el backend \u2014 *la casa paulu*"
-    },
-    {
-      "label": "Documentaci\u00f3n",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L80",
-      "_origin": "ast",
-      "id": "readme_documentaci\u00f3n",
-      "community": 70,
-      "norm_label": "documentacion"
     },
     {
       "label": "DashBoard.md",
@@ -5124,30 +4864,40 @@
       "norm_label": "dune-lore-paul-atreides.md"
     },
     {
-      "label": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "label": "Dune Lore \u2014 Paul Atreides y el Proyecto Paulus",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
+      "id": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus",
       "community": 87,
-      "norm_label": "dune lore \u2014 paul atreides y el ecosistema paulu"
+      "norm_label": "dune lore \u2014 paul atreides y el proyecto paulus"
     },
     {
-      "label": "Paul Atreides \u2014 El Fundador (*Muad'Dib*)",
+      "label": "Paul Atreides \u2014 El Fundador",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L13",
+      "source_location": "L6",
       "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador_muad_dib",
+      "id": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador",
       "community": 87,
-      "norm_label": "paul atreides \u2014 el fundador (*muad'dib*)"
+      "norm_label": "paul atreides \u2014 el fundador"
+    },
+    {
+      "label": "Paralelismos con Paulus (Vue)",
+      "file_type": "document",
+      "source_file": "raw/dune-lore-paul-atreides.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "raw_dune_lore_paul_atreides_paralelismos_con_paulus_vue",
+      "community": 87,
+      "norm_label": "paralelismos con paulus (vue)"
     },
     {
       "label": "La Casa Paulu",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L28",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_la_casa_paulu",
       "community": 87,
@@ -5157,7 +4907,7 @@
       "label": "El Juramento Paulu",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L34",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_el_juramento_paulu",
       "community": 87,
@@ -5167,7 +4917,7 @@
       "label": "La especia debe fluir \u2014 El inventario debe controlarse",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L44",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_la_especia_debe_fluir_el_inventario_debe_controlarse",
       "community": 87,
@@ -5177,71 +4927,11 @@
       "label": "Paulus \u2014 El Primer Miembro",
       "file_type": "document",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L57",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paulus_el_primer_miembro",
       "community": 87,
       "norm_label": "paulus \u2014 el primer miembro"
-    },
-    {
-      "label": "Personajes y conceptos de la saga \u2014 Glosario Paulu",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_personajes_y_conceptos_de_la_saga_glosario_paulu",
-      "community": 87,
-      "norm_label": "personajes y conceptos de la saga \u2014 glosario paulu"
-    },
-    {
-      "label": "Paralelismos t\u00e9cnicos \u2014 Stack y arquitectura",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L115",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_stack_y_arquitectura",
-      "community": 87,
-      "norm_label": "paralelismos tecnicos \u2014 stack y arquitectura"
-    },
-    {
-      "label": "Paralelismos t\u00e9cnicos \u2014 M\u00f3dulos de negocio",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L141",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_m\u00f3dulos_de_negocio",
-      "community": 87,
-      "norm_label": "paralelismos tecnicos \u2014 modulos de negocio"
-    },
-    {
-      "label": "Paralelismos t\u00e9cnicos \u2014 Backend Paulu (Go API)",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L191",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_backend_paulu_go_api",
-      "community": 87,
-      "norm_label": "paralelismos tecnicos \u2014 backend paulu (go api)"
-    },
-    {
-      "label": "Paralelismos t\u00e9cnicos \u2014 Herramientas y convenciones",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L217",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_herramientas_y_convenciones",
-      "community": 87,
-      "norm_label": "paralelismos tecnicos \u2014 herramientas y convenciones"
-    },
-    {
-      "label": "C\u00f3mo usar este documento",
-      "file_type": "document",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L232",
-      "_origin": "ast",
-      "id": "raw_dune_lore_paul_atreides_c\u00f3mo_usar_este_documento",
-      "community": 87,
-      "norm_label": "como usar este documento"
     }
   ],
   "links": [
@@ -5675,57 +5365,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "services_historyservice",
-      "target": "services_historyservice_createhistoryentry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "services_historyservice",
-      "target": "services_historyservice_createhistoryrequest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "services_historyservice",
-      "target": "services_historyservice_historyapiresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L30",
-      "weight": 1.0,
-      "source": "services_historyservice",
-      "target": "services_historyservice_maptohistoryentry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/historyService.ts",
-      "source_location": "L48",
-      "weight": 1.0,
-      "source": "services_historyservice_createhistoryentry",
-      "target": "services_historyservice_maptohistoryentry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/application/services/mainAddressService.ts",
       "source_location": "L26",
       "weight": 1.0,
@@ -5872,26 +5511,6 @@
       "confidence_score": 1.0,
       "source": "services_productentryservice",
       "target": "services_productentryservice_createproductentryrequest"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L38",
-      "weight": 1.0,
-      "source": "services_productentryservice",
-      "target": "services_productentryservice_deduction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/application/services/productEntryService.ts",
-      "source_location": "L86",
-      "weight": 1.0,
-      "source": "services_productentryservice",
-      "target": "services_productentryservice_deductproductentry",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -6552,26 +6171,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/domain/entities/HistoryEntry.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "entities_historyentry",
-      "target": "entities_historyentry_historychange",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/domain/entities/HistoryEntry.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "entities_historyentry",
-      "target": "entities_historyentry_historyentry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/domain/entities/User.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -7117,17 +6716,6 @@
       "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "src/presentation/components/orders/OrderList.vue",
-      "source_location": "L200",
-      "weight": 1.0,
-      "source": "orders_orderlist_formatdate",
-      "target": "orders_dispatchsummarymodal_formatcop"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
       "source_file": "src/presentation/pages/OrdersPage.vue",
       "source_location": "L218",
       "weight": 1.0,
@@ -7143,16 +6731,6 @@
       "confidence_score": 1.0,
       "source": "orders_orderform",
       "target": "orders_orderform_for"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/components/orders/OrderList.vue",
-      "source_location": "L200",
-      "weight": 1.0,
-      "source": "orders_orderlist",
-      "target": "orders_orderlist_formatdate",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7237,6 +6815,66 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_error"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_filteredentries"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_handleconfirm"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_search"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/components/shipments/EntrySelectionModal.vue",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "shipments_entryselectionmodal",
+      "target": "shipments_entryselectionmodal_toggle"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/presentation/components/shipments/ShipmentForm.vue",
       "source_location": "L128",
       "weight": 1.0,
@@ -7257,50 +6895,8 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/presentation/composables/useHistoryLogger.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "composables_usehistorylogger",
-      "target": "composables_usehistorylogger_usehistorylogger",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/presentation/composables/useHistoryLogger.ts",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "composables_usehistorylogger_usehistorylogger",
-      "target": "stores_authstore_useauthstore"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "src/presentation/composables/useHistoryLogger.ts",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "composables_usehistorylogger_usehistorylogger",
-      "target": "stores_historystore_usehistorystore"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/composables/useQuantityValidation.ts",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "composables_usequantityvalidation",
-      "target": "composables_usequantityvalidation_usequantityvalidation",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L275",
+      "source_location": "L222",
       "weight": 1.0,
       "source": "pages_dashboardpage",
       "target": "pages_dashboardpage",
@@ -7345,16 +6941,6 @@
       "confidence_score": 1.0,
       "source": "pages_dashboardpage",
       "target": "pages_dashboardpage_currentpage"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L327",
-      "weight": 1.0,
-      "source": "pages_dashboardpage",
-      "target": "pages_dashboardpage_formattimeago",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7410,21 +6996,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L81",
-      "weight": 1.0,
-      "source": "pages_dashboardpage",
-      "target": "pages_dashboardpage_historystore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/pages/DashboardPage.vue",
       "source_location": "L94",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "pages_dashboardpage",
       "target": "pages_dashboardpage_loadingcompany"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/presentation/pages/DashboardPage.vue",
+      "source_location": "L155",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_dashboardpage",
+      "target": "pages_dashboardpage_navitems"
     },
     {
       "relation": "contains",
@@ -7495,16 +7081,6 @@
       "confidence_score": 1.0,
       "source": "pages_dashboardpage",
       "target": "pages_dashboardpage_string"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/pages/DashboardPage.vue",
-      "source_location": "L161",
-      "weight": 1.0,
-      "source": "pages_dashboardpage",
-      "target": "pages_dashboardpage_togglegroup",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7595,16 +7171,6 @@
       "confidence_score": 1.0,
       "source": "stores_companystore",
       "target": "stores_companystore_usecompanystore"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/presentation/stores/historyStore.ts",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "stores_historystore",
-      "target": "stores_historystore_usehistorystore",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9013,31 +8579,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L10",
+      "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_1_resumen_del_proyecto_el_ascenso_de_muad_dib",
-      "confidence_score": 1.0
+      "target": "implementation_guide_1_resumen_del_proyecto"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L22",
+      "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "confidence_score": 1.0
+      "target": "implementation_guide_2_frontend_paulus_vue_3"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L140",
+      "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "confidence_score": 1.0
+      "target": "implementation_guide_3_backend_paulu_go_api"
     },
     {
       "relation": "contains",
@@ -9053,11 +8619,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L280",
+      "source_location": "L253",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
-      "confidence_score": 1.0
+      "target": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo"
     },
     {
       "relation": "contains",
@@ -9073,111 +8639,121 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L331",
+      "source_location": "L304",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_7_convenciones_del_c\u00f3digo_c\u00f3digo_de_honor_atreides",
-      "confidence_score": 1.0
+      "target": "implementation_guide_7_convenciones_del_c\u00f3digo"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L354",
+      "source_location": "L327",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_8_variables_de_entorno_coordenadas_del_guild_navigator",
-      "confidence_score": 1.0
+      "target": "implementation_guide_8_variables_de_entorno"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L364",
+      "source_location": "L337",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "implementation_guide_gu\u00eda_de_implementaci\u00f3n_paulus_paulu",
-      "target": "implementation_guide_9_comandos_\u00fatiles_manual_del_ornit\u00f3ptero",
-      "confidence_score": 1.0
+      "target": "implementation_guide_9_comandos_\u00fatiles"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L24",
+      "source_location": "L18",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_1_arquitectura_caladan_estructura_noble_en_cuatro_capas",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_1_arquitectura"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L37",
+      "source_location": "L31",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_2_patr\u00f3n_de_inyecci\u00f3n_de_dependencias_mentat_thufir",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_2_patr\u00f3n_de_inyecci\u00f3n_de_dependencias"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L51",
+      "source_location": "L45",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_3_servicios_http_capa_application_exploradores_fremen",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_3_servicios_http_capa_application"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L69",
+      "source_location": "L61",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_4_stores_pinia_sietch_tabr_memoria_colectiva",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_4_stores_pinia"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L82",
+      "source_location": "L72",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_5_composables_weirding_way",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_5_enrutamiento"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L88",
+      "source_location": "L78",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_6_enrutamiento_navegadores_guild",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_6_componentes_principales"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L94",
+      "source_location": "L97",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_7_componentes_principales_arsenal_del_sietch",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_7_manejo_de_errores"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L124",
+      "source_location": "L104",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_8_manejo_de_errores_voz_bene_gesserit",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_2_frontend_paulus_vue_3",
+      "target": "implementation_guide_2_8_autenticaci\u00f3n"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "IMPLEMENTATION_GUIDE.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_1_arquitectura"
     },
     {
       "relation": "contains",
@@ -9185,39 +8761,39 @@
       "source_file": "IMPLEMENTATION_GUIDE.md",
       "source_location": "L131",
       "weight": 1.0,
-      "source": "implementation_guide_2_frontend_paulus_vue_3_rostro_de_paul_ante_los_fremen",
-      "target": "implementation_guide_2_9_autenticaci\u00f3n_sello_atreides",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_2_productos_modelo_de_dominio"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L142",
+      "source_location": "L147",
       "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_1_arquitectura",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_3_productos_use_case"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L158",
+      "source_location": "L172",
       "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_2_productos_modelo_de_dominio",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_4_productos_handler_http"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L174",
+      "source_location": "L182",
       "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_3_productos_use_case",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_5_productos_base_de_datos"
     },
     {
       "relation": "contains",
@@ -9225,39 +8801,19 @@
       "source_file": "IMPLEMENTATION_GUIDE.md",
       "source_location": "L199",
       "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_4_productos_handler_http",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_6_helpers_compartidos"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L209",
+      "source_location": "L207",
       "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_5_productos_base_de_datos",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L226",
-      "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_6_helpers_compartidos",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L234",
-      "weight": 1.0,
-      "source": "implementation_guide_3_backend_paulu_go_api_sardaukar_disciplina_del_desierto",
-      "target": "implementation_guide_3_7_configuraci\u00f3n",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_3_backend_paulu_go_api",
+      "target": "implementation_guide_3_7_configuraci\u00f3n"
     },
     {
       "relation": "contains",
@@ -9283,81 +8839,81 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L282",
+      "source_location": "L255",
       "weight": 1.0,
-      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
-      "target": "implementation_guide_5_1_herramienta",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo",
+      "target": "implementation_guide_5_1_herramienta"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L291",
+      "source_location": "L264",
       "weight": 1.0,
-      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
-      "target": "implementation_guide_5_2_resultados",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo",
+      "target": "implementation_guide_5_2_resultados"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L298",
+      "source_location": "L271",
       "weight": 1.0,
-      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
-      "target": "implementation_guide_5_3_archivos_generados",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo",
+      "target": "implementation_guide_5_3_archivos_generados"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L307",
+      "source_location": "L280",
       "weight": 1.0,
-      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo_mentat_thufir",
-      "target": "implementation_guide_5_4_skills_de_opencode",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_5_graphify_an\u00e1lisis_de_grafos_de_c\u00f3digo",
+      "target": "implementation_guide_5_4_skills_de_opencode"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L333",
+      "source_location": "L306",
       "weight": 1.0,
-      "source": "implementation_guide_7_convenciones_del_c\u00f3digo_c\u00f3digo_de_honor_atreides",
-      "target": "implementation_guide_7_1_frontend_lenguaje_de_usul",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_7_convenciones_del_c\u00f3digo",
+      "target": "implementation_guide_7_1_frontend"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L344",
+      "source_location": "L317",
       "weight": 1.0,
-      "source": "implementation_guide_7_convenciones_del_c\u00f3digo_c\u00f3digo_de_honor_atreides",
-      "target": "implementation_guide_7_2_backend_lenguaje_del_imperio",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_7_convenciones_del_c\u00f3digo",
+      "target": "implementation_guide_7_2_backend"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L384",
+      "source_location": "L357",
       "weight": 1.0,
-      "source": "implementation_guide_9_comandos_\u00fatiles_manual_del_ornit\u00f3ptero",
-      "target": "implementation_guide_backend_paulu",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_9_comandos_\u00fatiles",
+      "target": "implementation_guide_backend_paulu"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "IMPLEMENTATION_GUIDE.md",
-      "source_location": "L366",
+      "source_location": "L339",
       "weight": 1.0,
-      "source": "implementation_guide_9_comandos_\u00fatiles_manual_del_ornit\u00f3ptero",
-      "target": "implementation_guide_frontend_paulus",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "implementation_guide_9_comandos_\u00fatiles",
+      "target": "implementation_guide_frontend_paulus"
     },
     {
       "relation": "contains",
@@ -9373,81 +8929,101 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L217",
+      "source_location": "L184",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_componentes_globales"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L858",
+      "source_location": "L701",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_convenciones_del_proyecto_c\u00f3digo_de_honor_atreides",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_convenciones_del_proyecto"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L78",
+      "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_estructura_de_carpetas_caladan_arquitectura_noble_antes_de_arrakis",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_estructura_de_carpetas"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L820",
+      "source_location": "L663",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_flujo_de_autenticaci\u00f3n_duncan_idaho_guarda_la_puerta",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_flujo_de_autenticaci\u00f3n"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L38",
+      "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L23",
+      "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_stack_tecnol\u00f3gico_arsenal_de_muad_dib",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_stack_tecnol\u00f3gico"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L203",
+      "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "target": "paulu_user_guide_variables_de_entorno_env_coordenadas_del_guild_navigator",
-      "confidence_score": 1.0
+      "target": "paulu_user_guide_variables_de_entorno_env"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L40",
+      "source_location": "L26",
       "weight": 1.0,
-      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "target": "paulu_user_guide_1_clonar_y_acceder_al_proyecto",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
+      "target": "paulu_user_guide_1_clonar_y_acceder_al_proyecto"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
+      "target": "paulu_user_guide_2_instalar_dependencias"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
+      "target": "paulu_user_guide_3_configurar_variables_de_entorno"
     },
     {
       "relation": "contains",
@@ -9455,329 +9031,229 @@
       "source_file": "PAULU_USER_GUIDE.md",
       "source_location": "L47",
       "weight": 1.0,
-      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "target": "paulu_user_guide_2_instalar_dependencias",
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
+      "target": "paulu_user_guide_4_iniciar_servidor_de_desarrollo"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n",
+      "target": "paulu_user_guide_5_compilar_para_producci\u00f3n"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L329",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PAULU_USER_GUIDE.md",
+      "source_location": "L342",
+      "weight": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable_342",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L53",
+      "source_location": "L221",
       "weight": 1.0,
-      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "target": "paulu_user_guide_3_configurar_variables_de_entorno",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_authbutton_vue_bot\u00f3n_con_loading_y_variantes"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L61",
+      "source_location": "L186",
       "weight": 1.0,
-      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "target": "paulu_user_guide_4_iniciar_servidor_de_desarrollo",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_authinput_vue_input_de_formulario_con_tema_auth"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L69",
+      "source_location": "L440",
       "weight": 1.0,
-      "source": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
-      "target": "paulu_user_guide_5_compilar_para_producci\u00f3n",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_companyregistrationform_vue_formulario_multi_step_de_6_pasos"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L362",
+      "source_location": "L410",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_appalert_vue_alerta_contextual_reutilizable_voz_bene_gesserit",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_companyrequiredmodal_vue_modal_persuasivo_de_empresa_requerida"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L254",
+      "source_location": "L558",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_authbutton_vue_bot\u00f3n_con_loading_y_variantes_grito_de_batalla_fremen",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_confirmdeletemodal_vue_confirmaci\u00f3n_de_eliminaci\u00f3n"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L219",
+      "source_location": "L648",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_authinput_vue_input_de_formulario_con_tema_auth_prueba_bene_gesserit",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_editprofilemodal_vue_modal_de_edici\u00f3n_de_perfil"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L471",
+      "source_location": "L241",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_companyregistrationform_vue_formulario_multi_step_de_6_pasos_duke_leto_funda_la_casa",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_loginform_vue_formulario_de_inicio_de_sesi\u00f3n"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L441",
+      "source_location": "L425",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_companyrequiredmodal_vue_modal_persuasivo_de_empresa_requerida_shadout_mapes",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_onboardingmodal_vue_modal_de_onboarding_con_beneficios"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L589",
+      "source_location": "L521",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_confirmdeletemodal_vue_confirmaci\u00f3n_de_eliminaci\u00f3n_agua_derramada",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_producteditmodal_vue_modal_de_edici\u00f3n_de_producto"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L752",
+      "source_location": "L615",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_dispatchsummarymodal_vue_resumen_de_despacho_informe_post_batalla",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_productentryform_vue_formulario_de_entrada_de_producto"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L679",
+      "source_location": "L540",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_editprofilemodal_vue_modal_de_edici\u00f3n_de_perfil_renacer_en_el_sietch",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_productlist_vue_lista_de_productos_con_b\u00fasqueda"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L795",
+      "source_location": "L482",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_entryselectionmodal_vue_selecci\u00f3n_de_entradas_origen_elegir_cisterna_de_agua",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_productregistrationform_vue_formulario_de_registro_de_producto"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L274",
+      "source_location": "L383",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_loginform_vue_formulario_de_inicio_de_sesi\u00f3n_duncan_idaho_en_la_puerta",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_productselectionmodal_vue_modal_de_selecci\u00f3n_m\u00faltiple_de_productos"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L456",
+      "source_location": "L468",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_onboardingmodal_vue_modal_de_onboarding_con_beneficios_litany_against_fear",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_providerregistrationform_vue_formulario_de_registro_de_proveedor"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L738",
+      "source_location": "L277",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_ordereditmodal_vue_modal_de_edici\u00f3n_de_orden_thufir_revisa_la_estrategia",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_registerform_vue_formulario_de_registro"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L704",
+      "source_location": "L360",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_orderform_vue_formulario_de_orden_de_compra_venta_contrato_choam",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_supplierselectionmodal_vue_modal_de_selecci\u00f3n_de_proveedor_teleport_a_body"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L728",
+      "source_location": "L634",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_orderlist_vue_lista_de_\u00f3rdenes_archivo_de_contratos_imperiales",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_userprofile_vue_vista_de_perfil_de_usuario"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L552",
+      "source_location": "L577",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_producteditmodal_vue_modal_de_edici\u00f3n_de_producto_refinar_la_cosecha",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_wineryregistrationform_vue_formulario_de_registro_de_bodega"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L646",
+      "source_location": "L596",
       "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_productentryform_vue_formulario_de_entrada_de_producto_dr_kynes_equilibrio_ecol\u00f3gico",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L694",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_productentrylist_vue_lista_de_entradas_de_producto_registro_de_cosechas",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L571",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_productlist_vue_lista_de_productos_con_b\u00fasqueda_inventario_del_sietch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L513",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_productregistrationform_vue_formulario_de_registro_de_producto_cosecha_de_especia",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L414",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_productselectionmodal_vue_modal_de_selecci\u00f3n_m\u00faltiple_de_productos_elegir_grano_de_melange",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L499",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_providerregistrationform_vue_formulario_de_registro_de_proveedor_tratado_del_landsraad",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L310",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_registerform_vue_formulario_de_registro_iniciaci\u00f3n_al_sietch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L758",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_shipmentform_vue_formulario_de_despacho_salida_ornit\u00f3ptero_cargado_de_especia",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L785",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_shipmentlist_vue_lista_de_despachos_registro_de_vuelos_del_desierto",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L391",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_supplierselectionmodal_vue_modal_de_selecci\u00f3n_de_proveedor_elegir_aliado_fremen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L809",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_usequantityvalidation_ts_composable_de_validaci\u00f3n_de_cantidades_disciplina_del_agua",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L665",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_userprofile_vue_vista_de_perfil_de_usuario_identidad_de_usul",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L608",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_wineryregistrationform_vue_formulario_de_registro_de_bodega_fundar_un_sietch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "PAULU_USER_GUIDE.md",
-      "source_location": "L627",
-      "weight": 1.0,
-      "source": "paulu_user_guide_componentes_globales_arsenal_del_sietch",
-      "target": "paulu_user_guide_wineryselectionmodal_vue_modal_de_selecci\u00f3n_de_bodega_elegir_sietch_destino",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "paulu_user_guide_componentes_globales",
+      "target": "paulu_user_guide_wineryselectionmodal_vue_modal_de_selecci\u00f3n_de_bodega"
     },
     {
       "relation": "contains",
@@ -9785,9 +9261,9 @@
       "source_file": "README.md",
       "source_location": "L1",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme",
-      "target": "readme_paulus_el_primer_miembro_de_paulu"
+      "target": "readme_paulus_el_primer_miembro_de_paulu",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9795,9 +9271,9 @@
       "source_file": "README.md",
       "source_location": "L49",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_build"
+      "target": "readme_build",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9805,18 +9281,8 @@
       "source_file": "README.md",
       "source_location": "L68",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_conexi\u00f3n_con_el_backend_la_casa_paulu"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "README.md",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_documentaci\u00f3n",
+      "target": "readme_conexi\u00f3n_con_el_backend_la_casa_paulu",
       "confidence_score": 1.0
     },
     {
@@ -9825,9 +9291,9 @@
       "source_file": "README.md",
       "source_location": "L32",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_inicio_r\u00e1pido"
+      "target": "readme_inicio_r\u00e1pido",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9835,9 +9301,9 @@
       "source_file": "README.md",
       "source_location": "L56",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_qu\u00e9_puedes_hacer_en_paulus_el_camino_del_muad_dib"
+      "target": "readme_qu\u00e9_puedes_hacer_en_paulus_el_camino_del_muad_dib",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9845,9 +9311,9 @@
       "source_file": "README.md",
       "source_location": "L27",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_requisitos"
+      "target": "readme_requisitos",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9856,7 +9322,7 @@
       "source_location": "L16",
       "weight": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_stack_arsenal_de_muad_dib",
+      "target": "readme_stack",
       "confidence_score": 1.0
     },
     {
@@ -9865,9 +9331,9 @@
       "source_file": "README.md",
       "source_location": "L41",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "readme_paulus_el_primer_miembro_de_paulu",
-      "target": "readme_variables_de_entorno"
+      "target": "readme_variables_de_entorno",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9875,109 +9341,59 @@
       "source_file": "raw/dune-lore-paul-atreides.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "raw_dune_lore_paul_atreides",
-      "target": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "confidence_score": 1.0
+      "target": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L232",
+      "source_location": "L25",
       "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_c\u00f3mo_usar_este_documento",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus",
+      "target": "raw_dune_lore_paul_atreides_la_casa_paulu"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L28",
+      "source_location": "L39",
       "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_la_casa_paulu",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus",
+      "target": "raw_dune_lore_paul_atreides_la_especia_debe_fluir_el_inventario_debe_controlarse"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L44",
+      "source_location": "L6",
       "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_la_especia_debe_fluir_el_inventario_debe_controlarse",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus",
+      "target": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L191",
+      "source_location": "L48",
       "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_backend_paulu_go_api",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_proyecto_paulus",
+      "target": "raw_dune_lore_paul_atreides_paulus_el_primer_miembro"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L217",
+      "source_location": "L12",
       "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_herramientas_y_convenciones",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L141",
-      "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_m\u00f3dulos_de_negocio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L115",
-      "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_stack_y_arquitectura",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador_muad_dib",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_paulus_el_primer_miembro",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "raw/dune-lore-paul-atreides.md",
-      "source_location": "L68",
-      "weight": 1.0,
-      "source": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "target": "raw_dune_lore_paul_atreides_personajes_y_conceptos_de_la_saga_glosario_paulu",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador",
+      "target": "raw_dune_lore_paul_atreides_paralelismos_con_paulus_vue"
     },
     {
       "relation": "contains",
@@ -9991,5 +9407,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "da75db71f19fb42cf84e129dec5c38ba5aa21bb1"
+  "built_at_commit": "e385a021aac889c1580698dfb9d5b59ff96f8d48"
 }

@@ -4,6 +4,9 @@ import CompanyRequiredModal from '@/presentation/components/company/CompanyRequi
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { useShipmentStore } from '@/presentation/stores/shipmentStore'
+import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
+import { useQuantityValidation } from '@/presentation/composables/useQuantityValidation'
+import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
 import { computed, onMounted, reactive, ref } from 'vue'
 import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
 import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
@@ -29,6 +32,8 @@ const emit = defineEmits<{
 const shipmentStore = useShipmentStore()
 const authStore = useAuthStore()
 const companyStore = useCompanyStore()
+const productEntryStore = useProductEntryStore()
+const { logCreate, logDeduct } = useHistoryLogger()
 
 let codeCounter = 0
 
@@ -63,6 +68,7 @@ const showEntryModal = ref(false)
 const showProviderModal = ref(false)
 const showWineryModal = ref(false)
 const selectedEntries = ref<ProductEntryResponse[]>([])
+const { quantityErrors, validateQuantity, clearQuantityErrors } = useQuantityValidation(selectedEntries)
 const isSubmitting = ref(false)
 
 const movementTypes: { value: string; label: string }[] = [
@@ -122,6 +128,7 @@ function handleEntriesSelected(entries: ProductEntryResponse[]): void {
   selectedEntries.value = entries
   form.source_document.entry_ids = entries.map((e) => e.id)
   showEntryModal.value = false
+  clearQuantityErrors()
 
   const existingCodes = new Set(form.details.map((d) => d.code))
   for (const entry of entries) {
@@ -132,8 +139,8 @@ function handleEntriesSelected(entries: ProductEntryResponse[]): void {
           product: detail.product,
           unit: detail.unit,
           quantity: detail.quantity,
-          unit_cost: detail.unitCost,
-          subtotal: detail.quantity * detail.unitCost,
+unit_cost: detail.unit_cost,
+subtotal: detail.quantity * detail.unit_cost,
         })
         existingCodes.add(detail.code)
       }
@@ -155,6 +162,7 @@ function removeDetail(index: number): void {
 
 function validate(): boolean {
   Object.keys(fieldErrors).forEach((k) => delete fieldErrors[k])
+  clearQuantityErrors()
 
   if (!form.shipment_number.trim()) fieldErrors.shipment_number = 'El n\u00famero de despacho es obligatorio.'
   if (!form.record_date) fieldErrors.record_date = 'La fecha es obligatoria.'
@@ -166,6 +174,9 @@ function validate(): boolean {
     const d = form.details[i]
     if (d.quantity <= 0) fieldErrors[`qty_${i}`] = 'Cantidad debe ser mayor a 0.'
     if (d.unit_cost < 0) fieldErrors[`cost_${i}`] = 'Costo unitario no puede ser negativo.'
+    if (d.quantity > 0 && !validateQuantity(d.code, d.quantity)) {
+      fieldErrors[`qty_${i}`] = quantityErrors[d.code]
+    }
   }
 
   return Object.keys(fieldErrors).length === 0
@@ -196,9 +207,19 @@ async function handleSubmit(): Promise<void> {
       remarks: form.remarks,
     })
     if (result) {
+      const deducted = await deductEntryQuantities()
+      if (!deducted) {
+        resultMessage.value = 'Despacho creado, pero ocurri\u00f3 un error al descontar el inventario de las entradas.'
+      } else {
+        resultMessage.value = resultMessageSuccess()
+      }
       showResult.value = true
+      logCreate({
+        entityType: 'SHIPMENT',
+        entityId: result.id,
+        details: `Despacho ${result.shipment_number} creado con ${form.details.length} producto(s).`,
+      })
       resultSuccess.value = true
-      resultMessage.value = resultMessageSuccess()
       emit('saved')
     } else {
       showResult.value = true
@@ -233,6 +254,35 @@ function handleProviderSelected(provider: ProviderResponse): void {
 function handleWinerySelected(winery: { id: string }): void {
   form.warehouse_id = winery.id
   showWineryModal.value = false
+}
+
+async function deductEntryQuantities(): Promise<boolean> {
+  const codeToEntryMap: Record<string, string> = {}
+  for (const entry of selectedEntries.value) {
+    for (const detail of entry.details) {
+      if (!(detail.code in codeToEntryMap)) {
+        codeToEntryMap[detail.code] = entry.id
+      }
+    }
+  }
+  const deductionsByEntry: Record<string, { code: string; quantity: number }[]> = {}
+  for (const detail of form.details) {
+    const entryId = codeToEntryMap[detail.code]
+    if (!entryId) continue
+    if (!deductionsByEntry[entryId]) deductionsByEntry[entryId] = []
+    deductionsByEntry[entryId].push({ code: detail.code, quantity: detail.quantity })
+  }
+  for (const [entryId, deductions] of Object.entries(deductionsByEntry)) {
+    const result = await productEntryStore.deductEntryQuantity(entryId, deductions)
+    if (!result) return false
+    logDeduct({
+      entityType: 'PRODUCT_ENTRY',
+      entityId: entryId,
+      details: `Se dedujeron ${deductions.reduce((sum, d) => sum + d.quantity, 0)} unidades del despacho ${form.shipment_number}.`,
+      changes: { quantity: { old: null, new: deductions } },
+    })
+  }
+  return true
 }
 
 function handleCreateAnother(): void {
@@ -465,8 +515,9 @@ function handleGoToList(): void {
                 <td class="px-3 py-3">
                   <input type="number" step="any" min="0" :value="detail.quantity"
                     class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-                    :class="{ 'border-red-400': fieldErrors['qty_' + index] }"
+                    :class="{ 'border-red-400': fieldErrors['qty_' + index] || quantityErrors[detail.code] }"
                     @input="detail.quantity = parseFloat(($event.target as HTMLInputElement).value) || 0; updateDetailSubtotal(index)" />
+                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-amber-600">{{ quantityErrors[detail.code] }}</p>
                 </td>
                 <td class="px-3 py-3">
                   <input type="number" step="any" min="0" :value="detail.unit_cost"
