@@ -13,6 +13,7 @@ export interface CompanyRequest {
   email: string
   phone: string
   cellphone: string
+  logo?: string
 }
 
 export interface CompanyResponse {
@@ -28,6 +29,7 @@ export interface CompanyResponse {
   email: string
   phone: string
   cellphone: string
+  logo: string
   createdAt: string
   updatedAt: string
 }

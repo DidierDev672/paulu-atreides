@@ -55,8 +55,18 @@ export async function getOrderById(id: string): Promise<OrderResponse> {
   return response.data
 }
 
-export async function createOrder(data: CreateOrderRequest): Promise<OrderResponse> {
-  const response = await axiosInstance.post<OrderResponse>('/orders', data)
+export interface OrderCreateResponse {
+  order: OrderResponse
+  sale?: {
+    sale_id: string
+    sale_number: string
+    status: string
+    total: number
+  }
+}
+
+export async function createOrder(data: CreateOrderRequest): Promise<OrderCreateResponse> {
+  const response = await axiosInstance.post<OrderCreateResponse>('/orders', data)
   return response.data
 }
 

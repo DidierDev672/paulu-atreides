@@ -105,7 +105,8 @@ src/
 │   │   ├── wineryService.ts       # CRUD bodegas
 │   │   ├── mainAddressService.ts  # CRUD direcciones principales
 │   │   ├── taxInformationService.ts # CRUD información tributaria
-│   │   └── economicActivityService.ts # CRUD actividades económicas
+│   │   ├── economicActivityService.ts # CRUD actividades económicas
+│   │   └── historyService.ts       # Historial de inventario — *Visión del pasado de Paul*
 │   ├── dtos/
 │   │   ├── LoginDto.ts            # DTO para login request
 │   │   └── RegisterDto.ts         # DTO para register request
@@ -166,6 +167,9 @@ src/
 │   │   │   └── WineryRegistrationForm.vue  # Formulario bodega con fecha, área, unidades
 │   │   ├── providers/
 │   │   │   └── ProviderRegistrationForm.vue # Formulario proveedor con auto-generar código
+│   │   ├── history/
+│   │   │   ├── HistoryTimeline.vue         # Línea de tiempo de eventos — *Visión del pasado de Paul*
+│   │   │   └── HistoryDetailModal.vue      # Modal de historial por entidad — *Visión enfocada de Muad'Dib*
 │   │   ├── profile/
 │   │   │   ├── UserProfile.vue             # Perfil usuario con avatar, cover, datos
 │   │   │   └── EditProfileModal.vue        # Modal editar perfil + empresa
@@ -175,7 +179,8 @@ src/
 │   ├── router/
 │   │   └── index.ts               # 2 rutas: / (dashboard, auth), /auth
 │   ├── composables/
-│   │   └── useQuantityValidation.ts # Validación stock — *Disciplina del agua fremen*
+│   │   ├── useQuantityValidation.ts # Validación stock — *Disciplina del agua fremen*
+│   │   └── useHistoryLogger.ts      # Registro de eventos — *La voz de Paul*
 │   ├── stores/
 │   │   ├── authStore.ts           # Sesión, login, register, logout — *Memoria de Duncan*
 │   │   ├── companyStore.ts        # companyId global — *Casa activa del Landsraad*
@@ -184,7 +189,8 @@ src/
 │   │   ├── providerStore.ts       # CRUD proveedores — *Rolodex del Landsraad*
 │   │   ├── wineryStore.ts         # CRUD bodegas — *Mapa de sietchs*
 │   │   ├── orderStore.ts          # CRUD órdenes + approve — *Archivo CHOAM*
-│   │   └── shipmentStore.ts       # CRUD despachos — *Hangar de ornitópteros*
+│   │   ├── shipmentStore.ts       # CRUD despachos — *Hangar de ornitópteros*
+│   │   └── historyStore.ts        # Historial de inventario — *Memoria genética de Paul*
 │   └── validators/
 │       ├── ILoginValidator.ts     # Interface validator login
 │       ├── IRegisterValidator.ts  # Interface validator register
@@ -814,6 +820,135 @@ const { availableQuantities, quantityErrors, validateQuantity, clearQuantityErro
 ```
 
 Como los fremen no desperdician una gota de agua, este composable impide que la cantidad despachada supere el stock disponible en las entradas seleccionadas. Retorna errores por código de producto con mensaje persuasivo.
+
+---
+
+### `HistoryTimeline.vue` — Línea de tiempo del historial — *Visión del pasado de Paul*
+
+> *"Paul veía múltiples caminos. Esta línea de tiempo te muestra el que ya
+> recorriste: cada evento del inventario, ordenado y con todos sus detalles."*
+
+```vue
+<HistoryTimeline
+  :entries="historyStore.entries"
+  :is-loading="historyStore.isLoading"
+  title="Historial de Inventario"
+/>
+```
+
+| Prop | Tipo | Por defecto | Descripción |
+|------|------|-------------|-------------|
+| `entries` | `HistoryEntry[]` | — | Array de eventos a mostrar (requerido) |
+| `isLoading` | `boolean` | `false` | Muestra spinner de carga |
+| `title` | `string` | `"Historial de Actividad"` | Título del componente |
+
+**Características:**
+
+- **Búsqueda en vivo:** Filtra instantáneamente por descripción, tipo de entidad,
+  acción, ID de usuario, ID de entidad o nombre de producto. *(Paul escanea sus
+  visiones con la mirada)*
+- **Código de colores:** Cada acción tiene un color único:
+  - `CREATE` → verde esmeralda *(nacimiento de un camino)*
+  - `UPDATE` → azul índigo *(evolución de la visión)*
+  - `DELETE` → rojo rosado *(muerte de un hilo)*
+  - `APPROVE` → teal *(confirmación Fedaykin)*
+  - `DEDUCT` → ámbar *(especia que fluye)*
+  - `LOGIN` / `LOGOUT` → índigo / gris *(puerta de Duncan)*
+  - `REGISTER` → púrpura *(iniciación al sietch)*
+  - `SHIPMENT_CREATED` → cian *(ornitóptero en vuelo)*
+  - `ORDER_CREATED` → ámbar *(contrato CHOAM)*
+  - `ENTRY_CREATED` → verde *(equilibrio de Kynes)*
+  - `RELATION_CREATED` → rosa *(alianza entre Casas)*
+- **Panel expandible:** Haz clic en la flecha para ver detalles completos:
+  nombre del usuario (resuelto desde la API), nombre del producto, compañía,
+  resultado (Éxito / Falló), IP y fecha formateada. *(Paul profundiza en un
+  solo hilo del destino)*
+- **Estados:** Muestra "No hay actividad registrada aún" si está vacío, o
+  "Sin resultados" si la búsqueda no coincide. *(Incluso el silencio del
+  oráculo es un mensaje)*
+- **Diseño oscuro:** Nebulosa púrpura de fondo con orbes de gradiente, ideal
+  para el tema stellar/cósmico de Paulus. *(Como las estrellas de Arrakis
+  observando el desierto)*
+
+**Etiquetas de acción en español:**
+
+| Acción API | Etiqueta visible |
+|-----------|-----------------|
+| `CREATE` | *Creación* |
+| `UPDATE` | *Actualización* |
+| `DELETE` | *Eliminación* |
+| `APPROVE` | *Aprobación* |
+| `DEDUCT` | *Deducción* |
+| `LOGIN` | *Inicio de sesión* |
+| `LOGOUT` | *Cierre de sesión* |
+| `REGISTER` | *Registro* |
+| `SHIPMENT_CREATED` | *Despacho creado* |
+| `ORDER_CREATED` | *Orden creada* |
+| `ENTRY_CREATED` | *Entrada creada* |
+| `RELATION_CREATED` | *Relación creada* |
+
+---
+
+### `HistoryDetailModal.vue` — Modal de historial por entidad — *Visión enfocada de Muad'Dib*
+
+```vue
+<HistoryDetailModal
+  entity-type="order"
+  entity-id="1749372100_020"
+  entity-label="Orden"
+  @close="showModal = false"
+/>
+```
+
+| Prop | Tipo | Descripción |
+|------|------|-------------|
+| `entity-type` | `string` | Tipo de entidad (order, product, shipment, product-entry) |
+| `entity-id` | `string` | ID de la entidad a consultar |
+| `entity-label` | `string` | Etiqueta visible para el título (opcional) |
+
+| Evento | Disparo |
+|--------|---------|
+| `close` | Click en overlay o botón de cerrar |
+
+Al abrirse, carga automáticamente todos los eventos relacionados con esa
+entidad específica. Ideal para ver el ciclo de vida completo de una orden,
+un producto o un despacho. *(Como Paul enfoca su visión en un solo fremen
+para conocer su destino completo)*
+
+---
+
+### `useHistoryLogger.ts` — Composable de registro de eventos — *La voz de Paul*
+
+```typescript
+const logger = useHistoryLogger()
+
+await logger.logCreate({ entityType: 'product', entityId: '123', details: 'Café especial creado' })
+await logger.logUpdate({ entityType: 'order', entityId: '456', details: 'Orden actualizada', changes: { ... } })
+await logger.logDelete({ entityType: 'product', entityId: '789', details: 'Producto eliminado' })
+await logger.logApprove({ entityType: 'order', entityId: '012', details: 'Orden aprobada' })
+await logger.logDeduct({ entityType: 'shipment', entityId: '345', details: 'Inventario deducido' })
+```
+
+| Función | Parámetros | Descripción |
+|---------|-----------|-------------|
+| `logCreate` | `{ entityType, entityId, details, changes? }` | Registra la creación de un recurso |
+| `logUpdate` | `{ entityType, entityId, details, changes? }` | Registra la modificación de un recurso |
+| `logDelete` | `{ entityType, entityId, details }` | Registra la eliminación de un recurso |
+| `logApprove` | `{ entityType, entityId, details }` | Registra la aprobación de una orden |
+| `logDeduct` | `{ entityType, entityId, details, changes? }` | Registra la deducción de inventario |
+
+Cada función extrae automáticamente el usuario de `authStore` (como Paul
+recuerda quién es en cada visión) y envía el evento al backend. No requiere
+configuración adicional — solo importar y llamar.
+
+**Componentes que lo usan:**
+- `ProductRegistrationForm` — `logCreate` al registrar un producto
+- `ProductList` — `logDelete` al eliminar un producto
+- `OrderForm` — `logCreate` y `logDeduct` al crear/deducir una orden
+- `OrderEditModal` — `logUpdate` al editar una orden
+- `OrderList` — `logDelete` y `logApprove` al eliminar/aprobar una orden
+- `ShipmentForm` — `logCreate` y `logDeduct` al crear/deducir un despacho
+- `authStore` — `LOGIN`, `REGISTER`, `LOGOUT` (llamada directa al servicio)
 
 ---
 

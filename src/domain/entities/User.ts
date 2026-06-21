@@ -5,4 +5,5 @@ export interface User {
   idNumber: string
   dateOfBirth: string
   email: string
+  photo?: string
 }

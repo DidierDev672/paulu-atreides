@@ -1,21 +1,24 @@
-# Guía de Implementación — Paulus + Paulu
+# Guía de Implementación — Paulu Areides
 
-> Versión 2.1 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus), backend Go (Paulu), y herramientas de análisis (graphify).
+> Versión 2.2 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus),
+> backend Go (Paulu), sistema de IA configurable, y herramientas de análisis (graphify).
 >
-> Cada sección incluye su paralelo en la saga *Dune*. Glosario canónico:
-> [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md)
+> Cada sección incluye su paralelo en la saga *Dune* bajo la **Casa Paulu Areides**.
+> Glosario canónico: [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md)
 
 ---
 
-## 1. Resumen del proyecto — *El ascenso de Muad'Dib*
+## 1. Resumen del proyecto — *La Casa Paulu Areides*
 
 > *Inspirado en el viaje de Paul Atreides — de heredero de la Casa Atreides a líder de los fremen.
+> Paulu Areides es la fusión del legado Atreides con la visión digital.
 > Paulus (frontend) es la voz visible; Paulu (backend) es la maquinaria que sostiene el poder.*
 
 | Componente | Nombre | Inspiración Dune | Stack | Ubicación |
 |---|---|---|---|---|
-| Frontend | **Paulus** | *"El Primer Miembro"* — como Paul al unir a los fremen | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 | `D:\Vue\book-coffee-shop\` |
+| Frontend | **Paulus** | *"El Primer Miembro de Paulu Areides"* — unificando el imperio | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 | `D:\Vue\book-coffee-shop\` |
 | Backend API | **Paulu** | *"La Casa"* — la infraestructura Atreides que lo sostiene todo | Go + PostgreSQL + JWT | `D:\Go\api-book-coffee-shop\` |
+| IA Configurable | **Mentat** | *"El cálculo estratégico"* — wizard de modelos + chat asistente | Fetch API + localStorage | `src/application/services/aiService.ts` + `src/presentation/components/ai/` |
 
 ---
 
@@ -65,6 +68,8 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 | `productEntryService` | `src/application/services/productEntryService.ts` | GET/POST/PUT/DELETE `/product-entries` | *Ecosistema de Kynes* |
 | `orderService` | `src/application/services/orderService.ts` | GET/POST/PUT/DELETE `/orders`, PATCH `/orders/{id}/approve` | *Contratos CHOAM + Fedaykin* |
 | `shipmentService` | `src/application/services/shipmentService.ts` | GET/POST/PUT/DELETE `/shipments` | *Ornitópteros de salida* |
+| `historyService` | `src/application/services/historyService.ts` | GET `/history`, GET `/history/{type}/{id}` + POST `/history` | *Archivos de Irulan — la memoria del imperio* |
+| `aiService` | `src/application/services/aiService.ts` | Verificación de API Key contra 5 proveedores + OpenAI-compatible | *Prueba Bene Gesserit — Mentat verifica su autenticidad* |
 
 ### 2.4 Stores (Pinia) — *Sietch Tabr: memoria colectiva*
 
@@ -78,12 +83,14 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 | `useWineryStore` | `src/presentation/stores/wineryStore.ts` | CRUD de bodegas | *Mapa de sietchs* |
 | `useOrderStore` | `src/presentation/stores/orderStore.ts` | CRUD de órdenes + `approveOrder` | *Archivo CHOAM* |
 | `useShipmentStore` | `src/presentation/stores/shipmentStore.ts` | CRUD de despachos | *Hangar de ornitópteros* |
+| `useHistoryStore` | `src/presentation/stores/historyStore.ts` | Estado del historial: entradas, carga, errores | *Memoria genética de Paul* |
 
 ### 2.5 Composables — *Weirding Way*
 
 | Composable | Archivo | Propósito | Referencia Dune |
 |---|---|---|---|
 | `useQuantityValidation` | `src/presentation/composables/useQuantityValidation.ts` | Valida cantidades de despacho vs stock de entradas | *Disciplina del agua fremen* |
+| `useHistoryLogger` | `src/presentation/composables/useHistoryLogger.ts` | Funciones `logCreate`, `logUpdate`, `logDelete`, `logApprove`, `logDeduct` | *La voz de Paul registra cada acción* |
 
 ### 2.6 Enrutamiento — *Navegadores Guild*
 
@@ -120,6 +127,10 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 | ShipmentEditModal | `src/presentation/components/shipments/ShipmentEditModal.vue` | Edición despacho | *Recalcular ruta* |
 | ShipmentDetailModal | `src/presentation/components/shipments/ShipmentDetailModal.vue` | Detalle despacho | *Manifiesto de carga* |
 | EntrySelectionModal | `src/presentation/components/shipments/EntrySelectionModal.vue` | Selección entradas origen | *Cisternas de agua* |
+| HistoryTimeline | `src/presentation/components/history/HistoryTimeline.vue` | Línea de tiempo visual con búsqueda y detalle expandible | *Línea de tiempo de Muad'Dib* |
+| HistoryDetailModal | `src/presentation/components/history/HistoryDetailModal.vue` | Modal de historial filtrado por entidad | *Visión enfocada de Paul* |
+| AIModelsPanel | `src/presentation/components/ai/AIModelsPanel.vue` | Wizard 3 pasos: proveedor, API Key, verificación | *Entrenamiento del Mentat — Paulu Areides calcula* |
+| Floating AI Button | `src/App.vue` | Botón cerebral flotante + chat modal | *El ojo de Paulu Areides en cada pantalla* |
 
 ### 2.8 Manejo de errores — *Voz Bene Gesserit*
 
@@ -134,6 +145,201 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 - Token inyectado via Axios interceptor — *Gurney lleva el mensaje*
 - Sesión en `localStorage` (`auth_token`, `auth_session`) — *Traje stillsuit*
 - Store inicializa sesión al cargar — *Duncan recuerda al visitante*
+
+### 2.10 Historial de inventario — *Visión del pasado de Paul*
+
+> *"Paul veía los recuerdos de sus ancestros como si hubiera vivido mil vidas.
+> El historial de inventario es esa misma visión aplicada al negocio: cada
+> evento queda grabado en los Archivos de Irulan."*
+
+#### 2.10.1 Arquitectura — *Las cuatro capas de la visión*
+
+El historial atraviesa las 4 capas de Clean Architecture, como la visión de
+Paul atraviesa tiempo, espacio y memoria genética:
+
+```
+domain/entities/HistoryEntry.ts              → La entidad pura (visión)
+application/services/historyService.ts       → El puente HTTP (el oráculo)
+presentation/stores/historyStore.ts          → Estado reactivo (memoria)
+presentation/composables/useHistoryLogger.ts → Registro de acciones (la voz)
+presentation/components/history/             → UI visible (el rostro de la profecía)
+```
+
+#### 2.10.2 `HistoryEntry` — *La visión*
+
+```typescript
+export interface HistoryEntry {
+  id: string
+  entityType: string
+  entityId: string
+  documentName?: string
+  action: HistoryAction
+  changes: Record<string, HistoryChange> | null
+  userId: string
+  userName: string
+  details: string
+  timestamp: string
+  result?: string
+  companyId?: string
+  ipAddress?: string
+}
+```
+
+| Campo | Propósito | Analogía Paul |
+|-------|-----------|---------------|
+| `id` | Identificador único del evento | El sello temporal de la visión |
+| `entityType` | Tipo de entidad afectada (product, order, shipment…) | El dominio del imperio que Paul observa |
+| `documentName` | Nombre del producto extraído del JSON del evento | El nombre de la especia revelado en la agonía |
+| `action` | Tipo de acción: CREATE, UPDATE, DELETE, APPROVE, DEDUCT… | El decreto que Paul emite en su profecía |
+| `userId` / `userName` | Quién ejecutó la acción | El noble que actúa bajo la mirada de Muad'Dib |
+| `details` | Descripción legible del evento | La narración que Irulan escribiría en sus crónicas |
+| `timestamp` | Cuándo ocurrió | El momento exacto en la línea de tiempo |
+| `result` | Éxito o fallo del evento | El veredicto del oráculo |
+
+**Tipos de acción (`HistoryAction`):**
+
+| Acción | Significado en Paulu | Momento en la saga |
+|--------|---------------------|-------------------|
+| `CREATE` | Se creó un recurso | Paul pisa Arrakis por primera vez |
+| `UPDATE` | Se modificó un recurso | Paul aprende el camino fremen |
+| `DELETE` | Se eliminó un recurso | Jamis cae ante el crysknife |
+| `APPROVE` | Se aprobó una orden | Los Fedaykin confirman la misión |
+| `DEDUCT` | Se dedujo inventario | La especia fluye de Arrakis al Imperio |
+| `LOGIN` / `LOGOUT` | Inicio / cierre de sesión | Duncan Idaho abre y cierra la puerta |
+| `REGISTER` | Nuevo usuario registrado | Un nuevo miembro se une al sietch |
+| `SHIPMENT_CREATED` | Despacho registrado | El ornitóptero despega del bled |
+| `ORDER_CREATED` | Orden de compra creada | Contrato CHOAM firmado |
+| `ENTRY_CREATED` | Entrada de producto creada | Kynes celebra el equilibrio ecológico |
+| `RELATION_CREATED` | Relación orden↔despacho | Alianza entre dos Casas del Landsraad |
+
+#### 2.10.3 `historyService` — *El oráculo HTTP*
+
+```typescript
+export async function getHistoryEntries(params?: {
+  limit?: number; offset?: number; entityType?: string; entityId?: string
+}): Promise<HistoryEntry[]>
+
+export async function getHistoryEntriesByEntity(
+  entityType: string, entityId: string
+): Promise<HistoryEntry[]>
+
+export async function createHistoryEntry(
+  data: CreateHistoryRequest
+): Promise<HistoryEntry>
+```
+
+- `getHistoryEntries` → `GET /history` — Paul abre el Libro de los Destinos
+- `getHistoryEntriesByEntity` → `GET /history/{type}/{id}` — Paul enfoca su visión en un hilo específico
+- `createHistoryEntry` → `POST /history` — La voz de Paul escribe un nuevo pergamino
+
+**Mapper `mapToHistoryEntry`:** Transforma la respuesta `snake_case` de la API
+al modelo `camelCase` del frontend, como un traductor fremen interpreta las
+palabras del Imperio para el sietch.
+
+**`extractDocumentName`:** Extrae el nombre del producto desde `new_data` o
+`previous_data` (JSONB), como Paul extrae verdades del agua de vida. Analiza
+el JSON del evento para encontrar `name` (producto) o `details[0].product`
+(órdenes/entradas/despachos).
+
+#### 2.10.4 `historyStore` — *Memoria genética de Paul*
+
+```typescript
+const store = useHistoryStore()
+
+// Propiedades
+store.entries      // HistoryEntry[] — todos los pergaminos cargados
+store.isLoading    // boolean — el oráculo está consultando
+store.error        // string | null — la visión se nubló
+
+// Métodos
+await store.fetchEntries({ limit: 10 })          // Cargar últimos eventos
+await store.fetchEntriesByEntity('order', 'id')  // Cargar por entidad
+await store.addEntry(data)                       // Agregar un evento (prepend)
+store.clearError()                               // Limpiar el error
+```
+
+Como la memoria genética que Paul hereda de sus ancestros, el store mantiene
+los eventos en orden descendente y permite filtrar por entidad.
+
+#### 2.10.5 `useHistoryLogger` — *La voz de Paul registra*
+
+```typescript
+const logger = useHistoryLogger()
+
+await logger.logCreate({ entityType: 'product', entityId: '123', details: 'Café especial creado' })
+await logger.logUpdate({ entityType: 'order', entityId: '456', details: 'Orden actualizada', changes: { status: { old: 'pending', new: 'approved' } } })
+await logger.logDelete({ entityType: 'product', entityId: '789', details: 'Producto eliminado' })
+await logger.logApprove({ entityType: 'order', entityId: '012', details: 'Orden aprobada' })
+await logger.logDeduct({ entityType: 'shipment', entityId: '345', details: 'Inventario deducido' })
+```
+
+Cada función extrae automáticamente el usuario de `authStore` y construye el
+`CreateHistoryRequest`. Es la herramienta que los componentes usan para
+registrar eventos sin preocuparse por los detalles del API — como la voz de
+Paul que ordena y el universo obedece.
+
+**Componentes que registran eventos:**
+
+| Componente | Eventos que registra |
+|---|---|
+| `authStore` | `LOGIN`, `REGISTER`, `LOGOUT` |
+| `ProductRegistrationForm` | `CREATE` |
+| `ProductList` | `DELETE` |
+| `OrderForm` | `CREATE`, `DEDUCT` |
+| `OrderEditModal` | `UPDATE` |
+| `OrderList` | `DELETE`, `APPROVE` |
+| `ShipmentForm` | `CREATE`, `DEDUCT` |
+
+#### 2.10.6 `HistoryTimeline` — *Línea de tiempo de Muad'Dib*
+
+Componente visual que renderiza una línea de tiempo scrollable con:
+
+- **Búsqueda en vivo** — filtra por descripción, tipo de entidad, acción,
+  usuario, ID de entidad o nombre de producto. *(Paul recorre sus visiones
+  en busca de un momento específico)*
+- **Círculos de color por acción** — cada tipo de evento tiene un color
+  distinto (CREATE=verde, UPDATE=azul, DELETE=rojo, etc.) con glow
+  animado. *(Cada camino en la visión de Paul tiene un color)*
+- **Panel expandible** — al hacer clic en el botón de expandir, se revelan
+  datos adicionales: nombre real del usuario (resuelto vía API), nombre
+  del producto, compañía, resultado, IP, y fecha formateada. La resolución
+  de nombres es lazy: solo se consulta la API cuando se expande.
+  *(Paul profundiza en una visión para ver todos sus detalles)*
+- **Estados vacío, carga y sin resultados** — maneja todos los estados de UI.
+  *(Incluso cuando la visión está vacía, el oráculo habla)*
+- **Tema oscuro** — fondo cósmico con orbes de gradiente y sombras
+  brillantes. *(Como el cielo nocturno de Arrakis bajo las estrellas)*
+
+**Uso en DashboardPage:**
+
+```vue
+<HistoryTimeline
+  :entries="historyStore.entries"
+  :is-loading="historyStore.isLoading"
+  title="Historial de Inventario"
+/>
+```
+
+El Dashboard carga los primeros 10 eventos al montar (`fetchEntries({ limit: 10 })`)
+y carga 200 eventos cuando se navega a la pestaña "Transactions".
+
+#### 2.10.7 `HistoryDetailModal` — *Visión enfocada de Paul*
+
+Modal que muestra el historial filtrado para una entidad específica:
+
+```vue
+<HistoryDetailModal
+  entity-type="order"
+  entity-id="1749372100_020"
+  entity-label="Orden"
+  @close="showModal = false"
+/>
+```
+
+Al montarse, llama a `fetchEntriesByEntity(entityType, entityId)` para cargar
+solo los eventos relacionados con ese documento. Útil para ver el ciclo de vida
+completo de una orden, producto o despacho. *(Paul enfoca su visión en un solo
+hilo del destino para comprenderlo por completo)*
 
 ---
 
@@ -231,7 +437,58 @@ func writeJSON(w http.ResponseWriter, data any, status int)
 func writeError(w http.ResponseWriter, msg string, status int)
 ```
 
-### 3.7 Configuración
+### 3.7 Historial de inventario (backend) — *Archivos de Irulan*
+
+El backend expone el endpoint `/history` (solo GET) que lista todos los
+eventos de inventario registrados. Los eventos se crean automáticamente desde
+los casos de uso de producto, orden, entrada y despacho mediante el
+`HistoryService` inyectado.
+
+**Endpoints:**
+
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| `GET` | `/history` | Lista todos los eventos ordenados por fecha descendente |
+| `GET` | `/history/{document_type}/{document_id}` | Filtra por tipo y ID de documento |
+
+**Modelo de dominio (`InventoryHistory`):**
+
+| Campo | Tipo | Propósito |
+|-------|------|-----------|
+| `history_id` | `string` | ID único del evento |
+| `event_date` | `timestamp` | Cuándo ocurrió |
+| `user_id` | `string` | Quién ejecutó la acción |
+| `event_type` | `enum` | Tipo de evento (13 valores) |
+| `company_id` | `string` | Compañía asociada |
+| `document_id` | `string` | ID del documento afectado |
+| `document_type` | `string` | Tipo de documento |
+| `previous_data` | `JSONB` | Estado anterior (nullable) |
+| `new_data` | `JSONB` | Estado posterior (nullable) |
+| `description` | `text` | Descripción textual del evento |
+| `ip_address` | `string` | Dirección IP de origen |
+| `result` | `string` | SUCCESS / FAILURE |
+
+**Tipos de evento (`InventoryEventType`):**
+
+```
+CREATE, UPDATE, CANCEL,
+ORDER_CREATED, ORDER_UPDATED, ORDER_APPROVED,
+SHIPMENT_CREATED, SHIPMENT_CANCELLED,
+ENTRY_CREATED, ENTRY_DELETED,
+STOCK_UPDATED, INVOICE_LINKED, RELATION_CREATED
+```
+
+**Módulos que alimentan el historial:**
+
+| Use Case | Eventos |
+|----------|---------|
+| `productUseCase` | CREATE, UPDATE, STOCK_UPDATED |
+| `orderUseCase` | ORDER_CREATED, ORDER_UPDATED, ORDER_APPROVED |
+| `productEntryUseCase` | ENTRY_CREATED, ENTRY_DELETED |
+| `shipmentUseCase` | SHIPMENT_CREATED, SHIPMENT_CANCELLED, RELATION_CREATED |
+| `movementUseCase` | CREATE, UPDATE, CANCEL |
+
+### 3.8 Configuración
 
 | Parámetro | Valor |
 |---|---|
@@ -291,8 +548,8 @@ python -m graphify
 ### 5.2 Resultados
 
 | Proyecto | Nodos | Aristas | Comunidades | Activo |
-|---|---|---|---|---|---|
-| Go API (Paulu) | 839 | 1484 | 96 | ✅ |
+|---|---|---|---|---|---|---|
+| Go API (Paulu) | 967 | 1850 | 101 | ✅ |
 | Vue Paulus | 459 | 446 | 74 | ✅ |
 
 ### 5.3 Archivos generados
@@ -395,6 +652,106 @@ go build ./cmd/api/
 cd D:\Go\api-book-coffee-shop
 graphify update .
 ```
+
+---
+
+## 9. Inteligencia Artificial — *El Mentat de Paulu Areides*
+
+> *"Paul veía futuros posibles con cada respiración de especia. El Mentat
+> de Paulu Areides calcula, verifica y asiste — aunque aún no vea el futuro."*
+
+### 9.1 Arquitectura — *El Tercer Ojo*
+
+El sistema de IA se compone de dos grandes módulos:
+
+```
+src/
+├── application/services/aiService.ts     # Verificación contra proveedores externos
+└── presentation/components/ai/
+    └── AIModelsPanel.vue                 # Wizard de configuración 3 pasos
+```
+
+Además, el botón flotante y chat modal viven en `src/App.vue` fuera del
+`<router-view>`, garantizando disponibilidad global.
+
+### 9.2 Servicio de verificación — *Prueba Bene Gesserit*
+
+`src/application/services/aiService.ts` expone:
+
+| Función | Propósito | Paralelo Dune |
+|---|---|---|
+| `verifyAiModel(params)` | Envía request de prueba a cada proveedor | *La Reverenda Madre prueba a Paul —¿es quien dice ser?* |
+| `verifyGemini(apiKey, modelName)` | POST a Google AI con modelo dinámico | *El Camino de Paulu Areides — único, personal* |
+| `verifyOpenAiCompatible(baseUrl, apiKey, model)` | POST a cualquier API OpenAI-compatible | *Cualquier sietch puede refugiar a un fremen* |
+
+**Proveedores soportados:**
+
+| Proveedor | Endpoint por defecto | Modelos disponibles |
+|---|---|---|
+| **Gemini** | `generativelanguage.googleapis.com` | `gemini-2.0-flash`, `2.0-pro`, `1.5-pro`, `1.5-flash` |
+| **Codex** | `api.openai.com` | `gpt-4o`, `4o-mini`, `4-turbo`, `3.5-turbo` |
+| **OpenCloud** | `openrouter.ai` | `openai/gpt-4o`, `anthropic/claude-3.5-sonnet`, `google/gemini-2.0-flash`, `meta-llama/llama-3-70b` |
+| **Kimi** | `api.moonshot.cn` | `moonshot-v1-8k`, `v1-32k`, `v1-128k` |
+| **Custom** | Usuario define URL | Usuario define nombre |
+
+### 9.3 Wizard AIModelsPanel — *Formación del Mentat en 3 pasos*
+
+`src/presentation/components/ai/AIModelsPanel.vue`
+
+Carga cognitiva reducida — Paulu Areides enseñó a los fremen a tomar el desierto
+**un paso a la vez**:
+
+| Paso | Propósito | Validación | Paralelo Dune |
+|---|---|---|---|
+| **1. Proveedor** | Tarjeta recomendada (Gemini) + acordeón de alternativas | Selección requerida | *El Lisan al-Gaib elige su camino* |
+| **2. API Key** | Modelo específico + API Key + ayuda contextual expandible | Key válida (formato según proveedor) | *La prueba de la caja de dolor* |
+| **3. Revisar** | Resumen + términos + guardado | Checkbox aceptado | *El juramento fremen antes de la batalla* |
+
+**Flujo de guardado:**
+
+1. Usuario completa wizard y presiona "Guardar modelo"
+2. Modal de verificación aparece con spinner animado — *La Reverenda Madre evalúa*
+3. **Éxito** ✅ → modelo persistido en `localStorage(ai-models)`, wizard se resetea, modal se cierra
+4. **Error** ❌ → se muestra mensaje de error, botones "Reintentar" y "Cancelar"
+   - Cancelar = rollback completo (nada se guarda)
+   - Reintentar = nuevo intento de verificación
+
+### 9.4 Botón flotante y chat — *El Ojo de Paulu Areides*
+
+`src/App.vue` contiene:
+
+- **Botón cerebral** fijo (abajo-derecha, `z-50`) con gradiente violeta y sombra
+- **Modal chat** teleportado al `<body>` con animación `Transition`
+- Header con "Asistente Paulu" + estado "Configuración pendiente"
+- Input deshabilitado listo para conectar con el modelo seleccionado
+
+### 9.5 Persistencia — *Memoria genética en localStorage*
+
+Los modelos se almacenan en `localStorage('ai-models')` como array JSON:
+
+```json
+[{
+  "id": "uuid",
+  "provider": "gemini",
+  "label": "Gemini",
+  "modelName": "gemini-2.0-flash",
+  "apiKey": "AIza...",
+  "verifiedAt": "2026-06-20T..."
+}]
+```
+
+- La API Key se almacena en texto plano — *confianza de Paulu Areides en su Casa*
+- `maskKey()` la enmascara en UI (`sk-ab...wxyz`)
+- Sin expiración — el Mentat recuerda siempre
+
+### 9.6 Consideraciones de seguridad — *El Escudo Atreides*
+
+| Riesgo | Mitigación | Paralelo Dune |
+|---|---|---|
+| API Key en localStorage | Solo accesible desde el mismo origen | *El escudo personal de Paul — solo él lo activa* |
+| Verificación por fetch | Sin proxy; el cliente llama directo al proveedor | *El fremen negocia cara a cara, sin intermediarios* |
+| Key expuesta en UI | `type="password"` + `maskKey()` en listados | *Traje stillsuit — oculta lo esencial* |
+| Rollback en fallo | El modelo solo persiste si `verifiedAt` tiene fecha | *Si la especia es veneno, no se cosecha* |
 
 ---
 

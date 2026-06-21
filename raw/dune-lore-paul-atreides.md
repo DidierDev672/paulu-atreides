@@ -79,7 +79,9 @@ Le seguirán más herramientas, más poder, más control.
 | **Gurney Halleck** | Guerrero-poeta, conexión emocional | **Axios / HTTP** — el puente entre mundos |
 | **Dr. Liet-Kynes** | Ecologista de Arrakis | **Entradas de producto** — equilibrio del ecosistema |
 | **Shadout Mapes** | Portadora de verdad, prueba de confianza | **CompanyRequiredModal** — la verdad antes de avanzar |
-| **Irulan Corrino** | Cronista imperial | **Documentación** — registro de lo ocurrido |
+| **Irulan Corrino** | Cronista imperial | **Documentación + Historial** — registro de lo ocurrido en el inventario |
+| **Jamis** | Primer fremen que Paul vence, inicio de su leyenda | **`CREATE`** — el primer evento de toda entidad en el historial |
+| **Duncan Idaho (resucitado)** | Ghola que guarda recuerdos de vidas pasadas | **`UPDATE`** — los cambios se acumulan capa sobre capa |
 | **Barón Vladimir Harkonnen** | Antagonista, caos calculado | **Errores HTTP** — fuerzas que hay que contener |
 | **Feyd-Rautha** | Rival directo | **Competencia desleal** — pérdida de mercado |
 | **Los Fremen** | Pueblo del desierto, productivos | **Usuarios colombianos** — pragmáticos y resilientes |
@@ -90,6 +92,8 @@ Le seguirán más herramientas, más poder, más control.
 | **Ornitópteros** | Transporte ágil en Arrakis | **Despachos / Shipments** — salida de mercancía |
 | **Shai-Hulud** (*gusano de arena*) | Poder del desierto | **Sistema de inventario** — temido y esencial |
 | **Sietch Tabr** | Comunidad subterránea fremen | **Pinia Stores** — memoria colectiva del estado |
+| **Visión del pasado de Paul** | Paul veía los recuerdos de sus ancestros en la especia | **Historial de inventario** — visión completa de cada evento ocurrido en el imperio |
+| **Agonía de la especia** | Ritual donde Paul accede a la memoria genética | **`useHistoryLogger`** — registro en tiempo real de cada acción del negocio |
 | **Traje stillsuit** | Conservación de agua | **localStorage** — persistencia de sesión |
 | **Disciplina del agua** | No desperdiciar gota alguna | **useQuantityValidation** — no exceder stock |
 | **Kwisatz Haderach** | El que ve todos los caminos | **Full-stack developer** — frontend + backend |
@@ -124,6 +128,13 @@ Le seguirán más herramientas, más poder, más control.
 | **Vue Router 5** | *Navegadores Guild* | Rutas sagradas entre `/` y `/auth` |
 | **Axios + interceptor JWT** | *Gurney Halleck* | Mensajero leal que lleva el sello Atreides en cada petición |
 | **@vueuse/motion 3** | *Weirding Way* | Animaciones con intención, no adorno vacío |
+| **Historial de inventario** | *Visión del pasado de Paul* | Línea de tiempo completa de eventos; como Paul recordando cada camino recorrido |
+| **`HistoryTimeline`** | *Viaje en el tiempo de Paul* | Visualización de eventos con búsqueda y detalle expandible |
+| **`HistoryDetailModal`** | *Visión enfocada de Muad'Dib* | Modal que muestra el historial de una entidad específica |
+| **`historyStore`** | *Memoria genética del sietch* | Estado reactivo que almacena los pergaminos del pasado |
+| **`useHistoryLogger`** | *La voz de Paul registra* | Composable que captura cada acción (crear, actualizar, eliminar, aprobar) y la escribe en los Archivos |
+| **`HistoryAction` (CREATE/UPDATE/DELETE)** | *Momentos de la profecía* | Cada tipo de evento es un hito en el camino de la especia |
+| **`extractDocumentName`** | *Revelación en el agua de vida* | Extrae el nombre del producto desde los datos JSON del evento |
 | **Clean Architecture (4 capas)** | *Caladan → Arrakis* | Estructura noble antes de enfrentar el desierto |
 | `domain/` | *Código de honor Atreides* | Reglas puras, sin dependencias externas |
 | `application/` | *Thufir Hawat* | Casos de uso y estrategia de negocio |
@@ -185,6 +196,11 @@ Le seguirán más herramientas, más poder, más control.
 | **providerStore** | *Rolodex del Landsraad* | Estado CRUD de proveedores |
 | **wineryStore** | *Mapa de sietchs* | Estado CRUD de bodegas |
 | **authStore** | *Memoria de Duncan* | Sesión, login, logout |
+| **historyStore** | *Memoria genética de Paul* | Estado del historial: entradas, carga, errores |
+| **HistoryTimeline** | *Línea de tiempo de Muad'Dib* | Componente visual de eventos con búsqueda y detalle |
+| **HistoryDetailModal** | *Visión enfocada de Paul* | Modal que filtra historial por entidad específica |
+| **useHistoryLogger** | *Escriba de Paul* | Funciones `logCreate`, `logUpdate`, `logDelete`, `logApprove`, `logDeduct` |
+| **Dashboard > Transactions** | *Sala de crónicas de Paul* | Vista de historial completo en el panel principal |
 
 ---
 
@@ -211,6 +227,8 @@ Le seguirán más herramientas, más poder, más control.
 | `/companies` | *Casas del Landsraad* | Empresas |
 | `/auth/login` | *Reconocimiento del sello* | Autenticación |
 | `/auth/register` | *Iniciación al sietch* | Registro de usuario |
+| `/history` | *Archivos de Irulan / Visión de Paul* | Historial completo de inventario |
+| `/history/{type}/{id}` | *Visión enfocada de Paul* | Historial por documento específico |
 
 ---
 

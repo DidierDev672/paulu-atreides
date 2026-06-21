@@ -15,6 +15,7 @@ import CompanyRegistrationForm from '@/presentation/components/company/CompanyRe
 import CompanySelectionModal from '@/presentation/components/company/CompanySelectionModal.vue'
 import UserProfile from '@/presentation/components/profile/UserProfile.vue'
 import ProductRegistrationForm from '@/presentation/components/products/ProductRegistrationForm.vue'
+import ProviderList from '@/presentation/components/providers/ProviderList.vue'
 import ProviderRegistrationForm from '@/presentation/components/providers/ProviderRegistrationForm.vue'
 import ProductEntryForm from '@/presentation/components/productEntries/ProductEntryForm.vue'
 import ProductEntryList from '@/presentation/components/productEntries/ProductEntryList.vue'
@@ -26,6 +27,10 @@ import ShipmentForm from '@/presentation/components/shipments/ShipmentForm.vue'
 import ShipmentList from '@/presentation/components/shipments/ShipmentList.vue'
 import { useHistoryStore } from '@/presentation/stores/historyStore'
 import HistoryTimeline from '@/presentation/components/history/HistoryTimeline.vue'
+import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
+import { useShipmentStore } from '@/presentation/stores/shipmentStore'
+import SalesPage from '@/presentation/components/sales/SalesPage.vue'
+import AIModelsPanel from '@/presentation/components/ai/AIModelsPanel.vue'
 
 // ─── Theme ───────────────────────────────────────────────────────────────────
 import { useTheme } from '@/presentation/composables/useTheme'
@@ -66,6 +71,8 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 const authStore = useAuthStore()
 const companyStore = useCompanyStore()
 const historyStore = useHistoryStore()
+const productEntryStore = useProductEntryStore()
+const shipmentStore = useShipmentStore()
 const userId = computed(() => authStore.session?.user.id ?? '')
 const userName = computed(() => authStore.session?.user.fullName ?? 'Admin User')
 const userInitials = computed(() =>
@@ -105,6 +112,10 @@ onMounted(async () => {
   }
   // Fetch recent history
   historyStore.fetchEntries({ limit: 10 })
+  // Fetch product entries for frequency analysis
+  productEntryStore.fetchEntries()
+  // Fetch shipments for exit analysis
+  shipmentStore.fetchShipments()
 })
 
 function handleCompanySelect(company: CompanyResponse): void {
@@ -145,10 +156,174 @@ function goToProfile(): void {
 const activeNav = ref('dashboard')
 const expandedGroups = ref<Set<string>>(new Set())
 
+const inventoryHistoryEntries = computed(() =>
+  historyStore.entries.filter((e) =>
+    ['product', 'product_entry', 'movement'].includes(e.entityType)
+  )
+)
+
 watch(activeNav, (nav) => {
-  if (nav === 'transactions') {
+  if (nav === 'history-project' || nav === 'history-inventory') {
     historyStore.fetchEntries({ limit: 200 })
   }
+  if (nav === 'dashboard') {
+    productEntryStore.fetchEntries()
+    shipmentStore.fetchShipments()
+  }
+})
+
+// ─── Product frequency (entries) ──────────────────────────────────────────────
+const productFrequency = computed(() => {
+  const freq: Record<string, { count: number; price: number }> = {}
+  for (const entry of productEntryStore.entries) {
+    for (const detail of entry.details) {
+      if (!freq[detail.product]) {
+        freq[detail.product] = { count: 0, price: 0 }
+      }
+      freq[detail.product].count++
+      freq[detail.product].price = Math.max(freq[detail.product].price, detail.suggested_selling_price)
+    }
+  }
+  return freq
+})
+
+const sortedProducts = computed(() => {
+  return Object.entries(productFrequency.value)
+    .map(([name, data]) => ({ name, ...data }))
+    .sort((a, b) => b.count - a.count)
+})
+
+const mostRepeatedProduct = computed(() => sortedProducts.value[0] ?? null)
+
+const topProducts = computed(() => sortedProducts.value.slice(0, 5))
+
+// ─── Shipment/Exit analysis ───────────────────────────────────────────────────
+const exitProductFreq = computed(() => {
+  const freq: Record<string, { count: number; prices: number[] }> = {}
+  for (const shipment of shipmentStore.shipments) {
+    for (const detail of shipment.details) {
+      if (!freq[detail.product]) {
+        freq[detail.product] = { count: 0, prices: [] }
+      }
+      freq[detail.product].count++
+      freq[detail.product].prices.push(detail.unit_cost)
+    }
+  }
+  return freq
+})
+
+const sortedExitProducts = computed(() => {
+  return Object.entries(exitProductFreq.value)
+    .map(([name, data]) => ({
+      name,
+      count: data.count,
+      highestPrice: Math.max(...data.prices),
+      lowestPrice: Math.min(...data.prices),
+    }))
+    .sort((a, b) => b.count - a.count)
+})
+
+const mostExitedProduct = computed(() => sortedExitProducts.value[0] ?? null)
+
+const leastExitedProduct = computed(() => {
+  const withEntries = sortedExitProducts.value.filter((p) => p.count > 0)
+  return withEntries[withEntries.length - 1] ?? null
+})
+
+const highestExitPrice = computed(() => {
+  let max = 0
+  for (const shipment of shipmentStore.shipments) {
+    for (const detail of shipment.details) {
+      if (detail.unit_cost > max) max = detail.unit_cost
+    }
+  }
+  return max
+})
+
+const lowestExitPrice = computed(() => {
+  let min = Infinity
+  for (const shipment of shipmentStore.shipments) {
+    for (const detail of shipment.details) {
+      if (detail.unit_cost < min) min = detail.unit_cost
+    }
+  }
+  return min === Infinity ? 0 : min
+})
+
+const exitDates = computed(() => {
+  const dateCount: Record<string, number> = {}
+  for (const shipment of shipmentStore.shipments) {
+    const day = shipment.record_date.split('T')[0]
+    if (!dateCount[day]) dateCount[day] = 0
+    dateCount[day]++
+  }
+  return Object.entries(dateCount)
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => b.count - a.count)
+})
+
+const topExitDate = computed(() => exitDates.value[0] ?? null)
+
+const totalExits = computed(() => {
+  let count = 0
+  for (const p of Object.values(exitProductFreq.value)) {
+    count += p.count
+  }
+  return count
+})
+
+const averageExitPrice = computed(() => {
+  let sum = 0
+  let count = 0
+  for (const shipment of shipmentStore.shipments) {
+    for (const detail of shipment.details) {
+      sum += detail.unit_cost
+      count++
+    }
+  }
+  return count === 0 ? 0 : Math.round(sum / count)
+})
+
+const topExitProducts = computed(() => {
+  const total = totalExits.value
+  return sortedExitProducts.value.slice(0, 5).map((p) => ({
+    ...p,
+    averagePrice: Math.round(
+      exitProductFreq.value[p.name].prices.reduce((a, b) => a + b, 0) /
+        exitProductFreq.value[p.name].prices.length
+    ),
+    percentage: total > 0 ? Math.round((p.count / total) * 100) : 0,
+  }))
+})
+
+const sidebarSearch = ref('')
+
+const filteredNavGroups = computed(() => {
+  const q = sidebarSearch.value.toLowerCase().trim()
+  if (!q) return navGroups
+  return navGroups
+    .map((g) => {
+      const matchGroup = g.label.toLowerCase().includes(q)
+      if (g.children) {
+        const filteredChildren = g.children
+          .map((c) => {
+            const matchChild = c.label.toLowerCase().includes(q)
+            if (c.children) {
+              const filteredSub = c.children.filter((s) =>
+                s.label.toLowerCase().includes(q)
+              )
+              if (filteredSub.length) return { ...c, children: filteredSub }
+            }
+            return matchChild ? c : null
+          })
+          .filter(Boolean) as NavChild[]
+        if (matchGroup || filteredChildren.length) {
+          return { ...g, children: filteredChildren }
+        }
+      }
+      return matchGroup ? g : null
+    })
+    .filter(Boolean) as NavGroup[]
 })
 
 function toggleGroup(id: string): void {
@@ -208,50 +383,27 @@ const navGroups: NavGroup[] = [
       { id: 'register-order', label: 'Registrar Orden' },
     ],
   },
-  { id: 'transactions', label: 'Transactions', icon: 'wallet' },
+  {
+    id: 'sales', label: 'Ventas', icon: 'wallet',
+    children: [
+      { id: 'sales', label: 'Ventas' },
+    ],
+  },
+  {
+    id: 'history', label: 'Historial', icon: 'clock',
+    children: [
+      { id: 'history-project', label: 'Historial Paulu' },
+      { id: 'history-inventory', label: 'Historial inventarios' },
+    ],
+  },
   { id: 'profile', label: 'Profile', icon: 'profile' },
+  { id: 'ai-models', label: 'Modelos de IA', icon: 'ai' },
 ]
 
 function handleNavClick(id: string): void {
   activeNav.value = id
   closeMobileSidebar()
 }
-
-// ─── Stat cards ──────────────────────────────────────────────────────────────
-const statCards = [
-  {
-    title: 'Revenue',
-    value: '$48,352',
-    change: '+12.5%',
-    positive: true,
-    icon: 'dollar',
-    color: 'from-stellar-500 to-cosmic-600',
-  },
-  {
-    title: 'Users',
-    value: '2,847',
-    change: '+8.2%',
-    positive: true,
-    icon: 'users',
-    color: 'from-emerald-500 to-teal-600',
-  },
-  {
-    title: 'Conversion Rate',
-    value: '3.24%',
-    change: '-1.4%',
-    positive: false,
-    icon: 'target',
-    color: 'from-amber-500 to-orange-600',
-  },
-  {
-    title: 'Tasks',
-    value: '156',
-    change: '+24',
-    positive: true,
-    icon: 'check',
-    color: 'from-nebula-pink to-rose-600',
-  },
-]
 
 // ─── Table data & pagination ─────────────────────────────────────────────────
 type TransactionStatus = 'completed' | 'pending' | 'failed'
@@ -394,9 +546,24 @@ const searchQuery = ref('')
         <span v-if="!sidebarCollapsed" class="font-display text-lg font-bold tracking-tight">Paulu</span>
       </div>
 
+      <!-- Sidebar search -->
+      <div v-if="!sidebarCollapsed" class="px-3 pt-2">
+        <div class="relative">
+          <svg class="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            v-model="sidebarSearch"
+            type="text"
+            placeholder="Buscar..."
+            class="w-full rounded-lg border border-slate-200 bg-slate-50 py-1.5 pl-8 pr-3 text-sm text-slate-700 placeholder-slate-400 transition focus:border-stellar-400 focus:outline-none focus:ring-2 focus:ring-stellar-500/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:placeholder-slate-500 dark:focus:border-stellar-500"
+          />
+        </div>
+      </div>
+
       <!-- Nav links -->
       <nav class="flex-1 space-y-1 overflow-y-auto p-3">
-        <template v-for="group in navGroups" :key="group.id">
+        <div v-for="group in filteredNavGroups" :key="group.id" v-motion :initial="{ opacity: 0, y: 6 }" :enter="{ opacity: 1, y: 0, transition: { duration: 250 } }">
           <!-- ── Dropdown group ── -->
           <div v-if="group.children">
             <!-- Group header -->
@@ -424,6 +591,11 @@ const searchQuery = ref('')
               <!-- Clipboard icon -->
               <svg v-else-if="group.icon === 'clipboard'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+              <!-- Clock icon -->
+              <svg v-else-if="group.icon === 'clock'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3" />
               </svg>
               <span v-if="!sidebarCollapsed" class="flex-1 text-left">{{ group.label }}</span>
               <svg
@@ -471,6 +643,9 @@ const searchQuery = ref('')
                         v-for="sub in child.children"
                         :key="sub.id"
                         type="button"
+                        v-motion
+                        :initial="{ opacity: 0, x: -4 }"
+                        :enter="{ opacity: 1, x: 0, transition: { duration: 200 } }"
                         class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200"
                         :class="[
                           activeNav === sub.id
@@ -488,6 +663,9 @@ const searchQuery = ref('')
                 <button
                   v-else
                   type="button"
+                  v-motion
+                  :initial="{ opacity: 0, x: -4 }"
+                  :enter="{ opacity: 1, x: 0, transition: { duration: 200 } }"
                   class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200"
                   :class="[
                     activeNav === child.id
@@ -528,9 +706,16 @@ const searchQuery = ref('')
             <svg v-else-if="group.icon === 'profile'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
+            <!-- AI icon -->
+            <svg v-else-if="group.icon === 'ai'" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4a4 4 0 0 1 3.5 2.1 7 7 0 0 1 2.5-.6 7 7 0 0 1 4.8 2 7 7 0 0 1-2.8 11.5 4 4 0 0 1-7.5.8 4 4 0 0 1-7.5-.8A7 7 0 0 1 1.2 7.5a7 7 0 0 1 4.8-2 7 7 0 0 1 2.5.6A4 4 0 0 1 12 4z" />
+              <circle cx="9" cy="12" r="1" fill="currentColor" />
+              <circle cx="15" cy="12" r="1" fill="currentColor" />
+              <path d="M9 15.5a3.5 3.5 0 0 0 6 0" />
+            </svg>
             <span v-if="!sidebarCollapsed">{{ group.label }}</span>
           </button>
-        </template>
+        </div>
       </nav>
 
       <!-- Collapse toggle (desktop) -->
@@ -696,111 +881,198 @@ const searchQuery = ref('')
             class="mb-6"
           >
             <h1 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">Dashboard</h1>
-            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Welcome back! Here's what's happening today.</p>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Tu negocio avanza con cada decisión que tomas. Esto es lo que importa hoy.</p>
           </div>
 
-          <!-- Stat cards grid -->
-          <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 sm:gap-6">
-            <div
-              v-for="(card, index) in statCards"
-              :key="card.title"
-              v-motion
-              :initial="{ opacity: 0, y: 20 }"
-              :enter="{ opacity: 1, y: 0, transition: { duration: 400, delay: 200 + index * 80 } }"
-              class="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
-            >
-              <div class="flex items-start justify-between">
-                <div>
-                  <p class="text-sm font-medium text-slate-500 dark:text-slate-400">{{ card.title }}</p>
-                  <p class="mt-2 text-2xl font-bold tracking-tight">{{ card.value }}</p>
-                </div>
-                <div
-                  class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm transition group-hover:scale-105"
-                  :class="card.color"
-                >
-                  <!-- Dollar -->
-                  <svg v-if="card.icon === 'dollar'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <!-- Users -->
-                  <svg v-else-if="card.icon === 'users'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <!-- Target -->
-                  <svg v-else-if="card.icon === 'target'" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  <!-- Check -->
-                  <svg v-else class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
-                </div>
-              </div>
-              <div class="mt-4 flex items-center gap-1.5">
-                <span
-                  class="inline-flex items-center gap-0.5 rounded-lg px-2 py-0.5 text-xs font-semibold"
-                  :class="card.positive
-                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400'
-                    : 'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400'"
-                >
-                  <svg v-if="card.positive" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                  </svg>
-                  <svg v-else class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                  {{ card.change }}
-                </span>
-                <span class="text-xs text-slate-400">vs last month</span>
-              </div>
-            </div>
-          </div>
 
-        <!-- Charts row -->
-        <div class="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3 sm:gap-6">
-          <!-- Line chart placeholder -->
+
+
+
+          <!-- Top Products card -->
           <div
             v-motion
             :initial="{ opacity: 0, y: 20 }"
             :enter="{ opacity: 1, y: 0, transition: { duration: 400, delay: 500 } }"
-            class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:col-span-2"
+            class="mb-6 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"
           >
-            <div class="mb-6 flex items-center justify-between">
+            <div class="mb-5 flex items-center justify-between">
               <div>
-                <h2 class="font-display text-lg font-semibold">Revenue Trend</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Last 12 months performance</p>
+                <h2 class="font-display text-lg font-semibold">Productos más registrados</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">
+                  Los productos que más aparecen en tus movimientos
+                </p>
               </div>
-              <select class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm outline-none dark:border-slate-700 dark:bg-slate-800">
-                <option>2026</option>
-                <option>2025</option>
-              </select>
+              <div v-if="mostRepeatedProduct" class="rounded-xl bg-amber-100 px-3 py-1.5 text-xs font-semibold text-amber-700 dark:bg-amber-500/15 dark:text-amber-400">
+                {{ mostRepeatedProduct.count }} registros
+              </div>
             </div>
-            <!-- SVG line chart -->
-            <div class="relative h-56 w-full">
-              <svg viewBox="0 0 600 200" class="h-full w-full" preserveAspectRatio="none" aria-hidden="true">
-                <defs>
-                  <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3" />
-                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <!-- Grid lines -->
-                <line x1="0" y1="40" x2="600" y2="40" stroke="currentColor" class="text-slate-200 dark:text-slate-700" stroke-width="1" />
-                <line x1="0" y1="80" x2="600" y2="80" stroke="currentColor" class="text-slate-200 dark:text-slate-700" stroke-width="1" />
-                <line x1="0" y1="120" x2="600" y2="120" stroke="currentColor" class="text-slate-200 dark:text-slate-700" stroke-width="1" />
-                <line x1="0" y1="160" x2="600" y2="160" stroke="currentColor" class="text-slate-200 dark:text-slate-700" stroke-width="1" />
-                <!-- Area fill -->
-                <path d="M0,160 L50,140 L100,120 L150,130 L200,90 L250,100 L300,60 L350,70 L400,40 L450,55 L500,30 L550,45 L600,20 L600,200 L0,200 Z" fill="url(#lineGrad)" />
-                <!-- Line -->
-                <path d="M0,160 L50,140 L100,120 L150,130 L200,90 L250,100 L300,60 L350,70 L400,40 L450,55 L500,30 L550,45 L600,20" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                <!-- Dots -->
-                <circle cx="300" cy="60" r="5" fill="#8b5cf6" stroke="white" stroke-width="2" class="dark:stroke-slate-900" />
-                <circle cx="500" cy="30" r="5" fill="#8b5cf6" stroke="white" stroke-width="2" class="dark:stroke-slate-900" />
+
+            <div v-if="productEntryStore.isLoading" class="flex items-center justify-center py-8">
+              <svg class="h-6 w-6 animate-spin text-slate-400" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              <div class="mt-2 flex justify-between text-xs text-slate-400">
-                <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+            </div>
+
+            <div v-else-if="topProducts.length === 0" class="py-8 text-center text-sm text-slate-400">
+              Aún no hay movimientos registrados.
+            </div>
+
+            <div v-else class="space-y-3">
+              <div
+                v-for="(p, i) in topProducts"
+                :key="p.name"
+                class="flex items-center gap-4 rounded-xl bg-slate-50 px-4 py-3 transition hover:bg-slate-100 dark:bg-slate-800/50 dark:hover:bg-slate-800"
+              >
+                <div
+                  class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold"
+                  :class="i === 0
+                    ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400'
+                    : 'bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400'"
+                >
+                  {{ i + 1 }}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate text-sm font-medium text-slate-800 dark:text-slate-200">
+                    {{ p.name }}
+                  </p>
+                  <p class="text-xs text-slate-400">
+                    {{ p.count }} registro{{ p.count !== 1 ? 's' : '' }}
+                    <span v-if="p.price > 0" class="ml-2">
+                      · Precio sugerido: ${{ p.price.toLocaleString('es-CO') }}
+                    </span>
+                  </p>
+                </div>
+                <div class="shrink-0 text-right">
+                  <div class="h-2 w-24 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                    <div
+                      class="h-full rounded-full bg-gradient-to-r from-stellar-500 to-cosmic-500"
+                      :style="{ width: (p.count / mostRepeatedProduct.count) * 100 + '%' }"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div v-if="mostRepeatedProduct" class="mt-4 rounded-2xl border border-violet-200 bg-violet-50 px-4 py-3 dark:border-violet-500/20 dark:bg-violet-500/10">
+              <p class="text-xs font-medium text-violet-600 dark:text-violet-400">
+                Más repetido:
+                <span class="font-semibold">{{ mostRepeatedProduct.name }}</span>
+                · Precio más alto: ${{ mostRepeatedProduct.price.toLocaleString('es-CO') }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Shipment/Exit analysis card -->
+          <div
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :enter="{ opacity: 1, y: 0, transition: { duration: 400, delay: 550 } }"
+            class="mb-6 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+          >
+            <div class="mb-5">
+              <h2 class="font-display text-lg font-semibold">Salidas de productos</h2>
+              <p class="text-sm text-slate-500 dark:text-slate-400">
+                {{ totalExits }} producto{{ totalExits !== 1 ? 's' : '' }} despachado{{ totalExits !== 1 ? 's' : '' }}
+              </p>
+            </div>
+
+            <div v-if="shipmentStore.isLoading" class="flex items-center justify-center py-8">
+              <svg class="h-6 w-6 animate-spin text-slate-400" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+            </div>
+
+            <div v-else-if="topExitProducts.length === 0" class="py-8 text-center text-sm text-slate-400">
+              Aún no hay salidas registradas.
+            </div>
+
+            <template v-else>
+              <!-- Level 1: Executive Summary + Product Leader side by side -->
+              <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div class="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/50">
+                  <p class="text-xs font-medium text-slate-400">Despachos</p>
+                  <p class="mt-1 text-2xl font-bold text-slate-800 dark:text-slate-200">{{ totalExits }}</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 p-4 dark:bg-slate-800/50">
+                  <p class="text-xs font-medium text-slate-400">Valor promedio</p>
+                  <p class="mt-1 text-2xl font-bold text-slate-800 dark:text-slate-200">
+                    ${{ averageExitPrice.toLocaleString('es-CO') }}
+                  </p>
+                </div>
+                <div class="rounded-xl bg-amber-50 p-4 dark:bg-amber-500/10">
+                  <p class="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400">
+                    <span>Más sale</span>
+                    <span class="text-xs">🏆</span>
+                  </p>
+                  <p class="mt-1 truncate text-lg font-bold text-slate-800 dark:text-slate-200">
+                    {{ mostExitedProduct?.name ?? '—' }}
+                  </p>
+                  <p class="text-xs text-amber-600 dark:text-amber-400">
+                    {{ mostExitedProduct?.count ?? 0 }} salida{{ mostExitedProduct?.count !== 1 ? 's' : '' }}
+                    · {{ topExitProducts[0]?.percentage ?? 0 }}%
+                  </p>
+                </div>
+              </div>
+
+              <!-- Level 2: Compact ranking (Spotify-style) -->
+              <div class="mb-6">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Ranking de productos</p>
+                <div class="space-y-1">
+                  <div
+                    v-for="(p, i) in topExitProducts"
+                    :key="p.name"
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  >
+                    <span class="w-5 text-right text-xs font-bold" :class="i === 0 ? 'text-amber-500' : 'text-slate-400'">{{ i + 1 }}</span>
+                    <div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                      <div
+                        class="h-full rounded-full transition-all"
+                        :class="i === 0
+                          ? 'bg-gradient-to-r from-amber-500 to-orange-500'
+                          : 'bg-gradient-to-r from-rose-400 to-pink-400'"
+                        :style="{ width: p.percentage + '%' }"
+                      />
+                    </div>
+                    <span class="w-28 truncate text-sm font-medium text-slate-700 dark:text-slate-300 sm:w-48">{{ p.name }}</span>
+                    <span class="hidden text-xs text-slate-400 sm:inline">{{ p.averagePrice.toLocaleString('es-CO') }}</span>
+                    <span class="w-12 text-right text-xs font-semibold text-slate-500">{{ p.percentage }}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Level 3: Activity by date -->
+              <div v-if="exitDates.length > 0">
+                <p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Actividad reciente
+                </p>
+                <div class="space-y-1.5">
+                  <div
+                    v-for="d in exitDates.slice(0, 5)"
+                    :key="d.date"
+                    class="flex items-center gap-3 rounded-xl px-3 py-2"
+                  >
+                    <span class="w-24 text-xs font-medium text-slate-600 dark:text-slate-400">
+                      {{ new Date(d.date).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' }) }}
+                    </span>
+                    <div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                      <div
+                        class="h-full rounded-full bg-gradient-to-r from-rose-400 to-rose-500"
+                        :style="{ width: (d.count / exitDates[0].count) * 100 + '%' }"
+                      />
+                    </div>
+                    <span class="w-8 text-right text-xs font-medium text-slate-500">{{ d.count }}</span>
+                  </div>
+                </div>
+              </div>
+            </template>
           </div>
 
           <!-- Pie chart placeholder -->
@@ -840,7 +1112,6 @@ const searchQuery = ref('')
               </div>
             </div>
           </div>
-        </div>
 
         <!-- Table + Activity row -->
         <div class="grid grid-cols-1 gap-4 xl:grid-cols-3 sm:gap-6">
@@ -998,6 +1269,11 @@ const searchQuery = ref('')
         <ProductRegistrationForm @saved="activeNav = 'register-product'" @go-to-product-list="activeNav = 'products'" @go-to-register-winery="activeNav = 'register-winery'" />
       </div>
 
+      <!-- Providers list view -->
+      <div v-else-if="activeNav === 'providers'">
+        <ProviderList @go-to-register-provider="activeNav = 'register-provider'" />
+      </div>
+
       <!-- Register provider view -->
       <div
         v-else-if="activeNav === 'register-provider'"
@@ -1068,9 +1344,37 @@ const searchQuery = ref('')
         <ShipmentForm @saved="activeNav = 'register-shipment'" @go-to-product-registration="activeNav = 'register-product'" @go-to-provider-registration="activeNav = 'register-provider'" />
       </div>
 
-      <!-- Transactions / Inventory History view -->
+      <!-- Sales view -->
       <div
-        v-else-if="activeNav === 'transactions'"
+        v-else-if="activeNav === 'sales'"
+        v-motion
+        :initial="{ opacity: 0, y: 8 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
+      >
+        <SalesPage />
+      </div>
+
+      <!-- Historial Paulu view -->
+      <div
+        v-else-if="activeNav === 'history-project'"
+        v-motion
+        :initial="{ opacity: 0, y: 8 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
+      >
+        <div class="mb-6">
+          <h1 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">Historial Paulu</h1>
+          <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Explora el historial completo de todas las actividades del proyecto.</p>
+        </div>
+        <HistoryTimeline
+          :entries="historyStore.entries"
+          :is-loading="historyStore.isLoading"
+          title="Historial del Proyecto"
+        />
+      </div>
+
+      <!-- Historial inventarios view -->
+      <div
+        v-else-if="activeNav === 'history-inventory'"
         v-motion
         :initial="{ opacity: 0, y: 8 }"
         :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
@@ -1080,10 +1384,20 @@ const searchQuery = ref('')
           <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Cada orden y salida deja una huella. Explora el flujo completo de tu inventario.</p>
         </div>
         <HistoryTimeline
-          :entries="historyStore.entries"
+          :entries="inventoryHistoryEntries"
           :is-loading="historyStore.isLoading"
           title="Historial de Actividad"
         />
+      </div>
+
+      <!-- AI Models view -->
+      <div
+        v-else-if="activeNav === 'ai-models'"
+        v-motion
+        :initial="{ opacity: 0, y: 8 }"
+        :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
+      >
+        <AIModelsPanel />
       </div>
       </main>
     </div>

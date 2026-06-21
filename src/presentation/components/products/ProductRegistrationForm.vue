@@ -39,6 +39,25 @@ const autoEntry = reactive({
   profit_margin: 0,
   notes: '',
 })
+
+const unitCostRaw = ref('')
+let unitCostDebounce: ReturnType<typeof setTimeout> | null = null
+
+function onUnitCostInput(e: Event): void {
+  const raw = (e.target as HTMLInputElement).value
+  unitCostRaw.value = raw
+  if (unitCostDebounce) clearTimeout(unitCostDebounce)
+  unitCostDebounce = setTimeout(() => {
+    autoEntry.unit_cost = parseCOP(unitCostRaw.value)
+    unitCostRaw.value = autoEntry.unit_cost > 0 ? formatCOP(autoEntry.unit_cost) : ''
+  }, 3000)
+}
+
+function onUnitCostBlur(): void {
+  if (unitCostDebounce) clearTimeout(unitCostDebounce)
+  autoEntry.unit_cost = parseCOP(unitCostRaw.value)
+  unitCostRaw.value = autoEntry.unit_cost > 0 ? formatCOP(autoEntry.unit_cost) : ''
+}
 const COMMERCIAL_POLICIES = ['Normal', 'Premium', 'Descuento', 'Mayorista']
 
 onMounted(async () => {
@@ -1233,12 +1252,13 @@ async function generateAutoEntry(): Promise<void> {
                 <div>
                   <label class="mb-1.5 block text-xs font-medium text-white/60">Costo unitario *</label>
                   <input
-                    :value="autoEntry.unit_cost > 0 ? formatCOP(autoEntry.unit_cost) : ''"
+                    :value="unitCostRaw"
                     type="text"
                     inputmode="decimal"
                     class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 placeholder-white/25"
                     placeholder="$ 0,00"
-                    @input="autoEntry.unit_cost = parseCOP(($event.target as HTMLInputElement).value)"
+                    @input="onUnitCostInput"
+                    @blur="onUnitCostBlur"
                   />
                 </div>
 

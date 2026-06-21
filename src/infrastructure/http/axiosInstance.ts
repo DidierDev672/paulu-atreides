@@ -10,10 +10,13 @@ export const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use((config) => {
-  const token = getStoredToken()
+  const raw = getStoredToken()
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+  if (raw) {
+    const cleaned = raw.trim().replace(/[\r\n]/g, '')
+    if (cleaned) {
+      config.headers.Authorization = `Bearer ${cleaned}`
+    }
   }
 
   return config

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { OrderResponse, CreateOrderRequest } from '@/application/services/orderService'
+import type { OrderResponse, CreateOrderRequest, OrderCreateResponse } from '@/application/services/orderService'
 import {
   getOrders as apiGetOrders,
   getOrderById as apiGetOrderById,
@@ -15,6 +15,7 @@ export const useOrderStore = defineStore('order', () => {
   const currentOrder = ref<OrderResponse | null>(null)
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+  const lastCreatedSale = ref<OrderCreateResponse['sale'] | null>(null)
 
   async function fetchOrders(): Promise<void> {
     isLoading.value = true
@@ -40,13 +41,17 @@ export const useOrderStore = defineStore('order', () => {
     }
   }
 
-  async function createOrder(data: CreateOrderRequest): Promise<OrderResponse | null> {
+  async function createOrder(data: CreateOrderRequest): Promise<OrderCreateResponse | null> {
     isLoading.value = true
     error.value = null
+    lastCreatedSale.value = null
     try {
-      const created = await apiCreateOrder(data)
-      orders.value.push(created)
-      return created
+      const resp = await apiCreateOrder(data)
+      orders.value.push(resp.order)
+      if (resp.sale) {
+        lastCreatedSale.value = resp.sale
+      }
+      return resp
     } catch (err: any) {
       error.value = err?.response?.data?.error || (err instanceof Error ? err.message : 'Error al crear la orden.')
       return null
@@ -114,6 +119,7 @@ export const useOrderStore = defineStore('order', () => {
     currentOrder,
     isLoading,
     error,
+    lastCreatedSale,
     fetchOrders,
     fetchOrderById,
     createOrder,

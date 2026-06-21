@@ -6,8 +6,11 @@ import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { useShipmentStore } from '@/presentation/stores/shipmentStore'
 import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
+import { useSaleStore } from '@/presentation/stores/saleStore'
 import { useQuantityValidation } from '@/presentation/composables/useQuantityValidation'
 import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
+import { generateInvoicePDF } from '@/services/invoiceService'
+import type { CreateSaleRequest } from '@/application/services/saleService'
 import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
 import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
 import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
@@ -26,6 +29,7 @@ const authStore = useAuthStore()
 const companyStore = useCompanyStore()
 const shipmentStore = useShipmentStore()
 const productEntryStore = useProductEntryStore()
+const saleStore = useSaleStore()
 const { logCreate, logDeduct } = useHistoryLogger()
 
 const selectedEntries = ref<ProductEntryResponse[]>([])
@@ -45,6 +49,10 @@ const showWineryModal = ref(false)
 const showDispatchSummary = ref(false)
 const createdOrder = ref<OrderResponse | null>(null)
 const selectedWarehouseId = ref('')
+const dispatchRecipient = ref<{ recipient_type: string; recipient_id: string } | null>(null)
+const saleNotification = ref('')
+const showRegisterSale = ref(false)
+const showPrintReceipt = ref(false)
 
 const form = ref<CreateOrderRequest>({
   order_numeric: '',
@@ -168,11 +176,11 @@ async function handleSubmit(): Promise<void> {
 
   const result = await orderStore.createOrder(form.value)
   if (result) {
-    createdOrder.value = result
+    createdOrder.value = result.order
     logCreate({
       entityType: 'ORDER',
-      entityId: result.id,
-      details: `Orden ${result.order_numeric} creada por ${form.value.requested_by || form.value.user_id} con ${form.value.details.length} producto(s).`,
+      entityId: result.order.id,
+      details: `Orden ${result.order.order_numeric} creada por ${form.value.requested_by || form.value.user_id} con ${form.value.details.length} producto(s).`,
     })
     showAutomationConfirm.value = true
   } else {
@@ -186,8 +194,7 @@ function onAutomationConfirm(automate: boolean): void {
   if (automate) {
     showWineryModal.value = true
   } else {
-    dialogResult.value = { success: true, order: createdOrder.value! }
-    showDialog.value = true
+    showRegisterSale.value = true
   }
 }
 
@@ -231,18 +238,98 @@ async function onDispatchConfirm(payload: { discount: number; remarks: string; r
     logCreate({
       entityType: 'SHIPMENT',
       entityId: shipment.id,
-      details: `Despacho autom�tico ${shipment.shipment_number} generado desde la orden ${order.order_numeric}.`,
+      details: `Despacho automático ${shipment.shipment_number} generado desde la orden ${order.order_numeric}.`,
     })
+    dispatchRecipient.value = { recipient_type: payload.recipient_type, recipient_id: payload.recipient_id }
     const deducted = await deductEntryQuantities()
-    if (!deducted) {
-      dialogResult.value = { success: true, order, shipment }
-    } else {
-      dialogResult.value = { success: true, order, shipment }
-    }
+    showRegisterSale.value = true
   } else {
     dialogResult.value = { success: false, error: shipmentStore.error || 'La orden se creó pero no se pudo generar el despacho automático.' }
+    showDialog.value = true
   }
-  showDialog.value = true
+}
+
+async function onRegisterSale(register: boolean): Promise<void> {
+  showRegisterSale.value = false
+  if (register) {
+    const order = createdOrder.value!
+    const saleNumber = `VEN-${order.order_numeric}`
+    const user = authStore.session?.user
+    const saleData: CreateSaleRequest = {
+      sale_number: saleNumber,
+      order_id: order.id,
+      order_type: order.order_type,
+      provider_id: dispatchRecipient.value?.recipient_id || order.company_id,
+      warehouse_id: selectedWarehouseId.value,
+      products: order.details.map((d) => ({
+        code: d.code,
+        product: d.product,
+        unit: d.unit,
+        quantity: d.quantity_requested,
+        price: d.estimated_cost,
+        subtotal: d.subtotal,
+      })),
+      subtotal: order.financial_summary.purchase_subtotal,
+      vat: order.financial_summary.vat,
+      discount: order.financial_summary.discount,
+      total: order.financial_summary.purchase_total,
+      payment_method: 'Cash',
+      created_by: user?.id || order.user_id,
+      company_id: order.company_id,
+    }
+    const created = await saleStore.create(saleData)
+    if (created) {
+      saleNotification.value = `Venta ${saleNumber} registrada automáticamente.`
+      showPrintReceipt.value = true
+    } else {
+      dialogResult.value = { success: false, error: saleStore.error || 'Error al registrar la venta automática.' }
+      showDialog.value = true
+    }
+  } else {
+    resetForm()
+  }
+}
+
+function onPrintReceipt(print: boolean): void {
+  showPrintReceipt.value = false
+  if (print) {
+    const order = createdOrder.value!
+    const saleNumber = `VEN-${order.order_numeric}`
+    const company = companyStore.selectedCompany
+    const clientId = dispatchRecipient.value?.recipient_id || ''
+    generateInvoicePDF({
+      saleNumber,
+      createdAt: new Date().toISOString().slice(0, 10),
+      paymentMethod: 'Cash',
+      subtotal: order.financial_summary.purchase_subtotal,
+      VAT: order.financial_summary.vat,
+      discount: order.financial_summary.discount,
+      total: order.financial_summary.purchase_total,
+      company: company
+        ? {
+            name: company.business_name,
+            address: '',
+            phone: company.phone || company.cellphone,
+            email: company.email,
+            logoBase64: '',
+          }
+        : undefined,
+      client: {
+        name: order.requested_by || clientId,
+        document: clientId,
+        email: '',
+        phone: '',
+      },
+      products: order.details.map((d) => ({
+        name: d.product,
+        quantity: d.quantity_requested,
+        unitPrice: d.estimated_cost,
+        subtotal: d.subtotal,
+      })),
+    })
+    saleNotification.value = `Comprobante ${saleNumber}.pdf generado y descargado.`
+  }
+  resetForm()
 }
 
 async function deductEntryQuantities(): Promise<boolean> {
@@ -282,6 +369,9 @@ function resetForm(): void {
   selectedEntries.value = []
   selectedWarehouseId.value = ''
   createdOrder.value = null
+  saleNotification.value = ''
+  showRegisterSale.value = false
+  showPrintReceipt.value = false
   orderStore.clearError()
   shipmentStore.clearError()
   clearQuantityErrors()
@@ -464,55 +554,20 @@ function formatCOP(value: number): string {
 
     </form>
 
-    <!-- Result dialog -->
+    <!-- Error dialog -->
     <Teleport to="body">
-      <div v-if="showDialog && dialogResult" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+      <div v-if="showDialog && dialogResult && !dialogResult.success" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
         <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 350 } }" class="relative w-full max-w-md rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
-          <!-- Success -->
-          <template v-if="dialogResult.success">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20">
-              <svg class="h-8 w-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mb-2 text-center text-xl font-bold text-slate-900 dark:text-white">¡Orden registrada!</h3>
-            <p class="mb-1 text-center text-sm text-slate-600 dark:text-slate-300">
-              <span class="font-semibold">{{ dialogResult.order.order_numeric }}</span> — {{ formatCOP(dialogResult.order.financial_summary.purchase_total) }}
-            </p>
-            <p v-if="dialogResult.shipment" class="mb-2 mt-2 inline-flex items-center gap-1.5 rounded-full bg-cosmic-100 px-3 py-1 text-xs font-medium text-white dark:bg-cosmic-500/20">
-              <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-              Despacho automático creado: <span class="font-semibold">{{ dialogResult.shipment.shipment_number }}</span>
-            </p>
-            <p class="mb-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-              Cada orden que registras es un paso firme hacia el control total de tu inventario.<br />
-              <span class="font-medium text-stellar-600 dark:text-stellar-400">La organización de hoy construye la eficiencia del mañana.</span>
-            </p>
-          </template>
-
-          <!-- Error -->
-          <template v-else>
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20">
-              <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="mb-2 text-center text-xl font-bold text-slate-900 dark:text-white">No se pudo registrar la orden</h3>
-            <p class="mb-1 text-center text-sm text-slate-600 dark:text-slate-300">{{ dialogResult.error }}</p>
-            <p class="mb-6 text-center text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-              Hasta los equipos más experimentados enfrentan desafíos técnicos.<br />
-              <span class="font-medium text-stellar-600 dark:text-stellar-400">Revisa los datos y vuelve a intentarlo — el control de tu negocio está cerca.</span>
-            </p>
-          </template>
-
-          <!-- Buttons -->
-          <div class="flex flex-col gap-2 sm:flex-row sm:justify-center">
-            <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="resetForm">
-              Crear una orden nueva
-            </button>
-            <button type="button" class="rounded-xl bg-stellar-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-stellar-600" @click="goToList">
-              Ir a la lista de órdenes
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20">
+            <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-center text-xl font-bold text-slate-900 dark:text-white">No se pudo registrar la orden</h3>
+          <p class="mb-1 text-center text-sm text-slate-600 dark:text-slate-300">{{ dialogResult.error }}</p>
+          <div class="flex justify-center">
+            <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="showDialog = false">
+              Cerrar
             </button>
           </div>
         </div>
@@ -536,14 +591,14 @@ function formatCOP(value: number): string {
     <AutomationConfirmModal
       v-if="showAutomationConfirm"
       @confirm="onAutomationConfirm"
-      @close="showAutomationConfirm = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
+      @close="showAutomationConfirm = false; showRegisterSale = true"
     />
 
     <WinerySelectionModal
       v-if="showWineryModal"
       :company-id="form.company_id"
       @confirm="onWinerySelected"
-      @close="showWineryModal = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
+      @close="showWineryModal = false; showRegisterSale = true"
     />
 
     <DispatchSummaryModal
@@ -552,8 +607,59 @@ function formatCOP(value: number): string {
       :warehouse-id="selectedWarehouseId"
       :selected-entry-ids="selectedEntryIds"
       @confirm="onDispatchConfirm"
-      @close="showDispatchSummary = false; dialogResult = { success: true, order: createdOrder! }; showDialog = true"
+      @close="showDispatchSummary = false; showRegisterSale = true"
     />
+
+    <!-- Modal 1: Register sale automatically -->
+    <Teleport to="body">
+      <div v-if="showRegisterSale" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+        <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 300 } }" class="relative w-full max-w-sm rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20">
+            <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-center text-xl font-bold text-slate-900 dark:text-white">Registrar venta</h3>
+          <p class="mb-6 text-center text-sm text-slate-600 dark:text-slate-300">
+            El despacho se procesó correctamente. ¿Deseas registrar la venta automáticamente?
+          </p>
+          <div class="flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="onRegisterSale(false)">
+              No, omitir
+            </button>
+            <button type="button" class="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-600" @click="onRegisterSale(true)">
+              Sí, registrar venta
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
+
+    <!-- Modal 2: Print receipt -->
+    <Teleport to="body">
+      <div v-if="showPrintReceipt" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
+        <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 300 } }" class="relative w-full max-w-sm rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20">
+            <svg class="h-8 w-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="mb-2 text-center text-xl font-bold text-slate-900 dark:text-white">Venta registrada</h3>
+          <p class="mb-6 text-center text-sm text-slate-600 dark:text-slate-300">
+            La venta se registró correctamente.
+            ¿Deseas imprimir el comprobante ahora o hacerlo manualmente desde el listado de ventas?
+          </p>
+          <div class="flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="onPrintReceipt(false)">
+              Hacerlo desde ventas
+            </button>
+            <button type="button" class="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-600" @click="onPrintReceipt(true)">
+              Imprimir comprobante ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
