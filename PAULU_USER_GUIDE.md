@@ -32,6 +32,7 @@ Construida con **Vue 3**, **TypeScript**, **Pinia** y **TailwindCSS 4**.
 | Router | **Vue Router 5.1** | *Navegadores Guild* — rutas sagradas entre vistas |
 | HTTP | **Axios 1.17** con interceptor Bearer token | *Gurney Halleck* — mensajero leal con sello Atreides |
 | Animación | **@vueuse/motion 3** | *Weirding Way* — movimiento con propósito |
+| Markdown | **vue-markdown-render** | *Los pergaminos de Irulan* — documentos formateados |
 
 ---
 
@@ -987,6 +988,94 @@ axiosInstance.interceptors.request.use((config) => {
   return config
 })
 ```
+
+---
+
+## Asistente Paulu — *La Voz de Paulu Areides*
+
+> *"El asistente que consulta datos reales del sistema para responderte con
+> información actualizada y precisa."*
+
+### Acceso
+
+Haz clic en el **botón cerebral flotante** (esquina inferior derecha) para abrir
+el chat del asistente Paulu.
+
+### Mensaje de bienvenida
+
+Al iniciar, Paulu se presenta automáticamente:
+
+```
+Bienvenido. Soy Paulu, y estoy aquí para ayudarte a mantener el orden
+en lo que más importa: el flujo de tu negocio.
+
+En mi casa aprendemos que el control de los recursos no es solo una tarea —
+es la base sobre la que se sostiene cualquier operación.
+
+¿Por dónde quieres empezar?
+• Inventario — Stock, Entradas y Salidas
+• Órdenes — Estado y seguimiento
+• Finanzas — Márgenes y rentabilidad
+• Productos — Más vendidos y rotación
+```
+
+### Características
+
+| Característica | Descripción |
+|---|---|
+| **Renderizado Markdown** | Tablas, listas, encabezados, código, blockquotes |
+| **Sonido de campana** | Notificación sonora al recibir respuesta |
+| **Consulta de datos** | Accede a productos, órdenes, entradas y salidas |
+| **Formato optimizado** | Párrafos cortos, negritas para datos principales |
+| **Pantalla completa** | Botón para expandir/contraer el chat |
+| **Modelos locales** | Compatible con Ollama, LM Studio, vLLM |
+
+### Formato de respuesta
+
+- **Prosa directa** para datos simples; **tabla** para 4+ registros
+- **Párrafos** de máximo 3 líneas; una idea por párrafo
+- **Negritas** solo para el dato principal; máximo 2 por mensaje
+- **Emojis** como marcadores de sección, no como decoración
+- **Cierre** siempre con pregunta o invitación a profundizar
+- **Sin** saludos largos ni frases de cierre formales
+
+### Ejemplos de uso
+
+```
+Usuario: ¿Qué productos hay?
+Paulu:   Aquí tienes los productos registrados:
+
+         | # | Nombre | Precio | Stock | Margen |
+         |---|--------|--------|-------|--------|
+         | 1 | Café especial | $12.000 | 45 | 35% |
+         | 2 | Té verde | $8.500 | 30 | 28% |
+
+         ¿Quieres ver el detalle de alguno?
+
+Usuario: Muéstrame la orden 5
+Paulu:   La orden #5 está en estado **pendiente** con un total de $45.000.
+         Fue registrada el 15 de junio de 2026.
+
+         ¿Necesitas aprobarla o editarla?
+```
+
+### Configuración del modelo
+
+Para usar el asistente, necesitas configurar un modelo de IA en
+**Modelos de IA** del menú lateral:
+
+1. Selecciona un proveedor (Gemini, Codex, OpenCloud, Kimi o Local)
+2. Ingresa tu API Key o URL del servidor local
+3. Verifica la conexión
+4. El modelo queda listo para usar
+
+### Restricciones del asistente
+
+- **Dominio permitido**: Solo finanzas e inventario
+- **Sin código**: No genera código de programación
+- **Sin temas externos**: No responde sobre salud, literatura o filosofía
+- **Sin mencionar API**: No revela cómo obtiene los datos
+- **Sin IDs internos**: Usa numeración secuencial (1, 2, 3...)
 
 ---
 

@@ -11,6 +11,8 @@ interface AIModel {
   apiKey: string
   customModelName?: string
   baseUrl?: string
+  contextWindow?: number
+  maxTokens?: number
   verifiedAt: string | null
 }
 
@@ -48,11 +50,17 @@ const PROVIDER_META: Record<string, {
     benefits: ['Cualquier API compatible con OpenAI', 'Control total del endpoint', 'Auto-gestionado'],
     helpUrl: '',
   },
+  local: {
+    id: 'local', label: 'Modelo Local', desc: 'Servidor local (Ollama, LM Studio, vLLM, etc.)',
+    benefits: ['Sin costo por uso', 'Datos nunca salen de tu máquina', 'Compatible con Ollama, LM Studio, vLLM, text-generation-webui'],
+    helpUrl: '',
+  },
 }
 
 const MODEL_OPTIONS: Record<string, { value: string; label: string; badge?: string }[]> = {
   gemini: [
     { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash', badge: 'Recomendado' },
+    { value: 'gemini-3.5-flash', label: 'Gemini 3.5 Flash' },
     { value: 'gemini-2.0-pro', label: 'Gemini 2.0 Pro' },
     { value: 'gemini-1.5-pro', label: 'Gemini 1.5 Pro' },
     { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
@@ -77,7 +85,7 @@ const MODEL_OPTIONS: Record<string, { value: string; label: string; badge?: stri
   ],
 }
 
-const OTHER_KEYS = ['codex', 'opencloud', 'kimi', 'custom'] as const
+const OTHER_KEYS = ['codex', 'opencloud', 'kimi', 'custom', 'local'] as const
 type OtherKey = typeof OTHER_KEYS[number]
 
 const RECOMMENDED = PROVIDER_META.gemini
@@ -103,13 +111,21 @@ const customModelName = ref('')
 const baseUrl = ref('')
 const acceptedTerms = ref(false)
 
+const localModelName = ref('')
+const localBaseUrl = ref('http://localhost:11434')
+const localContextWindow = ref(4096)
+const localMaxTokens = ref(2048)
+const localApiKey = ref('')
+
 const otherOpen = ref(false)
 const expandedOther = ref<OtherKey | null>(null)
 
 const isCustom = computed(() => selectedProvider.value === 'custom')
+const isLocal = computed(() => selectedProvider.value === 'local')
+const needsUrl = computed(() => isCustom.value || isLocal.value)
 
 watch(selectedProvider, (p) => {
-  if (p && !isCustom.value) {
+  if (p && !isCustom.value && !isLocal.value) {
     const options = MODEL_OPTIONS[p]
     if (options && options.length > 0) {
       selectedModel.value = options[0].value
@@ -120,6 +136,7 @@ watch(selectedProvider, (p) => {
 // Validation
 const apiKeyTouched = ref(false)
 const apiKeyValid = computed(() => {
+  if (isLocal.value) return true
   if (!apiKey.value) return false
   const p = selectedProvider.value
   if (p === 'gemini') return apiKey.value.length >= 10
@@ -128,11 +145,16 @@ const apiKeyValid = computed(() => {
 })
 
 const customModelValid = computed(() => !isCustom.value || customModelName.value.length >= 2)
-const baseUrlValid = computed(() => !isCustom.value || baseUrl.value.startsWith('http'))
+const baseUrlValid = computed(() => !needsUrl.value || baseUrl.value.startsWith('http'))
+const localModelValid = computed(() => !isLocal.value || localModelName.value.length >= 2)
+const localUrlValid = computed(() => !isLocal.value || localBaseUrl.value.startsWith('http'))
 
 const stepValid = computed(() => {
   if (step.value === 1) return selectedProvider.value !== null
   if (step.value === 2) {
+    if (isLocal.value) {
+      return localModelName.value.length >= 2 && localBaseUrl.value.startsWith('http')
+    }
     if (!apiKey.value) return false
     if (isCustom.value && (!customModelName.value || !baseUrl.value)) return false
     return true
@@ -164,6 +186,11 @@ function resetForm() {
   apiKey.value = ''
   customModelName.value = ''
   baseUrl.value = ''
+  localModelName.value = ''
+  localBaseUrl.value = 'http://localhost:11434'
+  localContextWindow.value = 4096
+  localMaxTokens.value = 2048
+  localApiKey.value = ''
   acceptedTerms.value = false
   apiKeyTouched.value = false
   otherOpen.value = false
@@ -176,8 +203,13 @@ const showVerification = ref(false)
 const verificationResult = ref<{ success: boolean; message: string } | null>(null)
 
 async function handleSave() {
-  if (!selectedProvider.value || !apiKey.value) return
-  if (isCustom.value && (!customModelName.value || !baseUrl.value)) return
+  if (!selectedProvider.value) return
+  if (isLocal.value) {
+    if (!localModelName.value || !localBaseUrl.value) return
+  } else {
+    if (!apiKey.value) return
+    if (isCustom.value && (!customModelName.value || !baseUrl.value)) return
+  }
   showVerification.value = true
   verificationResult.value = null
   runVerification()
@@ -189,23 +221,29 @@ async function runVerification() {
   try {
     const result = await verifyAiModel({
       provider: selectedProvider.value!,
-      apiKey: apiKey.value,
-      modelName: isCustom.value ? customModelName.value : selectedModel.value,
-      customModelName: isCustom.value ? customModelName.value : undefined,
-      baseUrl: isCustom.value ? baseUrl.value : undefined,
+      apiKey: isLocal.value ? (localApiKey.value || 'no-key') : apiKey.value,
+      modelName: isLocal.value ? localModelName.value : (isCustom.value ? customModelName.value : selectedModel.value),
+      customModelName: isLocal.value ? localModelName.value : (isCustom.value ? customModelName.value : undefined),
+      baseUrl: (isCustom.value || isLocal.value) ? (isLocal.value ? localBaseUrl.value : baseUrl.value) : undefined,
+      contextWindow: isLocal.value ? localContextWindow.value : undefined,
+      maxTokens: isLocal.value ? localMaxTokens.value : undefined,
     })
     verificationResult.value = result
     if (result.success) {
       const model: AIModel = {
         id: crypto.randomUUID(),
         provider: selectedProvider.value!,
-        label: isCustom.value
-          ? customModelName.value
-          : PROVIDER_META[selectedProvider.value!].label,
-        modelName: isCustom.value ? customModelName.value : selectedModel.value,
-        apiKey: apiKey.value,
-        customModelName: isCustom.value ? customModelName.value : undefined,
-        baseUrl: isCustom.value ? baseUrl.value : undefined,
+        label: isLocal.value
+          ? localModelName.value
+          : isCustom.value
+            ? customModelName.value
+            : PROVIDER_META[selectedProvider.value!].label,
+        modelName: isLocal.value ? localModelName.value : (isCustom.value ? customModelName.value : selectedModel.value),
+        apiKey: isLocal.value ? (localApiKey.value || 'no-key') : apiKey.value,
+        customModelName: isLocal.value ? localModelName.value : (isCustom.value ? customModelName.value : undefined),
+        baseUrl: (isCustom.value || isLocal.value) ? (isLocal.value ? localBaseUrl.value : baseUrl.value) : undefined,
+        contextWindow: isLocal.value ? localContextWindow.value : undefined,
+        maxTokens: isLocal.value ? localMaxTokens.value : undefined,
         verifiedAt: new Date().toISOString(),
       }
       models.value.push(model)
@@ -248,7 +286,11 @@ const providerLabel = computed(() => selectedProvider.value ? PROVIDER_META[sele
 
 const stepLabel = computed(() => {
   if (step.value === 1) return 'Seleccionar proveedor'
-  if (step.value === 2) return isCustom.value ? 'Configurar modelo' : 'Configurar API Key'
+  if (step.value === 2) {
+    if (isLocal.value) return 'Configurar modelo local'
+    if (isCustom.value) return 'Configurar modelo'
+    return 'Configurar API Key'
+  }
   return 'Revisar y guardar'
 })
 </script>
@@ -390,8 +432,8 @@ const stepLabel = computed(() => {
         <button type="button" class="ml-auto text-xs text-violet-400 transition hover:text-violet-300" @click="goToStep(1)">Cambiar</button>
       </div>
 
-      <!-- Model selector (non-custom) -->
-      <div v-if="!isCustom && selectedProvider && MODEL_OPTIONS[selectedProvider]">
+      <!-- Model selector (non-custom, non-local) -->
+      <div v-if="!isCustom && !isLocal && selectedProvider && MODEL_OPTIONS[selectedProvider]">
         <label class="mb-2 block text-sm font-medium text-white">Modelo <span class="text-violet-400">*</span></label>
         <div class="grid gap-2 sm:grid-cols-2">
           <button
@@ -428,8 +470,54 @@ const stepLabel = computed(() => {
         </div>
       </div>
 
-      <!-- API Key -->
-      <div>
+      <!-- Local model fields -->
+      <template v-if="isLocal">
+        <div class="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+            <span class="text-xs font-medium text-emerald-300">Modelo local detectado &mdash; los datos permanecen en tu dispositivo</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">URL del servidor <span class="text-violet-400">*</span></label>
+          <input v-model="localBaseUrl" type="url" placeholder="http://localhost:11434"
+            class="w-full rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 transition focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20" />
+          <p class="mt-1.5 text-[11px] text-slate-500">Ollama: <code class="text-slate-400">http://localhost:11434</code> &middot; LM Studio: <code class="text-slate-400">http://localhost:1234</code> &middot; vLLM: <code class="text-slate-400">http://localhost:8000</code></p>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">Nombre del modelo <span class="text-violet-400">*</span></label>
+          <input v-model="localModelName" type="text" placeholder="Ej: llama3, mistral, codellama"
+            class="w-full rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 transition focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20" />
+          <p class="mt-1.5 text-[11px] text-slate-500">El nombre exacto del modelo como aparece en tu servidor (ej: <code class="text-slate-400">llama3:8b</code>, <code class="text-slate-400">mistral</code>, <code class="text-slate-400">codellama:34b</code>)</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-2 block text-sm font-medium text-white">Context Window</label>
+            <input v-model.number="localContextWindow" type="number" min="512" max="1000000" step="512"
+              class="w-full rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3.5 text-sm text-white outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20" />
+            <p class="mt-1.5 text-[11px] text-slate-500">Tamaño máximo de contexto en tokens</p>
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-medium text-white">Max Tokens</label>
+            <input v-model.number="localMaxTokens" type="number" min="1" max="100000" step="1"
+              class="w-full rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3.5 text-sm text-white outline-none transition focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20" />
+            <p class="mt-1.5 text-[11px] text-slate-500">Máximo de tokens a generar por respuesta</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">API Key <span class="text-slate-500">(opcional)</span></label>
+          <input v-model="localApiKey" type="password" placeholder="Obligatoria si tu servidor requiere autenticación"
+            class="w-full rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3.5 text-sm text-white outline-none placeholder:text-slate-500 transition focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20" />
+          <p class="mt-1.5 text-[11px] text-slate-500">La mayoría de servidores locales no requieren API Key. Déjalo vacío si no necesitas una.</p>
+        </div>
+      </template>
+
+      <!-- API Key (non-local) -->
+      <div v-if="!isLocal">
         <label class="mb-2 block text-sm font-medium text-white">API Key <span class="text-violet-400">*</span></label>
         <div class="relative">
           <input
@@ -449,7 +537,7 @@ const stepLabel = computed(() => {
         </p>
       </div>
 
-      <!-- Custom fields -->
+      <!-- Custom fields (non-local) -->
       <template v-if="isCustom">
         <div>
           <label class="mb-2 block text-sm font-medium text-white">Nombre del modelo <span class="text-violet-400">*</span></label>
@@ -478,6 +566,7 @@ const stepLabel = computed(() => {
                  selectedProvider === 'codex' ? 'Inicia sesión en platform.openai.com, ve a API keys y crea una nueva clave secreta.' :
                  selectedProvider === 'opencloud' ? 'Inicia sesión en OpenRouter, ve a Keys y genera una nueva clave.' :
                  selectedProvider === 'kimi' ? 'Inicia sesión en la plataforma de Moonshot, ve a API Keys y crea una nueva.' :
+                 selectedProvider === 'local' ? 'Asegúrate de que tu servidor local esté corriendo. Ollama usa el puerto 11434, LM Studio el 1234, vLLM el 8000.' :
                  'Consulta la documentación de tu proveedor para obtener una API Key.' }}
             </p>
             <a v-if="selectedProvider && PROVIDER_META[selectedProvider]?.helpUrl" :href="PROVIDER_META[selectedProvider].helpUrl" target="_blank" class="mt-2 inline-flex items-center gap-1 text-xs text-violet-400 transition hover:text-violet-300">
@@ -500,15 +589,33 @@ const stepLabel = computed(() => {
             <span class="text-sm text-slate-400">Proveedor</span>
             <span class="text-sm font-medium text-white">{{ providerLabel }}</span>
           </div>
-          <div v-if="!isCustom" class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+          <div v-if="!isCustom && !isLocal" class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
             <span class="text-sm text-slate-400">Modelo</span>
             <span class="text-sm font-medium text-white">{{ selectedModel }}</span>
           </div>
-          <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
-            <span class="text-sm text-slate-400">API Key</span>
-            <span class="text-sm font-medium text-white">{{ maskKey(apiKey) }}</span>
-          </div>
-          <template v-if="isCustom">
+          <template v-if="isLocal">
+            <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+              <span class="text-sm text-slate-400">Modelo</span>
+              <span class="text-sm font-medium text-white">{{ localModelName }}</span>
+            </div>
+            <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+              <span class="text-sm text-slate-400">URL del servidor</span>
+              <span class="text-sm font-medium text-white break-all text-right max-w-[60%]">{{ localBaseUrl }}</span>
+            </div>
+            <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+              <span class="text-sm text-slate-400">Context Window</span>
+              <span class="text-sm font-medium text-white">{{ localContextWindow.toLocaleString() }} tokens</span>
+            </div>
+            <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+              <span class="text-sm text-slate-400">Max Tokens</span>
+              <span class="text-sm font-medium text-white">{{ localMaxTokens.toLocaleString() }}</span>
+            </div>
+            <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+              <span class="text-sm text-slate-400">API Key</span>
+              <span class="text-sm font-medium text-white">{{ localApiKey ? maskKey(localApiKey) : 'No requerida' }}</span>
+            </div>
+          </template>
+          <template v-else-if="isCustom">
             <div class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
               <span class="text-sm text-slate-400">Modelo</span>
               <span class="text-sm font-medium text-white">{{ customModelName }}</span>
@@ -518,6 +625,10 @@ const stepLabel = computed(() => {
               <span class="text-sm font-medium text-white break-all text-right max-w-[60%]">{{ baseUrl }}</span>
             </div>
           </template>
+          <div v-if="!isLocal" class="flex items-center justify-between rounded-xl bg-slate-800/40 px-4 py-3">
+            <span class="text-sm text-slate-400">API Key</span>
+            <span class="text-sm font-medium text-white">{{ maskKey(apiKey) }}</span>
+          </div>
         </div>
       </div>
 
@@ -525,8 +636,14 @@ const stepLabel = computed(() => {
       <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 bg-slate-900/40 px-4 py-3 transition hover:border-white/20">
         <input type="checkbox" v-model="acceptedTerms" class="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-slate-800 text-violet-500 focus:ring-violet-500/30" />
         <span class="text-sm text-slate-400">
-          Confirmo que la API Key ingresada es correcta y acepto que Paulu la use para realizar consultas a
-          <strong class="text-slate-200">{{ providerLabel }}</strong>.
+          <template v-if="isLocal">
+            Confirmo que el servidor local est&aacute; corriendo y acepto que Paulu use
+            <strong class="text-slate-200">{{ localModelName }}</strong> para realizar consultas de forma local.
+          </template>
+          <template v-else>
+            Confirmo que la API Key ingresada es correcta y acepto que Paulu la use para realizar consultas a
+            <strong class="text-slate-200">{{ providerLabel }}</strong>.
+          </template>
         </span>
       </label>
     </div>
@@ -591,7 +708,13 @@ const stepLabel = computed(() => {
             <p class="truncate text-sm font-medium text-white">{{ model.label }}</p>
             <p class="text-xs text-slate-500">
               <span class="text-violet-400">{{ model.modelName }}</span>
-              &middot; {{ maskKey(model.apiKey) }}
+              <template v-if="model.provider === 'local'">
+                &middot; <span class="text-emerald-400">{{ model.baseUrl }}</span>
+                <template v-if="model.contextWindow"> &middot; {{ model.contextWindow?.toLocaleString() }} ctx</template>
+              </template>
+              <template v-else>
+                &middot; {{ maskKey(model.apiKey) }}
+              </template>
             </p>
           </div>
           <div class="flex items-center gap-2">

@@ -1,6 +1,6 @@
-export type AiProvider = 'gemini' | 'codex' | 'opencloud' | 'kimi' | 'custom'
+export type AiProvider = 'gemini' | 'codex' | 'opencloud' | 'kimi' | 'custom' | 'local'
 
-const PROVIDER_ENDPOINTS: Record<Exclude<AiProvider, 'custom' | 'gemini'>, string> = {
+const PROVIDER_ENDPOINTS: Record<Exclude<AiProvider, 'custom' | 'gemini' | 'local'>, string> = {
   codex: 'https://api.openai.com/v1/chat/completions',
   opencloud: 'https://openrouter.ai/api/v1/chat/completions',
   kimi: 'https://api.moonshot.cn/v1/chat/completions',
@@ -12,6 +12,8 @@ interface VerifyParams {
   modelName?: string
   customModelName?: string
   baseUrl?: string
+  contextWindow?: number
+  maxTokens?: number
 }
 
 interface VerifyResult {
@@ -74,5 +76,8 @@ export async function verifyAiModel(params: VerifyParams): Promise<VerifyResult>
     case 'custom':
       if (!baseUrl) return { success: false, message: 'Se requiere la URL base del modelo personalizado.' }
       return verifyOpenAiCompatible(baseUrl, apiKey, customModelName || modelName)
+    case 'local':
+      if (!baseUrl) return { success: false, message: 'Se requiere la URL base del servidor local.' }
+      return verifyOpenAiCompatible(baseUrl, apiKey || 'no-key', customModelName || modelName)
   }
 }

@@ -25,6 +25,7 @@ desierto). Construido con **Vue 3.5**, transforma el caos del inventario en orde
 | Router | Vue Router 5.1 | *Navegadores Guild* |
 | HTTP | Axios 1.17 | *Gurney Halleck* |
 | Animación | @vueuse/motion 3 | *Weirding Way* |
+| Markdown | vue-markdown-render | *Los pergaminos de Irulan* |
 | IA | Servicio de verificación + wizard de modelos | *Mentat — cálculo estratégico* |
 | Persistencia IA | localStorage (`ai-models`) | *Memoria genética de Paulu Areides* |
 
@@ -86,6 +87,30 @@ a diferentes proveedores de lenguaje natural:
 | Chat modal con asistente | `src/App.vue` | *La Voz de Paulu — consejo del Mentat* |
 | Panel de configuración wizard | `src/presentation/components/ai/AIModelsPanel.vue` | *Formación del Mentat en 3 pasos* |
 | Servicio de verificación | `src/application/services/aiService.ts` | *Prueba Bene Gesserit: ¿es auténtica la API Key?* |
+
+### Asistente Paulu — *La Voz de Paulu Areides*
+
+El asistente Paulu es un chatbot especializado en finanzas e inventario que:
+
+- **Inicia conversación** con mensaje de bienvenida y opciones de navegación
+- **Renderiza Markdown** en respuestas (tablas, listas, encabezados, código)
+- **Sonido de campana** de máquina de escribir al recibir respuesta
+- **Conexión con API real** — consulta productos, órdenes, entradas y salidas
+- **Formato de respuesta** optimizado para chat (párrafos cortos, negritas, cierre con pregunta)
+- **Expande/contrae** el chat a pantalla completa
+- **Modelos locales** compatibles con OpenAI API (Ollama, LM Studio, vLLM)
+
+### Modelo Local — *El Mentat del Sietch*
+
+Conexión directa a modelos locales sin dependencia de servicios externos:
+
+| Característica | Descripción |
+|---|---|
+| URL personalizada | Configura la dirección de tu servidor local |
+| Nombre del modelo | Especifica el modelo a utilizar |
+| Ventana de contexto | Tamaño máximo de contexto en tokens |
+| Máximo de tokens | Límite de respuesta |
+| API Key opcional | Autenticación si es requerida |
 
 El wizard de 3 pasos (proveedor → API Key → verificación) sigue los principios de
 carga cognitiva reducida que Paulu Areides enseñó a los fremen: **un paso a la vez,

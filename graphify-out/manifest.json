@@ -563,5 +563,845 @@
     "mtime": 1781751001.938712,
     "ast_hash": "d9d2bb0456fc9ce9795f8931e818fd18",
     "semantic_hash": ""
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\settings.json": {
+    "mtime": 1781392470.931473,
+    "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
+    "semantic_hash": "7bf81dca0376bde3a32244b82bc7cbc0"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.vscode\\extensions.json": {
+    "mtime": 1779738394.5311637,
+    "ast_hash": "886c161c2f2d9388473a64033e7d1931",
+    "semantic_hash": "886c161c2f2d9388473a64033e7d1931"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\package.json": {
+    "mtime": 1781871509.9009185,
+    "ast_hash": "db9cfdfa1f8a85aef1f84b2c3253df84",
+    "semantic_hash": "db9cfdfa1f8a85aef1f84b2c3253df84"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\skills-lock.json": {
+    "mtime": 1781925812.3635967,
+    "ast_hash": "92ece456ebb242c228a50fcf155f5a5d",
+    "semantic_hash": "92ece456ebb242c228a50fcf155f5a5d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\App.vue": {
+    "mtime": 1782015341.8352115,
+    "ast_hash": "8ce3a97b3b5140dbcf57f2fc9642fa49",
+    "semantic_hash": "8ce3a97b3b5140dbcf57f2fc9642fa49"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\dtos\\LoginDto.ts": {
+    "mtime": 1780981007.3207352,
+    "ast_hash": "4ee06b15fc8a7b169322f9a16d7e935f",
+    "semantic_hash": "4ee06b15fc8a7b169322f9a16d7e935f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\dtos\\RegisterDto.ts": {
+    "mtime": 1780981007.4545312,
+    "ast_hash": "2432ed23475ac823db5f01097974c7ec",
+    "semantic_hash": "2432ed23475ac823db5f01097974c7ec"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\aiService.ts": {
+    "mtime": 1782016710.3286674,
+    "ast_hash": "bb11f2da728a4e051070c6537464ec39",
+    "semantic_hash": "bb11f2da728a4e051070c6537464ec39"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\companyService.ts": {
+    "mtime": 1781996202.5181913,
+    "ast_hash": "f6f534acbef8f05588af3910c21e6798",
+    "semantic_hash": "f6f534acbef8f05588af3910c21e6798"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\economicActivityService.ts": {
+    "mtime": 1781533329.2347183,
+    "ast_hash": "6b80a236aae25ae40dd1ea9734dfec8d",
+    "semantic_hash": "6b80a236aae25ae40dd1ea9734dfec8d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\historyService.ts": {
+    "mtime": 1781844075.6582065,
+    "ast_hash": "a16ad9f4349597ebc99485ee3a7fa7fa",
+    "semantic_hash": "a16ad9f4349597ebc99485ee3a7fa7fa"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\mainAddressService.ts": {
+    "mtime": 1781533321.490923,
+    "ast_hash": "80cf69cb85a51daacf6e5080a0a1c39f",
+    "semantic_hash": "80cf69cb85a51daacf6e5080a0a1c39f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\orderService.ts": {
+    "mtime": 1781872387.4221578,
+    "ast_hash": "7fb9494a8fcbbe903db0287ddd5778c4",
+    "semantic_hash": "7fb9494a8fcbbe903db0287ddd5778c4"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\productEntryService.ts": {
+    "mtime": 1781839432.3683128,
+    "ast_hash": "3cfc8bc8590bb65dc7cf43cf82a57ce2",
+    "semantic_hash": "3cfc8bc8590bb65dc7cf43cf82a57ce2"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\productService.ts": {
+    "mtime": 1781540509.881591,
+    "ast_hash": "84e8fb6b0e728e6694f710842cae1d20",
+    "semantic_hash": "84e8fb6b0e728e6694f710842cae1d20"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\providerService.ts": {
+    "mtime": 1781494995.1540234,
+    "ast_hash": "655a8bbdb2e3840f8bbaa6d3233e9548",
+    "semantic_hash": "655a8bbdb2e3840f8bbaa6d3233e9548"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\saleService.ts": {
+    "mtime": 1781958266.2769778,
+    "ast_hash": "8c5781b2e0ae4f7bb97c603711e1dd03",
+    "semantic_hash": "8c5781b2e0ae4f7bb97c603711e1dd03"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\shipmentService.ts": {
+    "mtime": 1781635916.5682774,
+    "ast_hash": "b7e47d1001ed3227b8b12d64d9111657",
+    "semantic_hash": "b7e47d1001ed3227b8b12d64d9111657"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\taxInformationService.ts": {
+    "mtime": 1781533325.4771163,
+    "ast_hash": "e92b77b891d0189faf13b91209787b00",
+    "semantic_hash": "e92b77b891d0189faf13b91209787b00"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\userService.ts": {
+    "mtime": 1781843515.1259365,
+    "ast_hash": "d46d35745f40f56cb18226ea623a6132",
+    "semantic_hash": "d46d35745f40f56cb18226ea623a6132"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\services\\wineryService.ts": {
+    "mtime": 1781539222.0741863,
+    "ast_hash": "bf529343462321e7c1fa0c7630c5938a",
+    "semantic_hash": "bf529343462321e7c1fa0c7630c5938a"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\use-cases\\LoginUseCase.ts": {
+    "mtime": 1781238151.351403,
+    "ast_hash": "79ba933feaac7691278b5e223c49f61b",
+    "semantic_hash": "79ba933feaac7691278b5e223c49f61b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\application\\use-cases\\RegisterUseCase.ts": {
+    "mtime": 1780981095.4570394,
+    "ast_hash": "7b8a69f91d801c534fb42fb9e40366cb",
+    "semantic_hash": "7b8a69f91d801c534fb42fb9e40366cb"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\entities\\AuthSession.ts": {
+    "mtime": 1780981006.736225,
+    "ast_hash": "56a7bb532759f9ac0694943daf3bb473",
+    "semantic_hash": "56a7bb532759f9ac0694943daf3bb473"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\entities\\HistoryEntry.ts": {
+    "mtime": 1781843785.2048643,
+    "ast_hash": "50504ba171babf212695b4207c09236a",
+    "semantic_hash": "50504ba171babf212695b4207c09236a"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\entities\\User.ts": {
+    "mtime": 1781999098.954024,
+    "ast_hash": "5b99665ba96878ca5aac1b1b2aa6feb4",
+    "semantic_hash": "5b99665ba96878ca5aac1b1b2aa6feb4"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\repositories\\IAuthRepository.ts": {
+    "mtime": 1780981007.024498,
+    "ast_hash": "3bddb0750b0cf7a4cb8c52262a721e20",
+    "semantic_hash": "3bddb0750b0cf7a4cb8c52262a721e20"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\value-objects\\LoginCredentials.ts": {
+    "mtime": 1780981007.163933,
+    "ast_hash": "b7b073d397f413a816bb89a77da832ec",
+    "semantic_hash": "b7b073d397f413a816bb89a77da832ec"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\domain\\value-objects\\RegisterData.ts": {
+    "mtime": 1780981007.3038907,
+    "ast_hash": "80d282828fe76aa0fbcf93f4eda97d8b",
+    "semantic_hash": "80d282828fe76aa0fbcf93f4eda97d8b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\di\\container.ts": {
+    "mtime": 1781236595.8933167,
+    "ast_hash": "7c5edf05e12a8390c15a31210cbab328",
+    "semantic_hash": "7c5edf05e12a8390c15a31210cbab328"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\http\\AxiosHttpClient.ts": {
+    "mtime": 1781236590.4602194,
+    "ast_hash": "1d5aa789be2739c5d3dd7f914ec6065a",
+    "semantic_hash": "1d5aa789be2739c5d3dd7f914ec6065a"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\http\\HttpError.ts": {
+    "mtime": 1781236588.612616,
+    "ast_hash": "b6bfd88184e4f7c0f06594601a2e569e",
+    "semantic_hash": "b6bfd88184e4f7c0f06594601a2e569e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\http\\IHttpClient.ts": {
+    "mtime": 1781236589.1338606,
+    "ast_hash": "8f77d31b35ab081c5bf8ac7124263fd9",
+    "semantic_hash": "8f77d31b35ab081c5bf8ac7124263fd9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\http\\axiosInstance.ts": {
+    "mtime": 1781960572.1495564,
+    "ast_hash": "94529090fa9901abb85916d9a421da57",
+    "semantic_hash": "94529090fa9901abb85916d9a421da57"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\infrastructure\\repositories\\AuthRepository.ts": {
+    "mtime": 1781497200.771637,
+    "ast_hash": "49da37e83417dd050ff1098653f1b6c3",
+    "semantic_hash": "49da37e83417dd050ff1098653f1b6c3"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\main.ts": {
+    "mtime": 1781390551.3283112,
+    "ast_hash": "da34aed2fb8820c3b475d03bedbd9629",
+    "semantic_hash": "da34aed2fb8820c3b475d03bedbd9629"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\ai\\AIModelsPanel.vue": {
+    "mtime": 1782016724.198983,
+    "ast_hash": "2a971cf9123cf651a448d6864fcdd248",
+    "semantic_hash": "2a971cf9123cf651a448d6864fcdd248"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\auth\\AuthButton.vue": {
+    "mtime": 1780981017.7338126,
+    "ast_hash": "07ab7a19b3e2e9dcc177a9b56060c066",
+    "semantic_hash": "07ab7a19b3e2e9dcc177a9b56060c066"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\auth\\AuthInput.vue": {
+    "mtime": 1781238153.8627703,
+    "ast_hash": "0c626fb88af554f5aed9d4cd1da152a3",
+    "semantic_hash": "0c626fb88af554f5aed9d4cd1da152a3"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\auth\\LoginForm.vue": {
+    "mtime": 1782010758.6935017,
+    "ast_hash": "ca2ea22cb7688a146af201309e4cfeca",
+    "semantic_hash": "ca2ea22cb7688a146af201309e4cfeca"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\auth\\RegisterForm.vue": {
+    "mtime": 1781497627.024691,
+    "ast_hash": "084baa23337fe430341161cd74043089",
+    "semantic_hash": "084baa23337fe430341161cd74043089"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\auth\\authAlertMessages.ts": {
+    "mtime": 1781238849.3969717,
+    "ast_hash": "809e49ee9a6924dda0c2e9e3c1f0dfb8",
+    "semantic_hash": "809e49ee9a6924dda0c2e9e3c1f0dfb8"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\company\\CompanyRegistrationForm.vue": {
+    "mtime": 1781558414.4691496,
+    "ast_hash": "45e15f7aa6d5fbe1ec9572affb0af07d",
+    "semantic_hash": "45e15f7aa6d5fbe1ec9572affb0af07d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\company\\CompanyRequiredModal.vue": {
+    "mtime": 1781558415.0018034,
+    "ast_hash": "ea30b010e2c5599742bc6e9105071d11",
+    "semantic_hash": "ea30b010e2c5599742bc6e9105071d11"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\company\\CompanySelectionModal.vue": {
+    "mtime": 1781528133.0358167,
+    "ast_hash": "a5fb15c15c1384af4da0c1d45b0a7d6e",
+    "semantic_hash": "a5fb15c15c1384af4da0c1d45b0a7d6e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\company\\OnboardingModal.vue": {
+    "mtime": 1781558416.7110975,
+    "ast_hash": "49f1516e3b3c356f09ac940ee0f1b89b",
+    "semantic_hash": "49f1516e3b3c356f09ac940ee0f1b89b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\history\\HistoryDetailModal.vue": {
+    "mtime": 1781751031.9144752,
+    "ast_hash": "8a0d6343b7b7e2d45aa82ce4f5b6ee5b",
+    "semantic_hash": "8a0d6343b7b7e2d45aa82ce4f5b6ee5b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\history\\HistoryTimeline.vue": {
+    "mtime": 1781845227.280336,
+    "ast_hash": "577db6a0a6d04bcb0a2fd6b89606696e",
+    "semantic_hash": "577db6a0a6d04bcb0a2fd6b89606696e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\orders\\AutomationConfirmModal.vue": {
+    "mtime": 1781639245.289192,
+    "ast_hash": "4455fafa30335d5c7ea545733058b985",
+    "semantic_hash": "4455fafa30335d5c7ea545733058b985"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\orders\\DispatchSummaryModal.vue": {
+    "mtime": 1781839432.3683128,
+    "ast_hash": "a22bdeaf0447a54f5226d9837fcf269f",
+    "semantic_hash": "a22bdeaf0447a54f5226d9837fcf269f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\orders\\OrderEditModal.vue": {
+    "mtime": 1781751348.980492,
+    "ast_hash": "856772c1d7039dd4718b17b6c5cd8e8a",
+    "semantic_hash": "856772c1d7039dd4718b17b6c5cd8e8a"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\orders\\OrderForm.vue": {
+    "mtime": 1781967462.3082225,
+    "ast_hash": "181749b5c62cbc80a851e78d86043b4d",
+    "semantic_hash": "181749b5c62cbc80a851e78d86043b4d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\orders\\OrderList.vue": {
+    "mtime": 1781839432.3683128,
+    "ast_hash": "f0b66fc030af10a6bb937ea0f80965ee",
+    "semantic_hash": "f0b66fc030af10a6bb937ea0f80965ee"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\productEntries\\ProductEntryForm.vue": {
+    "mtime": 1781559367.5992763,
+    "ast_hash": "67dfeb564207735bf1dabf73b3b4e9f0",
+    "semantic_hash": "67dfeb564207735bf1dabf73b3b4e9f0"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\productEntries\\ProductEntryList.vue": {
+    "mtime": 1781565811.0886815,
+    "ast_hash": "640fa6b721ca4cb1b95c9436f65fefd9",
+    "semantic_hash": "640fa6b721ca4cb1b95c9436f65fefd9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\productEntries\\ProductSelectionModal.vue": {
+    "mtime": 1781491566.315671,
+    "ast_hash": "4b316876678be7a460573b9baa7c8121",
+    "semantic_hash": "4b316876678be7a460573b9baa7c8121"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\ConfirmDeleteModal.vue": {
+    "mtime": 1781529504.4540327,
+    "ast_hash": "009a7d2752a438099f34bf19b96529e4",
+    "semantic_hash": "009a7d2752a438099f34bf19b96529e4"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\ProductEditModal.vue": {
+    "mtime": 1781540591.1627853,
+    "ast_hash": "9cf855d5ab75bb73df13769340e5b6a0",
+    "semantic_hash": "9cf855d5ab75bb73df13769340e5b6a0"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\ProductList.vue": {
+    "mtime": 1781839432.3683128,
+    "ast_hash": "b85ec745f46874647a2f4fe0d7ef54b6",
+    "semantic_hash": "b85ec745f46874647a2f4fe0d7ef54b6"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\ProductRegistrationForm.vue": {
+    "mtime": 1781966727.209275,
+    "ast_hash": "00c5d88487d662ac03a26eac2dbee56f",
+    "semantic_hash": "00c5d88487d662ac03a26eac2dbee56f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\SupplierSelectionModal.vue": {
+    "mtime": 1781417546.6516497,
+    "ast_hash": "5e40fe3f0c3de2361f453125c846f372",
+    "semantic_hash": "5e40fe3f0c3de2361f453125c846f372"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\products\\WinerySelectionModal.vue": {
+    "mtime": 1781540529.5903797,
+    "ast_hash": "39d994e0ec8bb44e14369e1c29e421c5",
+    "semantic_hash": "39d994e0ec8bb44e14369e1c29e421c5"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\profile\\CreateCompanyModal.vue": {
+    "mtime": 1782012383.734632,
+    "ast_hash": "41a066ef80f0db068df5dcdb7cc3b964",
+    "semantic_hash": "41a066ef80f0db068df5dcdb7cc3b964"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\profile\\EditCompanyModal.vue": {
+    "mtime": 1782012408.2112722,
+    "ast_hash": "48e04a173fef3b419fc6b2607caf70fe",
+    "semantic_hash": "48e04a173fef3b419fc6b2607caf70fe"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\profile\\EditProfileModal.vue": {
+    "mtime": 1782012429.085428,
+    "ast_hash": "174fc5f73e7e9795711fd6c9c19ec0ec",
+    "semantic_hash": "174fc5f73e7e9795711fd6c9c19ec0ec"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\profile\\UserProfile.vue": {
+    "mtime": 1782011904.6089864,
+    "ast_hash": "2375d2ceaa6ecdeed26cc219707c6d2d",
+    "semantic_hash": "2375d2ceaa6ecdeed26cc219707c6d2d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\providers\\ProviderList.vue": {
+    "mtime": 1781869062.1074202,
+    "ast_hash": "a34a494a2a8a649b2451928fbf98bd1e",
+    "semantic_hash": "a34a494a2a8a649b2451928fbf98bd1e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\providers\\ProviderRegistrationForm.vue": {
+    "mtime": 1781495014.5800803,
+    "ast_hash": "e12ad6d831d052abefcdd6ae0da0eccd",
+    "semantic_hash": "e12ad6d831d052abefcdd6ae0da0eccd"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\providers\\ProviderSelectionModal.vue": {
+    "mtime": 1781571286.7211092,
+    "ast_hash": "780945f0f41b8b615eb5cbf807e08b21",
+    "semantic_hash": "780945f0f41b8b615eb5cbf807e08b21"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\sales\\CreateSaleModal.vue": {
+    "mtime": 1781957599.9789228,
+    "ast_hash": "dbb9f2870215230d2ba2814a4c21658b",
+    "semantic_hash": "dbb9f2870215230d2ba2814a4c21658b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\sales\\SaleDetailModal.vue": {
+    "mtime": 1781993430.9149733,
+    "ast_hash": "255b79c61c6de85ccfa7904a0c836219",
+    "semantic_hash": "255b79c61c6de85ccfa7904a0c836219"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\sales\\SalesPage.vue": {
+    "mtime": 1781991661.6246197,
+    "ast_hash": "fd3164688a6d929d64c639d43d79f774",
+    "semantic_hash": "fd3164688a6d929d64c639d43d79f774"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\shipments\\EntrySelectionModal.vue": {
+    "mtime": 1781839432.3764777,
+    "ast_hash": "3ac468efb85bc27ad6736092730f7f3e",
+    "semantic_hash": "3ac468efb85bc27ad6736092730f7f3e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\shipments\\ShipmentDetailModal.vue": {
+    "mtime": 1781641096.4998355,
+    "ast_hash": "293141ed9c1a3308e7fc710280a95825",
+    "semantic_hash": "293141ed9c1a3308e7fc710280a95825"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\shipments\\ShipmentEditModal.vue": {
+    "mtime": 1781839432.3764777,
+    "ast_hash": "be1828f34cd7b249c380f063c5a14c36",
+    "semantic_hash": "be1828f34cd7b249c380f063c5a14c36"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\shipments\\ShipmentForm.vue": {
+    "mtime": 1781839432.3785055,
+    "ast_hash": "6cd14a0a4f2da5763a6185020d938100",
+    "semantic_hash": "6cd14a0a4f2da5763a6185020d938100"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\shipments\\ShipmentList.vue": {
+    "mtime": 1781839432.3785055,
+    "ast_hash": "9076ad0f4ef8ea4a123af4a2b850bbb2",
+    "semantic_hash": "9076ad0f4ef8ea4a123af4a2b850bbb2"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\ui\\AppAlert.vue": {
+    "mtime": 1781238849.3969717,
+    "ast_hash": "e3839a20bbdebd90f563cd58dbf474d8",
+    "semantic_hash": "e3839a20bbdebd90f563cd58dbf474d8"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\ui\\appAlert.types.ts": {
+    "mtime": 1781238849.2911942,
+    "ast_hash": "8f7beb387ddf94564f92e032dd2825b7",
+    "semantic_hash": "8f7beb387ddf94564f92e032dd2825b7"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\components\\wineries\\WineryRegistrationForm.vue": {
+    "mtime": 1781539746.9578526,
+    "ast_hash": "cb0cbbf67d423419d78804dff322da90",
+    "semantic_hash": "cb0cbbf67d423419d78804dff322da90"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\composables\\useHistoryLogger.ts": {
+    "mtime": 1781751008.41183,
+    "ast_hash": "5c2368c453143ead4ae3d9f89afadfbc",
+    "semantic_hash": "5c2368c453143ead4ae3d9f89afadfbc"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\composables\\useQuantityValidation.ts": {
+    "mtime": 1781672987.3655145,
+    "ast_hash": "35bee1de7b5e97b949e0afc6b4f53bc8",
+    "semantic_hash": "35bee1de7b5e97b949e0afc6b4f53bc8"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\composables\\useTheme.ts": {
+    "mtime": 1781844899.4402206,
+    "ast_hash": "eef7d1303092e9f12ace5cb7404e201c",
+    "semantic_hash": "eef7d1303092e9f12ace5cb7404e201c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\pages\\AuthPage.vue": {
+    "mtime": 1781558413.15144,
+    "ast_hash": "bf722a27875f4dec072405b07f338dbb",
+    "semantic_hash": "bf722a27875f4dec072405b07f338dbb"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\pages\\DashboardPage.vue": {
+    "mtime": 1782015729.835805,
+    "ast_hash": "436c679bb6554828d9bed8ae2bb2c9b3",
+    "semantic_hash": "436c679bb6554828d9bed8ae2bb2c9b3"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\pages\\OrdersPage.vue": {
+    "mtime": 1781579899.585789,
+    "ast_hash": "75a1671d72df05260483279e0a13fec6",
+    "semantic_hash": "75a1671d72df05260483279e0a13fec6"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\pages\\ShipmentsPage.vue": {
+    "mtime": 1781581166.7788525,
+    "ast_hash": "0f92445a68bbea25fcafc434d2110b71",
+    "semantic_hash": "0f92445a68bbea25fcafc434d2110b71"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\router\\index.ts": {
+    "mtime": 1781581172.283408,
+    "ast_hash": "f957861bcbfa2dc48870c67ec3d29de3",
+    "semantic_hash": "f957861bcbfa2dc48870c67ec3d29de3"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\authStore.ts": {
+    "mtime": 1781839432.3805146,
+    "ast_hash": "3f3ce936b5f079555027fd97be11ee22",
+    "semantic_hash": "3f3ce936b5f079555027fd97be11ee22"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\companyStore.ts": {
+    "mtime": 1781528112.17603,
+    "ast_hash": "9ed4eecf804261c14261f728d8691864",
+    "semantic_hash": "9ed4eecf804261c14261f728d8691864"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\historyStore.ts": {
+    "mtime": 1781751001.938712,
+    "ast_hash": "d9d2bb0456fc9ce9795f8931e818fd18",
+    "semantic_hash": "d9d2bb0456fc9ce9795f8931e818fd18"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\orderStore.ts": {
+    "mtime": 1781872402.4998138,
+    "ast_hash": "0a121b1901b2f6b9b242cc2f4e83d14b",
+    "semantic_hash": "0a121b1901b2f6b9b242cc2f4e83d14b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\productEntryStore.ts": {
+    "mtime": 1781839432.3825252,
+    "ast_hash": "c3c13336bf1bf18bb9015d5a560a36e6",
+    "semantic_hash": "c3c13336bf1bf18bb9015d5a560a36e6"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\productStore.ts": {
+    "mtime": 1781569742.738467,
+    "ast_hash": "00316c52708d5c596e704f72b7686243",
+    "semantic_hash": "00316c52708d5c596e704f72b7686243"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\providerStore.ts": {
+    "mtime": 1781569743.9083853,
+    "ast_hash": "36051f2fe12c7589cb30b619526e2649",
+    "semantic_hash": "36051f2fe12c7589cb30b619526e2649"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\saleStore.ts": {
+    "mtime": 1781958269.2270029,
+    "ast_hash": "f1edc051054aa68078a61450ce2a19da",
+    "semantic_hash": "f1edc051054aa68078a61450ce2a19da"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\shipmentStore.ts": {
+    "mtime": 1781839432.3825252,
+    "ast_hash": "66aa7f38cd3f09621ae57fb4608aa580",
+    "semantic_hash": "66aa7f38cd3f09621ae57fb4608aa580"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\stores\\wineryStore.ts": {
+    "mtime": 1781569742.1484582,
+    "ast_hash": "a744e5329e2ccf83673021be1e027bbd",
+    "semantic_hash": "a744e5329e2ccf83673021be1e027bbd"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\validators\\ILoginValidator.ts": {
+    "mtime": 1781238143.069538,
+    "ast_hash": "222fe5bdf096af2b2c72a82dff52a3dc",
+    "semantic_hash": "222fe5bdf096af2b2c72a82dff52a3dc"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\validators\\IRegisterValidator.ts": {
+    "mtime": 1781236590.7968962,
+    "ast_hash": "cd3766665713c0b419b2044059505a82",
+    "semantic_hash": "cd3766665713c0b419b2044059505a82"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\validators\\LoginValidator.ts": {
+    "mtime": 1781238145.0412538,
+    "ast_hash": "4845af2bf9c5c947c15c1ba4f1efdd4b",
+    "semantic_hash": "4845af2bf9c5c947c15c1ba4f1efdd4b"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\presentation\\validators\\RegisterValidator.ts": {
+    "mtime": 1781236592.1680925,
+    "ast_hash": "db3d19a5e9e8de3497d48c6ec0e087f7",
+    "semantic_hash": "db3d19a5e9e8de3497d48c6ec0e087f7"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\services\\invoiceService.js": {
+    "mtime": 1781993412.5663652,
+    "ast_hash": "ac0a86f23a25b93e771a76998445ab15",
+    "semantic_hash": "ac0a86f23a25b93e771a76998445ab15"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\shared\\auth\\tokenStorage.ts": {
+    "mtime": 1781491007.2054868,
+    "ast_hash": "bba838b1da7ddc80acd4e3daf37f2b29",
+    "semantic_hash": "bba838b1da7ddc80acd4e3daf37f2b29"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\shared\\config\\api.ts": {
+    "mtime": 1781323287.7895768,
+    "ast_hash": "35e994765db7ecc36ef3681cf33b3634",
+    "semantic_hash": "35e994765db7ecc36ef3681cf33b3634"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\src\\utils\\pdfFonts.js": {
+    "mtime": 1781923434.7071395,
+    "ast_hash": "3083384b1cadf96bc8399faa80f2b2c0",
+    "semantic_hash": "3083384b1cadf96bc8399faa80f2b2c0"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\tsconfig.app.json": {
+    "mtime": 1781639263.9230626,
+    "ast_hash": "b3df7aced2cc84346bcc93507235e898",
+    "semantic_hash": "b3df7aced2cc84346bcc93507235e898"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\tsconfig.json": {
+    "mtime": 1779738394.5934682,
+    "ast_hash": "a3d39fa780ebff65444de257f291ce6c",
+    "semantic_hash": "a3d39fa780ebff65444de257f291ce6c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\tsconfig.node.json": {
+    "mtime": 1779738394.6064513,
+    "ast_hash": "70bdd0a673bcfc0e828080b306e7c680",
+    "semantic_hash": "70bdd0a673bcfc0e828080b306e7c680"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\vite.config.ts": {
+    "mtime": 1781525998.3399558,
+    "ast_hash": "a9670d3cc49810ef792994328e25b64e",
+    "semantic_hash": "a9670d3cc49810ef792994328e25b64e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\LICENSE.md": {
+    "mtime": 1781925746.5871685,
+    "ast_hash": "0a9aa2dcb40e88ff080a563eba212ad9",
+    "semantic_hash": "0a9aa2dcb40e88ff080a563eba212ad9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\SKILL.md": {
+    "mtime": 1781925746.5871685,
+    "ast_hash": "a8bf2ee40a2a0d02a914165da78f8d36",
+    "semantic_hash": "a8bf2ee40a2a0d02a914165da78f8d36"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\SYNC.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "86590f88ebd79aa88913b79cb6115352",
+    "semantic_hash": "86590f88ebd79aa88913b79cb6115352"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\animation-class-based-technique.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "17e4306814e21699e569ba049fe310b7",
+    "semantic_hash": "17e4306814e21699e569ba049fe310b7"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\animation-state-driven-technique.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "a66ccff889f175c3e055f67ba54b6663",
+    "semantic_hash": "a66ccff889f175c3e055f67ba54b6663"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-async.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "3da7c4fd7263f3e792cc975c81788d7e",
+    "semantic_hash": "3da7c4fd7263f3e792cc975c81788d7e"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-data-flow.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "a446f2930d526f18e039e1935d555336",
+    "semantic_hash": "a446f2930d526f18e039e1935d555336"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-fallthrough-attrs.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "6a2091cd1f66b86a1c3e716126d51a99",
+    "semantic_hash": "6a2091cd1f66b86a1c3e716126d51a99"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-keep-alive.md": {
+    "mtime": 1781925746.590191,
+    "ast_hash": "8af3cc090a87ac3854869d23ac76ac5f",
+    "semantic_hash": "8af3cc090a87ac3854869d23ac76ac5f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-slots.md": {
+    "mtime": 1781925746.5939882,
+    "ast_hash": "6881ba4080eb6a514684c1c3cd3a2a93",
+    "semantic_hash": "6881ba4080eb6a514684c1c3cd3a2a93"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-suspense.md": {
+    "mtime": 1781925746.5939882,
+    "ast_hash": "4c2c77df10a40467894e9ba856530bab",
+    "semantic_hash": "4c2c77df10a40467894e9ba856530bab"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-teleport.md": {
+    "mtime": 1781925746.5939882,
+    "ast_hash": "dc08718f85c3cc91ed2c21ac1fad4bcd",
+    "semantic_hash": "dc08718f85c3cc91ed2c21ac1fad4bcd"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-transition-group.md": {
+    "mtime": 1781925746.5939882,
+    "ast_hash": "441476270ef5a0a1b8784b2627b8ba63",
+    "semantic_hash": "441476270ef5a0a1b8784b2627b8ba63"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\component-transition.md": {
+    "mtime": 1781925746.5939882,
+    "ast_hash": "46ff51af415ee3bada2591366728dfce",
+    "semantic_hash": "46ff51af415ee3bada2591366728dfce"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\composables.md": {
+    "mtime": 1781925746.5960033,
+    "ast_hash": "53332c25cc12b98c65edd969a1533411",
+    "semantic_hash": "53332c25cc12b98c65edd969a1533411"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\directives.md": {
+    "mtime": 1781925746.5960033,
+    "ast_hash": "c694f5ca80c6ff078333f5a368aaae4d",
+    "semantic_hash": "c694f5ca80c6ff078333f5a368aaae4d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\perf-avoid-component-abstraction-in-lists.md": {
+    "mtime": 1781925746.5960033,
+    "ast_hash": "539aaab3c5a7d1e6cfdb6fa551f45dc6",
+    "semantic_hash": "539aaab3c5a7d1e6cfdb6fa551f45dc6"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\perf-v-once-v-memo-directives.md": {
+    "mtime": 1781925746.5975156,
+    "ast_hash": "8edea6dfa40a15072b8e8332cac233eb",
+    "semantic_hash": "8edea6dfa40a15072b8e8332cac233eb"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\perf-virtualize-large-lists.md": {
+    "mtime": 1781925746.5975156,
+    "ast_hash": "9a63e7f18fb1283f90e17441f56777b9",
+    "semantic_hash": "9a63e7f18fb1283f90e17441f56777b9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\plugins.md": {
+    "mtime": 1781925746.598535,
+    "ast_hash": "dbd9732320a910c82b50c9774b69a133",
+    "semantic_hash": "dbd9732320a910c82b50c9774b69a133"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\reactivity.md": {
+    "mtime": 1781925746.598535,
+    "ast_hash": "2f8a0ca3af8dbef9b627480891f2e276",
+    "semantic_hash": "2f8a0ca3af8dbef9b627480891f2e276"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\render-functions.md": {
+    "mtime": 1781925746.598535,
+    "ast_hash": "4501605bcda232400304a70d6d60835a",
+    "semantic_hash": "4501605bcda232400304a70d6d60835a"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\sfc.md": {
+    "mtime": 1781925746.598535,
+    "ast_hash": "e2075ee7bdf87bbb2f219a585c67f683",
+    "semantic_hash": "e2075ee7bdf87bbb2f219a585c67f683"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\state-management.md": {
+    "mtime": 1781925746.6007912,
+    "ast_hash": "be0411775c262cf153d265ed93942f4c",
+    "semantic_hash": "be0411775c262cf153d265ed93942f4c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-best-practices\\references\\updated-hook-performance.md": {
+    "mtime": 1781925746.6007912,
+    "ast_hash": "ea08002c220fc805206d4d76dce702ce",
+    "semantic_hash": "ea08002c220fc805206d4d76dce702ce"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\LICENSE.md": {
+    "mtime": 1781925785.091552,
+    "ast_hash": "0a9aa2dcb40e88ff080a563eba212ad9",
+    "semantic_hash": "0a9aa2dcb40e88ff080a563eba212ad9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\SKILL.md": {
+    "mtime": 1781925785.0935612,
+    "ast_hash": "651aff7a4dcea48bd55e7562c76d82e0",
+    "semantic_hash": "651aff7a4dcea48bd55e7562c76d82e0"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\SYNC.md": {
+    "mtime": 1781925785.0935612,
+    "ast_hash": "36833b339e33e7613ff1e8206f081c03",
+    "semantic_hash": "36833b339e33e7613ff1e8206f081c03"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-beforeenter-no-param-trigger.md": {
+    "mtime": 1781925785.0935612,
+    "ast_hash": "8d8ea980e91d4d83d9f933f53d09f745",
+    "semantic_hash": "8d8ea980e91d4d83d9f933f53d09f745"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-beforerouteenter-no-this.md": {
+    "mtime": 1781925785.0935612,
+    "ast_hash": "c7eccd9592ff17b5a4cb99a5ccb82de7",
+    "semantic_hash": "c7eccd9592ff17b5a4cb99a5ccb82de7"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-guard-async-await-pattern.md": {
+    "mtime": 1781925785.0955698,
+    "ast_hash": "41f51733513fdc9b7d172ce969f02034",
+    "semantic_hash": "41f51733513fdc9b7d172ce969f02034"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-navigation-guard-infinite-loop.md": {
+    "mtime": 1781925785.0955698,
+    "ast_hash": "fbee9cf052c60d49fd0e0604fb08f45f",
+    "semantic_hash": "fbee9cf052c60d49fd0e0604fb08f45f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-navigation-guard-next-deprecated.md": {
+    "mtime": 1781925785.0955698,
+    "ast_hash": "f380aa276a419aef0a68a1d18408f4c6",
+    "semantic_hash": "f380aa276a419aef0a68a1d18408f4c6"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-param-change-no-lifecycle.md": {
+    "mtime": 1781925785.0970786,
+    "ast_hash": "67f0468c057f4ffbab1b636723af5541",
+    "semantic_hash": "67f0468c057f4ffbab1b636723af5541"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-simple-routing-cleanup.md": {
+    "mtime": 1781925785.0976074,
+    "ast_hash": "87ec46768041ab13d297bc6988b69998",
+    "semantic_hash": "87ec46768041ab13d297bc6988b69998"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue-router-best-practices\\reference\\router-use-vue-router-for-production.md": {
+    "mtime": 1781925785.0976074,
+    "ast_hash": "46c07b271151958c1344bb1e779b1ae9",
+    "semantic_hash": "46c07b271151958c1344bb1e779b1ae9"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue\\GENERATION.md": {
+    "mtime": 1781925713.1074843,
+    "ast_hash": "720aa73bd7ea72dbc2aeaa5c2d3467b7",
+    "semantic_hash": "720aa73bd7ea72dbc2aeaa5c2d3467b7"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue\\SKILL.md": {
+    "mtime": 1781925713.1074843,
+    "ast_hash": "75a7fa0dd0f704462570d9d44cf4ed06",
+    "semantic_hash": "75a7fa0dd0f704462570d9d44cf4ed06"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue\\references\\advanced-patterns.md": {
+    "mtime": 1781925713.1074843,
+    "ast_hash": "e396e4b5cd62d24d06ba08bbb9aefb72",
+    "semantic_hash": "e396e4b5cd62d24d06ba08bbb9aefb72"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue\\references\\core-new-apis.md": {
+    "mtime": 1781925713.1074843,
+    "ast_hash": "ab5745ee8a789ebc71db23d4d4565cb2",
+    "semantic_hash": "ab5745ee8a789ebc71db23d4d4565cb2"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.agents\\skills\\vue\\references\\script-setup-macros.md": {
+    "mtime": 1781925713.109616,
+    "ast_hash": "63b9a866ac71cc44d7d3b68e54e9da35",
+    "semantic_hash": "63b9a866ac71cc44d7d3b68e54e9da35"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\CLAUDE.md": {
+    "mtime": 1781392470.9284744,
+    "ast_hash": "817fe671013b35ae0bc9301dfe449a87",
+    "semantic_hash": "817fe671013b35ae0bc9301dfe449a87"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\SKILL.md": {
+    "mtime": 1781392470.926483,
+    "ast_hash": "26828fbc6cf325d3fb0ba6a3a28e03a1",
+    "semantic_hash": "26828fbc6cf325d3fb0ba6a3a28e03a1"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\add-watch.md": {
+    "mtime": 1781392400.6665041,
+    "ast_hash": "0df0589623217ca38a12bdcabfb42f4c",
+    "semantic_hash": "0df0589623217ca38a12bdcabfb42f4c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\exports.md": {
+    "mtime": 1781392400.6675394,
+    "ast_hash": "c04ddf8f1f5ef5e262ebec491a523c74",
+    "semantic_hash": "c04ddf8f1f5ef5e262ebec491a523c74"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\extraction-spec.md": {
+    "mtime": 1781392400.6689832,
+    "ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+    "semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\github-and-merge.md": {
+    "mtime": 1781392400.6709416,
+    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
+    "semantic_hash": "cde13df085e4c492aeb7ba298a996d0d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\hooks.md": {
+    "mtime": 1781392400.6719449,
+    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
+    "semantic_hash": "3f545db6ce646650bb9de588f5512a27"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\query.md": {
+    "mtime": 1781392400.6719449,
+    "ast_hash": "c2a8e798674a81b02aa9975f43023819",
+    "semantic_hash": "c2a8e798674a81b02aa9975f43023819"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\transcribe.md": {
+    "mtime": 1781392400.6734495,
+    "ast_hash": "70f6aa30d6211f3a2c7e9fc45479f50c",
+    "semantic_hash": "70f6aa30d6211f3a2c7e9fc45479f50c"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\.claude\\skills\\graphify\\references\\update.md": {
+    "mtime": 1781392400.6744592,
+    "ast_hash": "0dad167a95bdb389f02fecffb60b1bc8",
+    "semantic_hash": "0dad167a95bdb389f02fecffb60b1bc8"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\CLAUDE.md": {
+    "mtime": 1781392470.9304829,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": "8a6643a420fdad6bfb583523bc6cef16"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\IMPLEMENTATION_GUIDE.md": {
+    "mtime": 1782017396.157054,
+    "ast_hash": "5e9484fc155392f120311d7284add3f5",
+    "semantic_hash": "5e9484fc155392f120311d7284add3f5"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\PAULU_USER_GUIDE.md": {
+    "mtime": 1781846212.0157642,
+    "ast_hash": "6ca2288df86e24831e57a24f67e9c99d",
+    "semantic_hash": "6ca2288df86e24831e57a24f67e9c99d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\README.md": {
+    "mtime": 1782017357.2028344,
+    "ast_hash": "afc09812e5abce37a482d4a547dc932f",
+    "semantic_hash": "afc09812e5abce37a482d4a547dc932f"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\index.html": {
+    "mtime": 1781567556.6965084,
+    "ast_hash": "e68d178f7f75dd0c0c129ecb06165516",
+    "semantic_hash": "e68d178f7f75dd0c0c129ecb06165516"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\promts\\DashBoard.md": {
+    "mtime": 1781323159.5966737,
+    "ast_hash": "e53efc81e426c694c04c714a6d6c5a0d",
+    "semantic_hash": "e53efc81e426c694c04c714a6d6c5a0d"
+  },
+  "D:\\Casa-Atreides\\book-coffee-shop\\raw\\dune-lore-paul-atreides.md": {
+    "mtime": 1781846100.8624315,
+    "ast_hash": "537795ae30ea0a8042c25ca70a356131",
+    "semantic_hash": "537795ae30ea0a8042c25ca70a356131"
   }
 }

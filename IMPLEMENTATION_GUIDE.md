@@ -16,9 +16,9 @@
 
 | Componente | Nombre | Inspiración Dune | Stack | Ubicación |
 |---|---|---|---|---|
-| Frontend | **Paulus** | *"El Primer Miembro de Paulu Areides"* — unificando el imperio | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 | `D:\Vue\book-coffee-shop\` |
+| Frontend | **Paulus** | *"El Primer Miembro de Paulu Areides"* — unificando el imperio | Vue 3 + TypeScript + Pinia + Tailwind CSS 4 + vue-markdown-render | `D:\Vue\book-coffee-shop\` |
 | Backend API | **Paulu** | *"La Casa"* — la infraestructura Atreides que lo sostiene todo | Go + PostgreSQL + JWT | `D:\Go\api-book-coffee-shop\` |
-| IA Configurable | **Mentat** | *"El cálculo estratégico"* — wizard de modelos + chat asistente | Fetch API + localStorage | `src/application/services/aiService.ts` + `src/presentation/components/ai/` |
+| IA Configurable | **Mentat** | *"El cálculo estratégico"* — wizard de modelos + chat asistente | Fetch API + localStorage + Web Audio API | `src/application/services/aiService.ts` + `src/presentation/components/ai/` |
 
 ---
 
@@ -662,14 +662,20 @@ graphify update .
 
 ### 9.1 Arquitectura — *El Tercer Ojo*
 
-El sistema de IA se compone de dos grandes módulos:
+El sistema de IA se compone de tres grandes módulos:
 
 ```
 src/
 ├── application/services/aiService.ts     # Verificación contra proveedores externos
-└── presentation/components/ai/
-    └── AIModelsPanel.vue                 # Wizard de configuración 3 pasos
+├── presentation/components/ai/
+│   └── AIModelsPanel.vue                 # Wizard de configuración 3 pasos
+└── App.vue                               # Chat modal con asistente Paulu
 ```
+
+**Dependencias de IA:**
+- `vue-markdown-render` — Renderizado de Markdown en respuestas
+- `@vueuse/motion` — Animaciones spring para UI
+- Web Audio API — Sonido de campana (sin dependencia externa)
 
 Además, el botón flotante y chat modal viven en `src/App.vue` fuera del
 `<router-view>`, garantizando disponibilidad global.
@@ -722,10 +728,189 @@ Carga cognitiva reducida — Paulu Areides enseñó a los fremen a tomar el desi
 
 - **Botón cerebral** fijo (abajo-derecha, `z-50`) con gradiente violeta y sombra
 - **Modal chat** teleportado al `<body>` con animación `Transition`
-- Header con "Asistente Paulu" + estado "Configuración pendiente"
-- Input deshabilitado listo para conectar con el modelo seleccionado
+- **Animaciones spring** con `@vueuse/motion` (entrada, hover, tap)
+- **Botón expandir/contraer** para pantalla completa
+- **Mensaje de bienvenida** con opciones de navegación
+- **Renderizado Markdown** en respuestas del asistente
+- **Sonido de campana** de máquina de escribir al recibir respuesta
 
-### 9.5 Persistencia — *Memoria genética en localStorage*
+### 9.5 Asistente Paulu — *La Voz de Paulu Areides*
+
+#### 9.5.1 System Prompt
+
+El asistente opera bajo un system prompt estructurado:
+
+```
+# SYSTEM PROMPT — Asistente Paulu
+## Identidad
+Eres **Paulu**, un asistente financiero y de inventario especializado...
+
+## Dominio permitido
+- Gestión y control de inventario
+- Costos, precios y márgenes de productos
+- Entradas y salidas de stock
+- Rotación de inventario y métricas asociadas
+- Pérdidas, mermas y ajustes de inventario
+- Indicadores financieros vinculados al inventario
+- Rentabilidad y análisis económico del negocio
+- Reportes y toma de decisiones financieras
+
+## Formato de respuesta en chat
+- Prosa directa para datos simples; tabla solo para 4+ registros
+- Párrafos de máximo 3 líneas; una idea por párrafo
+- Negritas solo para el dato principal; máximo 2 por mensaje
+- Emojis como marcadores de sección, no como decoración
+- Nunca más de 15 líneas seguidas sin pausar con una pregunta
+- Cierra siempre con una pregunta corta o invitación a profundizar
+- Sin saludos largos, sin frases de cierre formales
+
+## Restricciones absolutas
+R1 — Sin código de programación.
+R2 — Sin temas de salud humana.
+R3 — Sin literatura ni filosofía.
+R4 — Sin temas fuera del dominio financiero/inventario.
+R5 — Nunca menciones "API", "REST", "endpoint" ni cómo obtienes los datos.
+R6 — Nunca muestres IDs internos del sistema. Usa numeración secuencial.
+```
+
+#### 9.5.2 Conexión con API real
+
+El asistente consulta datos reales del sistema antes de responder:
+
+```typescript
+// Detección de intención
+async function detectIntentAndFetch(query: string): Promise<string> {
+  const q = query.toLowerCase()
+
+  // Productos
+  if (q.includes('producto') || q.includes('productos') || q.includes('stock')) {
+    return await fetchProducts()
+  }
+
+  // Órdenes
+  if (q.includes('orden') || q.includes('órdenes') || q.includes('pedido')) {
+    return await fetchOrders()
+  }
+
+  // Entradas
+  if (q.includes('entrada') || q.includes('entradas') || q.includes('compra')) {
+    return await fetchEntries()
+  }
+
+  // Salidas
+  if (q.includes('salida') || q.includes('salidas') || q.includes('envío')) {
+    return await fetchShipments()
+  }
+
+  return ''
+}
+```
+
+**Flujo de datos:**
+
+```
+Usuario escribe pregunta
+  → detectIntentAndFetch(query)
+  → axiosInstance.get('/products') | '/orders' | '/product-entries' | '/shipments'
+  → Datos formateados como contexto
+  → Se envía a LLM con system prompt + datos + historial
+  → Respuesta renderizada en Markdown
+  → Sonido de campana 🔔
+```
+
+#### 9.5.3 Formato de datos de la API
+
+Los datos se presentan sin IDs internos, usando numeración secuencial:
+
+```markdown
+Productos encontrados (3):
+
+| # | Nombre | Precio | Stock | Margen |
+|---|--------|--------|-------|--------|
+| 1 | Café especial | $12.000 | 45 | 35% |
+| 2 | Té verde | $8.500 | 30 | 28% |
+| 3 | Chocolate artesanal | $15.000 | 20 | 42% |
+
+¿Quieres ver el detalle de alguno?
+```
+
+#### 9.5.4 Renderizado Markdown
+
+El componente `VueMarkdown` renderiza:
+- **Tablas** con estilos para tema oscuro
+- **Listas** ordenadas y desordenadas
+- **Encabezados** (h1-h4) con jerarquía visual
+- **Negritas** y cursivas
+- **Código** inline y bloques de código
+- **Blockquotes** con borde violeta
+- **Enlaces** con color violeta
+
+#### 9.5.5 Sonido de campana
+
+Generado con Web Audio API sin archivos externos:
+
+```typescript
+function playBellSound() {
+  const ctx = new AudioContext()
+  const oscillator = ctx.createOscillator()
+  const gainNode = ctx.createGain()
+
+  oscillator.connect(gainNode)
+  gainNode.connect(ctx.destination)
+
+  oscillator.type = 'sine'
+  oscillator.frequency.setValueAtTime(2200, ctx.currentTime)
+  oscillator.frequency.exponentialRampToValueAtTime(1800, ctx.currentTime + 0.05)
+
+  gainNode.gain.setValueAtTime(0.3, ctx.currentTime)
+  gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15)
+
+  oscillator.start(ctx.currentTime)
+  oscillator.stop(ctx.currentTime + 0.15)
+}
+```
+
+#### 9.5.6 Mensaje de bienvenida
+
+Al abrir el chat, se muestra automáticamente:
+
+```
+Bienvenido. Soy Paulu, y estoy aquí para ayudarte a mantener el orden
+en lo que más importa: el flujo de tu negocio.
+
+En mi casa aprendemos que el control de los recursos no es solo una tarea —
+es la base sobre la que se sostiene cualquier operación. Un inventario sin
+visibilidad es como navegar sin mapa: se avanza, pero sin rumbo.
+
+Aquí tendrás claridad. Cada producto, cada orden, cada entrada y salida
+tiene su lugar, y juntos nos aseguraremos de que nada quede en la oscuridad.
+
+¿Por dónde quieres empezar?
+• Inventario — Stock, Entradas y Salidas
+• Órdenes — Estado y seguimiento
+• Finanzas — Márgenes y rentabilidad
+• Productos — Más vendidos y rotación
+```
+
+### 9.6 Modelo Local — *El Mentat del Sietch*
+
+Conexión directa a modelos locales sin dependencia de servicios externos:
+
+| Campo | Tipo | Descripción |
+|---|---|---|
+| `baseUrl` | `string` | URL del servidor (ej: `http://localhost:11434`) |
+| `modelName` | `string` | Nombre del modelo (ej: `llama3`) |
+| `contextWindow` | `number` | Tamaño máximo de contexto en tokens |
+| `maxTokens` | `number` | Límite máximo de tokens en respuesta |
+| `apiKey` | `string` | API Key opcional para autenticación |
+
+**Proveedores compatibles:**
+- Ollama (`http://localhost:11434`)
+- LM Studio (`http://localhost:1234`)
+- vLLM (`http://localhost:8000`)
+- Cualquier servidor compatible con OpenAI API
+
+### 9.7 Persistencia — *Memoria genética en localStorage*
 
 Los modelos se almacenan en `localStorage('ai-models')` como array JSON:
 
@@ -736,15 +921,19 @@ Los modelos se almacenan en `localStorage('ai-models')` como array JSON:
   "label": "Gemini",
   "modelName": "gemini-2.0-flash",
   "apiKey": "AIza...",
-  "verifiedAt": "2026-06-20T..."
+  "verifiedAt": "2026-06-20T...",
+  "baseUrl": null,
+  "contextWindow": null,
+  "maxTokens": null
 }]
 ```
 
 - La API Key se almacena en texto plano — *confianza de Paulu Areides en su Casa*
 - `maskKey()` la enmascara en UI (`sk-ab...wxyz`)
 - Sin expiración — el Mentat recuerda siempre
+- Para modelos locales: `baseUrl`, `contextWindow`, `maxTokens` se persisten
 
-### 9.6 Consideraciones de seguridad — *El Escudo Atreides*
+### 9.8 Consideraciones de seguridad — *El Escudo Atreides*
 
 | Riesgo | Mitigación | Paralelo Dune |
 |---|---|---|
