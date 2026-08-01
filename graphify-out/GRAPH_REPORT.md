@@ -1,237 +1,943 @@
-# Graph Report - .  (2026-06-28)
+# Graph Report - book-coffee-shop  (2026-08-01)
 
 ## Corpus Check
-- 168 files · ~113,776 words
+- 210 files · ~137,231 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 491 nodes · 459 edges · 103 communities (71 shown, 32 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.82)
+- 2367 nodes · 2710 edges · 223 communities (174 shown, 49 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 17 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `7e6585cc`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_TypeScript Config (App)|TypeScript Config (App)]]
-- [[_COMMUNITY_Package Dependencies|Package Dependencies]]
-- [[_COMMUNITY_Clean Architecture  Auth|Clean Architecture / Auth]]
-- [[_COMMUNITY_Vue Best Practices|Vue Best Practices]]
-- [[_COMMUNITY_Vue Router Patterns|Vue Router Patterns]]
-- [[_COMMUNITY_Project Overview|Project Overview]]
-- [[_COMMUNITY_TypeScript Config (Node)|TypeScript Config (Node)]]
-- [[_COMMUNITY_Product Entry Service|Product Entry Service]]
-- [[_COMMUNITY_Order Service|Order Service]]
-- [[_COMMUNITY_Sale Service|Sale Service]]
-- [[_COMMUNITY_Shipment Service|Shipment Service]]
-- [[_COMMUNITY_Graphify Integration|Graphify Integration]]
-- [[_COMMUNITY_Domain Entities|Domain Entities]]
-- [[_COMMUNITY_Product Service|Product Service]]
-- [[_COMMUNITY_Winery Service|Winery Service]]
-- [[_COMMUNITY_Product Selection UI|Product Selection UI]]
-- [[_COMMUNITY_Provider Service|Provider Service]]
-- [[_COMMUNITY_Login Validation|Login Validation]]
-- [[_COMMUNITY_AI Service|AI Service]]
-- [[_COMMUNITY_Company Service|Company Service]]
-- [[_COMMUNITY_History Service|History Service]]
-- [[_COMMUNITY_Registration Validation|Registration Validation]]
-- [[_COMMUNITY_Registration Use Case|Registration Use Case]]
-- [[_COMMUNITY_Orders UI|Orders UI]]
-- [[_COMMUNITY_History Composable & Store|History Composable & Store]]
-- [[_COMMUNITY_Theme Composable|Theme Composable]]
-- [[_COMMUNITY_Login Use Case|Login Use Case]]
-- [[_COMMUNITY_Auth Alert Messages|Auth Alert Messages]]
-- [[_COMMUNITY_User Profile|User Profile]]
-- [[_COMMUNITY_User Service|User Service]]
-- [[_COMMUNITY_History Entity|History Entity]]
-- [[_COMMUNITY_Sale Detail Modal|Sale Detail Modal]]
-- [[_COMMUNITY_Economic Activity Service|Economic Activity Service]]
-- [[_COMMUNITY_Invoice Service|Invoice Service]]
-- [[_COMMUNITY_Main Address Service|Main Address Service]]
-- [[_COMMUNITY_Tax Information Service|Tax Information Service]]
-- [[_COMMUNITY_TypeScript Config (Root)|TypeScript Config (Root)]]
-- [[_COMMUNITY_Router Config|Router Config]]
-- [[_COMMUNITY_App Entry Point|App Entry Point]]
-- [[_COMMUNITY_Company Store|Company Store]]
-- [[_COMMUNITY_Order Store|Order Store]]
-- [[_COMMUNITY_Product Entry Store|Product Entry Store]]
-- [[_COMMUNITY_Product Store|Product Store]]
-- [[_COMMUNITY_Provider Store|Provider Store]]
-- [[_COMMUNITY_Sale Store|Sale Store]]
-- [[_COMMUNITY_Shipment Store|Shipment Store]]
-- [[_COMMUNITY_Winery Store|Winery Store]]
-- [[_COMMUNITY_Alert Types|Alert Types]]
-- [[_COMMUNITY_Computed API|Computed API]]
-- [[_COMMUNITY_Reactive API|Reactive API]]
-- [[_COMMUNITY_ShallowRef API|ShallowRef API]]
-- [[_COMMUNITY_Ref API|Ref API]]
-- [[_COMMUNITY_Watch API|Watch API]]
-- [[_COMMUNITY_Dashboard Prompt|Dashboard Prompt]]
-- [[_COMMUNITY_DefineOptions Macro|DefineOptions Macro]]
-- [[_COMMUNITY_DefineSlots Macro|DefineSlots Macro]]
-- [[_COMMUNITY_Vue Best Practices License|Vue Best Practices License]]
-- [[_COMMUNITY_Vue Best Practices Sync|Vue Best Practices Sync]]
+- composables concept
+- ProviderFormModal.vue
+- compilerOptions
+- Presentation Layer (Vue Components)
+- compilerOptions
+- vue-best-practices
+- KeepAlive
+- DashboardPage.vue
+- Paulus (Vue 3 Frontend)
+- ProductRegistrationForm.vue
+- ProductEntryForm.vue
+- CreateSaleModal.vue
+- single-file component
+- Component Data Flow Best Practices
+- AIModelsPanel.vue
+- LoginForm.vue
+- OrderForm.vue
+- async components
+- package.json
+- providerDocumentValidator.ts
+- ShipmentForm.vue
+- EmptyState.vue
+- CompanyRegistrationForm.vue
+- Componentes globales — *Arsenal del sietch*
+- dependencies
+- SalesPage.vue
+- Paulus — El Primer Miembro de Paulu Areides
+- /graphify
+- Animation Class-Based Technique
+- component data flow
+- ProductEditModal.vue
+- ShipmentList.vue
+- WineryRegistrationForm.vue
+- HistoryTimeline.vue
+- state management
+- directives concept
+- ProductList.vue
+- SaleDetailModal.vue
+- OrdersPage.vue
+- Paulu Areides Project
+- App.vue
+- updated hook performance
+- virtual list
+- UserProfile.vue
+- Render Function Patterns and Performance
+- onUpdated
+- OrderList.vue
+- ShipmentEditModal.vue
+- Vue Best Practices Workflow
+- Suspense
+- OrderEditModal.vue
+- Suspense Component Best Practices
+- Single-File Component Structure, Styling, and Template Patterns
+- Built-in Components & Directives
+- productEntryService.ts
+- IAuthRepository.ts
+- EntrySelectionModal.vue
+- TransitionGroup
+- performance list abstraction
+- v-once/v-memo
+- Component Slots Best Practices
+- tsconfig.json
+- Directive Best Practices
+- Composable Organization Patterns
+- Reactivity Core Patterns (ref, reactive, shallowRef, computed, watch)
+- Teleport Component Best Practices
+- orderService.ts
+- InventoryAdjustmentCard.vue
+- productService.ts
+- saleService.ts
+- Reactivity Core Patterns (ref, reactive, shallowRef, computed, watch)
+- container.ts
+- DispatchSummaryModal.vue
+- Scoped CSS in SFCs
+- ProductEntryList.vue
+- CreateCompanyModal.vue
+- EditCompanyModal.vue
+- ProviderRegistrationForm.vue
+- ShipmentsPage.vue
+- Directive Best Practices
+- companyService.ts
+- shipmentService.ts
+- Guía de instalación — *Primer vuelo en ornitóptero*
+- Symbol Injection Keys
+- State-driven Animations with CSS Transitions and Style Bindings
+- Script Setup & Macros
+- Per-Route beforeEnter Guards Ignore Param/Query Changes
+- beforeRouteEnter Cannot Access Component Instance
+- Async Navigation Guards Require Proper Promise Handling
+- Navigation Guard Infinite Redirect Loops
+- Route Param Changes Do Not Trigger Lifecycle Hooks
+- Guía de Implementación — Paulu Areides
+- providerService.ts
+- ShipmentDetailCard.vue
+- ProviderList.vue
+- Use Class-based Animations for Non-Enter/Leave Effects
+- Component Data Flow Best Practices
+- Component Fallthrough Attributes Best Practices
+- KeepAlive Component Best Practices
+- Suspense Component Best Practices
+- Use v-once and v-memo to Skip Unnecessary Updates
+- Vue
+- Vue Router Navigation Guard next() Function Deprecated
+- Simple Hash Routing Requires Event Listener Cleanup
+- Use Vue Router Library for Production Applications
+- 2. Frontend — Paulus (Vue 3) — *Rostro de Paul ante los fremen*
+- SupplierSelectionModal.vue
+- ProviderSelectionModal.vue
+- Render Function Patterns and Performance
+- graphify reference: extra exports and benchmark
+- 3. Backend — Paulu (Go API) — *Sardaukar: disciplina del desierto*
+- Component Slots Best Practices
+- Composable Organization Patterns
+- Virtualize Large Lists to Avoid DOM Overload
+- readonly
+- Vue Plugin Best Practices
+- Reactivity, Lifecycle & Composables
+- 2.10 Historial de inventario — *Visión del pasado de Paul*
+- 9. Inteligencia Artificial — *El Mentat de Paulu Areides*
+- Asistente Paulu — *La Voz de Paulu Areides*
+- aiService.ts
+- Animation State-Driven Technique
+- defineExpose
+- entry/root/view rule
+- hydrateOnIdle
+- hydrateOnVisible
+- hyf0
+- MIT License
+- Avoid Component Abstraction in Lists
+- v-once and v-memo Directives
+- Virtualize Large Lists
+- readonly
+- SerKo
+- shallowReactive
+- v-autofocus directive
+- watchEffect
+- vuejs-ai
+- EditProfileModal.vue
+- authStore.ts
+- reactivity concept
+- Teleport Component Best Practices
+- Transition Component Best Practices
+- TransitionGroup Component Best Practices
+- Avoid Excessive Component Abstraction in Large Lists
+- State Management Strategy
+- vue-router-best-practices/SKILL.md
+- 9.5 Asistente Paulu — *La Voz de Paulu Areides*
+- ProviderDocumentImportFab.vue
+- ShipmentDetailModal.vue
+- axiosInstance.ts
+- Async Component Best Practices
+- invoiceService.js
+- updateFinancialSummary
+- ProductDocumentImportFab.vue
+- WinerySelectionModal.vue
+- useTheme.ts
+- render functions
+- devDependencies
+- LoginUseCase.ts
+- Transition
+- Composables
+- 5. Graphify — Análisis de grafos de código — *Mentat Thufir*
+- userService.ts
+- runVerification
+- RegisterUseCase.ts
+- addCategory
+- addCategory
+- graphify reference: add a URL and watch a folder
+- graphify reference: commit hook and native CLAUDE.md integration
+- graphify reference: query, path, explain
+- graphify reference: incremental update and cluster-only
+- recalcSummary
+- emit
+- slots
+- graphify reference: GitHub clone and cross-repo merge
+- graphify reference: transcribe video and audio
+- closeProviderModal
+- resetForm
+- formatCOP
+- vue-best-practices/SYNC.md
+- GENERATION.md
+- vue-router-best-practices/SYNC.md
+- CLAUDE.md
+- .claude/CLAUDE.md
+- extraction-spec.md
+- wineryService.ts
+- CompanyRequiredModal.vue
+- OnboardingModal.vue
+- AutomationConfirmModal.vue
+- closeWarehouseModal
+- vue-best-practices/SKILL.md
+- checkWineries
+- handleSubmit
+- deductEntryQuantities
+- Watchers
+- closeMobileSidebar
+- handleSubmit
+- vite-plugin-ollama-ensure.ts
+- documentTextExtractor.ts
+- NoProvidersEmptyState.vue
+- maskKey
+- ollamaService.ts
+- StatusBadge.vue
+- useProviderDocumentImport.ts
+- OrderDetailCard.vue
+- providerBatchStoreService.ts
+- productDocumentValidator.ts
+- productBatchStoreService.ts
+- Paulus — Guía de usuario
+- 2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*
+- emit
+- recalcRow
+- useProductDocumentImport.ts
+- extractTextFromProviderDocument
 
 ## God Nodes (most connected - your core abstractions)
-1. `compilerOptions` - 25 edges
-2. `Vue Best Practices Workflow` - 17 edges
+1. `Componentes globales — *Arsenal del sietch*` - 33 edges
+2. `compilerOptions` - 25 edges
 3. `compilerOptions` - 16 edges
-4. `graphify SKILL.md (main skill)` - 11 edges
-5. `Implementation Guide - Paulu Areides` - 10 edges
-6. `Vue Router Best Practices Skill` - 9 edges
-7. `AuthRepository` - 7 edges
-8. `Reactivity Core Patterns` - 7 edges
-9. `IHttpClient` - 6 edges
-10. `Paulus (Vue 3 frontend application)` - 6 edges
+4. `Guía de Implementación — Paulu Areides` - 12 edges
+5. `2. Frontend — Paulus (Vue 3) — *Rostro de Paul ante los fremen*` - 12 edges
+6. `Paulus — El Primer Miembro de Paulu Areides` - 12 edges
+7. `Directive Best Practices` - 11 edges
+8. `Per-Route beforeEnter Guards Ignore Param/Query Changes` - 11 edges
+9. `Async Navigation Guards Require Proper Promise Handling` - 11 edges
+10. `Navigation Guard Infinite Redirect Loops` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `shallowRef for Performance` --semantically_similar_to--> `Route Param Changes Don't Trigger Lifecycle Hooks`  [INFERRED] [semantically similar]
-  .agents/skills/vue-best-practices/references/reactivity.md → .agents/skills/vue-router-best-practices/reference/router-param-change-no-lifecycle.md
-- `Vue script setup with TypeScript` --conceptually_related_to--> `Composable Pattern (Vue 3)`  [INFERRED]
-  README.md → .agents/skills/vue/references/core-new-apis.md
-- `Vue script setup with TypeScript` --conceptually_related_to--> `script setup syntax (Vue 3 SFC)`  [INFERRED]
-  README.md → .agents/skills/vue/references/script-setup-macros.md
-- `Implementation Guide - Paulu Areides` --references--> `graphify SKILL.md (main skill)`  [EXTRACTED]
-  IMPLEMENTATION_GUIDE.md → .claude/skills/graphify/SKILL.md
-- `project CLAUDE.md (graphify integration)` --references--> `graphify SKILL.md (main skill)`  [EXTRACTED]
-  CLAUDE.md → .claude/skills/graphify/SKILL.md
+- `extractSpreadsheet()` --references--> `xlsx`  [EXTRACTED]
+  src/application/services/documentTextExtractor.ts → package.json
+- `useHistoryLogger()` --calls--> `useAuthStore`  [INFERRED]
+  src/presentation/composables/useHistoryLogger.ts → src/presentation/stores/authStore.ts
+- `useHistoryLogger()` --calls--> `useHistoryStore`  [INFERRED]
+  src/presentation/composables/useHistoryLogger.ts → src/presentation/stores/historyStore.ts
+- `normalizeUnit()` --references--> `PRODUCT_UNITS`  [EXTRACTED]
+  src/application/services/productDocumentValidator.ts → src/domain/product-document/productDocument.types.ts
+- `normalizePolicy()` --references--> `PRODUCT_COMMERCIAL_POLICIES`  [EXTRACTED]
+  src/application/services/productDocumentValidator.ts → src/domain/product-document/productDocument.types.ts
 
 ## Import Cycles
 - None detected.
 
-## Hyperedges (group relationships)
-- **Vue Best Practices Workflow Sections** — vue-best-practices_skill, references_component-data-flow, references_composables, references_perf-virtualize-large-lists, references_perf-v-once-v-memo-directives, references_perf-avoid-component-abstraction-in-lists [EXTRACTED 1.00]
-- **Vue Core Design Principles** — vue-best-practices_keep-state-predictable, vue-best-practices_props-down-events-up, vue-best-practices_avoid-unnecessary-rerenders, vue-best-practices_favor-small-focused-components [EXTRACTED 1.00]
-- **Vue Route View Nesting Pattern** — references_component-suspense, references_component-transition, references_component-keep-alive [EXTRACTED 1.00]
-- **Vue Router Navigation Guard Gotchas** — reference_beforeenter_param_trigger, reference_beforerouteenter_no_this, reference_async_guard_await, reference_guard_infinite_loop, reference_next_deprecated, concept_guard_execution_order, concept_return_based_guards [INFERRED 0.85]
-- **Vue Reactivity and Performance Optimization Patterns** — references_reactivity, concept_shallowref, concept_computed_purity, references_updated_hook_performance, references_sfc, references_render_functions [INFERRED 0.85]
-- **Vue 3 Composition API Skill Ecosystem** — vue_skill, references_advanced_patterns, references_reactivity, references_sfc, vue_router_best_practices_skill [INFERRED 0.85]
-- **Vue 3 Reactivity and Composables** — core_new_apis_ref, core_new_apis_shallowref, core_new_apis_computed, core_new_apis_reactive, core_new_apis_watch, core_new_apis_watcheffect, core_new_apis_effectscope, core_new_apis_composable_pattern [EXTRACTED 1.00]
-- **Graphify Skill References** — graphify_extraction_spec, graphify_add_watch, graphify_exports, graphify_github_merge, graphify_hooks, graphify_query, graphify_transcribe, graphify_update [EXTRACTED 1.00]
-- **Paulus Full-Stack Architecture** — paulus_vue3_app, paulu_go_backend, clean_architecture, di_container, product_flow, inventory_history_system, ai_configurable_system [EXTRACTED 1.00]
+## Communities (223 total, 49 thin omitted)
 
-## Communities (103 total, 32 thin omitted)
-
-### Community 0 - "TypeScript Config (App)"
-Cohesion: 0.07
-Nodes (28): compilerOptions, allowSyntheticDefaultImports, baseUrl, declaration, declarationMap, erasableSyntaxOnly, esModuleInterop, ignoreDeprecations (+20 more)
-
-### Community 1 - "Package Dependencies"
-Cohesion: 0.07
-Nodes (27): dependencies, axios, pdfmake, pinia, @tailwindcss/typography, vue, vue-router, @vueuse/motion (+19 more)
-
-### Community 2 - "Clean Architecture / Auth"
-Cohesion: 0.12
-Nodes (12): Clean Architecture (4 layers), authRepository, container, httpClient, AxiosHttpClient, axiosInstance, HttpError, HttpRequestOptions (+4 more)
-
-### Community 3 - "Vue Best Practices"
+### Community 0 - "composables concept"
 Cohesion: 0.10
-Nodes (25): Plugin Install Contract, Return-Based Navigation Guard Syntax, Symbol Injection Keys for Type Safety, Class-based Animations for Non-Enter/Leave Effects, State-driven Animations with CSS Transitions and Style Bindings, Async Component Best Practices, Component Data Flow Best Practices, Component Fallthrough Attributes Best Practices (+17 more)
+Nodes (20): component split triggers, composable organization, composables concept, feature folder layout, onMounted, onUnmounted, options object pattern, readonly state pattern (+12 more)
 
-### Community 4 - "Vue Router Patterns"
+### Community 1 - "ProviderFormModal.vue"
 Cohesion: 0.13
-Nodes (22): Computed Property Purity, Event Listener Lifecycle Cleanup, Navigation Guard Execution Order, Route Component Instance Reuse, shallowRef for Performance, SSR State Isolation, Async Navigation Guard Promise Handling, beforeEnter Guard Ignores Param Changes (+14 more)
+Nodes (17): DOCUMENT_TYPES, emit, fieldErrors, form, formError, generateCode(), handleSubmit(), isEditMode (+9 more)
 
-### Community 5 - "Project Overview"
+### Community 2 - "compilerOptions"
+Cohesion: 0.06
+Nodes (33): DOM, DOM.Iterable, ESNext, vite/client, @vue/tsconfig/tsconfig.dom.json, compilerOptions, allowSyntheticDefaultImports, baseUrl (+25 more)
+
+### Community 3 - "Presentation Layer (Vue Components)"
+Cohesion: 0.10
+Nodes (28): AI Service (Verification), Application Layer (Services, Use Cases), useAuthStore (Pinia), Axios HTTP Instance, Clean Architecture (4 Layers), Company Service, useCompanyStore (Pinia), Domain Layer (Entities, Value Objects) (+20 more)
+
+### Community 4 - "compilerOptions"
+Cohesion: 0.10
+Nodes (20): ES2023, node, compilerOptions, allowImportingTsExtensions, erasableSyntaxOnly, lib, module, moduleDetection (+12 more)
+
+### Community 5 - "vue-best-practices"
+Cohesion: 0.08
+Nodes (25): Vue 3, apply essential Vue foundations, vue-best-practices, confirm architecture before coding, consider optional features, core principles, fallthrough attributes, Options API (+17 more)
+
+### Community 6 - "KeepAlive"
+Cohesion: 0.17
+Nodes (13): defineOptions, onActivated, onDeactivated, GPU-Friendly Transform/Opacity Animations, defineOptions, KeepAlive, keepalive cache invalidation, onActivated (+5 more)
+
+### Community 7 - "DashboardPage.vue"
+Cohesion: 0.03
+Nodes (55): actionDot, actionLabels, activeNav, activities, authStore, averageExitPrice, companyStore, currentPage (+47 more)
+
+### Community 8 - "Paulus (Vue 3 Frontend)"
+Cohesion: 0.13
+Nodes (17): App.vue (Root Component), createGlobalState (VueUse), JWT Authentication (HS256), localStorage (Browser), main.ts (Entry Point), vue-markdown-render, @vueuse/motion, typescript (+9 more)
+
+### Community 9 - "ProductRegistrationForm.vue"
+Cohesion: 0.04
+Nodes (39): authStore, autoEntry, autoEntryError, autoEntrySaving, autoFixedMarkup, autoSuggestedPrice, categoryFrequencies, checkingWineries (+31 more)
+
+### Community 10 - "ProductEntryForm.vue"
+Cohesion: 0.05
+Nodes (37): authStore, calcDetailSubtotal(), calcFixedMarkup(), calcSellingPrice(), companyStore, detailsError, emitPage, entryStore (+29 more)
+
+### Community 11 - "CreateSaleModal.vue"
+Cohesion: 0.05
+Nodes (30): authStore, availableProducts, companyStore, discount, filteredAvailableProducts, filteredProviders, filteredWarehouses, paymentMethod (+22 more)
+
+### Community 12 - "single-file component"
+Cohesion: 0.17
+Nodes (11): Composition API, DOMPurify, sfc, scoped CSS, <script setup>, single-file component, useTemplateRef, v-for (+3 more)
+
+### Community 13 - "Component Data Flow Best Practices"
+Cohesion: 0.20
+Nodes (10): defineEmits, defineModel, defineProps, InjectionKey, Props Down / Events Up Pattern, Provide/Inject Pattern, Template Ref Pattern, useTemplateRef (+2 more)
+
+### Community 14 - "AIModelsPanel.vue"
+Cohesion: 0.05
+Nodes (34): acceptedTerms, AIModel, apiKey, apiKeyTouched, apiKeyValid, baseUrl, baseUrlValid, customModelName (+26 more)
+
+### Community 15 - "LoginForm.vue"
+Cohesion: 0.07
+Nodes (30): AuthAlertMessage, matches(), resolveLoginAlertMessage(), resolveRegisterAlertMessage(), alertMessage, authStore, clearFieldErrors(), emit (+22 more)
+
+### Community 16 - "OrderForm.vue"
+Cohesion: 0.05
+Nodes (31): authStore, companyName, companyStore, createdOrder, dialogResult, dispatchRecipient, emit, form (+23 more)
+
+### Community 17 - "async components"
+Cohesion: 0.22
+Nodes (9): defineAsyncComponent, hydrateOnIdle, hydrateOnVisible, Lazy Hydration Strategies, async components, defineAsyncComponent, lazy hydration, loading flicker prevention (+1 more)
+
+### Community 18 - "package.json"
+Cohesion: 0.22
+Nodes (8): name, private, scripts, build, dev, preview, type, version
+
+### Community 19 - "providerDocumentValidator.ts"
 Cohesion: 0.14
-Nodes (20): AI Configurable System (Mentat), AIModelsPanel wizard (3-step AI config), aiService (AI provider verification), Composable Pattern (Vue 3), effectScope (Vue 3 reactivity), watchEffect (Vue 3 watcher), Implementation Guide - Paulu Areides, index.html entry point (+12 more)
+Nodes (23): asString(), buildUserPrompt(), EMPTY_DRAFT(), mapDraft(), mapMismatches(), normalizeDocumentType(), normalizePersonType(), parseModelJson() (+15 more)
 
-### Community 6 - "TypeScript Config (Node)"
+### Community 20 - "ShipmentForm.vue"
+Cohesion: 0.07
+Nodes (28): authStore, companyStore, deductEntryQuantities(), detailsSubtotal, discountAmount, emit, fieldErrors, form (+20 more)
+
+### Community 21 - "EmptyState.vue"
+Cohesion: 0.09
+Nodes (27): isExpanded, textSizeMap, textSizeMap, containerSizeMap, iconSizeMap, props, textSizeMap, { content, colors } (+19 more)
+
+### Community 22 - "CompanyRegistrationForm.vue"
+Cohesion: 0.10
+Nodes (16): authStore, CompanyForm, currentStep, emit, formData, isFirstStep, isLastStep, isStepValid (+8 more)
+
+### Community 23 - "Componentes globales — *Arsenal del sietch*"
+Cohesion: 0.06
+Nodes (33): `AppAlert.vue` — Alerta contextual reutilizable — *Voz Bene Gesserit*, `AuthButton.vue` — Botón con loading y variantes — *Grito de batalla fremen*, `AuthInput.vue` — Input de formulario con tema auth — *Prueba Bene Gesserit*, `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos — *Duke Leto funda la Casa*, `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida — *Shadout Mapes*, Componentes globales — *Arsenal del sietch*, `ConfirmDeleteModal.vue` — Confirmación de eliminación — *Agua derramada*, `DispatchSummaryModal.vue` — Resumen de despacho — *Informe post-batalla* (+25 more)
+
+### Community 24 - "dependencies"
+Cohesion: 0.18
+Nodes (11): mammoth, dependencies, mammoth, pinia, @tailwindcss/typography, vue, xlsx, pinia (+3 more)
+
+### Community 25 - "SalesPage.vue"
+Cohesion: 0.06
+Nodes (26): authStore, confirmDelete(), editDiscount, editingProviderId, editPaymentMethod, editStatus, filteredSales, handleDeleteFromDetail() (+18 more)
+
+### Community 26 - "Paulus — El Primer Miembro de Paulu Areides"
+Cohesion: 0.07
+Nodes (26): Cómo usar este documento, Dune Lore — Paul Atreides y el Ecosistema Paulu, El Juramento Paulu, La Casa Paulu, La especia debe fluir — El inventario debe controlarse, Paralelismos técnicos — Backend Paulu (Go API), Paralelismos técnicos — Herramientas y convenciones, Paralelismos técnicos — Módulos de negocio (+18 more)
+
+### Community 27 - "/graphify"
+Cohesion: 0.08
+Nodes (25): For /graphify add and --watch, For /graphify query, For the commit hook and native CLAUDE.md integration, For --update and --cluster-only, /graphify, Honesty Rules, Interpreter guard for subcommands, Part A - Structural extraction for code files (+17 more)
+
+### Community 28 - "Animation Class-Based Technique"
+Cohesion: 0.18
+Nodes (11): bounce animation, Animation Class-Based Technique, highlight animation, pulse animation, shake animation, class-based animation, GSAP, animation-class-based-technique (+3 more)
+
+### Community 29 - "component data flow"
+Cohesion: 0.25
+Nodes (8): component data flow, defineEmits, defineModel, defineProps, InjectionKey, props down events up, provide/inject, component-data-flow
+
+### Community 30 - "ProductEditModal.vue"
+Cohesion: 0.09
+Nodes (17): categoryFrequencies, emit, fieldErrors, filteredSuggestions, form, formError, handleSave(), productStore (+9 more)
+
+### Community 31 - "ShipmentList.vue"
+Cohesion: 0.07
+Nodes (22): deleting, deletingShipmentId, detailShipment, editShipment, entryMovementLabels, entryMovementTypes, expandedId, filteredShipments (+14 more)
+
+### Community 32 - "WineryRegistrationForm.vue"
 Cohesion: 0.11
-Nodes (17): compilerOptions, allowImportingTsExtensions, erasableSyntaxOnly, lib, module, moduleDetection, moduleResolution, noEmit (+9 more)
+Nodes (17): AREAS, authStore, companyLoaded, companyStore, emit, fieldErrors, form, formError (+9 more)
 
-### Community 7 - "Product Entry Service"
-Cohesion: 0.15
+### Community 33 - "HistoryTimeline.vue"
+Cohesion: 0.11
+Nodes (10): actionColors, actionIcons, actionLabels, companyNames, entityLabels, expandedIds, filteredEntries, props (+2 more)
+
+### Community 34 - "state management"
+Cohesion: 0.29
+Nodes (7): auth state, cart store, createGlobalState, defineStore, Pinia, state-management, state management
+
+### Community 35 - "directives concept"
+Cohesion: 0.29
+Nodes (7): directives concept, getSSRProps, directives, v-focus directive, v-highlight directive, v-resize directive, v-tooltip directive
+
+### Community 36 - "ProductList.vue"
+Cohesion: 0.12
+Nodes (13): companyName, companyStore, emit, fetchProducts(), filteredProducts, handleEditSaved(), { logDelete }, onImportedProductsSaved() (+5 more)
+
+### Community 37 - "SaleDetailModal.vue"
+Cohesion: 0.14
+Nodes (14): applyDiscount(), changeStatus(), clientInfo, clientNotFound, discountInput, emit, { formatCurrency, formatDate }, handleDeleteSale() (+6 more)
+
+### Community 38 - "OrdersPage.vue"
+Cohesion: 0.11
+Nodes (10): expandedId, filteredOrders, orderStore, searchQuery, stats, STATUS_BADGES, STATUS_LABELS, STATUS_OPTIONS (+2 more)
+
+### Community 39 - "Paulu Areides Project"
+Cohesion: 0.33
+Nodes (6): Go Language Backend, Graphify Code Analysis Tool, Mentat AI System, Paulu (Go API Backend), Paulu Areides Project, PostgreSQL Database
+
+### Community 40 - "App.vue"
+Cohesion: 0.09
+Nodes (31): authStore, chatContainer, chatOpen, detectIntentAndFetch(), fetchEntries(), fetchEntryById(), fetchOrderById(), fetchOrders() (+23 more)
+
+### Community 41 - "updated hook performance"
+Cohesion: 0.33
+Nodes (6): lodash debounce, $nextTick, onUpdated, updated-hook-performance, updated hook performance, useDebounceFn
+
+### Community 42 - "virtual list"
+Cohesion: 0.47
+Nodes (6): DynamicScroller, RecycleScroller, perf-virtualize-large-lists, @tanstack/vue-virtual, virtual list, vue-virtual-scroller
+
+### Community 43 - "UserProfile.vue"
+Cohesion: 0.12
+Nodes (10): activeCompanies, authStore, avatarInitials, companies, loadingCompany, selectedCompany, showCreateCompanyModal, showEditCompanyModal (+2 more)
+
+### Community 44 - "Render Function Patterns and Performance"
+Cohesion: 0.40
+Nodes (5): Functional Component, Render Function Patterns and Performance, withDirectives, withKeys, withModifiers
+
+### Community 45 - "onUpdated"
+Cohesion: 0.40
+Nodes (5): onUpdated, useAttrs, useDebounceFn (VueUse), Component Fallthrough Attributes Best Practices, Avoid Expensive Operations in Updated Hook
+
+### Community 46 - "OrderList.vue"
+Cohesion: 0.05
+Nodes (31): vue-router, createHistoryEntry(), CreateHistoryRequest, extractDocumentName(), getHistoryEntries(), getHistoryEntriesByEntity(), HistoryApiResponse, mapToHistoryEntry() (+23 more)
+
+### Community 47 - "ShipmentEditModal.vue"
+Cohesion: 0.12
+Nodes (12): detailsSubtotal, emit, form, handleSubmit(), isSubmitting, movementTypes, props, recipientTypes (+4 more)
+
+### Community 48 - "Vue Best Practices Workflow"
+Cohesion: 0.12
+Nodes (16): 1.1 Must-read core references (required), 1.2 Plan component boundaries before coding (required), 1) Confirm architecture before coding (required), 2) Apply essential Vue foundations (required), 3.1 Standard optional features, 3.2 Less-common optional features, 3) Consider optional features only when requirements call for them, 4) Run performance optimization after behavior is correct (+8 more)
+
+### Community 49 - "Suspense"
+Cohesion: 0.40
+Nodes (5): component-suspense, Suspense, @fallback event, @pending event, @resolve event
+
+### Community 50 - "OrderEditModal.vue"
+Cohesion: 0.16
+Nodes (14): emit, form, handleSave(), { logUpdate }, orderStore, orderTypes, props, recalcRow() (+6 more)
+
+### Community 51 - "Suspense Component Best Practices"
+Cohesion: 0.50
+Nodes (4): RouterView → Transition → KeepAlive → Suspense Nesting Order, Suspense Timeout for Fallback Timing, suspensible Prop for Nested Suspense, Suspense Component Best Practices
+
+### Community 52 - "Single-File Component Structure, Styling, and Template Patterns"
+Cohesion: 0.13
+Nodes (14): Access DOM / component refs with `useTemplateRef()`, Always provide a stable `:key`, Avoid `v-if` and `v-for` on the same element, Best practices for `<style>` block in SFCs, Choose `v-if` vs `v-show` by toggle behavior, Colocate template, script, and styles, Never render untrusted HTML with `v-html`, Prefer component-scoped styles (+6 more)
+
+### Community 53 - "Built-in Components & Directives"
+Cohesion: 0.13
+Nodes (15): Async Dependencies, Built-in Components & Directives, Custom Directives, Directive Arguments & Modifiers, Events, Global Registration, Include/Exclude, KeepAlive (+7 more)
+
+### Community 54 - "productEntryService.ts"
+Cohesion: 0.13
 Nodes (5): CreateProductEntryRequest, Deduction, FinancialSummary, ProductEntryDetail, ProductEntryResponse
 
-### Community 8 - "Order Service"
-Cohesion: 0.17
-Nodes (5): CreateOrderRequest, FinancialSummary, OrderCreateResponse, OrderDetail, OrderResponse
+### Community 55 - "IAuthRepository.ts"
+Cohesion: 0.25
+Nodes (7): AuthSession, User, IAuthRepository, LoginCredentials, RegisterData, AuthApiResponse, AuthApiUser
 
-### Community 9 - "Sale Service"
-Cohesion: 0.17
-Nodes (4): CreateSaleRequest, SaleListResponse, SaleProduct, SaleResponse
+### Community 57 - "EntrySelectionModal.vue"
+Cohesion: 0.14
+Nodes (11): emit, entries, error, expandedId, filteredEntries, handleConfirm(), loading, movementLabels (+3 more)
 
-### Community 10 - "Shipment Service"
+### Community 58 - "TransitionGroup"
+Cohesion: 0.50
+Nodes (4): Stagger List Animation Pattern, component-transition-group, stagger list animation, TransitionGroup
+
+### Community 59 - "performance list abstraction"
+Cohesion: 0.50
+Nodes (4): performance list abstraction, perf-avoid-component-abstraction-in-lists, UserCard, UserStatusIndicator
+
+### Community 60 - "v-once/v-memo"
+Cohesion: 0.50
+Nodes (4): perf-v-once-v-memo-directives, v-memo, v-once, v-once/v-memo
+
+### Community 61 - "Component Slots Best Practices"
+Cohesion: 0.67
+Nodes (3): Conditional Slot Rendering with $slots, defineSlots, Component Slots Best Practices
+
+### Community 63 - "Directive Best Practices"
+Cohesion: 0.67
+Nodes (3): Directive Arguments Read-Only Pattern, getSSRProps, Directive Best Practices
+
+### Community 64 - "Composable Organization Patterns"
+Cohesion: 0.67
+Nodes (3): Options Object Pattern for Parameters, Return Readonly State with Explicit Actions, Composable Organization Patterns
+
+### Community 65 - "Reactivity Core Patterns (ref, reactive, shallowRef, computed, watch)"
+Cohesion: 0.67
+Nodes (3): shallowReactive, shallowRef, Reactivity Core Patterns (ref, reactive, shallowRef, computed, watch)
+
+### Community 66 - "Teleport Component Best Practices"
+Cohesion: 0.67
+Nodes (3): Teleport to body Pattern, useMediaQuery (VueUse), Teleport Component Best Practices
+
+### Community 67 - "orderService.ts"
+Cohesion: 0.14
+Nodes (6): CreateOrderRequest, FinancialSummary, OrderCreateResponse, OrderDetail, OrderResponse, useOrderStore
+
+### Community 68 - "InventoryAdjustmentCard.vue"
+Cohesion: 0.29
+Nodes (5): averageMargin, emit, props, typeBadgeClasses, uniqueUnits
+
+### Community 69 - "productService.ts"
+Cohesion: 0.14
+Nodes (5): CreateProductRequest, ProductResponse, UpdateProductRequest, emit, useProductStore
+
+### Community 70 - "saleService.ts"
+Cohesion: 0.14
+Nodes (5): CreateSaleRequest, SaleListResponse, SaleProduct, SaleResponse, useSaleStore
+
+### Community 71 - "Reactivity Core Patterns (ref, reactive, shallowRef, computed, watch)"
+Cohesion: 0.12
+Nodes (16): Always use `shallowRef()` instead of `ref()` for primitive values (string, number, boolean, null, etc.) for better performance., Avoid destructuring from `reactive()` directly, Best practices for `computed`, Best practices for `reactive`, Best practices for watchers, Choose the correct reactive declaration method for objects/arrays/map/set, Clean up async effects for watchers, Declare reactive state correctly (+8 more)
+
+### Community 72 - "container.ts"
+Cohesion: 0.15
+Nodes (8): authRepository, container, httpClient, AxiosHttpClient, HttpError, HttpRequestOptions, IHttpClient, AuthRepository
+
+### Community 73 - "DispatchSummaryModal.vue"
+Cohesion: 0.17
+Nodes (11): discount, emit, handleConfirm(), props, recipient_id, recipient_type, recipientTypes, remarks (+3 more)
+
+### Community 75 - "ProductEntryList.vue"
+Cohesion: 0.18
+Nodes (6): entryStore, expandedId, filteredEntries, MOVEMENT_TYPE_LABELS, searchQuery, useProductEntryStore
+
+### Community 76 - "CreateCompanyModal.vue"
+Cohesion: 0.17
+Nodes (9): companyForm, emit, error, handleSave(), isDragOver, logoFile, logoPreview, props (+1 more)
+
+### Community 77 - "EditCompanyModal.vue"
+Cohesion: 0.17
+Nodes (9): companyForm, emit, error, handleSave(), isDragOver, logoFile, logoPreview, props (+1 more)
+
+### Community 78 - "ProviderRegistrationForm.vue"
+Cohesion: 0.16
+Nodes (12): DOCUMENT_TYPES, emit, fieldErrors, form, formError, handleSubmit(), isFormValid, onImportedProvidersSaved() (+4 more)
+
+### Community 79 - "ShipmentsPage.vue"
+Cohesion: 0.13
+Nodes (9): expandedId, filteredShipments, search, statuses, statusFilter, store, summaryStats, view (+1 more)
+
+### Community 80 - "Directive Best Practices"
+Cohesion: 0.17
+Nodes (11): Avoid Directives on Components, Clean Up Side Effects in `unmounted`, Decide Between Directives and Components, Directive Best Practices, Handle SSR with `getSSRProps`, Prefer Declarative Templates When Possible, Prefer Function Shorthand for Single-Hook Directives, Task List (+3 more)
+
+### Community 81 - "companyService.ts"
+Cohesion: 0.20
+Nodes (3): CompanyRequest, CompanyResponse, emit
+
+### Community 82 - "shipmentService.ts"
 Cohesion: 0.17
 Nodes (6): CreateShipmentRequest, Recipient, ShipmentDetail, ShipmentFinancialSummary, ShipmentResponse, SourceDocument
 
-### Community 11 - "Graphify Integration"
-Cohesion: 0.24
-Nodes (11): graphify section in CLAUDE.md, graphify add URL and watch mode, graphify export options (wiki, neo4j, falkordb, svg, graphml, mcp), graphify extraction specification, graphify GitHub clone and cross-repo merge, graphify commit hook and CLAUDE.md integration, graphify query, path, explain, graphify SKILL.md (main skill) (+3 more)
+### Community 83 - "Guía de instalación — *Primer vuelo en ornitóptero*"
+Cohesion: 0.33
+Nodes (6): 1. Clonar y acceder al proyecto, 2. Instalar dependencias, 3. Configurar variables de entorno, 4. Iniciar servidor de desarrollo, 5. Compilar para producción, Guía de instalación — *Primer vuelo en ornitóptero*
 
-### Community 12 - "Domain Entities"
-Cohesion: 0.31
-Nodes (5): AuthSession, User, IAuthRepository, LoginCredentials, RegisterData
+### Community 85 - "State-driven Animations with CSS Transitions and Style Bindings"
+Cohesion: 0.18
+Nodes (10): Advanced: Numerical Tweening with Watchers, Basic Pattern, Color Theme Transition, Common Use Cases, Following Mouse Position, Performance Considerations, Progress Animation, Scroll-based Animation (+2 more)
 
-### Community 13 - "Product Service"
+### Community 86 - "Script Setup & Macros"
+Cohesion: 0.18
+Nodes (11): Basic Syntax, defineEmits, defineExpose, defineModel, defineOptions, defineProps, defineSlots, Generic Components (+3 more)
+
+### Community 87 - "Per-Route beforeEnter Guards Ignore Param/Query Changes"
+Cohesion: 0.18
+Nodes (11): Full Navigation Guard Execution Order, Key Points, Per-Route beforeEnter Guards Ignore Param/Query Changes, Reference, Solution 1: Add In-Component Guard, Solution 2: Use Global beforeEach Instead, Solution 3: Combine Both Guards, Solution 4: Use beforeEnter with Array of Guards (+3 more)
+
+### Community 88 - "beforeRouteEnter Cannot Access Component Instance"
+Cohesion: 0.18
+Nodes (10): beforeRouteEnter Cannot Access Component Instance, Comparison of Navigation Guards, Composition API Alternative, Key Points, Reference, Route-Level Data Fetching, Solution: Async beforeRouteEnter (Options API), Solution: Use next() Callback (Options API) (+2 more)
+
+### Community 89 - "Async Navigation Guards Require Proper Promise Handling"
+Cohesion: 0.18
+Nodes (11): Async Navigation Guards Require Proper Promise Handling, Error Handling Best Practices, Key Points, Loading State During Async Guards, Multiple Async Checks, Reference, Solution: Promise-Based Pattern (Alternative), Solution: Proper Async/Await Pattern (+3 more)
+
+### Community 90 - "Navigation Guard Infinite Redirect Loops"
+Cohesion: 0.18
+Nodes (11): Common Redirect Loop Patterns, Debugging Redirect Loops, Key Points, Navigation Guard Infinite Redirect Loops, Reference, Solution 1: Exclude Target Route, Solution 2: Use Route Meta Fields, Solution 3: Handle Redirect Chains Carefully (+3 more)
+
+### Community 91 - "Route Param Changes Do Not Trigger Lifecycle Hooks"
+Cohesion: 0.18
+Nodes (10): Key Points, Reference, Route Param Changes Do Not Trigger Lifecycle Hooks, Solution 1: Watch Route Params (Recommended), Solution 2: Use onBeforeRouteUpdate Guard, Solution 3: Force Component Re-creation with Key, Solution 4: Composable for Route-Reactive Data, Task Checklist (+2 more)
+
+### Community 92 - "Guía de Implementación — Paulu Areides"
+Cohesion: 0.14
+Nodes (14): 10. Referencias, 1. Resumen del proyecto — *La Casa Paulu Areides*, 4.1 Frontend → Backend, 4.2 Consideraciones de diseño, 4. Registro de productos — Flujo completo, 6. Nuevo proyecto generado — Paulu (Vue), 7.1 Frontend — *Lenguaje de Usul*, 7.2 Backend — *Lenguaje del Imperio* (+6 more)
+
+### Community 93 - "providerService.ts"
+Cohesion: 0.18
+Nodes (4): CreateProviderRequest, ProviderResponse, UpdateProviderRequest, useProviderStore
+
+### Community 94 - "ShipmentDetailCard.vue"
+Cohesion: 0.40
+Nodes (5): availableStatuses, emit, newStatus, onStatusChange(), props
+
+### Community 95 - "ProviderList.vue"
+Cohesion: 0.15
+Nodes (9): emit, filteredProviders, goToRegisterProvider(), hasProviders, providerToDelete, searchQuery, store, totalActive (+1 more)
+
+### Community 96 - "Use Class-based Animations for Non-Enter/Leave Effects"
 Cohesion: 0.20
-Nodes (3): CreateProductRequest, ProductResponse, UpdateProductRequest
+Nodes (9): Basic Pattern, Bounce Attention, Common Animation Patterns, Composable for Reusable Animations, Highlight on Change, Pulse on Success, Task List, Use Class-based Animations for Non-Enter/Leave Effects (+1 more)
 
-### Community 14 - "Winery Service"
+### Community 97 - "Component Data Flow Best Practices"
+Cohesion: 0.22
+Nodes (9): Component Data Flow Best Practices, Emits: Explicit Events Up, Prefer props/emit over component refs, Props: One-Way Data Down, Provide/Inject: Shared Context Without Prop Drilling, Task List, Type component refs when imperative access is required, Use TypeScript Contracts for Public Component APIs (+1 more)
+
+### Community 98 - "Component Fallthrough Attributes Best Practices"
 Cohesion: 0.20
-Nodes (3): CreateWineryRequest, UpdateWineryRequest, WineryResponse
+Nodes (9): Access Attribute and Listener Keys Correctly, Check for optional attrs safely, Common Patterns, Component Fallthrough Attributes Best Practices, Forward listeners after internal logic, Naming Reference, Task List, TypeScript Notes (+1 more)
 
-### Community 16 - "Product Selection UI"
+### Community 99 - "KeepAlive Component Best Practices"
+Cohesion: 0.20
+Nodes (9): Cache Invalidation Strategies, Ensure Component Names Match include/exclude, KeepAlive Component Best Practices, Lifecycle Hooks for Cached Components, Limit and Control the Cache, Router Caching and Freshness, Task List, When NOT to Use KeepAlive (+1 more)
+
+### Community 100 - "Suspense Component Best Practices"
+Cohesion: 0.20
+Nodes (9): Fallback Timing on Reverts (`timeout`), Pending State Only Re-triggers on Root Replacement, Recommended Nesting with RouterView, Transition, KeepAlive, Single Root in Default and Fallback Slots, Suspense Component Best Practices, Task List, Track Loading with Suspense Events, Treat Suspense Cautiously in Production (+1 more)
+
+### Community 101 - "Use v-once and v-memo to Skip Unnecessary Updates"
+Cohesion: 0.20
+Nodes (9): Debugging Memoized Components, Performance Comparison, Task List, Use v-once and v-memo to Skip Unnecessary Updates, v-memo: Conditional Memoization for Lists, v-memo with Empty Array = v-once, v-memo with Multiple Dependencies, v-once: Render Once, Never Update (+1 more)
+
+### Community 102 - "Vue"
+Cohesion: 0.20
+Nodes (7): Component Template, Core, Features, Key Imports, Preferences, Quick Reference, Vue
+
+### Community 103 - "Vue Router Navigation Guard next() Function Deprecated"
+Cohesion: 0.20
+Nodes (9): Error Handling Pattern, If You Must Use next() (Legacy Code), Key Points, Reference, Return Values Explained, Solution: Use Return-Based Guards, Task Checklist, The Problem (+1 more)
+
+### Community 104 - "Simple Hash Routing Requires Event Listener Cleanup"
+Cohesion: 0.20
+Nodes (9): Key Points, Reference, Simple Hash Routing Requires Event Listener Cleanup, Solution: Composable for Reusable Hash Routing, Solution: Proper Cleanup with onUnmounted, Solution: Using Options API, Task Checklist, The Problem (+1 more)
+
+### Community 105 - "Use Vue Router Library for Production Applications"
+Cohesion: 0.20
+Nodes (9): Features You'd Have to Implement Manually, Key Points, Modern Vue Router Features (2025+), Production Setup with Vue Router, Reference, Task Checklist, Use Vue Router Library for Production Applications, When Simple Routing is Acceptable (+1 more)
+
+### Community 106 - "2. Frontend — Paulus (Vue 3) — *Rostro de Paul ante los fremen*"
+Cohesion: 0.20
+Nodes (10): 2.1 Arquitectura — *Caladan: estructura noble en cuatro capas*, 2.2 Patrón de inyección de dependencias — *Mentat Thufir*, 2.3 Servicios HTTP (capa application) — *Exploradores fremen*, 2.4 Stores (Pinia) — *Sietch Tabr: memoria colectiva*, 2.5 Composables — *Weirding Way*, 2.6 Enrutamiento — *Navegadores Guild*, 2.7 Componentes principales — *Arsenal del sietch*, 2.8 Manejo de errores — *Voz Bene Gesserit* (+2 more)
+
+### Community 107 - "SupplierSelectionModal.vue"
 Cohesion: 0.22
-Nodes (5): allSelected, error, filteredProducts, loading, search
+Nodes (8): emit, error, filteredProviders, handleConfirm(), loading, providers, search, selectedId
 
-### Community 17 - "Provider Service"
+### Community 108 - "ProviderSelectionModal.vue"
 Cohesion: 0.22
-Nodes (3): CreateProviderRequest, ProviderResponse, UpdateProviderRequest
+Nodes (8): emit, error, filteredProviders, handleConfirm(), loading, providers, search, selectedId
 
-### Community 18 - "Login Validation"
-Cohesion: 0.39
-Nodes (4): ILoginValidator, LoginFieldErrors, LoginValidationResult, LoginValidator
+### Community 109 - "Render Function Patterns and Performance"
+Cohesion: 0.22
+Nodes (8): Always add keys for list rendering, Implement `v-model` explicitly, Prefer functional components for stateless UI, Prefer templates over render functions, Render Function Patterns and Performance, Task List, Use `withDirectives` for custom directives, Use `withModifiers` / `withKeys` for event modifiers
 
-### Community 19 - "AI Service"
+### Community 110 - "graphify reference: extra exports and benchmark"
+Cohesion: 0.22
+Nodes (8): graphify reference: extra exports and benchmark, Step 6b - Wiki (only if --wiki flag), Step 7 - Neo4j export (only if --neo4j or --neo4j-push flag), Step 7a - FalkorDB export (only if --falkordb or --falkordb-push flag), Step 7b - SVG export (only if --svg flag), Step 7c - GraphML export (only if --graphml flag), Step 7d - MCP server (only if --mcp flag), Step 8 - Token reduction benchmark (only if total_words > 5000)
+
+### Community 111 - "3. Backend — Paulu (Go API) — *Sardaukar: disciplina del desierto*"
+Cohesion: 0.22
+Nodes (9): 3.1 Arquitectura, 3.2 Productos — Modelo de dominio, 3.3 Productos — Use case, 3.4 Productos — Handler HTTP, 3.5 Productos — Base de datos, 3.6 Helpers compartidos, 3.7 Historial de inventario (backend) — *Archivos de Irulan*, 3.8 Configuración (+1 more)
+
+### Community 112 - "Component Slots Best Practices"
+Cohesion: 0.25
+Nodes (7): Component Slots Best Practices, Conditionally Render Optional Slot Wrappers, Prefer Composables for Pure Logic Reuse, Provide Slot Fallback Content, Shorthand syntax for named slots, Task List, Type Scoped Slot Props with defineSlots
+
+### Community 113 - "Composable Organization Patterns"
+Cohesion: 0.25
+Nodes (7): Composable Organization Patterns, Compose Composables from Smaller Primitives, Keep Utilities as Utilities, Organize Composable and Component Code by Feature Concern, Return Readonly State with Explicit Actions, Task List, Use Options Object Pattern for Composable Parameters
+
+### Community 114 - "Virtualize Large Lists to Avoid DOM Overload"
+Cohesion: 0.25
+Nodes (7): Dynamic Heights with vue-virtual-scroller, Performance Comparison, Recommended Libraries, Task List, Using @tanstack/vue-virtual, Virtualize Large Lists to Avoid DOM Overload, When NOT to Virtualize
+
+### Community 116 - "Vue Plugin Best Practices"
+Cohesion: 0.25
+Nodes (7): Provide Required Injection Helpers, Register Capabilities Explicitly in `install()`, Structure Plugins for `app.use()`, Task List, Type Plugin Contracts, Use Symbol Injection Keys in Plugins, Vue Plugin Best Practices
+
+### Community 117 - "Reactivity, Lifecycle & Composables"
+Cohesion: 0.25
+Nodes (7): computed, Effect Scope, Lifecycle Hooks, reactive & readonly, Reactivity, Reactivity, Lifecycle & Composables, ref vs shallowRef
+
+### Community 118 - "2.10 Historial de inventario — *Visión del pasado de Paul*"
+Cohesion: 0.25
+Nodes (8): 2.10.1 Arquitectura — *Las cuatro capas de la visión*, 2.10.2 `HistoryEntry` — *La visión*, 2.10.3 `historyService` — *El oráculo HTTP*, 2.10.4 `historyStore` — *Memoria genética de Paul*, 2.10.5 `useHistoryLogger` — *La voz de Paul registra*, 2.10.6 `HistoryTimeline` — *Línea de tiempo de Muad'Dib*, 2.10.7 `HistoryDetailModal` — *Visión enfocada de Paul*, 2.10 Historial de inventario — *Visión del pasado de Paul*
+
+### Community 119 - "9. Inteligencia Artificial — *El Mentat de Paulu Areides*"
+Cohesion: 0.25
+Nodes (8): 9.1 Arquitectura — *El Tercer Ojo*, 9.2 Servicio de verificación — *Prueba Bene Gesserit*, 9.3 Wizard AIModelsPanel — *Formación del Mentat en 3 pasos*, 9.4 Botón flotante y chat — *El Ojo de Paulu Areides*, 9.6 Modelo Local — *El Mentat del Sietch*, 9.7 Persistencia — *Memoria genética en localStorage*, 9.8 Consideraciones de seguridad — *El Escudo Atreides*, 9. Inteligencia Artificial — *El Mentat de Paulu Areides*
+
+### Community 120 - "Asistente Paulu — *La Voz de Paulu Areides*"
+Cohesion: 0.25
+Nodes (8): Acceso, Asistente Paulu — *La Voz de Paulu Areides*, Características, Configuración del modelo, Ejemplos de uso, Formato de respuesta, Mensaje de bienvenida, Restricciones del asistente
+
+### Community 121 - "aiService.ts"
 Cohesion: 0.32
 Nodes (7): AiProvider, PROVIDER_ENDPOINTS, verifyAiModel(), verifyGemini(), verifyOpenAiCompatible(), VerifyParams, VerifyResult
 
-### Community 21 - "History Service"
-Cohesion: 0.32
-Nodes (5): createHistoryEntry(), CreateHistoryRequest, extractDocumentName(), HistoryApiResponse, mapToHistoryEntry()
-
-### Community 22 - "Registration Validation"
-Cohesion: 0.43
-Nodes (4): IRegisterValidator, RegisterValidationResult, RegisterValidator, REQUIRED_FIELDS
-
-### Community 25 - "Orders UI"
+### Community 138 - "EditProfileModal.vue"
 Cohesion: 0.29
-Nodes (3): formatCOP(), formatDate(), formatDate()
+Nodes (7): companyForm, emit, error, handleSave(), props, saving, userForm
 
-### Community 26 - "History Composable & Store"
+### Community 139 - "authStore.ts"
+Cohesion: 0.23
+Nodes (6): router, routes, IRegisterValidator, RegisterValidationResult, RegisterValidator, REQUIRED_FIELDS
+
+### Community 140 - "reactivity concept"
+Cohesion: 0.25
+Nodes (8): computed, reactive, reactivity concept, ref, reactivity, shallowRef, toRefs, watch
+
+### Community 141 - "Teleport Component Best Practices"
+Cohesion: 0.29
+Nodes (6): Logical Hierarchy Is Preserved, Multiple Teleports to the Same Target, Responsive Layouts with `disabled`, Task List, Teleport Component Best Practices, Teleport Overlays Out of Transformed Containers
+
+### Community 142 - "Transition Component Best Practices"
+Cohesion: 0.29
+Nodes (6): Animate `transform` and `opacity` for Performance, Force Transitions Between Same Element Types, Task List, Transition Component Best Practices, Use `mode` to Avoid Overlap During Swaps, Use Transition for a Single Root Element
+
+### Community 143 - "TransitionGroup Component Best Practices"
+Cohesion: 0.29
+Nodes (6): Always Provide Stable Keys, Do Not Use `mode` on TransitionGroup, Stagger List Animations with Data Attributes, Task List, TransitionGroup Component Best Practices, Use TransitionGroup for Lists
+
+### Community 144 - "Avoid Excessive Component Abstraction in Large Lists"
+Cohesion: 0.29
+Nodes (6): Alternatives to Wrapper Components, Avoid Excessive Component Abstraction in Large Lists, Impact Calculation, Measuring Component Overhead, Task List, When Abstraction Is Still Worth It
+
+### Community 145 - "State Management Strategy"
+Cohesion: 0.29
+Nodes (6): Avoid Exporting Mutable Module State, Choose the Lightest Store Approach, Do Not Use Runtime Singletons in SSR, State Management Strategy, Task List, Use `createGlobalState` for Small SPA Global State
+
+### Community 146 - "vue-router-best-practices/SKILL.md"
+Cohesion: 0.29
+Nodes (3): Navigation Guards, Route Lifecycle, Setup
+
+### Community 147 - "9.5 Asistente Paulu — *La Voz de Paulu Areides*"
+Cohesion: 0.29
+Nodes (7): 9.5.1 System Prompt, 9.5.2 Conexión con API real, 9.5.3 Formato de datos de la API, 9.5.4 Renderizado Markdown, 9.5.5 Sonido de campana, 9.5.6 Mensaje de bienvenida, 9.5 Asistente Paulu — *La Voz de Paulu Areides*
+
+### Community 148 - "ProviderDocumentImportFab.vue"
+Cohesion: 0.07
+Nodes (19): emit, inputRef, onChange(), emit, emit, props, canSave, emit (+11 more)
+
+### Community 149 - "ShipmentDetailModal.vue"
+Cohesion: 0.29
+Nodes (4): emit, movementLabels, recipientLabels, statusLabels
+
+### Community 150 - "axiosInstance.ts"
+Cohesion: 0.12
+Nodes (9): axios, axios, CreateEconomicActivityRequest, EconomicActivityResponse, CreateMainAddressRequest, MainAddressResponse, CreateTaxInformationRequest, TaxInformationResponse (+1 more)
+
+### Community 151 - "Async Component Best Practices"
 Cohesion: 0.33
-Nodes (3): useHistoryLogger(), useAuthStore, useHistoryStore
+Nodes (5): Async Component Best Practices, Delay Guidelines, Prevent Loading Spinner Flicker, Task List, Use Lazy Hydration Strategies in SSR
 
-### Community 29 - "Auth Alert Messages"
-Cohesion: 0.60
-Nodes (4): AuthAlertMessage, matches(), resolveLoginAlertMessage(), resolveRegisterAlertMessage()
+### Community 152 - "invoiceService.js"
+Cohesion: 0.33
+Nodes (5): pdfmake, pdfmake, generateInvoicePDF(), get(), paymentMethodLabels
 
-### Community 32 - "History Entity"
+### Community 153 - "updateFinancialSummary"
+Cohesion: 0.33
+Nodes (6): handleDiscountInput(), handleEntriesSelected(), parseCOP(), removeDetail(), updateDetailSubtotal(), updateFinancialSummary()
+
+### Community 154 - "ProductDocumentImportFab.vue"
+Cohesion: 0.07
+Nodes (20): emit, props, canSave, emit, props, saveLabel, totalCount, authStore (+12 more)
+
+### Community 155 - "WinerySelectionModal.vue"
+Cohesion: 0.14
+Nodes (13): displayWineries, emit, filteredWineries, handleConfirm(), hasError, loading, loadWineries(), props (+5 more)
+
+### Community 156 - "useTheme.ts"
+Cohesion: 0.47
+Nodes (4): initTheme(), isDark, toggleTheme(), useTheme()
+
+### Community 157 - "render functions"
+Cohesion: 0.33
+Nodes (5): render-functions, render functions, withDirectives, withKeys, withModifiers
+
+### Community 158 - "devDependencies"
+Cohesion: 0.12
+Nodes (17): devDependencies, tailwindcss, @tailwindcss/vite, @types/node, @types/pdfmake, vite-tsconfig-paths, @vitejs/plugin-vue, vue-tsc (+9 more)
+
+### Community 160 - "Transition"
+Cohesion: 0.40
+Nodes (5): Appear on Initial Render, CSS Classes, JavaScript Hooks, Transition, Transition Modes
+
+### Community 161 - "Composables"
+Cohesion: 0.40
+Nodes (5): Accept Reactive Input, Composables, Naming Convention, Pattern, Return Refs (Not Reactive)
+
+### Community 162 - "5. Graphify — Análisis de grafos de código — *Mentat Thufir*"
+Cohesion: 0.40
+Nodes (5): 5.1 Herramienta, 5.2 Resultados, 5.3 Archivos generados, 5.4 Skills de OpenCode, 5. Graphify — Análisis de grafos de código — *Mentat Thufir*
+
+### Community 164 - "runVerification"
+Cohesion: 0.33
+Nodes (6): handleRetry(), handleSave(), persistModels(), removeModel(), resetForm(), runVerification()
+
+### Community 166 - "addCategory"
+Cohesion: 0.40
+Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistFrequencies(), selectSuggestion()
+
+### Community 167 - "addCategory"
+Cohesion: 0.40
+Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistFrequencies(), selectSuggestion()
+
+### Community 168 - "graphify reference: add a URL and watch a folder"
 Cohesion: 0.50
-Nodes (3): HistoryAction, HistoryChange, HistoryEntry
+Nodes (3): For /graphify add, For --watch, graphify reference: add a URL and watch a folder
 
-### Community 36 - "Invoice Service"
+### Community 169 - "graphify reference: commit hook and native CLAUDE.md integration"
+Cohesion: 0.50
+Nodes (3): For git commit hook, For native CLAUDE.md integration, graphify reference: commit hook and native CLAUDE.md integration
+
+### Community 170 - "graphify reference: query, path, explain"
+Cohesion: 0.50
+Nodes (3): For /graphify explain, For /graphify path, graphify reference: query, path, explain
+
+### Community 171 - "graphify reference: incremental update and cluster-only"
+Cohesion: 0.50
+Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphify reference: incremental update and cluster-only
+
+### Community 172 - "recalcSummary"
+Cohesion: 0.50
+Nodes (4): onEntriesSelected(), recalcRow(), recalcSummary(), removeDetail()
+
+### Community 173 - "emit"
+Cohesion: 0.50
+Nodes (4): emit, generateAutoEntry(), goToProductList(), goToRegisterWinery()
+
+### Community 174 - "slots"
+Cohesion: 0.50
+Nodes (4): defineSlots, component-slots, renderless component, slots
+
+### Community 178 - "resetForm"
 Cohesion: 0.67
-Nodes (3): generateInvoicePDF(), get(), paymentMethodLabels
+Nodes (3): onPrintReceipt(), onRegisterSale(), resetForm()
+
+### Community 179 - "formatCOP"
+Cohesion: 0.67
+Nodes (4): formatCOP(), onUnitCostBlur(), onUnitCostInput(), parseCOP()
+
+### Community 186 - "wineryService.ts"
+Cohesion: 0.17
+Nodes (4): CreateWineryRequest, UpdateWineryRequest, WineryResponse, useWineryStore
+
+### Community 191 - "vue-best-practices/SKILL.md"
+Cohesion: 0.29
+Nodes (4): Avoid Expensive Operations in Updated Hook, Prefer Computed Properties for Derived Data, Task List, Valid Use Cases for Updated Hook
+
+### Community 195 - "Watchers"
+Cohesion: 0.50
+Nodes (4): Flush Timing, watch, watchEffect, Watchers
+
+### Community 202 - "vite-plugin-ollama-ensure.ts"
+Cohesion: 0.29
+Nodes (13): createEnsureMiddleware(), ensureOllamaAndLlama3(), hasLlama3(), httpGetJson(), isOllamaUp(), json(), listModels(), ollamaEnsurePlugin() (+5 more)
+
+### Community 203 - "documentTextExtractor.ts"
+Cohesion: 0.48
+Nodes (6): EXT_MAP, extractDocx(), extractSpreadsheet(), extractTextFromDocument(), fileToArrayBuffer(), resolveDocumentKind()
+
+### Community 206 - "ollamaService.ts"
+Cohesion: 0.47
+Nodes (5): chatWithLlama3(), ensureOllamaRunning(), OllamaChatOptions, OllamaEnsureResult, pingOllama()
+
+### Community 207 - "StatusBadge.vue"
+Cohesion: 0.50
+Nodes (3): config, map, props
+
+### Community 210 - "providerBatchStoreService.ts"
+Cohesion: 0.60
+Nodes (4): draftToRequest(), isDraftReady(), storeProvidersIndividually(), StoreProvidersIndividuallyResult
+
+### Community 211 - "productDocumentValidator.ts"
+Cohesion: 0.09
+Nodes (33): asNumber(), asString(), asStringArray(), buildUserPrompt(), EMPTY_DRAFT(), mapDraft(), mapMismatches(), normalizePolicy() (+25 more)
+
+### Community 212 - "productBatchStoreService.ts"
+Cohesion: 0.26
+Nodes (13): buildEntryDetail(), draftToProductRequest(), EMPTY_FALLBACK_DRAFT, formatFailureCauses(), getMissingProductAssociation(), isDraftReady(), ProductBatchMissingAssociation, ProductBatchStoreContext (+5 more)
+
+### Community 213 - "Paulus — Guía de usuario"
+Cohesion: 0.33
+Nodes (6): Convenciones del proyecto — *Código de honor Atreides*, Estructura de carpetas — *Caladan: arquitectura noble antes de Arrakis*, Flujo de autenticación — *Duncan Idaho guarda la puerta*, Paulus — Guía de usuario, Stack tecnológico — *Arsenal de Muad'Dib*, Variables de entorno (`.env`) — *Coordenadas del Guild Navigator*
+
+### Community 214 - "2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*"
+Cohesion: 0.40
+Nodes (5): 2.11.1 Problema — *La tormenta de arena de los IDs*, 2.11.2 Patrón de capas — *Horizonte → caravana → manifiesto → agua*, 2.11.3 Resolución de nombres — *Preguntar al Mentat quién es quién*, 2.11.4 Formatters — *Agua medida con precisión fremen*, 2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*
 
 ## Knowledge Gaps
-- **179 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+174 more)
+- **1205 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1200 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **49 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Implementation Guide - Paulu Areides` connect `Project Overview` to `Clean Architecture / Auth`, `Graphify Integration`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **Why does `vue-router` connect `OrderList.vue` to `Paulus (Vue 3 Frontend)`, `OrderForm.vue`, `authStore.ts`, `vue-best-practices`?**
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
+- **Why does `axios` connect `axiosInstance.ts` to `Paulus (Vue 3 Frontend)`, `companyService.ts`, `container.ts`?**
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `dependencies` to `Paulus (Vue 3 Frontend)`, `OrderList.vue`, `package.json`, `axiosInstance.ts`, `invoiceService.js`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Are the 6 inferred relationships involving `composables concept` (e.g. with `component split triggers` and `reactivity concept`) actually correct?**
+  _`composables concept` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _187 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `TypeScript Config (App)` be split into smaller, more focused modules?**
-  _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
-- **Should `Package Dependencies` be split into smaller, more focused modules?**
-  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
-- **Should `Clean Architecture / Auth` be split into smaller, more focused modules?**
-  _Cohesion score 0.12 - nodes in this community are weakly interconnected._
-- **Should `Vue Best Practices` be split into smaller, more focused modules?**
-  _Cohesion score 0.10333333333333333 - nodes in this community are weakly interconnected._
-- **Should `Vue Router Patterns` be split into smaller, more focused modules?**
-  _Cohesion score 0.12987012987012986 - nodes in this community are weakly interconnected._
+  _1205 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `composables concept` be split into smaller, more focused modules?**
+  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
+- **Should `ProviderFormModal.vue` be split into smaller, more focused modules?**
+  _Cohesion score 0.1286549707602339 - nodes in this community are weakly interconnected._

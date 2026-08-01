@@ -25,6 +25,26 @@
   --color-nebula-pink: #ec4899;
   --color-nebula-blue: #38bdf8;
   --color-gold: #fbbf24;
+
+  /* Dune Cinematic Palette — Light Mode */
+  --color-dune-bg: #F5EFE3;
+  --color-dune-surface: #EAE0CC;
+  --color-dune-surface-mid: #E9CB8E;
+  --color-dune-surface-dark: #D4B483;
+  --color-dune-primary: #A5663A;
+  --color-dune-primary-light: #C68B5C;
+  --color-dune-primary-dark: #66280C;
+  --color-dune-sky: #A9D8DE;
+  --color-dune-sky-deep: #3576AE;
+
+  --color-dune-text-primary: #2B1D10;
+  --color-dune-text-secondary: #6B5640;
+  --color-dune-text-on-primary: #F5EFE3;
+
+  --color-dune-status-success: #5E7C4F;
+  --color-dune-status-warning: #B8893E;
+  --color-dune-status-danger: #A23B2E;
+  --color-dune-status-info: #3576AE;
 }
 
 @layer base {
@@ -49,5 +69,45 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Dune Light Mode — default theme colors */
+  :root {
+    --theme-bg: #F5EFE3;
+    --theme-surface: #EAE0CC;
+    --theme-surface-mid: #E9CB8E;
+    --theme-surface-dark: #D4B483;
+    --theme-primary: #A5663A;
+    --theme-primary-light: #C68B5C;
+    --theme-primary-dark: #66280C;
+    --theme-sky: #A9D8DE;
+    --theme-sky-deep: #3576AE;
+    --theme-text-primary: #2B1D10;
+    --theme-text-secondary: #6B5640;
+    --theme-text-on-primary: #F5EFE3;
+    --theme-status-success: #5E7C4F;
+    --theme-status-warning: #B8893E;
+    --theme-status-danger: #A23B2E;
+    --theme-status-info: #3576AE;
+  }
+
+  /* Dark Mode overrides */
+  .dark {
+    --theme-bg: #0f172a;
+    --theme-surface: #1e293b;
+    --theme-surface-mid: #334155;
+    --theme-surface-dark: #475569;
+    --theme-primary: #8b5cf6;
+    --theme-primary-light: #a78bfa;
+    --theme-primary-dark: #6d28d9;
+    --theme-sky: #38bdf8;
+    --theme-sky-deep: #0ea5e9;
+    --theme-text-primary: #f1f5f9;
+    --theme-text-secondary: #94a3b8;
+    --theme-text-on-primary: #0f172a;
+    --theme-status-success: #22c55e;
+    --theme-status-warning: #f59e0b;
+    --theme-status-danger: #ef4444;
+    --theme-status-info: #0ea5e9;
   }
 }

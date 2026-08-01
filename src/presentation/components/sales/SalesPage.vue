@@ -4,7 +4,9 @@ import { useSaleStore } from '@/presentation/stores/saleStore'
 import { useProviderStore } from '@/presentation/stores/providerStore'
 import SaleDetailModal from './SaleDetailModal.vue'
 import CreateSaleModal from './CreateSaleModal.vue'
+import ProviderFormModal from '@/presentation/components/providers/ProviderFormModal.vue'
 import { useAuthStore } from '@/presentation/stores/authStore'
+import type { ProviderResponse } from '@/application/services/providerService'
 
 const saleStore = useSaleStore()
 const authStore = useAuthStore()
@@ -17,6 +19,8 @@ const showDetailModal = ref(false)
 const showCreateModal = ref(false)
 const showEditModal = ref(false)
 const showDeleteModal = ref(false)
+const showProviderModal = ref(false)
+const editingProviderId = ref<string | null>(null)
 const saleToDelete = ref<string | null>(null)
 const page = ref(1)
 const limit = ref(20)
@@ -78,6 +82,27 @@ function confirmDelete(id: string): void {
   showDeleteModal.value = true
 }
 
+function handleEditFromDetail(clientId: string): void {
+  showDetailModal.value = false
+  editingProviderId.value = clientId
+  showProviderModal.value = true
+}
+
+function handleDeleteFromDetail(id: string): void {
+  showDetailModal.value = false
+  confirmDelete(id)
+}
+
+function handleProviderSaved(provider: ProviderResponse): void {
+  // Refresh providers list to get updated data
+  providerStore.fetchProviders()
+}
+
+function handleCloseProviderModal(): void {
+  showProviderModal.value = false
+  editingProviderId.value = null
+}
+
 async function handleDelete(): Promise<void> {
   if (!saleToDelete.value) return
   const ok = await saleStore.removeSale(saleToDelete.value)
@@ -110,6 +135,7 @@ watch(selectedSale, (s) => {
 async function saveEdit(): Promise<void> {
   if (!selectedSaleId.value || !selectedSale.value) return
   const sale = selectedSale.value
+  const statusToSend = editStatus.value
   const ok = await saleStore.updateSale(selectedSaleId.value, {
     sale_number: sale.sale_number,
     order_id: sale.order_id,
@@ -126,7 +152,7 @@ async function saveEdit(): Promise<void> {
     company_id: sale.company_id,
   })
   if (ok) {
-    await saleStore.updateStatus(selectedSaleId.value, editStatus.value)
+    await saleStore.updateStatus(selectedSaleId.value, statusToSend)
     showEditModal.value = false
   }
 }
@@ -205,8 +231,8 @@ onMounted(() => {
             <td class="px-4 py-3">
               <span class="inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold"
                 :class="{
-                  'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400': sale.status === 'PENDING',
-                  'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400': sale.status === 'PAID',
+                  'bg-dune-surface text-dune-primary-dark dark:bg-dune-status-warning/15 dark:text-dune-status-warning': sale.status === 'PENDING',
+                  'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/15 dark:text-dune-status-success': sale.status === 'PAID',
                   'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400': sale.status === 'CANCELED',
                 }"
               >{{ sale.status === 'PENDING' ? 'Pendiente' : sale.status === 'PAID' ? 'Pagado' : 'Cancelado' }}</span>
@@ -217,7 +243,7 @@ onMounted(() => {
                 <button type="button" class="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-stellar-600 dark:hover:bg-slate-700" title="Ver detalle" @click="openDetail(sale.sale_id)">
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                 </button>
-                <button type="button" class="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-amber-600 dark:hover:bg-slate-700" title="Editar" @click="openEdit(sale.sale_id)">
+                <button type="button" class="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-dune-status-warning dark:hover:bg-slate-700" title="Editar" @click="openEdit(sale.sale_id)">
                   <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                 </button>
                 <button type="button" class="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-red-600 dark:hover:bg-slate-700" title="Eliminar" @click="confirmDelete(sale.sale_id)">
@@ -245,6 +271,8 @@ onMounted(() => {
       @close="showDetailModal = false"
       @update:status="handleUpdateStatus"
       @update:discount="handleUpdateDiscount"
+      @edit-provider="handleEditFromDetail"
+      @delete-sale="handleDeleteFromDetail"
     />
 
     <CreateSaleModal
@@ -328,8 +356,8 @@ onMounted(() => {
               </div>
             </div>
 
-            <div class="mb-6 rounded-lg bg-amber-50 p-4 dark:bg-amber-500/10">
-              <p class="text-sm text-amber-800 dark:text-amber-300">
+            <div class="mb-6 rounded-lg bg-dune-bg p-4 dark:bg-dune-status-warning/10">
+              <p class="text-sm text-dune-primary-dark dark:text-dune-status-warning">
                 <span class="font-semibold">Advertencia:</span> Al eliminar esta venta, se perderá permanentemente el registro financiero, el historial de movimientos de inventario asociados y cualquier referencia contable vinculada. Esta operación es irreversible y podría afectar la integridad de tus reportes fiscales y financieros.
               </p>
             </div>
@@ -348,5 +376,13 @@ onMounted(() => {
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Provider Form Modal (create/edit) -->
+    <ProviderFormModal
+      :visible="showProviderModal"
+      :provider-id="editingProviderId"
+      @close="handleCloseProviderModal"
+      @saved="handleProviderSaved"
+    />
   </div>
 </template>

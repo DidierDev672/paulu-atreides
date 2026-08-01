@@ -101,9 +101,9 @@ src/
 │   │   ├── productEntryService.ts # CRUD entradas de producto — *Ecosistema de Kynes*
 │   │   ├── orderService.ts        # CRUD órdenes + approve — *Contratos CHOAM*
 │   │   ├── shipmentService.ts     # CRUD despachos — *Ornitópteros de salida*
-│   │   ├── companyService.ts      # CRUD compañías + getCompanyByUser
-│   │   ├── userService.ts         # GET / PUT perfil usuario
-│   │   ├── wineryService.ts       # CRUD bodegas
+│   │   ├── companyService.ts      # CRUD compañías + getCompanyById / getCompanyByUser
+│   │   ├── userService.ts         # GET /users/{id} + PUT perfil — *Identidad de Usul*
+│   │   ├── wineryService.ts       # CRUD bodegas + getWineryById — *Sietch por nombre*
 │   │   ├── mainAddressService.ts  # CRUD direcciones principales
 │   │   ├── taxInformationService.ts # CRUD información tributaria
 │   │   ├── economicActivityService.ts # CRUD actividades económicas
@@ -150,20 +150,24 @@ src/
 │   │   │   └── WinerySelectionModal.vue    # Modal selección bodega (radio, búsqueda)
 │   │   ├── productEntries/
 │   │   │   ├── ProductEntryForm.vue        # Formulario entrada producto con tabla dinámica
-│   │   │   ├── ProductEntryList.vue        # Lista de entradas — *Registro de cosechas*
+│   │   │   ├── ProductEntryList.vue        # Orquesta lista de entradas — *Registro de cosechas*
+│   │   │   ├── InventoryAdjustmentCard.vue # Tarjeta 3 capas — *Informe denso de Kynes*
 │   │   │   └── ProductSelectionModal.vue   # Modal selección productos (multi-select, búsqueda)
 │   │   ├── orders/
-│   │   │   ├── OrderForm.vue               # Formulario orden compra/venta — *Contrato CHOAM*
-│   │   │   ├── OrderList.vue               # Lista de órdenes — *Archivo imperial*
+│   │   │   ├── OrderForm.vue               # Orden + nombre de compañía vía API — *Contrato CHOAM*
+│   │   │   ├── OrderList.vue               # Orquesta lista + nombres de usuario — *Archivo imperial*
+│   │   │   ├── OrderDetailCard.vue         # Tarjeta 3 capas — *Pergamino CHOAM legible*
 │   │   │   ├── OrderEditModal.vue          # Modal edición orden — *Thufir revisa estrategia*
 │   │   │   ├── DispatchSummaryModal.vue    # Resumen de despacho — *Informe post-batalla*
 │   │   │   └── AutomationConfirmModal.vue  # Confirmación automatización — *Profecía de Muad'Dib*
 │   │   ├── shipments/
 │   │   │   ├── ShipmentForm.vue            # Formulario despacho — *Ornitóptero cargado*
-│   │   │   ├── ShipmentList.vue            # Lista de despachos — *Registro de vuelos*
+│   │   │   ├── ShipmentList.vue            # Orquesta lista + resolución de nombres — *Registro de vuelos*
+│   │   │   ├── ShipmentDetailCard.vue      # Tarjeta 4 capas — *Manifiesto del ornitóptero*
 │   │   │   ├── ShipmentEditModal.vue       # Modal edición despacho
 │   │   │   ├── ShipmentDetailModal.vue     # Detalle completo — *Manifiesto de carga*
-│   │   │   └── EntrySelectionModal.vue     # Selección entradas origen — *Cisternas de agua*
+│   │   │   ├── EntrySelectionModal.vue     # Selección entradas origen — *Cisternas de agua*
+│   │   │   └── atoms/                     # FieldItem, TotalItem, StatusBadge, TypeBadge — *Crysknife*
 │   │   ├── wineries/
 │   │   │   └── WineryRegistrationForm.vue  # Formulario bodega con fecha, área, unidades
 │   │   ├── providers/
@@ -197,6 +201,9 @@ src/
 │       ├── IRegisterValidator.ts  # Interface validator register
 │       ├── LoginValidator.ts      # Validación email + password
 │       └── RegisterValidator.ts   # Validación campos registro
+│
+├── utils/
+│   └── formatters.ts              # formatCurrency ($ es-CO), formatDate (30 jul 2026) — *Agua medida a la fremen*
 │
 └── shared/                        # Utilidades compartidas
     ├── auth/
@@ -698,13 +705,20 @@ Campos editables: nombre, teléfono, email, y datos de compañía (NIT, razón s
 
 ---
 
-### `ProductEntryList.vue` — Lista de entradas de producto — *Registro de cosechas*
+### `ProductEntryList.vue` + `InventoryAdjustmentCard.vue` — Entradas — *Registro de cosechas de Kynes*
 
 ```vue
 <ProductEntryList />
 ```
 
-Muestra tabla con entradas registradas: número, fecha, tipo de movimiento, bodega, responsable y totales. Permite consultar el histórico de lo que entró al ecosistema del inventario — como Kynes registraba cada transformación de Arrakis.
+Cada entrada se renderiza como **tarjeta de 3 capas** (`InventoryAdjustmentCard`):
+
+1. **Header** — badge pill del tipo de movimiento, fecha corta (`30 jul 2026`), conteo de productos y total con `$`
+2. **Pills de resumen** — visibles aunque la tabla esté colapsada: productos, unidades únicas, margen promedio
+3. **Tabla** — código muted monospace, nombre dominante, números a la derecha, barra micro de margen y chip verde de precio de venta
+
+> *Como Kynes no inundaba sus informes con arena: primero el tipo de cosecha,
+> luego un resumen, y solo después el detalle grano a grano.*
 
 ---
 
@@ -723,22 +737,30 @@ Muestra tabla con entradas registradas: número, fecha, tipo de movimiento, bode
 | `go-to-provider-registration` | — | Redirige a registro de proveedor si falta aliado |
 
 Secciones:
-- **Encabezado**: Número de orden, fecha, tipo (compra/venta), solicitante
-- **Detalle dinámico**: Productos con cantidad solicitada, costo estimado, subtotal
+- **Encabezado**: Número de orden, fecha, tipo, solicitante
+- **Compañía**: muestra `business_name` resuelto con `GET /companies/{id}` (el `company_id` se conserva para guardar)
+- **Detalle dinámico**: Productos con cantidad, costo estimado, subtotal
 - **Resumen financiero**: Subtotal, IVA, descuento, total
 - **Motivo de la orden**: Textarea con justificación
 
-Como los contratos CHOAM regulaban la economía imperial, cada orden formaliza la intención comercial antes de que los Fedaykin (aprobación) la ejecuten.
+> *En el Landsraad nadie firma un contrato con un sello anónimo: se nombra la Casa.
+> Así el formulario muestra “Casa Atreides”, no el UUID.*
 
 ---
 
-### `OrderList.vue` — Lista de órdenes — *Archivo de contratos imperiales*
+### `OrderList.vue` + `OrderDetailCard.vue` — Órdenes — *Archivo de contratos imperiales*
 
 ```vue
 <OrderList />
 ```
 
-Tabla con órdenes registradas. Acciones: ver, editar (`OrderEditModal`), aprobar (`approveOrder` — *Fedaykin confirman la misión*), eliminar. Filtros por estado y búsqueda.
+Tarjetas expandibles de **3 capas** (`OrderDetailCard`):
+
+1. **Header** — estado + *solicitado por* (nombre humano) + tipo; debajo el número de orden, fecha y total
+2. **Body** — grid de 3 campos (compañía, usuario responsable vía `GET /users/{id}`, solicitado por); la **razón** va en un bloque aparte (no en el grid)
+3. **Totales** — fondo más profundo; descuento en verde con `−`
+
+Acciones: aprobar (*Fedaykin*), editar (ghost), eliminar (borde rojo).
 
 ---
 
@@ -789,13 +811,29 @@ Usa `useQuantityValidation` (*disciplina del agua fremen*) para impedir despacha
 
 ---
 
-### `ShipmentList.vue` — Lista de despachos — *Registro de vuelos del desierto*
+### `ShipmentList.vue` + `ShipmentDetailCard.vue` — Salidas — *Registro de vuelos del desierto*
 
 ```vue
 <ShipmentList />
 ```
 
-Tabla con despachos: número, fecha, tipo, bodega, destinatario, total. Acciones: ver detalle (`ShipmentDetailModal`), editar (`ShipmentEditModal`), eliminar.
+Tarjetas expandibles de **4 capas** (`ShipmentDetailCard`):
+
+1. **Header** — estado + proveedor (`business_name`) + tipo de movimiento; subtítulo con fecha, tipo de destinatario y total
+2. **Body** — bodega (`area`), responsable (`name_full`), destinatario, origen (tipo de movimiento de la entrada); control de estado; tabla de productos
+3. **Totales** — bloque financiero separado
+4. **Footer** — creado / actualizado en tipografía tenue
+
+**Resolución de nombres** (tras cargar la lista, en paralelo, con caché):
+
+| Campo | Endpoint | Valor mostrado | Analogía |
+|-------|----------|----------------|----------|
+| Destinatario | `/providers/{id}` | `business_name` | *Nombre del aliado en el Landsraad* |
+| Bodega | `/wineries/{id}` | `area` | *Nombre del sietch, no su coordenada* |
+| Responsable | `/users/{id}` | `name_full` | *Quién pilota el ornitóptero* |
+| Entrada origen | `/product-entries/{id}` | `movement_type` | *De qué cisterna salió el agua* |
+
+Acciones: ver detalle (`ShipmentDetailModal`), editar (`ShipmentEditModal`), eliminar.
 
 ---
 
@@ -1087,3 +1125,7 @@ Para usar el asistente, necesitas configurar un modelo de IA en
 - **Servicios**: Funciones independientes que llaman `axiosInstance`, tipadas con interfaces locales
 - **Estilos**: TailwindCSS v4 con `@apply` no usado — clases directamente en template. Tema dark via `@custom-variant dark`
 - **Rutas**: 2 rutas planas (`/` y `/auth`), sin rutas anidadas. La navegación interna es SPA-style con `activeNav` + `navItems` en `DashboardPage.vue`
+- **Listas densas**: preferir tarjetas en capas (header → body/pills → tabla → totales); IDs en subtítulo muted; nombres resueltos vía API — *leer el desierto por horizontes, no grano a grano*
+- **Dinero y fechas**: `formatCurrency` (siempre con `$`) y `formatDate` (`30 jul 2026`) desde `@/utils/formatters` — *medir el agua con la misma copa*
+- **Acciones**: Editar = ghost; Eliminar = borde/texto rojo — *el crysknife no se confunde con un cuchillo de cocina*
+- **Motion**: solo `opacity` / `transform`, duración ≤ 0.25s; `transition-colors` o `transition-transform` (nunca `transition-all`) — *Weirding Way sin ruido*

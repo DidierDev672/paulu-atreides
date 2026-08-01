@@ -558,7 +558,7 @@ async function submitForm(): Promise<void> {
         <button
           v-else
           type="button"
-          class="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-2.5 text-sm font-semibold text-white shadow-md transition hover:from-emerald-400 hover:to-emerald-500 disabled:cursor-not-allowed disabled:opacity-40"
+          class="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-dune-status-success to-dune-status-success px-8 py-2.5 text-sm font-semibold text-white shadow-md transition hover:from-dune-status-success hover:to-dune-status-success disabled:cursor-not-allowed disabled:opacity-40"
           :disabled="submitting"
           @click="submitForm"
         >
@@ -588,9 +588,9 @@ async function submitForm(): Promise<void> {
       v-motion
       :initial="{ opacity: 0, y: 16 }"
       :enter="{ opacity: 1, y: 0 }"
-      class="mt-4 rounded-xl border border-emerald-400/25 bg-emerald-500/10 px-5 py-4 text-center"
+      class="mt-4 rounded-xl border border-dune-status-success/30 bg-dune-status-success/10 px-5 py-4 text-center"
     >
-      <p class="text-sm font-semibold text-emerald-200">Empresa registrada exitosamente</p>
+      <p class="text-sm font-semibold text-dune-status-success">Empresa registrada exitosamente</p>
     </div>
   </div>
 </template>

@@ -472,10 +472,10 @@ const stepLabel = computed(() => {
 
       <!-- Local model fields -->
       <template v-if="isLocal">
-        <div class="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+        <div class="rounded-xl border border-dune-status-success/20 bg-dune-status-success/5 p-4">
           <div class="flex items-center gap-2 mb-3">
-            <svg class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
-            <span class="text-xs font-medium text-emerald-300">Modelo local detectado &mdash; los datos permanecen en tu dispositivo</span>
+            <svg class="h-4 w-4 text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+            <span class="text-xs font-medium text-dune-status-success">Modelo local detectado &mdash; los datos permanecen en tu dispositivo</span>
           </div>
         </div>
 
@@ -529,10 +529,10 @@ const stepLabel = computed(() => {
             @blur="apiKeyTouched = true"
             @input="apiKeyTouched = true"
           />
-          <svg v-if="apiKey && apiKeyValid" class="absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-          <svg v-else-if="apiKeyTouched && apiKey && !apiKeyValid" class="absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M12 3l9.66 9.66a1 1 0 010 1.68L12 24l-9.66-9.66a1 1 0 010-1.68L12 3z" /></svg>
+          <svg v-if="apiKey && apiKeyValid" class="absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          <svg v-else-if="apiKeyTouched && apiKey && !apiKeyValid" class="absolute right-3.5 top-1/2 h-5 w-5 -translate-y-1/2 text-dune-status-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M12 3l9.66 9.66a1 1 0 010 1.68L12 24l-9.66-9.66a1 1 0 010-1.68L12 3z" /></svg>
         </div>
-        <p v-if="apiKeyTouched && !apiKeyValid && apiKey" class="mt-1.5 text-xs text-red-400">
+        <p v-if="apiKeyTouched && !apiKeyValid && apiKey" class="mt-1.5 text-xs text-dune-status-danger">
           {{ selectedProvider === 'gemini' ? 'La clave debe tener al menos 10 caracteres.' : 'La clave debe comenzar con sk- o tener al menos 10 caracteres.' }}
         </p>
       </div>
@@ -672,7 +672,7 @@ const stepLabel = computed(() => {
         v-else
         type="button"
         :disabled="!stepValid"
-        class="rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:shadow-xl hover:shadow-emerald-500/30 disabled:cursor-not-allowed disabled:opacity-40"
+        class="rounded-xl bg-gradient-to-r from-dune-status-success to-dune-status-success px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-dune-status-success/25 transition hover:shadow-xl hover:shadow-dune-status-success/30 disabled:cursor-not-allowed disabled:opacity-40"
         @click="handleSave"
       >
         Guardar modelo
@@ -709,7 +709,7 @@ const stepLabel = computed(() => {
             <p class="text-xs text-slate-500">
               <span class="text-violet-400">{{ model.modelName }}</span>
               <template v-if="model.provider === 'local'">
-                &middot; <span class="text-emerald-400">{{ model.baseUrl }}</span>
+                &middot; <span class="text-dune-status-success">{{ model.baseUrl }}</span>
                 <template v-if="model.contextWindow"> &middot; {{ model.contextWindow?.toLocaleString() }} ctx</template>
               </template>
               <template v-else>
@@ -719,11 +719,11 @@ const stepLabel = computed(() => {
           </div>
           <div class="flex items-center gap-2">
             <span class="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium"
-              :class="model.verifiedAt ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'">
-              <span class="h-1.5 w-1.5 rounded-full" :class="model.verifiedAt ? 'bg-emerald-400' : 'bg-amber-400'" />
+              :class="model.verifiedAt ? 'bg-dune-status-success/10 text-dune-status-success' : 'bg-dune-status-warning/10 text-dune-status-warning'">
+              <span class="h-1.5 w-1.5 rounded-full" :class="model.verifiedAt ? 'bg-dune-status-success' : 'bg-dune-status-warning'" />
               {{ model.verifiedAt ? 'Verificado' : 'Pendiente' }}
             </span>
-            <button type="button" class="rounded-lg p-1 text-slate-500 transition hover:bg-red-500/10 hover:text-red-400" @click="removeModel(model.id)">
+            <button type="button" class="rounded-lg p-1 text-slate-500 transition hover:bg-dune-status-danger/10 hover:text-dune-status-danger" @click="removeModel(model.id)">
               <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
@@ -755,17 +755,17 @@ const stepLabel = computed(() => {
                 <p class="mt-1 text-xs text-slate-500">Probando la API Key con una solicitud de ejemplo.</p>
               </div>
               <div v-else-if="verificationResult.success" class="text-center">
-                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10">
-                  <svg class="h-6 w-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-dune-status-success/10">
+                  <svg class="h-6 w-6 text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <p class="text-sm font-semibold text-emerald-400">Conexi&oacute;n exitosa</p>
+                <p class="text-sm font-semibold text-dune-status-success">Conexi&oacute;n exitosa</p>
                 <p class="mt-1 text-xs text-slate-500">Modelo registrado correctamente.</p>
               </div>
               <div v-else class="text-center">
-                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-500/10">
-                  <svg class="h-6 w-6 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M12 3l9.66 9.66a1 1 0 010 1.68L12 24l-9.66-9.66a1 1 0 010-1.68L12 3z" /></svg>
+                <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-dune-status-danger/10">
+                  <svg class="h-6 w-6 text-dune-status-danger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M12 3l9.66 9.66a1 1 0 010 1.68L12 24l-9.66-9.66a1 1 0 010-1.68L12 3z" /></svg>
                 </div>
-                <p class="text-sm font-semibold text-red-400">Error de conexi&oacute;n</p>
+                <p class="text-sm font-semibold text-dune-status-danger">Error de conexi&oacute;n</p>
                 <p class="mt-1 text-xs text-slate-400">{{ verificationResult.message }}</p>
                 <div class="mt-5 flex justify-center gap-3">
                   <button type="button" class="rounded-xl bg-slate-800 px-4 py-2 text-xs font-medium text-slate-300 transition hover:bg-slate-700" @click="handleCancelVerification">Cancelar</button>

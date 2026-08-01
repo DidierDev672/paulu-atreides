@@ -49,9 +49,9 @@ const statusBadgeClass = (status: string): string => {
     case 'DRAFT':
       return 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
     case 'CONFIRMED':
-      return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400'
+      return 'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/10 dark:text-dune-status-success'
     case 'CANCELED':
-      return 'bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400'
+      return 'bg-dune-status-danger/20 text-dune-status-danger dark:bg-dune-status-danger/10 dark:text-dune-status-danger'
     default:
       return 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
   }
@@ -117,11 +117,11 @@ function toggleExpand(id: string): void {
         </div>
         <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
           <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Confirmado</p>
-          <p class="mt-1 text-2xl font-bold text-emerald-600 dark:text-emerald-400">{{ summaryStats.confirmed }}</p>
+          <p class="mt-1 text-2xl font-bold text-dune-status-success dark:text-dune-status-success">{{ summaryStats.confirmed }}</p>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
           <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Cancelado</p>
-          <p class="mt-1 text-2xl font-bold text-red-600 dark:text-red-400">{{ summaryStats.canceled }}</p>
+          <p class="mt-1 text-2xl font-bold text-dune-status-danger dark:text-dune-status-danger">{{ summaryStats.canceled }}</p>
         </div>
         <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900 sm:col-span-1 col-span-2">
           <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Valor total</p>

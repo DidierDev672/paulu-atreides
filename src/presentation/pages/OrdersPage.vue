@@ -20,10 +20,10 @@ const STATUS_OPTIONS = [
 
 const STATUS_BADGES: Record<string, string> = {
   DRAFT: 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300',
-  PENDING: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400',
-  APPROVED: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400',
+  PENDING: 'bg-dune-surface text-dune-primary-dark dark:bg-dune-status-warning/15 dark:text-dune-status-warning',
+  APPROVED: 'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/15 dark:text-dune-status-success',
   REJECTED: 'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400',
-  COMPLETED: 'bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-400',
+  COMPLETED: 'bg-dune-sky/20 text-dune-sky-deep dark:bg-dune-sky-deep/15 dark:text-dune-sky-deep',
 }
 
 const STATUS_LABELS: Record<string, string> = {
@@ -147,21 +147,21 @@ const stats = computed(() => {
             <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Borrador</p>
             <p class="mt-1 text-xl font-bold text-slate-600 dark:text-slate-300">{{ stats.draft }}</p>
           </div>
-          <div class="rounded-xl border border-amber-200/60 bg-white p-3 shadow-sm dark:border-amber-800/30 dark:bg-slate-900">
-            <p class="text-xs font-medium text-amber-600 dark:text-amber-400">Pendiente</p>
-            <p class="mt-1 text-xl font-bold text-amber-700 dark:text-amber-300">{{ stats.pending }}</p>
+          <div class="rounded-xl border border-dune-surface-mid/60 bg-white p-3 shadow-sm dark:border-dune-status-warning/30 dark:bg-slate-900">
+            <p class="text-xs font-medium text-dune-status-warning dark:text-dune-status-warning">Pendiente</p>
+            <p class="mt-1 text-xl font-bold text-dune-primary-dark dark:text-dune-status-warning">{{ stats.pending }}</p>
           </div>
-          <div class="rounded-xl border border-emerald-200/60 bg-white p-3 shadow-sm dark:border-emerald-800/30 dark:bg-slate-900">
-            <p class="text-xs font-medium text-emerald-600 dark:text-emerald-400">Aprobado</p>
-            <p class="mt-1 text-xl font-bold text-emerald-700 dark:text-emerald-300">{{ stats.approved }}</p>
+          <div class="rounded-xl border border-dune-status-success/30 bg-white p-3 shadow-sm dark:border-dune-status-success/30 dark:bg-slate-900">
+            <p class="text-xs font-medium text-dune-status-success dark:text-dune-status-success">Aprobado</p>
+            <p class="mt-1 text-xl font-bold text-dune-status-success dark:text-dune-status-success">{{ stats.approved }}</p>
           </div>
           <div class="rounded-xl border border-red-200/60 bg-white p-3 shadow-sm dark:border-red-800/30 dark:bg-slate-900">
             <p class="text-xs font-medium text-red-600 dark:text-red-400">Rechazado</p>
             <p class="mt-1 text-xl font-bold text-red-700 dark:text-red-300">{{ stats.rejected }}</p>
           </div>
-          <div class="rounded-xl border border-blue-200/60 bg-white p-3 shadow-sm dark:border-blue-800/30 dark:bg-slate-900">
-            <p class="text-xs font-medium text-blue-600 dark:text-blue-400">Completado</p>
-            <p class="mt-1 text-xl font-bold text-blue-700 dark:text-blue-300">{{ stats.completed }}</p>
+          <div class="rounded-xl border border-dune-sky/60 bg-white p-3 shadow-sm dark:border-dune-sky-deep/30 dark:bg-slate-900">
+            <p class="text-xs font-medium text-dune-sky-deep dark:text-dune-sky-deep">Completado</p>
+            <p class="mt-1 text-xl font-bold text-dune-sky-deep dark:text-dune-sky-deep">{{ stats.completed }}</p>
           </div>
           <div class="rounded-xl border border-stellar-200/60 bg-white p-3 shadow-sm dark:border-stellar-800/30 dark:bg-slate-900 sm:col-span-2 lg:col-span-1">
             <p class="text-xs font-medium text-stellar-600 dark:text-stellar-400">Valor total</p>
@@ -222,7 +222,7 @@ const stats = computed(() => {
                 <button
                   v-if="canApprove(order.status)"
                   type="button"
-                  class="rounded-xl bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-600 transition hover:bg-emerald-500/20 dark:text-emerald-400"
+                  class="rounded-xl bg-dune-status-success/10 px-3 py-1.5 text-xs font-semibold text-dune-status-success transition hover:bg-dune-status-success/20 dark:text-dune-status-success"
                   @click.stop="handleApprove(order.id)"
                 >
                   Aprobar

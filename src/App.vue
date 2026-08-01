@@ -1,8 +1,79 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ensureOllamaRunning } from '@/application/services/ollamaService'
+import { useAuthStore } from '@/presentation/stores/authStore'
 import { API_BASE_URL } from '@/shared/config/api'
 import { axiosInstance } from '@/infrastructure/http/axiosInstance'
 import VueMarkdown from 'vue-markdown-render'
+
+interface StoredAiModel {
+  id: string
+  provider: string
+  label: string
+  modelName: string
+  apiKey: string
+  baseUrl?: string
+  contextWindow?: number
+  maxTokens?: number
+  verifiedAt: string | null
+}
+
+function loadAiModels(): StoredAiModel[] {
+  try {
+    const stored = localStorage.getItem('ai-models')
+    return stored ? (JSON.parse(stored) as StoredAiModel[]) : []
+  } catch {
+    return []
+  }
+}
+
+function saveAiModels(models: StoredAiModel[]): void {
+  localStorage.setItem('ai-models', JSON.stringify(models))
+}
+
+function getActiveAiModel(): StoredAiModel | undefined {
+  return loadAiModels().find((m) => Boolean(m.verifiedAt))
+}
+
+/** Registers or reactivates local Ollama llama3 after ensure starts the daemon. */
+function registerLocalLlama3(): StoredAiModel {
+  const models = loadAiModels()
+  const existing = models.find(
+    (m) => m.provider === 'local' && (m.modelName === 'llama3' || m.modelName.startsWith('llama3')),
+  )
+  if (existing) {
+    existing.verifiedAt = new Date().toISOString()
+    existing.baseUrl = existing.baseUrl || '/ollama-api'
+    existing.modelName = 'llama3'
+    existing.apiKey = existing.apiKey || 'no-key'
+    saveAiModels(models)
+    return existing
+  }
+
+  const created: StoredAiModel = {
+    id: crypto.randomUUID(),
+    provider: 'local',
+    label: 'Ollama Llama 3',
+    modelName: 'llama3',
+    apiKey: 'no-key',
+    baseUrl: '/ollama-api',
+    contextWindow: 4096,
+    maxTokens: 2048,
+    verifiedAt: new Date().toISOString(),
+  }
+  models.push(created)
+  saveAiModels(models)
+  return created
+}
+
+const route = useRoute()
+const router = useRouter()
+const authStore = useAuthStore()
+
+const isLoggedIn = computed(() => !!authStore.session)
+const isAuthPage = computed(() => route.name === 'auth')
+const showFloatingButton = computed(() => !isAuthPage.value)
 
 const chatOpen = ref(false)
 const isExpanded = ref(false)
@@ -191,17 +262,34 @@ async function sendMessage() {
   scrollToBottom()
 
   try {
-    const stored = localStorage.getItem('ai-models')
-    const models = stored ? JSON.parse(stored) : []
-    const active = models.find((m: { verifiedAt: string | null }) => m.verifiedAt)
+    let active = getActiveAiModel()
 
+    // Sin modelo registrado → iniciar Ollama (`ollama serve` + `ollama run llama3`) y registrarlo.
     if (!active) {
       messages.value.push({
         role: 'assistant',
-        text: 'No hay ningún modelo de IA configurado. Ve a **Modelos de IA** en el menú para agregar uno.',
+        text: 'No hay modelo registrado. Iniciando **Ollama** con `llama3`…',
       })
       scrollToBottom()
-      return
+
+      const ensure = await ensureOllamaRunning()
+      if (!ensure.ready) {
+        messages.value.push({
+          role: 'assistant',
+          text: `No se pudo preparar Ollama: ${ensure.message}\n\nInstala Ollama, ejecuta la app con \`npm run dev\` y vuelve a intentar.`,
+        })
+        scrollToBottom()
+        return
+      }
+
+      active = registerLocalLlama3()
+      messages.value.push({
+        role: 'assistant',
+        text: ensure.startedModel || ensure.startedServe
+          ? '**llama3** listo (Ollama iniciado). Generando respuesta…'
+          : '**llama3** disponible. Generando respuesta…',
+      })
+      scrollToBottom()
     }
 
     // Detect intent and fetch real data from API
@@ -313,8 +401,9 @@ function handleKeydown(e: KeyboardEvent) {
       </Transition>
     </router-view>
 
-    <!-- Floating AI button -->
+    <!-- Floating AI button (hidden on auth page) -->
     <button
+      v-if="showFloatingButton"
       v-motion
       :initial="{ opacity: 0, scale: 0, y: 20 }"
       :enter="{ opacity: 1, scale: 1, y: 0, transition: { type: 'spring', stiffness: 400, damping: 20, delay: 400 } }"
@@ -322,12 +411,7 @@ function handleKeydown(e: KeyboardEvent) {
       class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-500/30 backdrop-blur-md transition hover:scale-110 hover:shadow-xl hover:shadow-violet-500/40 active:scale-95"
       @click="chatOpen = !chatOpen"
     >
-      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 4a4 4 0 0 1 3.5 2.1 7 7 0 0 1 2.5-.6 7 7 0 0 1 4.8 2 7 7 0 0 1-2.8 11.5 4 4 0 0 1-7.5.8 4 4 0 0 1-7.5-.8A7 7 0 0 1 1.2 7.5a7 7 0 0 1 4.8-2 7 7 0 0 1 2.5.6A4 4 0 0 1 12 4z" />
-        <circle cx="9" cy="12" r="1" fill="currentColor" />
-        <circle cx="15" cy="12" r="1" fill="currentColor" />
-        <path d="M9 15.5a3.5 3.5 0 0 0 6 0" />
-      </svg>
+      <img src="file:///D:/Casa-Atreides/icon/5cb6ddac-3d0b-42ae-8cc3-e88b8896be9e.svg" alt="Asistente Paulu" class="h-7 w-7 object-contain" />
     </button>
 
     <!-- Chat modal -->
@@ -348,30 +432,25 @@ function handleKeydown(e: KeyboardEvent) {
             :initial="{ opacity: 0, y: 80, scale: 0.92 }"
             :enter="{ opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 350, damping: 28, mass: 0.8 } }"
             :leave="{ opacity: 0, y: 40, scale: 0.95, transition: { duration: 0.2 } }"
-            class="flex w-full flex-col rounded-3xl border border-white/10 bg-slate-900 shadow-2xl shadow-black/40 transition-all duration-300 ease-out"
+            class="flex w-full flex-col rounded-3xl border border-dune-surface-dark bg-dune-bg shadow-2xl shadow-black/40 transition-all duration-300 ease-out dark:border-white/10 dark:bg-slate-900"
             :class="isExpanded ? 'fixed inset-4 z-50 h-auto sm:inset-8' : 'h-[75vh] max-w-xl sm:h-[560px]'"
             @click.stop
           >
             <!-- Header -->
-            <div class="flex items-center justify-between border-b border-white/10 px-6 py-4">
+            <div class="flex items-center justify-between border-b border-dune-surface-dark px-6 py-4 dark:border-white/10">
               <div class="flex items-center gap-3">
-                <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600">
-                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 4a4 4 0 0 1 3.5 2.1 7 7 0 0 1 2.5-.6 7 7 0 0 1 4.8 2 7 7 0 0 1-2.8 11.5 4 4 0 0 1-7.5.8 4 4 0 0 1-7.5-.8A7 7 0 0 1 1.2 7.5a7 7 0 0 1 4.8-2 7 7 0 0 1 2.5.6A4 4 0 0 1 12 4z" />
-                    <circle cx="9" cy="12" r="1" fill="currentColor" />
-                    <circle cx="15" cy="12" r="1" fill="currentColor" />
-                    <path d="M9 15.5a3.5 3.5 0 0 0 6 0" />
-                  </svg>
+                <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-dune-primary to-dune-primary-dark">
+                  <img src="file:///D:/Casa-Atreides/icon/5cb6ddac-3d0b-42ae-8cc3-e88b8896be9e.svg" alt="Asistente Paulu" class="h-7 w-7 object-contain" />
                 </div>
                 <div>
-                  <h3 class="text-sm font-semibold text-white">Asistente Paulu</h3>
-                  <p class="text-xs text-slate-500">Escribe para conversar</p>
+                  <h3 class="text-sm font-semibold text-dune-text-primary dark:text-white">Asistente Paulu</h3>
+                  <p class="text-xs text-dune-text-secondary">Escribe para conversar</p>
                 </div>
               </div>
               <div class="flex items-center gap-2">
                 <button
                   type="button"
-                  class="rounded-xl p-1.5 text-slate-500 transition hover:bg-white/5 hover:text-slate-300"
+                  class="rounded-xl p-1.5 text-dune-text-secondary transition hover:bg-dune-surface hover:text-dune-text-primary dark:hover:bg-white/5 dark:hover:text-slate-300"
                   @click="isExpanded = !isExpanded"
                 >
                   <svg v-if="!isExpanded" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -383,7 +462,7 @@ function handleKeydown(e: KeyboardEvent) {
                 </button>
                 <button
                   type="button"
-                  class="rounded-xl p-1.5 text-slate-500 transition hover:bg-white/5 hover:text-slate-300"
+                  class="rounded-xl p-1.5 text-dune-text-secondary transition hover:bg-dune-surface hover:text-dune-text-primary dark:hover:bg-white/5 dark:hover:text-slate-300"
                   @click="chatOpen = false"
                 >
                   <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -395,55 +474,74 @@ function handleKeydown(e: KeyboardEvent) {
 
             <!-- Body -->
             <div ref="chatContainer" class="flex flex-1 flex-col overflow-y-auto px-6 py-4">
-              <div v-if="messages.length === 0" class="space-y-3">
-                <div class="flex justify-start">
-                  <div class="max-w-[90%] rounded-2xl bg-slate-800 px-4 py-3 text-sm leading-relaxed text-slate-300">
-                    <p>Bienvenido. Soy <strong>Paulu</strong>, y estoy aquí para ayudarte a mantener el orden en lo que más importa: el flujo de tu negocio.</p>
-                    <p class="mt-2">En mi casa aprendemos que el control de los recursos no es solo una tarea — es la base sobre la que se sostiene cualquier operación. Un inventario sin visibilidad es como navegar sin mapa: se avanza, pero sin rumbo.</p>
-                    <p class="mt-2">Aquí tendrás claridad. Cada producto, cada orden, cada entrada y salida tiene su lugar, y juntos nos aseguraremos de que nada quede en la oscuridad.</p>
-                    <p class="mt-2"><strong>¿Por dónde quieres empezar?</strong></p>
-                    <ul class="mt-2 list-disc pl-5">
-                      <li><strong>Inventario</strong> — Stock, Entradas y Salidas</li>
-                      <li><strong>Órdenes</strong> — Estado y seguimiento</li>
-                      <li><strong>Finanzas</strong> — Márgenes y rentabilidad</li>
-                      <li><strong>Productos</strong> — Más vendidos y rotación</li>
-                    </ul>
-                  </div>
+              <!-- Not logged in: show login prompt -->
+              <div v-if="!isLoggedIn" class="flex flex-1 flex-col items-center justify-center text-center">
+                <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-dune-surface dark:bg-slate-800">
+                  <img src="file:///D:/Casa-Atreides/icon/5cb6ddac-3d0b-42ae-8cc3-e88b8896be9e.svg" alt="Asistente Paulu" class="h-10 w-10 object-contain" />
                 </div>
-              </div>
-              <div v-else class="space-y-3">
-                <div
-                  v-for="(msg, i) in messages"
-                  :key="i"
-                  class="flex"
-                  :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
+                <h4 class="text-sm font-semibold text-dune-text-primary dark:text-white">Inicia sesión para continuar</h4>
+                <p class="mt-1 text-xs text-dune-text-secondary">Necesitas estar autenticado para conversar con Paulu.</p>
+                <button
+                  type="button"
+                  class="mt-4 rounded-xl bg-dune-primary px-5 py-2 text-sm font-medium text-dune-text-on-primary transition hover:bg-dune-primary-dark active:scale-95"
+                  @click="router.push({ name: 'auth' })"
                 >
-                  <div
-                    class="max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed"
-                    :class="msg.role === 'user' ? 'bg-violet-600 text-white' : 'bg-slate-800 text-slate-300'"
-                  >
-                    <VueMarkdown v-if="msg.role === 'assistant'" :source="msg.text" class="prose prose-invert prose-sm max-w-none" />
-                    <span v-else>{{ msg.text }}</span>
-                  </div>
-                </div>
-                <div v-if="isTyping" class="flex justify-start">
-                  <div class="flex items-center gap-1 rounded-2xl bg-slate-800 px-4 py-3">
-                    <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:0ms]" />
-                    <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:150ms]" />
-                    <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:300ms]" />
-                  </div>
-                </div>
+                  Iniciar sesión
+                </button>
               </div>
+
+              <!-- Logged in: show chat -->
+              <template v-else>
+                <div v-if="messages.length === 0" class="space-y-3">
+                  <div class="flex justify-start">
+                    <div class="max-w-[90%] rounded-2xl bg-dune-surface px-4 py-3 text-sm leading-relaxed text-dune-text-primary dark:bg-slate-800 dark:text-slate-300">
+                      <p>Bienvenido. Soy <strong>Paulu</strong>, y estoy aquí para ayudarte a mantener el orden en lo que más importa: el flujo de tu negocio.</p>
+                      <p class="mt-2">En mi casa aprendemos que el control de los recursos no es solo una tarea — es la base sobre la que se sostiene cualquier operación. Un inventario sin visibilidad es como navegar sin mapa: se avanza, pero sin rumbo.</p>
+                      <p class="mt-2">Aquí tendrás claridad. Cada producto, cada orden, cada entrada y salida tiene su lugar, y juntos nos aseguraremos de que nada quede en la oscuridad.</p>
+                      <p class="mt-2"><strong>¿Por dónde quieres empezar?</strong></p>
+                      <ul class="mt-2 list-disc pl-5">
+                        <li><strong>Inventario</strong> — Stock, Entradas y Salidas</li>
+                        <li><strong>Órdenes</strong> — Estado y seguimiento</li>
+                        <li><strong>Finanzas</strong> — Márgenes y rentabilidad</li>
+                        <li><strong>Productos</strong> — Más vendidos y rotación</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="space-y-3">
+                  <div
+                    v-for="(msg, i) in messages"
+                    :key="i"
+                    class="flex"
+                    :class="msg.role === 'user' ? 'justify-end' : 'justify-start'"
+                  >
+                    <div
+                      class="max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed"
+                      :class="msg.role === 'user' ? 'bg-dune-primary text-dune-text-on-primary' : 'bg-dune-surface text-dune-text-primary dark:bg-slate-800 dark:text-slate-300'"
+                    >
+                      <VueMarkdown v-if="msg.role === 'assistant'" :source="msg.text" class="prose prose-sm max-w-none dark:prose-invert" />
+                      <span v-else>{{ msg.text }}</span>
+                    </div>
+                  </div>
+                  <div v-if="isTyping" class="flex justify-start">
+                    <div class="flex items-center gap-1 rounded-2xl bg-dune-surface px-4 py-3 dark:bg-slate-800">
+                      <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:0ms]" />
+                      <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:150ms]" />
+                      <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-slate-500 [animation-delay:300ms]" />
+                    </div>
+                  </div>
+                </div>
+              </template>
             </div>
 
-            <!-- Footer -->
-            <div class="border-t border-white/10 px-6 py-4">
-              <div class="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-800/50 px-4 py-3">
+            <!-- Footer (hidden when not logged in) -->
+            <div v-if="isLoggedIn" class="border-t border-dune-surface-dark px-6 py-4 dark:border-white/10">
+              <div class="flex items-center gap-2 rounded-2xl border border-dune-surface-dark bg-dune-surface px-4 py-3 dark:border-white/10 dark:bg-slate-800/50">
                 <input
                   v-model="userInput"
                   type="text"
                   placeholder="Escribe un mensaje..."
-                  class="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+                  class="flex-1 bg-transparent text-sm text-dune-text-primary outline-none placeholder:text-dune-text-secondary dark:text-white dark:placeholder:text-slate-500"
                   :disabled="isTyping"
                   @keydown="handleKeydown"
                 />
@@ -451,7 +549,7 @@ function handleKeydown(e: KeyboardEvent) {
                   type="button"
                   :disabled="!userInput.trim() || isTyping"
                   class="flex h-8 w-8 items-center justify-center rounded-xl transition"
-                  :class="userInput.trim() && !isTyping ? 'bg-violet-600 text-white hover:bg-violet-500' : 'bg-violet-600/30 text-violet-400 cursor-not-allowed'"
+                  :class="userInput.trim() && !isTyping ? 'bg-dune-primary text-dune-text-on-primary hover:bg-dune-primary-dark' : 'bg-dune-primary/30 text-dune-primary-light cursor-not-allowed'"
                   @click="sendMessage"
                 >
                   <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -483,84 +581,69 @@ function handleKeydown(e: KeyboardEvent) {
 }
 
 /* VueMarkdown styles for assistant responses */
-.prose.prose-invert.prose-sm p {
+.prose.prose-sm p {
   margin: 0.5em 0;
 }
-.prose.prose-invert.prose-sm h1,
-.prose.prose-invert.prose-sm h2,
-.prose.prose-invert.prose-sm h3,
-.prose.prose-invert.prose-sm h4 {
-  color: #e2e8f0;
+.prose.prose-sm h1,
+.prose.prose-sm h2,
+.prose.prose-sm h3,
+.prose.prose-sm h4 {
   font-weight: 600;
   margin: 0.75em 0 0.5em;
 }
-.prose.prose-invert.prose-sm h1 { font-size: 1.25em; }
-.prose.prose-invert.prose-sm h2 { font-size: 1.125em; }
-.prose.prose-invert.prose-sm h3 { font-size: 1em; }
-.prose.prose-invert.prose-sm ul,
-.prose.prose-invert.prose-sm ol {
+.prose.prose-sm h1 { font-size: 1.25em; }
+.prose.prose-sm h2 { font-size: 1.125em; }
+.prose.prose-sm h3 { font-size: 1em; }
+.prose.prose-sm ul,
+.prose.prose-sm ol {
   margin: 0.5em 0;
   padding-left: 1.5em;
 }
-.prose.prose-invert.prose-sm li {
+.prose.prose-sm li {
   margin: 0.25em 0;
 }
-.prose.prose-invert.prose-sm strong {
-  color: #f1f5f9;
+.prose.prose-sm strong {
   font-weight: 600;
 }
-.prose.prose-invert.prose-sm em {
-  color: #cbd5e1;
-}
-.prose.prose-invert.prose-sm code {
-  background: rgba(148, 163, 184, 0.1);
+.prose.prose-sm code {
   padding: 0.15em 0.4em;
   border-radius: 0.25em;
   font-size: 0.875em;
-  color: #e2e8f0;
 }
-.prose.prose-invert.prose-sm pre {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+.prose.prose-sm pre {
   border-radius: 0.5em;
   padding: 0.75em 1em;
   overflow-x: auto;
   margin: 0.75em 0;
 }
-.prose.prose-invert.prose-sm pre code {
+.prose.prose-sm pre code {
   background: transparent;
   padding: 0;
 }
-.prose.prose-invert.prose-sm table {
+.prose.prose-sm table {
   width: 100%;
   border-collapse: collapse;
   margin: 0.75em 0;
   font-size: 0.875em;
 }
-.prose.prose-invert.prose-sm th,
-.prose.prose-invert.prose-sm td {
-  border: 1px solid rgba(148, 163, 184, 0.15);
+.prose.prose-sm th,
+.prose.prose-sm td {
   padding: 0.4em 0.75em;
   text-align: left;
 }
-.prose.prose-invert.prose-sm th {
-  background: rgba(30, 41, 59, 0.5);
-  color: #e2e8f0;
+.prose.prose-sm th {
   font-weight: 600;
 }
-.prose.prose-invert.prose-sm blockquote {
+.prose.prose-sm blockquote {
   border-left: 3px solid #7c3aed;
   padding-left: 1em;
   margin: 0.75em 0;
-  color: #94a3b8;
   font-style: italic;
 }
-.prose.prose-invert.prose-sm a {
-  color: #a78bfa;
+.prose.prose-sm a {
   text-decoration: underline;
 }
-.prose.prose-invert.prose-sm hr {
-  border-color: rgba(148, 163, 184, 0.15);
+.prose.prose-sm hr {
   margin: 1em 0;
 }
 </style>

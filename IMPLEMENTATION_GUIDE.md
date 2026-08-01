@@ -1,7 +1,8 @@
 # Guía de Implementación — Paulu Areides
 
-> Versión 2.2 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus),
-> backend Go (Paulu), sistema de IA configurable, y herramientas de análisis (graphify).
+> Versión 2.3 — Documentación técnica de todo lo construido: frontend Vue 3 (Paulus),
+> backend Go (Paulu), sistema de IA configurable, tarjetas en capas (carga cognitiva),
+> resolución de nombres vía API, y herramientas de análisis (graphify).
 >
 > Cada sección incluye su paralelo en la saga *Dune* bajo la **Casa Paulu Areides**.
 > Glosario canónico: [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md)
@@ -58,12 +59,12 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 | Servicio | Archivo | Endpoints | Referencia Dune |
 |---|---|---|---|
 | `productService` | `src/application/services/productService.ts` | GET/POST/PUT/DELETE `/products` | *Cosecha de melange* |
-| `companyService` | `src/application/services/companyService.ts` | GET `/companies/user/{id}`, POST/PUT `/companies` | *Fundar Casa en Arrakis* |
-| `wineryService` | `src/application/services/wineryService.ts` | GET/POST/PUT/DELETE `/wineries` | *Sietch Tabr* |
+| `companyService` | `src/application/services/companyService.ts` | GET `/companies/{id}`, GET `/companies/user/{id}`, POST/PUT `/companies` | *Fundar Casa en Arrakis — conocer el nombre de la Casa* |
+| `wineryService` | `src/application/services/wineryService.ts` | GET/POST/PUT/DELETE `/wineries`, GET `/wineries/{id}` | *Sietch Tabr — saber qué sietch es* |
 | `mainAddressService` | `src/application/services/mainAddressService.ts` | POST `/main-addresses` | *Coordenadas del bled* |
 | `taxInformationService` | `src/application/services/taxInformationService.ts` | POST `/tax-information` | *Desierto fiscal* |
 | `economicActivityService` | `src/application/services/economicActivityService.ts` | POST `/economic-activities` | *Actividad CHOAM* |
-| `userService` | `src/application/services/userService.ts` | PUT `/users/{id}` | *Identidad de Usul* |
+| `userService` | `src/application/services/userService.ts` | GET `/users/{id}`, PUT `/users/{id}` | *Identidad de Usul — el nombre detrás del sello* |
 | `providerService` | `src/application/services/providerService.ts` | GET/POST/PUT/DELETE `/providers` | *Tratados del Landsraad* |
 | `productEntryService` | `src/application/services/productEntryService.ts` | GET/POST/PUT/DELETE `/product-entries` | *Ecosistema de Kynes* |
 | `orderService` | `src/application/services/orderService.ts` | GET/POST/PUT/DELETE `/orders`, PATCH `/orders/{id}/approve` | *Contratos CHOAM + Fedaykin* |
@@ -115,18 +116,22 @@ A diferencia del patrón de repositorio usado para auth (*Duncan Idaho — proto
 | UserProfile | `src/presentation/components/profile/UserProfile.vue` | Perfil + datos empresa | *Identidad de Usul* |
 | EditProfileModal | `src/presentation/components/profile/EditProfileModal.vue` | Modal editar perfil + empresa | *Renacer en el sietch* |
 | ProductEntryForm | `src/presentation/components/productEntries/ProductEntryForm.vue` | Entrada con tabla dinámica | *Dr. Kynes* |
-| ProductEntryList | `src/presentation/components/productEntries/ProductEntryList.vue` | Lista de entradas | *Registro de cosechas* |
+| ProductEntryList | `src/presentation/components/productEntries/ProductEntryList.vue` | Orquesta lista de entradas | *Registro de cosechas* |
+| InventoryAdjustmentCard | `src/presentation/components/productEntries/InventoryAdjustmentCard.vue` | Tarjeta 3 capas: badge, pills, tabla | *Informe de Kynes — denso pero legible* |
 | ProviderRegistrationForm | `src/presentation/components/providers/ProviderRegistrationForm.vue` | Registro proveedor | *Tratado Landsraad* |
-| OrderForm | `src/presentation/components/orders/OrderForm.vue` | Orden compra/venta | *Contrato CHOAM* |
-| OrderList | `src/presentation/components/orders/OrderList.vue` | Lista órdenes + aprobación | *Archivo imperial* |
+| OrderForm | `src/presentation/components/orders/OrderForm.vue` | Orden compra/venta; compañía por nombre | *Contrato CHOAM — la Casa se nombra, no se cifra* |
+| OrderList | `src/presentation/components/orders/OrderList.vue` | Orquesta lista + aprobación; resuelve usuarios | *Archivo imperial* |
+| OrderDetailCard | `src/presentation/components/orders/OrderDetailCard.vue` | Tarjeta 3 capas: header, razón, totales | *Pergamino CHOAM en capas* |
 | OrderEditModal | `src/presentation/components/orders/OrderEditModal.vue` | Edición de orden | *Thufir revisa estrategia* |
 | DispatchSummaryModal | `src/presentation/components/orders/DispatchSummaryModal.vue` | Resumen post-despacho | *Informe post-batalla* |
 | AutomationConfirmModal | `src/presentation/components/orders/AutomationConfirmModal.vue` | Confirmación automatización | *Profecía de Muad'Dib* |
 | ShipmentForm | `src/presentation/components/shipments/ShipmentForm.vue` | Despacho con validación stock | *Ornitóptero cargado* |
-| ShipmentList | `src/presentation/components/shipments/ShipmentList.vue` | Lista despachos | *Registro de vuelos* |
+| ShipmentList | `src/presentation/components/shipments/ShipmentList.vue` | Orquesta lista; resuelve nombres vía API | *Registro de vuelos* |
+| ShipmentDetailCard | `src/presentation/components/shipments/ShipmentDetailCard.vue` | Tarjeta 4 capas: header, body, totales, footer | *Manifiesto del ornitóptero* |
 | ShipmentEditModal | `src/presentation/components/shipments/ShipmentEditModal.vue` | Edición despacho | *Recalcular ruta* |
-| ShipmentDetailModal | `src/presentation/components/shipments/ShipmentDetailModal.vue` | Detalle despacho | *Manifiesto de carga* |
+| ShipmentDetailModal | `src/presentation/components/shipments/ShipmentDetailModal.vue` | Detalle despacho (modal) | *Manifiesto de carga completo* |
 | EntrySelectionModal | `src/presentation/components/shipments/EntrySelectionModal.vue` | Selección entradas origen | *Cisternas de agua* |
+| FieldItem / TotalItem / StatusBadge / TypeBadge | `src/presentation/components/shipments/atoms/` | Átomos UI reutilizados en tarjetas | *Cuchillas del crysknife — piezas mínimas afiladas* |
 | HistoryTimeline | `src/presentation/components/history/HistoryTimeline.vue` | Línea de tiempo visual con búsqueda y detalle expandible | *Línea de tiempo de Muad'Dib* |
 | HistoryDetailModal | `src/presentation/components/history/HistoryDetailModal.vue` | Modal de historial filtrado por entidad | *Visión enfocada de Paul* |
 | AIModelsPanel | `src/presentation/components/ai/AIModelsPanel.vue` | Wizard 3 pasos: proveedor, API Key, verificación | *Entrenamiento del Mentat — Paulu Areides calcula* |
@@ -340,6 +345,72 @@ Al montarse, llama a `fetchEntriesByEntity(entityType, entityId)` para cargar
 solo los eventos relacionados con ese documento. Útil para ver el ciclo de vida
 completo de una orden, producto o despacho. *(Paul enfoca su visión en un solo
 hilo del destino para comprenderlo por completo)*
+
+### 2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*
+
+> *"Un fremen no cuenta cada grano de arena. Primero mira el horizonte,
+> luego la caravana, después el manifiesto. Solo entonces cuenta el agua."*
+>
+> Las listas densas (órdenes, salidas, entradas) aplican la misma disciplina:
+> capas visuales + nombres humanos en lugar de UUIDs crudos.
+
+#### 2.11.1 Problema — *La tormenta de arena de los IDs*
+
+Antes, las tarjetas mezclaban estado, IDs técnicos, totales y tablas al mismo
+peso visual. Como mirar Arrakis en plena tormenta: todo es arena; nada destaca.
+El ojo no sabe dónde aterrizar.
+
+#### 2.11.2 Patrón de capas — *Horizonte → caravana → manifiesto → agua*
+
+| Capa | Rol | Analogía Dune |
+|------|-----|---------------|
+| Header | Estado + nombre humano + tipo; ID/fecha/total en subtítulo muted | *Horizonte: ¿hay peligro? ¿quién lidera?* |
+| Body / pills | Metadata corta o resumen rápido (unidades, margen) | *Caravana: quién, dónde, por qué* |
+| Tabla | Productos con jerarquía tipográfica (código muted, nombre dominante) | *Manifiesto de carga* |
+| Totals / footer | Bloque financiero más oscuro; timestamps al final | *Agua contada — lo último que se revela* |
+
+**Componentes:**
+
+| Tarjeta | Archivo | Capas | Lista que la orquesta |
+|---------|---------|-------|------------------------|
+| `ShipmentDetailCard` | `shipments/ShipmentDetailCard.vue` | 4 | `ShipmentList` |
+| `OrderDetailCard` | `orders/OrderDetailCard.vue` | 3 | `OrderList` |
+| `InventoryAdjustmentCard` | `productEntries/InventoryAdjustmentCard.vue` | 3 | `ProductEntryList` |
+
+**Átomos compartidos** (`shipments/atoms/`): `FieldItem` (label 10px / value 13px, prop `mono`), `TotalItem` (descuento en verde con prefijo `−`), `StatusBadge`, `TypeBadge`.
+
+#### 2.11.3 Resolución de nombres — *Preguntar al Mentat quién es quién*
+
+Los documentos guardan IDs. La UI no debe obligar al operador a memorizar
+UUIDs — *solo un Mentat recuerda cada sello del Landsraad*. Tras cargar la
+lista, se resuelven IDs únicos en paralelo y se cachean en `ref<Record<string, string>>`.
+
+| Lista | Campo | Endpoint (axios) | Campo mostrado |
+|-------|-------|------------------|----------------|
+| `ShipmentList` | `recipient.recipient_id` | `GET /providers/{id}` | `business_name` |
+| `ShipmentList` | `warehouse_id` | `GET /wineries/{id}` | `area` |
+| `ShipmentList` | `responsible_id` | `GET /users/{id}` | `name_full` |
+| `ShipmentList` | `source_document.entry_ids[]` | `GET /product-entries/{id}` | `movement_type` (etiqueta) |
+| `OrderList` | `user_id` | `GET /users/{id}` | `name_full` |
+| `OrderForm` | `company_id` | `GET /companies/{id}` | `business_name` |
+
+Si la petición falla, se muestra el ID como respaldo — *si el Mentat calla,
+queda el sello en bruto*.
+
+#### 2.11.4 Formatters — *Agua medida con precisión fremen*
+
+`src/utils/formatters.ts`:
+
+| Función | Salida | Analogía |
+|---------|--------|----------|
+| `formatCurrency(n)` | `$1.209.270,00` (`es-CO` + `$`) | *Litros de agua siempre con unidad* |
+| `formatDate(iso)` | `30 jul 2026` (mes corto) | *Fecha del desierto, sin ornamento imperial* |
+| `formatCOP(n)` | `1.209.270,00` (sin `$`) | *Misma medida, para inputs que ya muestran `$`* |
+| `parseCOP` / `parseCOPCurrency` | string → number | *Convertir la medida del mercado a número Mentat* |
+
+Reglas de UI: columnas numéricas alineadas a la derecha y monospace; código de
+producto muted; acciones destructivas con borde rojo (nunca el mismo estilo
+que “Editar”).
 
 ---
 

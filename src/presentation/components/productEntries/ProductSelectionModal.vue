@@ -129,7 +129,7 @@ onMounted(async () => {
           </div>
 
           <div v-else-if="products.length === 0" class="flex flex-col items-center px-6 py-12 text-center">
-            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
+            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-primary-light to-dune-primary-dark shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
               <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
               </svg>

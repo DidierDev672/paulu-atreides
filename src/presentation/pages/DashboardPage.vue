@@ -6,6 +6,7 @@
  * Uses Tailwind CSS v4 + @vueuse/motion for entrance animations.
  */
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { getCompanyByUser } from '@/application/services/companyService'
@@ -69,10 +70,17 @@ onMounted(() => document.addEventListener('click', handleClickOutside))
 onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 
 const authStore = useAuthStore()
+const router = useRouter()
 const companyStore = useCompanyStore()
 const historyStore = useHistoryStore()
 const productEntryStore = useProductEntryStore()
 const shipmentStore = useShipmentStore()
+
+function handleLogout(): void {
+  profileOpen.value = false
+  authStore.logout()
+  router.push({ name: 'auth' })
+}
 const userId = computed(() => authStore.session?.user.id ?? '')
 const userName = computed(() => authStore.session?.user.fullName ?? 'Admin User')
 const userInitials = computed(() =>
@@ -429,8 +437,8 @@ const transactions: Transaction[] = [
 ]
 
 const statusStyles: Record<TransactionStatus, string> = {
-  completed: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400',
-  pending: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400',
+  completed: 'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/15 dark:text-dune-status-success',
+  pending: 'bg-dune-surface text-dune-primary-dark dark:bg-dune-status-warning/15 dark:text-dune-status-warning',
   failed: 'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400',
 }
 
@@ -448,16 +456,16 @@ function goToPage(page: number): void {
 
 // --- Activity feed -----------------------------------------------------------
 const actionDot: Record<string, string> = {
-  CREATE: 'bg-emerald-500',
-  UPDATE: 'bg-blue-500',
+  CREATE: 'bg-dune-status-success',
+  UPDATE: 'bg-dune-sky-deep',
   DELETE: 'bg-red-500',
   APPROVE: 'bg-teal-500',
-  DEDUCT: 'bg-amber-500',
+  DEDUCT: 'bg-dune-status-warning',
   LOGIN: 'bg-indigo-500',
   LOGOUT: 'bg-gray-500',
   REGISTER: 'bg-purple-500',
   SHIPMENT_CREATED: 'bg-cyan-500',
-  ORDER_CREATED: 'bg-amber-500',
+  ORDER_CREATED: 'bg-dune-status-warning',
   ENTRY_CREATED: 'bg-green-500',
   RELATION_CREATED: 'bg-pink-500',
 }
@@ -539,9 +547,7 @@ const searchQuery = ref('')
       <!-- Logo -->
       <div class="flex h-16 items-center gap-3 border-b border-slate-200/80 px-4 dark:border-slate-800" :class="sidebarCollapsed ? 'justify-center' : ''">
         <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-stellar-500 to-cosmic-600 shadow-md">
-          <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />
-          </svg>
+          <img src="file:///D:/Casa-Atreides/icon/5cb6ddac-3d0b-42ae-8cc3-e88b8896be9e.svg" alt="Paulu" class="h-5 w-5 object-contain" />
         </div>
         <span v-if="!sidebarCollapsed" class="font-display text-lg font-bold tracking-tight">Paulu</span>
       </div>
@@ -860,7 +866,7 @@ const searchQuery = ref('')
                 <button
                   type="button"
                   class="w-full px-4 py-2 text-left text-sm text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-500/10"
-                  @click="authStore.logout()"
+                  @click="handleLogout"
                 >
                   Sign out
                 </button>
@@ -902,7 +908,7 @@ const searchQuery = ref('')
                   Los productos que más aparecen en tus movimientos
                 </p>
               </div>
-              <div v-if="mostRepeatedProduct" class="rounded-xl bg-amber-100 px-3 py-1.5 text-xs font-semibold text-amber-700 dark:bg-amber-500/15 dark:text-amber-400">
+              <div v-if="mostRepeatedProduct" class="rounded-xl bg-dune-surface px-3 py-1.5 text-xs font-semibold text-dune-primary-dark dark:bg-dune-status-warning/15 dark:text-dune-status-warning">
                 {{ mostRepeatedProduct.count }} registros
               </div>
             </div>
@@ -927,7 +933,7 @@ const searchQuery = ref('')
                 <div
                   class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-sm font-bold"
                   :class="i === 0
-                    ? 'bg-amber-100 text-amber-600 dark:bg-amber-500/20 dark:text-amber-400'
+                    ? 'bg-dune-surface text-dune-status-warning dark:bg-dune-status-warning/20 dark:text-dune-status-warning'
                     : 'bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-400'"
                 >
                   {{ i + 1 }}
@@ -1001,15 +1007,15 @@ const searchQuery = ref('')
                     ${{ averageExitPrice.toLocaleString('es-CO') }}
                   </p>
                 </div>
-                <div class="rounded-xl bg-amber-50 p-4 dark:bg-amber-500/10">
-                  <p class="flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400">
+                <div class="rounded-xl bg-dune-bg p-4 dark:bg-dune-status-warning/10">
+                  <p class="flex items-center gap-1 text-xs font-medium text-dune-status-warning dark:text-dune-status-warning">
                     <span>Más sale</span>
                     <span class="text-xs">🏆</span>
                   </p>
                   <p class="mt-1 truncate text-lg font-bold text-slate-800 dark:text-slate-200">
                     {{ mostExitedProduct?.name ?? '—' }}
                   </p>
-                  <p class="text-xs text-amber-600 dark:text-amber-400">
+                  <p class="text-xs text-dune-status-warning dark:text-dune-status-warning">
                     {{ mostExitedProduct?.count ?? 0 }} salida{{ mostExitedProduct?.count !== 1 ? 's' : '' }}
                     · {{ topExitProducts[0]?.percentage ?? 0 }}%
                   </p>
@@ -1025,12 +1031,12 @@ const searchQuery = ref('')
                     :key="p.name"
                     class="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   >
-                    <span class="w-5 text-right text-xs font-bold" :class="i === 0 ? 'text-amber-500' : 'text-slate-400'">{{ i + 1 }}</span>
+                    <span class="w-5 text-right text-xs font-bold" :class="i === 0 ? 'text-dune-status-warning' : 'text-slate-400'">{{ i + 1 }}</span>
                     <div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
                       <div
                         class="h-full rounded-full transition-all"
                         :class="i === 0
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500'
+                          ? 'bg-gradient-to-r from-dune-primary to-dune-primary-dark'
                           : 'bg-gradient-to-r from-rose-400 to-pink-400'"
                         :style="{ width: p.percentage + '%' }"
                       />

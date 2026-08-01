@@ -169,6 +169,9 @@ function onSupplierSelected(provider: { id: string; business_name: string }): vo
   form.supplier_id = provider.id
   selectedSupplierName.value = provider.business_name
   showSupplierModal.value = false
+  if (formError.value.toLowerCase().includes('proveedor')) {
+    formError.value = ''
+  }
 }
 
 function clearSupplier(): void {
@@ -183,6 +186,9 @@ function onWinerySelected(winery: { id: string; area: string }): void {
   form.winery_id = winery.id
   selectedWineryName.value = winery.area
   showWineryModal.value = false
+  if (formError.value.toLowerCase().includes('bodega')) {
+    formError.value = ''
+  }
 }
 
 function clearWinery(): void {
@@ -798,7 +804,10 @@ async function generateAutoEntry(): Promise<void> {
       </div>
 
       <!-- Supplier section -->
-      <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div
+        id="product-supplier-section"
+        class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition dark:border-slate-800 dark:bg-slate-900"
+      >
         <h2 class="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -812,7 +821,7 @@ async function generateAutoEntry(): Promise<void> {
           </p>
           <button
             type="button"
-            class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+            class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stellar-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
             @click="showSupplierModal = true"
           >
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -846,7 +855,11 @@ async function generateAutoEntry(): Promise<void> {
       </div>
 
       <!-- Winery section -->
-      <div v-if="showWineryField" class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      <div
+        v-if="showWineryField"
+        id="product-winery-section"
+        class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition dark:border-slate-800 dark:bg-slate-900"
+      >
         <h2 class="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 21V7l9-4 9 4v14M9 17h6v4H9zm0-6h6" />
@@ -860,7 +873,7 @@ async function generateAutoEntry(): Promise<void> {
           </p>
           <button
             type="button"
-            class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+            class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stellar-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
             @click="showWineryModal = true"
           >
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1004,9 +1017,9 @@ async function generateAutoEntry(): Promise<void> {
             <div class="mb-4 flex justify-center">
               <div
                 v-if="resultType === 'success'"
-                class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-dune-status-success/20 dark:bg-dune-status-success/20"
               >
-                <svg class="h-7 w-7 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="h-7 w-7 text-dune-status-success dark:text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
@@ -1060,11 +1073,11 @@ async function generateAutoEntry(): Promise<void> {
             :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 400, ease: 'easeOut' } }"
             class="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-[#0d0a28] shadow-2xl"
           >
-            <div class="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-amber-500/20 blur-3xl" />
+            <div class="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-dune-status-warning/20 blur-3xl" />
             <div class="pointer-events-none absolute -bottom-16 -right-16 h-36 w-36 rounded-full bg-stellar-500/15 blur-3xl" />
 
             <div class="relative px-8 pb-2 pt-10 text-center">
-              <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-[0_12px_32px_rgba(251,191,36,0.35)]">
+              <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-primary-light to-dune-primary shadow-[0_12px_32px_rgba(251,191,36,0.35)]">
                 <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 21V7l9-4 9 4v14M9 17h6v4H9zm0-6h6" />
                 </svg>
@@ -1082,13 +1095,13 @@ async function generateAutoEntry(): Promise<void> {
             </div>
 
             <div class="relative space-y-4 px-8 py-5">
-              <div class="rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-3">
+              <div class="rounded-xl border border-dune-status-warning/20 bg-dune-status-warning/5 px-4 py-3">
                 <div class="flex gap-2">
-                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-dune-status-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <div class="text-xs leading-relaxed text-amber-200/80">
-                    <p class="font-medium text-amber-200">¿Sabías que…?</p>
+                  <div class="text-xs leading-relaxed text-dune-text-secondary/80">
+                    <p class="font-medium text-dune-text-on-primary">¿Sabías que…?</p>
                     <p class="mt-1">
                       Al registrar una bodega primero, las entradas de producto se asocian
                       automáticamente a ella, lo que facilita el seguimiento y la organización
@@ -1108,7 +1121,7 @@ async function generateAutoEntry(): Promise<void> {
                 </button>
                 <button
                   type="button"
-                  class="flex-1 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-amber-500/25 transition hover:brightness-110"
+                  class="flex-1 rounded-xl bg-gradient-to-r from-dune-status-warning to-dune-primary px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-dune-status-warning/25 transition hover:brightness-110"
                   @click="goToRegisterWinery"
                 >
                   Registrar bodega
@@ -1205,12 +1218,12 @@ async function generateAutoEntry(): Promise<void> {
             :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 400, ease: 'easeOut' } }"
             class="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-[#0d0a28] shadow-2xl"
           >
-            <div class="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/20 blur-3xl" />
+            <div class="pointer-events-none absolute -left-20 -top-20 h-40 w-40 rounded-full bg-dune-status-success/20 blur-3xl" />
             <div class="pointer-events-none absolute -bottom-16 -right-16 h-36 w-36 rounded-full bg-stellar-500/15 blur-3xl" />
 
             <div class="relative space-y-5 px-8 pb-6 pt-10">
               <div class="text-center">
-                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-[0_12px_32px_rgba(52,211,153,0.35)]">
+                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-status-success to-dune-status-success shadow-[0_12px_32px_rgba(52,211,153,0.35)]">
                   <svg class="h-7 w-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -1255,7 +1268,7 @@ async function generateAutoEntry(): Promise<void> {
                     :value="unitCostRaw"
                     type="text"
                     inputmode="decimal"
-                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 placeholder-white/25"
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-dune-status-success focus:ring-2 focus:ring-dune-status-success/20 placeholder-white/25"
                     placeholder="$ 0,00"
                     @input="onUnitCostInput"
                     @blur="onUnitCostBlur"
@@ -1266,7 +1279,7 @@ async function generateAutoEntry(): Promise<void> {
                   <label class="mb-1.5 block text-xs font-medium text-white/60">Política comercial *</label>
                   <select
                     v-model="autoEntry.commercial_policy"
-                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-dune-status-success focus:ring-2 focus:ring-dune-status-success/20"
                   >
                     <option value="" disabled class="bg-[#0d0a28]">Seleccione política</option>
                     <option v-for="p in COMMERCIAL_POLICIES" :key="p" :value="p" class="bg-[#0d0a28]">{{ p }}</option>
@@ -1281,19 +1294,19 @@ async function generateAutoEntry(): Promise<void> {
                     min="0"
                     max="100"
                     step="0.1"
-                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 placeholder-white/25"
+                    class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-dune-status-success focus:ring-2 focus:ring-dune-status-success/20 placeholder-white/25"
                     placeholder="0"
                   />
                 </div>
 
-                <div v-if="autoEntry.unit_cost > 0 && autoEntry.profit_margin > 0" class="rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
+                <div v-if="autoEntry.unit_cost > 0 && autoEntry.profit_margin > 0" class="rounded-xl border border-dune-status-success/20 bg-dune-status-success/5 px-4 py-3">
                   <div class="flex items-center justify-between text-sm">
                     <span class="text-white/50">Margen fijo:</span>
-                    <span class="font-semibold text-emerald-300">{{ formatCOP(autoFixedMarkup) }}</span>
+                    <span class="font-semibold text-dune-status-success">{{ formatCOP(autoFixedMarkup) }}</span>
                   </div>
                   <div class="mt-1 flex items-center justify-between text-sm">
                     <span class="text-white/50">Precio venta sugerido:</span>
-                    <span class="font-semibold text-emerald-300">{{ formatCOP(autoSuggestedPrice) }}</span>
+                    <span class="font-semibold text-dune-status-success">{{ formatCOP(autoSuggestedPrice) }}</span>
                   </div>
                 </div>
 
@@ -1302,7 +1315,7 @@ async function generateAutoEntry(): Promise<void> {
                   <textarea
                     v-model="autoEntry.notes"
                     rows="2"
-                    class="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 placeholder-white/25"
+                    class="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none transition focus:border-dune-status-success focus:ring-2 focus:ring-dune-status-success/20 placeholder-white/25"
                     placeholder="Agregue una nota a la entrada..."
                   ></textarea>
                 </div>
@@ -1319,7 +1332,7 @@ async function generateAutoEntry(): Promise<void> {
                 </button>
                 <button
                   type="button"
-                  class="flex-1 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-emerald-500/25 transition hover:brightness-110 disabled:opacity-50"
+                  class="flex-1 rounded-xl bg-gradient-to-r from-dune-status-success to-dune-status-success px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-dune-status-success/25 transition hover:brightness-110 disabled:opacity-50"
                   :disabled="autoEntrySaving"
                   @click="generateAutoEntry"
                 >

@@ -16,9 +16,10 @@ import ProviderSelectionModal from '@/presentation/components/providers/Provider
 import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
 import AutomationConfirmModal from '@/presentation/components/orders/AutomationConfirmModal.vue'
 import DispatchSummaryModal from '@/presentation/components/orders/DispatchSummaryModal.vue'
+import { getCompanyById } from '@/application/services/companyService'
 import type { CreateOrderRequest, OrderDetail, OrderResponse } from '@/application/services/orderService'
 import type { ProductEntryResponse } from '@/application/services/productEntryService'
-import type { ProviderResponse } from '@/application/services/providerResponse'
+import type { ProviderResponse } from '@/application/services/providerService'
 import type { WineryResponse } from '@/application/services/wineryService'
 
 const router = useRouter()
@@ -40,6 +41,7 @@ const VAT_RATE = 0.19
 const showEntryModal = ref(false)
 const showProviderModal = ref(false)
 const selectedProviderName = ref('')
+const companyName = ref('')
 const showDialog = ref(false)
 const dialogResult = ref<{ success: true; order: any; shipment?: any } | { success: false; error: string } | null>(null)
 
@@ -67,7 +69,20 @@ const form = ref<CreateOrderRequest>({
   reason_for_order: '',
 })
 
-onMounted(() => {
+async function resolveCompanyName(companyId: string): Promise<void> {
+  if (!companyId.trim()) {
+    companyName.value = ''
+    return
+  }
+  try {
+    const company = await getCompanyById(companyId)
+    companyName.value = company.business_name
+  } catch {
+    companyName.value = companyId
+  }
+}
+
+onMounted(async () => {
   const user = authStore.session?.user
   if (user?.id) {
     form.value.user_id = user.id
@@ -75,6 +90,7 @@ onMounted(() => {
   const company = companyStore.selectedCompany
   if (company?.id) {
     form.value.company_id = company.id
+    await resolveCompanyName(company.id)
   }
 })
 
@@ -444,8 +460,13 @@ function formatCOP(value: number): string {
             </select>
           </div>
           <div>
-            <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Compañía ID</label>
-            <input v-model="form.company_id" readonly required class="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-100 px-3 py-2 text-sm text-slate-500 outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400" />
+            <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Compañía</label>
+            <input
+              :value="companyName || form.company_id"
+              readonly
+              required
+              class="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-100 px-3 py-2 text-sm text-slate-500 outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400"
+            />
           </div>
           <div>
             <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Usuario ID</label>
@@ -497,7 +518,7 @@ function formatCOP(value: number): string {
                     class="w-20 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800"
                     :class="{ 'border-red-400': formErrors['qty_' + index] || quantityErrors[detail.code] }"
                     @input="recalcRow(index)" />
-                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-amber-600">{{ quantityErrors[detail.code] }}</p>
+                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-dune-status-warning">{{ quantityErrors[detail.code] }}</p>
                 </td>
                 <td class="px-3 py-2"><input v-model.number="detail.estimated_cost" type="number" min="0" step="0.01" class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs outline-none focus:border-stellar-400 dark:border-slate-700 dark:bg-slate-800" @input="recalcRow(index)" /></td>
                 <td class="px-3 py-2 text-xs">{{ formatCOP(detail.subtotal) }}</td>
@@ -524,7 +545,7 @@ function formatCOP(value: number): string {
           </div>
           <div>
             <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">IVA (19%)</label>
-            <p class="text-lg font-bold text-amber-600">{{ formatCOP(form.financial_summary.vat) }}</p>
+            <p class="text-lg font-bold text-dune-status-warning">{{ formatCOP(form.financial_summary.vat) }}</p>
           </div>
           <div>
             <label class="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Descuento</label>
@@ -558,8 +579,8 @@ function formatCOP(value: number): string {
     <Teleport to="body">
       <div v-if="showDialog && dialogResult && !dialogResult.success" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
         <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 350 } }" class="relative w-full max-w-md rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
-          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20">
-            <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-dune-surface dark:bg-dune-status-warning/20">
+            <svg class="h-8 w-8 text-dune-status-warning dark:text-dune-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -614,8 +635,8 @@ function formatCOP(value: number): string {
     <Teleport to="body">
       <div v-if="showRegisterSale" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
         <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 300 } }" class="relative w-full max-w-sm rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
-          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/20">
-            <svg class="h-8 w-8 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-dune-surface dark:bg-dune-status-warning/20">
+            <svg class="h-8 w-8 text-dune-status-warning dark:text-dune-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -627,7 +648,7 @@ function formatCOP(value: number): string {
             <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="onRegisterSale(false)">
               No, omitir
             </button>
-            <button type="button" class="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-600" @click="onRegisterSale(true)">
+            <button type="button" class="rounded-xl bg-dune-status-warning px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-dune-primary-dark" @click="onRegisterSale(true)">
               Sí, registrar venta
             </button>
           </div>
@@ -639,8 +660,8 @@ function formatCOP(value: number): string {
     <Teleport to="body">
       <div v-if="showPrintReceipt" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
         <div v-motion :initial="{ opacity: 0, scale: 0.95, y: 16 }" :enter="{ opacity: 1, scale: 1, y: 0, transition: { duration: 300 } }" class="relative w-full max-w-sm rounded-2xl border bg-white p-8 shadow-2xl dark:border-slate-700 dark:bg-slate-900">
-          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20">
-            <svg class="h-8 w-8 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-dune-status-success/20 dark:bg-dune-status-success/20">
+            <svg class="h-8 w-8 text-dune-status-success dark:text-dune-status-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -653,7 +674,7 @@ function formatCOP(value: number): string {
             <button type="button" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800" @click="onPrintReceipt(false)">
               Hacerlo desde ventas
             </button>
-            <button type="button" class="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-600" @click="onPrintReceipt(true)">
+            <button type="button" class="rounded-xl bg-dune-status-warning px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-dune-primary-dark" @click="onPrintReceipt(true)">
               Imprimir comprobante ahora
             </button>
           </div>

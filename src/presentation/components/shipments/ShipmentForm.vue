@@ -1,22 +1,20 @@
 <script setup lang="ts">
+import type { ProductEntryResponse } from '@/application/services/productEntryService'
 import type { ProviderResponse } from '@/application/services/providerService'
+import type { ShipmentDetail } from '@/application/services/shipmentService'
 import CompanyRequiredModal from '@/presentation/components/company/CompanyRequiredModal.vue'
+import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
+import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
+import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
+import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
+import { useQuantityValidation } from '@/presentation/composables/useQuantityValidation'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
-import { useShipmentStore } from '@/presentation/stores/shipmentStore'
 import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
-import { useQuantityValidation } from '@/presentation/composables/useQuantityValidation'
-import { useHistoryLogger } from '@/presentation/composables/useHistoryLogger'
-import { computed, onMounted, reactive, ref } from 'vue'
-import EntrySelectionModal from '@/presentation/components/shipments/EntrySelectionModal.vue'
-import ProviderSelectionModal from '@/presentation/components/providers/ProviderSelectionModal.vue'
-import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
-import type { ShipmentDetail } from '@/application/services/shipmentService'
-import type { ProductEntryResponse } from '@/application/services/productEntryService'
+import { useShipmentStore } from '@/presentation/stores/shipmentStore'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 
-function formatCOP(value: number): string {
-  return value.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-}
+import { formatCOP } from '@/utils/formatters'
 
 function parseCOP(raw: string): number {
   const cleaned = raw.replace(/\./g, '').replace(/,/g, '.')
@@ -139,8 +137,8 @@ function handleEntriesSelected(entries: ProductEntryResponse[]): void {
           product: detail.product,
           unit: detail.unit,
           quantity: detail.quantity,
-unit_cost: detail.unit_cost,
-subtotal: detail.quantity * detail.unit_cost,
+          unit_cost: detail.unit_cost,
+          subtotal: detail.quantity * detail.unit_cost,
         })
         existingCodes.add(detail.code)
       }
@@ -300,35 +298,26 @@ function handleCreateAnother(): void {
   showResult.value = false
 }
 
-function handleGoToList(): void {
-  emit('saved')
-}
+
+watch(() => form.details, (newDetails) => {
+  newDetails.forEach((detail) => {
+    detail.unit_cost = formatCOP((detail.unit_cost))
+  })
+})
 </script>
 
 <template>
   <div class="relative mx-auto max-w-5xl">
     <CompanyRequiredModal v-if="showCompanyModal" @close="showCompanyModal = false" />
 
-    <EntrySelectionModal
-      v-if="showEntryModal"
-      :company-id="form.company_id"
-      @close="showEntryModal = false"
-      @confirm="handleEntriesSelected"
-    />
+    <EntrySelectionModal v-if="showEntryModal" :company-id="form.company_id" @close="showEntryModal = false"
+      @confirm="handleEntriesSelected" />
 
-    <ProviderSelectionModal
-      v-if="showProviderModal"
-      @close="showProviderModal = false"
-      @confirm="handleProviderSelected"
-      @go-to-provider-registration="emit('goToProviderRegistration')"
-    />
+    <ProviderSelectionModal v-if="showProviderModal" @close="showProviderModal = false"
+      @confirm="handleProviderSelected" @go-to-provider-registration="emit('goToProviderRegistration')" />
 
-    <WinerySelectionModal
-      v-if="showWineryModal"
-      :company-id="form.company_id"
-      @close="showWineryModal = false"
-      @confirm="handleWinerySelected"
-    />
+    <WinerySelectionModal v-if="showWineryModal" :company-id="form.company_id" @close="showWineryModal = false"
+      @confirm="handleWinerySelected" />
 
     <form @submit.prevent="handleSubmit" class="space-y-8">
       <!-- Header -->
@@ -342,7 +331,8 @@ function handleGoToList(): void {
         <h3 class="mb-4 text-base font-semibold text-slate-800 dark:text-slate-100">Información general</h3>
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div>
-            <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">N\u00famero de salida</label>
+            <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">N\u00famero de
+              salida</label>
             <div class="flex gap-2">
               <input v-model="form.shipment_number" type="text" readonly
                 class="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm text-slate-600 outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
@@ -351,12 +341,14 @@ function handleGoToList(): void {
                 class="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-3 py-2.5 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
                 @click="form.shipment_number = generateShipmentNumber()">
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
                 Generar
               </button>
             </div>
-            <p v-if="fieldErrors.shipment_number" class="mt-1 text-xs text-red-500">{{ fieldErrors.shipment_number }}</p>
+            <p v-if="fieldErrors.shipment_number" class="mt-1 text-xs text-red-500">{{ fieldErrors.shipment_number }}
+            </p>
           </div>
           <div>
             <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">Fecha</label>
@@ -384,7 +376,8 @@ function handleGoToList(): void {
                 class="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-3 py-2.5 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
                 @click="showWineryModal = true">
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
                 Seleccionar
               </button>
@@ -403,10 +396,10 @@ function handleGoToList(): void {
         </div>
       </div>
 
-      <!-- Documento de origen -->
+      <!-- Productos de origen -->
       <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-900">
         <div class="mb-4 flex items-center justify-between">
-          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100">Documento de origen</h3>
+          <h3 class="text-base font-semibold text-slate-800 dark:text-slate-100">Productos de origen</h3>
           <button type="button"
             class="inline-flex items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-4 py-2 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
             @click="showEntryModal = true">
@@ -416,17 +409,21 @@ function handleGoToList(): void {
             Seleccionar entrada(s)
           </button>
         </div>
-        <div v-if="selectedEntries.length === 0" class="rounded-xl border-2 border-dashed border-slate-200 px-4 py-6 text-center dark:border-slate-700">
-          <svg class="mx-auto mb-2 h-6 w-6 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <div v-if="selectedEntries.length === 0"
+          class="rounded-xl border-2 border-dashed border-slate-200 px-4 py-6 text-center dark:border-slate-700">
+          <svg class="mx-auto mb-2 h-6 w-6 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
           <p class="text-sm text-slate-400 dark:text-slate-500">
-            Seleccione una o varias entradas para cargar autom\u00e1ticamente sus productos.
+            Seleccione una o varias entradas para cargar automáticamente sus productos.
           </p>
         </div>
         <div v-else class="space-y-3">
           <p class="text-xs text-slate-500 dark:text-slate-400">
-            {{ selectedEntries.length }} entrada{{ selectedEntries.length !== 1 ? 's' : '' }} seleccionada{{ selectedEntries.length !== 1 ? 's' : '' }}:
+            {{ selectedEntries.length }} entrada{{ selectedEntries.length !== 1 ? 's' : '' }}
+            seleccionada{{ selectedEntries.length !== 1 ? 's' : '' }}:
           </p>
           <div v-for="entry in selectedEntries" :key="entry.id"
             class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-700 dark:bg-slate-800/50">
@@ -436,7 +433,8 @@ function handleGoToList(): void {
                 {{ entry.registered_date }} &middot; {{ entry.movement_type }}
               </p>
             </div>
-            <span class="ml-3 shrink-0 rounded-full bg-stellar-100 px-2.5 py-0.5 text-xs font-medium text-stellar-700 dark:bg-stellar-500/10 dark:text-stellar-300">
+            <span
+              class="ml-3 shrink-0 rounded-full bg-stellar-100 px-2.5 py-0.5 text-xs font-medium text-stellar-700 dark:bg-stellar-500/10 dark:text-stellar-300">
               {{ entry.details.length }} producto{{ entry.details.length !== 1 ? 's' : '' }}
             </span>
           </div>
@@ -464,7 +462,8 @@ function handleGoToList(): void {
                 class="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-stellar-200 bg-stellar-50 px-3 py-2.5 text-sm font-medium text-stellar-600 transition hover:bg-stellar-100 dark:border-stellar-800 dark:bg-stellar-500/10 dark:text-stellar-300 dark:hover:bg-stellar-500/20"
                 @click="showProviderModal = true">
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 Seleccionar
               </button>
@@ -487,17 +486,21 @@ function handleGoToList(): void {
 
         <div v-if="form.details.length === 0"
           class="flex flex-col items-center rounded-xl border-2 border-dashed border-slate-200 py-10 dark:border-slate-700">
-          <svg class="mb-3 h-8 w-8 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          <svg class="mb-3 h-8 w-8 text-slate-300 dark:text-slate-600" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
-          <p class="text-sm text-slate-400 dark:text-slate-500">No hay productos. Seleccione una entrada de origen para cargar sus productos.</p>
+          <p class="text-sm text-slate-400 dark:text-slate-500">No hay productos. Seleccione una entrada de origen para
+            cargar sus productos.</p>
         </div>
 
         <div v-else class="overflow-x-auto">
           <table class="w-full text-left text-sm">
             <thead>
-              <tr class="border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:border-slate-700">
-                <th class="px-3 py-3">C&oacute;digo</th>
+              <tr
+                class="border-b border-slate-200 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:border-slate-700">
+                <th class="px-3 py-3">Código</th>
                 <th class="px-3 py-3">Producto</th>
                 <th class="px-3 py-3">Unidad</th>
                 <th class="px-3 py-3">Cantidad</th>
@@ -517,7 +520,8 @@ function handleGoToList(): void {
                     class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                     :class="{ 'border-red-400': fieldErrors['qty_' + index] || quantityErrors[detail.code] }"
                     @input="detail.quantity = parseFloat(($event.target as HTMLInputElement).value) || 0; updateDetailSubtotal(index)" />
-                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-amber-600">{{ quantityErrors[detail.code] }}</p>
+                  <p v-if="quantityErrors[detail.code]" class="mt-1 max-w-64 text-xs text-dune-status-warning">
+                    {{ quantityErrors[detail.code] }}</p>
                 </td>
                 <td class="px-3 py-3">
                   <input type="number" step="any" min="0" :value="detail.unit_cost"
@@ -525,13 +529,15 @@ function handleGoToList(): void {
                     :class="{ 'border-red-400': fieldErrors['cost_' + index] }"
                     @input="detail.unit_cost = parseFloat(($event.target as HTMLInputElement).value) || 0; updateDetailSubtotal(index)" />
                 </td>
-                <td class="px-3 py-3 font-medium text-slate-700 dark:text-slate-200">${{ formatCOP(detail.subtotal) }}</td>
+                <td class="px-3 py-3 font-medium text-slate-700 dark:text-slate-200">${{ formatCOP(detail.subtotal) }}
+                </td>
                 <td class="px-3 py-3">
                   <button type="button"
                     class="rounded-lg p-1 text-slate-400 transition hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-500/10"
                     @click="removeDetail(index)">
                     <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                   </button>
                 </td>
@@ -557,7 +563,7 @@ function handleGoToList(): void {
             <span class="text-slate-500 dark:text-slate-400">Descuento</span>
             <div class="relative w-40">
               <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">$</span>
-              <input type="text" :value="formatCOP(form.financial_summary.discount)"
+              <input type="text" :value="form.financial_summary.discount"
                 class="w-full rounded-lg border border-slate-200 bg-slate-50 py-1.5 pl-7 pr-3 text-right text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
                 @input="handleDiscountInput(($event.target as HTMLInputElement).value)" />
             </div>
@@ -594,22 +600,24 @@ function handleGoToList(): void {
       <div v-if="showResult"
         class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm"
         @click.self="showResult = false">
-        <div class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-2xl dark:border-slate-700 dark:bg-slate-900">
+        <div
+          class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-2xl dark:border-slate-700 dark:bg-slate-900">
           <div v-if="resultSuccess"
-            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-500 shadow-[0_8px_24px_rgba(16,185,129,0.3)]">
+            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-status-success to-dune-status-success shadow-[0_8px_24px_rgba(16,185,129,0.3)]">
             <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           <div v-else
-            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 shadow-[0_8px_24px_rgba(251,191,36,0.3)]">
+            class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-primary-light to-dune-primary shadow-[0_8px_24px_rgba(251,191,36,0.3)]">
             <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
 
           <h3 class="mb-2 text-lg font-bold text-slate-900 dark:text-white">
-            {{ resultSuccess ? '\u00a1Despacho registrado!' : 'Error al registrar' }}
+            {{ resultSuccess ? 'Despacho registrado!' : 'Error al registrar' }}
           </h3>
           <p class="mb-6 text-sm text-slate-500 dark:text-slate-400">{{ resultMessage }}</p>
 
@@ -618,11 +626,6 @@ function handleGoToList(): void {
               class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
               @click="handleCreateAnother">
               Crear otro despacho
-            </button>
-            <button
-              class="rounded-xl bg-gradient-to-r from-stellar-500 to-cosmic-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:from-stellar-400 hover:to-cosmic-400"
-              @click="handleGoToList">
-              Ir a la lista de despachos
             </button>
           </div>
           <button v-else

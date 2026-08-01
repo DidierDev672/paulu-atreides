@@ -241,7 +241,7 @@ async function updateRelatedShipment(): Promise<void> {
               </div>
               <div>
                 <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">IVA (19%)</label>
-                <p class="text-base font-bold text-amber-600">{{ formatCOP(form.financial_summary.vat) }}</p>
+                <p class="text-base font-bold text-dune-status-warning">{{ formatCOP(form.financial_summary.vat) }}</p>
               </div>
               <div>
                 <label class="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">Descuento</label>

@@ -33,12 +33,17 @@ export async function getWineries(): Promise<WineryResponse[]> {
 }
 
 export async function getWineriesByCompany(companyId: string): Promise<WineryResponse[]> {
-  const response = await axiosInstance.get<WineryResponse[]>(`/wineries?company_id=${encodeURIComponent(companyId)}`)
-  return response.data
+  // Backend: GET /wineries/{id} — returns a single winery for the given id (company/winery).
+  const response = await axiosInstance.get<WineryResponse | WineryResponse[]>(
+    `/wineries/${encodeURIComponent(companyId)}`,
+  )
+  const data = response.data
+  if (Array.isArray(data)) return data
+  return data ? [data] : []
 }
 
 export async function getWineryById(id: string): Promise<WineryResponse> {
-  const response = await axiosInstance.get<WineryResponse>(`/wineries/${id}`)
+  const response = await axiosInstance.get<WineryResponse>(`/wineries/${encodeURIComponent(id)}`)
   return response.data
 }
 

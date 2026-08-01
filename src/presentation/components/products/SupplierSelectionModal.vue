@@ -105,7 +105,7 @@ onMounted(async () => {
           </div>
 
           <div v-else-if="providers.length === 0" class="flex flex-col items-center px-6 py-12 text-center">
-            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
+            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-primary-light to-dune-primary-dark shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
               <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
@@ -162,7 +162,7 @@ onMounted(async () => {
                 <td class="px-2 py-3">
                   <span
                     class="inline-flex rounded-full px-2 py-0.5 text-xs font-medium"
-                    :class="provider.status ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400'"
+                    :class="provider.status ? 'bg-dune-status-success/10 text-dune-status-success dark:bg-dune-status-success/10 dark:text-dune-status-success' : 'bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-400'"
                   >
                     {{ provider.status ? 'Activo' : 'Inactivo' }}
                   </span>

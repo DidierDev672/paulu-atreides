@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ProductResponse } from '@/application/services/productService'
+import type { WineryResponse } from '@/application/services/wineryService'
 import CompanyRequiredModal from '@/presentation/components/company/CompanyRequiredModal.vue'
+import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
 import { useAuthStore } from '@/presentation/stores/authStore'
 import { useCompanyStore } from '@/presentation/stores/companyStore'
 import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
@@ -77,6 +79,7 @@ const form = reactive({
 
 const showCompanyModal = ref(false)
 const showProductModal = ref(false)
+const showWineryModal = ref(false)
 const saving = ref(false)
 const formError = ref('')
 const detailsError = ref('')
@@ -111,6 +114,19 @@ function openProductModal(): void {
     return
   }
   showProductModal.value = true
+}
+
+function openWineryModal(): void {
+  if (!form.company_id) {
+    showCompanyModal.value = true
+    return
+  }
+  showWineryModal.value = true
+}
+
+function onWinerySelected(winery: WineryResponse): void {
+  form.warehouse = winery.id
+  showWineryModal.value = false
 }
 
 function goToCompanyRegistration(): void {
@@ -148,9 +164,7 @@ function removeDetail(index: number): void {
   recalcFinancials()
 }
 
-function onUnitCostInput(event: Event, index: number): void {
-  const raw = (event.target as HTMLInputElement).value
-  form.details[index].unit_cost = parseCOP(raw)
+function onUnitCostInput(index: number): void {
   calcDetailSubtotal(index)
   calcSellingPrice(index)
 }
@@ -160,12 +174,6 @@ function onFixedMarkupInput(event: Event, index: number): void {
   form.details[index].fixed_markup = parseCOP(raw)
   form.details[index]._markupTouched = true
   calcSellingPrice(index)
-}
-
-function onFinancialInput(event: Event, field: 'vat' | 'discount'): void {
-  const raw = (event.target as HTMLInputElement).value
-  form.financial_summary[field] = parseCOP(raw)
-  recalcAll()
 }
 
 function calcDetailSubtotal(index: number): void {
@@ -395,17 +403,32 @@ async function handleSubmit(): Promise<void> {
             <p v-if="fieldErrors.movement_type" class="mt-1 text-xs text-red-500">{{ fieldErrors.movement_type }}</p>
           </div>
 
-          <!-- Warehouse -->
+          <!-- Warehouse / Bodega -->
           <div>
             <label class="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-300">
               Bodega
             </label>
-            <input
-              v-model="form.warehouse"
-              type="text"
-              placeholder="Ej: Bodega principal"
-              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:border-stellar-500"
-            />
+            <div class="flex items-stretch gap-2">
+              <input
+                :value="form.warehouse"
+                type="text"
+                readonly
+                tabindex="-1"
+                placeholder="Seleccione una bodega"
+                class="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-100 px-3 py-2.5 font-mono text-sm text-slate-600 outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+              />
+              <button
+                type="button"
+                class="inline-flex shrink-0 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                title="Buscar bodega"
+                @click="openWineryModal"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Buscar
+              </button>
+            </div>
           </div>
 
           <!-- Responsible Party (auto-filled) -->
@@ -523,12 +546,13 @@ async function handleSubmit(): Promise<void> {
                 </td>
                 <td class="px-2 py-2">
                   <input
-                    :value="detail.unit_cost !== null ? formatCOP(detail.unit_cost) : ''"
-                    type="text"
-                    inputmode="decimal"
-                    placeholder="0,00"
+                    v-model.number="detail.unit_cost"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="0"
                     class="w-24 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1.5 text-right outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-                    @input="onUnitCostInput($event, index)"
+                    @input="onUnitCostInput(index)"
                   />
                 </td>
                 <td class="px-2 py-2 font-medium text-slate-700 dark:text-slate-200">
@@ -563,7 +587,7 @@ async function handleSubmit(): Promise<void> {
                     @input="onFixedMarkupInput($event, index)"
                   />
                 </td>
-                <td class="px-2 py-2 font-medium text-emerald-600 dark:text-emerald-400">
+                <td class="px-2 py-2 font-medium text-dune-status-success dark:text-dune-status-success">
                   {{ formatCOP(detail.suggested_selling_price) }}
                 </td>
                 <td class="px-2 py-2">
@@ -609,23 +633,25 @@ async function handleSubmit(): Promise<void> {
           <div>
             <label class="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-300">IVA</label>
             <input
-              :value="formatCOP(form.financial_summary.vat)"
-              type="text"
-              inputmode="decimal"
-              placeholder="0,00"
+              v-model.number="form.financial_summary.vat"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0"
               class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:border-stellar-500"
-              @input="onFinancialInput($event, 'vat')"
+              @input="recalcAll"
             />
           </div>
           <div>
             <label class="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-300">Descuento</label>
             <input
-              :value="formatCOP(form.financial_summary.discount)"
-              type="text"
-              inputmode="decimal"
-              placeholder="0,00"
+              v-model.number="form.financial_summary.discount"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0"
               class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm outline-none transition focus:border-stellar-400 focus:ring-2 focus:ring-stellar-400/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:border-stellar-500"
-              @input="onFinancialInput($event, 'discount')"
+              @input="recalcAll"
             />
           </div>
           <div>
@@ -695,6 +721,12 @@ async function handleSubmit(): Promise<void> {
       @confirm="handleProductSelection"
       @close="showProductModal = false"
       @go-to-product-registration="goToProductRegistration"
+    />
+    <WinerySelectionModal
+      v-if="showWineryModal"
+      :company-id="form.company_id"
+      @confirm="onWinerySelected"
+      @close="showWineryModal = false"
     />
   </div>
 </template>

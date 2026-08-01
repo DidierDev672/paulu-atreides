@@ -2,6 +2,8 @@
 import { onMounted, ref, computed } from 'vue'
 import { useProviderStore } from '@/presentation/stores/providerStore'
 import type { ProviderResponse } from '@/application/services/providerService'
+import { EmptyState } from '@/presentation/components/ui/empty-state'
+import { NoProvidersEmptyState } from '@/presentation/components/providers/empty-state'
 
 const store = useProviderStore()
 const searchQuery = ref('')
@@ -14,6 +16,8 @@ const emit = defineEmits<{
 onMounted(() => {
   store.fetchProviders()
 })
+
+const hasProviders = computed(() => store.providers.length > 0)
 
 const filteredProviders = computed(() => {
   const q = searchQuery.value.toLowerCase().trim()
@@ -42,6 +46,14 @@ async function confirmDelete(): Promise<void> {
 
 function cancelDelete(): void {
   providerToDelete.value = null
+}
+
+function clearSearch(): void {
+  searchQuery.value = ''
+}
+
+function goToRegisterProvider(): void {
+  emit('goToRegisterProvider')
 }
 </script>
 
@@ -90,38 +102,42 @@ function cancelDelete(): void {
       {{ store.error }}
     </div>
 
-    <div v-else-if="filteredProviders.length === 0" class="flex flex-col items-center gap-3 py-20 text-slate-400">
-      <svg class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-      </svg>
-      <p class="text-sm">No hay proveedores registrados.</p>
-      <button
-        type="button"
-        class="inline-flex items-center gap-1 rounded-xl bg-stellar-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-stellar-400"
-        @click="emit('goToRegisterProvider')"
-      >
-        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-        </svg>
-        Registrar proveedor
-      </button>
-    </div>
+    <!-- Zero providers in the system → persuasive empty state + CTA to register -->
+    <NoProvidersEmptyState
+      v-else-if="!hasProviders"
+      @register="goToRegisterProvider"
+    />
+
+    <!-- Providers exist but current search matches none -->
+    <EmptyState
+      v-else-if="filteredProviders.length === 0"
+      variant="search-empty"
+      size="md"
+      title="Ningún proveedor coincide con tu búsqueda"
+      description="Prueba con otro término o limpia el filtro para volver a ver el listado completo."
+      :causes="[
+        'El nombre o código puede estar escrito de otra forma.',
+        'Puedes buscar por razón social, código o número de documento.',
+      ]"
+      action-label="Limpiar búsqueda"
+      @action="clearSearch"
+    />
 
     <template v-else>
-      <div class="mb-6 rounded-xl border border-emerald-200/70 bg-gradient-to-r from-emerald-50 to-teal-50 px-5 py-4 dark:border-emerald-800/40 dark:from-emerald-950/40 dark:to-teal-950/40">
+      <div class="mb-6 rounded-xl border border-dune-status-success/30 bg-gradient-to-r from-dune-status-success/10 to-dune-status-success/5 px-5 py-4 dark:border-dune-status-success/40 dark:from-dune-status-success/10 dark:to-dune-status-success/5">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div class="flex-1">
-            <p class="text-sm font-medium text-emerald-800 dark:text-emerald-200">
+            <p class="text-sm font-medium text-dune-status-success dark:text-dune-status-success">
               {{ store.providers.length }} proveedor{{ store.providers.length !== 1 ? 'es' : '' }} registrado{{ store.providers.length !== 1 ? 's' : '' }}
             </p>
-            <p class="mt-1 text-xs text-emerald-600 dark:text-emerald-300">
+            <p class="mt-1 text-xs text-dune-status-success dark:text-dune-status-success">
               <span class="font-semibold">{{ totalActive }}</span> activo{{ totalActive !== 1 ? 's' : '' }} &middot;
               <span class="font-semibold">{{ totalInactive }}</span> inactivo{{ totalInactive !== 1 ? 's' : '' }}
             </p>
           </div>
           <button
             type="button"
-            class="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-500"
+            class="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-dune-status-success px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-dune-status-success"
             @click="emit('goToRegisterProvider')"
           >
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -169,7 +185,7 @@ function cancelDelete(): void {
                 <td class="px-5 py-4">
                   <span
                     class="inline-flex rounded-full px-2 py-0.5 text-xs font-semibold"
-                    :class="provider.status ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400' : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'"
+                    :class="provider.status ? 'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/10 dark:text-dune-status-success' : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'"
                   >
                     {{ provider.status ? 'Activo' : 'Inactivo' }}
                   </span>
@@ -178,7 +194,7 @@ function cancelDelete(): void {
                   <div class="flex items-center justify-end gap-1">
                     <button
                       type="button"
-                      class="rounded-lg p-1.5 text-red-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/10"
+                      class="rounded-lg p-1.5 text-red-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-dune-status-danger/10"
                       title="Eliminar"
                       @click="handleDelete(provider)"
                     >
@@ -218,7 +234,7 @@ function cancelDelete(): void {
           </button>
           <button
             type="button"
-            class="rounded-xl bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-500"
+            class="rounded-xl bg-dune-status-danger px-4 py-2 text-sm font-medium text-white transition hover:bg-dune-status-danger"
             @click="confirmDelete"
           >
             Eliminar

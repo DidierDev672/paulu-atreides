@@ -11,6 +11,7 @@ export function setStoredToken(token: string): void {
 
 export function clearStoredToken(): void {
   sessionStorage.removeItem(AUTH_TOKEN_KEY)
+  localStorage.removeItem(AUTH_TOKEN_KEY)
 }
 
 export function getStoredSession<T>(): T | null {
@@ -33,4 +34,5 @@ export function setStoredSession<T>(session: T): void {
 
 export function clearStoredSession(): void {
   sessionStorage.removeItem(AUTH_SESSION_KEY)
+  localStorage.removeItem(AUTH_SESSION_KEY)
 }

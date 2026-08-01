@@ -284,9 +284,9 @@ function closeResultDialog(): void {
             <div class="mb-4 flex justify-center">
               <div
                 v-if="resultType === 'success'"
-                class="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-dune-status-success/20 dark:bg-dune-status-success/20"
               >
-                <svg class="h-7 w-7 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="h-7 w-7 text-dune-status-success dark:text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>

@@ -70,8 +70,11 @@ npm run preview     # Vista previa del build
 - **Gestionar productos** (crear, editar, listar, eliminar) — *Controla tu especia* (*Cosecha de melange*)
 - **Asociar proveedores y bodegas** — *Forja alianzas en el Landsraad* (*Chani y Stilgar*)
 - **Registrar entradas de producto con detalle financiero** — *La contabilidad debe fluir* (*Dr. Kynes*)
+- **Consultar entradas en tarjetas de 3 capas** — *Cosecha legible de un vistazo* (*InventoryAdjustmentCard*)
 - **Gestionar órdenes de compra/venta** — *Contratos CHOAM* (*Fedaykin aprueban la misión*)
+- **Leer órdenes sin ruido visual** — *Archivo imperial en capas* (*OrderDetailCard*)
 - **Registrar despachos (salidas) de inventario** — *Ornitópteros cargados de especia* (*disciplina del agua*)
+- **Ver salidas con nombres, no IDs** — *Manifiesto humano del vuelo* (*ShipmentDetailCard* + resolución de nombres)
 - **Gestionar tu perfil y el de tu empresa** — *Conócete a ti mismo* (*Identidad de Usul*)
 - **Configurar modelos de IA** — *Entrena a tu Mentat* (*Visión de Paulu Areides*)
 - **Asistente flotante Paulu** — *La Voz de Paulu Areides disponible en todo el imperio*
@@ -144,5 +147,17 @@ que vela por Arrakis, Paulu Areides sostiene la infraestructura para que Paulus 
 | Documento | Descripción | Referencia Dune |
 |-----------|-------------|-----------------|
 | [`PAULU_USER_GUIDE.md`](PAULU_USER_GUIDE.md) | Guía de usuario y componentes | *Manual del sietch* |
-| [`IMPLEMENTATION_GUIDE.md`](IMPLEMENTATION_GUIDE.md) | Guía técnica full-stack | *Archivos de Thufir Hawat* |
+| [`IMPLEMENTATION_GUIDE.md`](IMPLEMENTATION_GUIDE.md) | Guía técnica full-stack (v2.3) | *Archivos de Thufir Hawat* |
 | [`raw/dune-lore-paul-atreides.md`](raw/dune-lore-paul-atreides.md) | Glosario canónico de paralelismos | *Liturgia Paulu Areides* |
+
+## UI en capas — *Cómo Paul lee el desierto*
+
+> *"Paul no miraba todo Arrakis a la vez. Primero el horizonte (estado),
+> luego la caravana (quién), después el manifiesto (qué) y al final el
+> agua contada (totales)."*
+
+Las listas densas (órdenes, salidas, entradas) usan **tarjetas expandibles
+en capas** para bajar la carga cognitiva: header de identidad → metadata /
+resumen → tabla → totales. Los IDs técnicos viven en subtítulos monospace;
+los nombres humanos (proveedor, bodega, usuario, compañía) se resuelven
+vía API — *como preguntar al Mentat quién es quién en el Landsraad*.

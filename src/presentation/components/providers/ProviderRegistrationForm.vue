@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref, computed } from 'vue'
 import { useProviderStore } from '@/presentation/stores/providerStore'
+import ProviderDocumentImportFab from '@/presentation/components/providers/document-import/ProviderDocumentImportFab.vue'
+import type { ProviderFormDraft } from '@/domain/provider-document/providerDocument.types'
 
 const emit = defineEmits<{
   saved: []
@@ -31,6 +33,30 @@ const fieldErrors = reactive({
   document_number: '',
   business_name: '',
 })
+
+function applyImportedDraft(draft: ProviderFormDraft): void {
+  form.code = draft.code
+  form.type_person = draft.type_person
+  form.document_type = draft.document_type
+  form.document_number = draft.document_number
+  form.verification_digit = draft.verification_digit
+  form.business_name = draft.business_name
+  form.business_activity = draft.business_activity
+  form.status = draft.status
+
+  fieldErrors.code = ''
+  fieldErrors.type_person = ''
+  fieldErrors.document_type = ''
+  fieldErrors.document_number = ''
+  fieldErrors.business_name = ''
+  formError.value = ''
+}
+
+async function onImportedProvidersSaved(_count: number): Promise<void> {
+  formError.value = ''
+  await providerStore.fetchProviders()
+  emit('saved')
+}
 
 const isFormValid = computed(() => {
   return (
@@ -138,6 +164,12 @@ async function handleSubmit(): Promise<void> {
     >
       {{ formError }}
     </div>
+
+    <!-- FAB + Llama 3 document import (Word / Excel) — single or list -->
+    <ProviderDocumentImportFab
+      @apply="applyImportedDraft"
+      @saved="onImportedProvidersSaved"
+    />
 
     <form novalidate class="space-y-8" @submit.prevent="handleSubmit">
       <!-- Supplier info section -->

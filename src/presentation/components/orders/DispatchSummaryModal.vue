@@ -74,7 +74,7 @@ function handleConfirm(): void {
             </div>
             <div class="flex justify-between">
               <span class="text-slate-500">IVA (19%)</span>
-              <span class="font-medium text-amber-600">{{ formatCOP(vat) }}</span>
+              <span class="font-medium text-dune-status-warning">{{ formatCOP(vat) }}</span>
             </div>
             <div class="flex items-center justify-between">
               <span class="text-slate-500">Descuento</span>

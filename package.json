@@ -12,15 +12,17 @@
     "@tailwindcss/typography": "^0.5.20",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.17.0",
+    "mammoth": "^1.12.0",
     "pdfmake": "^0.3.11",
     "pinia": "^3.0.4",
     "vue": "^3.5.34",
     "vue-markdown-render": "^2.3.1",
-    "vue-router": "^5.1.0"
+    "vue-router": "^5.1.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^24.12.3",
+    "@types/node": "^24.13.3",
     "@types/pdfmake": "^0.3.3",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/tsconfig": "^0.9.1",

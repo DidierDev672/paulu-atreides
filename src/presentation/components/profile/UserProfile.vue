@@ -281,11 +281,11 @@ onMounted(async () => {
                     <div class="flex items-center gap-2">
                       <span
                         class="inline-flex h-2 w-2 rounded-full"
-                        :class="c.status === 'Activa' ? 'bg-emerald-500 shadow-sm shadow-emerald-500/50' : 'bg-white/30'"
+                        :class="c.status === 'Activa' ? 'bg-dune-status-success shadow-sm shadow-dune-status-success/50' : 'bg-white/30'"
                       />
                       <span
                         class="text-xs font-medium"
-                        :class="c.status === 'Activa' ? 'text-emerald-400' : 'text-white/40'"
+                        :class="c.status === 'Activa' ? 'text-dune-status-success' : 'text-white/40'"
                       >
                         {{ c.status }}
                       </span>

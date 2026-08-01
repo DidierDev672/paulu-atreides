@@ -100,7 +100,7 @@ onMounted(async () => {
           </div>
 
           <div v-else-if="providers.length === 0" class="flex flex-col items-center px-6 py-12 text-center">
-            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
+            <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-dune-primary-light to-dune-primary-dark shadow-[0_8px_24px_rgba(251,146,60,0.3)]">
               <svg class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -167,7 +167,7 @@ onMounted(async () => {
                 <td class="px-2 py-3">
                   <span
                     class="inline-flex rounded-full px-2 py-0.5 text-xs font-medium"
-                    :class="provider.status ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'"
+                    :class="provider.status ? 'bg-dune-status-success/20 text-dune-status-success' : 'bg-red-100 text-red-700'"
                   >
                     {{ provider.status ? 'Activo' : 'Inactivo' }}
                   </span>

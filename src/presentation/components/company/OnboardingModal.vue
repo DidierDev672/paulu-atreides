@@ -57,8 +57,8 @@ const emit = defineEmits<{
           </div>
 
           <div class="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 text-center">
-            <div class="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/15">
-              <svg class="h-5 w-5 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <div class="mx-auto mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-dune-status-success/15">
+              <svg class="h-5 w-5 text-dune-status-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>

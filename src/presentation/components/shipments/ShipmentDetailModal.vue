@@ -66,8 +66,8 @@ function formatCOP(value: number): string {
           <div class="mb-5 flex flex-wrap gap-2">
             <span class="rounded-full px-3 py-1 text-xs font-semibold" :class="{
               'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300': shipment.status === 'DRAFT',
-              'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400': shipment.status === 'CONFIRMED',
-              'bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400': shipment.status === 'CANCELED',
+              'bg-dune-status-success/20 text-dune-status-success dark:bg-dune-status-success/15 dark:text-dune-status-success': shipment.status === 'CONFIRMED',
+              'bg-dune-status-danger/20 text-dune-status-danger dark:bg-dune-status-danger/15 dark:text-dune-status-danger': shipment.status === 'CANCELED',
             }">
               {{ statusLabels[shipment.status] || shipment.status }}
             </span>
@@ -119,7 +119,7 @@ function formatCOP(value: number): string {
               </div>
               <div class="flex justify-between">
                 <span class="text-slate-500">IVA (19%)</span>
-                <span class="font-medium text-amber-600">${{ formatCOP(shipment.financial_summary.vat) }}</span>
+                <span class="font-medium text-dune-status-warning">${{ formatCOP(shipment.financial_summary.vat) }}</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-slate-500">Descuento</span>

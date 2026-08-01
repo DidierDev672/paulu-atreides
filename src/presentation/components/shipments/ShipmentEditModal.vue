@@ -100,8 +100,8 @@ async function handleSubmit(): Promise<void> {
         <!-- Header -->
         <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-700">
           <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-500/20">
-              <svg class="h-5 w-5 text-amber-600 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-dune-surface dark:bg-dune-status-warning/20">
+              <svg class="h-5 w-5 text-dune-status-warning dark:text-dune-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             </div>
@@ -211,7 +211,7 @@ async function handleSubmit(): Promise<void> {
               </div>
               <div class="flex justify-between">
                 <span class="text-slate-500 dark:text-slate-400">IVA (19%)</span>
-                <span class="font-medium text-amber-600">${{ formatCOP(vatAmount) }}</span>
+                <span class="font-medium text-dune-status-warning">${{ formatCOP(vatAmount) }}</span>
               </div>
               <div class="flex items-center justify-between">
                 <span class="text-slate-500 dark:text-slate-400">Descuento</span>

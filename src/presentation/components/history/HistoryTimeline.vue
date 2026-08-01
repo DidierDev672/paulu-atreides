@@ -54,17 +54,17 @@ async function toggleExpand(id: string): Promise<void> {
 }
 
 const actionColors: Record<string, string> = {
-  CREATE: 'from-emerald-400 to-emerald-600 shadow-emerald-500/30',
-  UPDATE: 'from-blue-400 to-indigo-600 shadow-blue-500/30',
-  DELETE: 'from-red-400 to-rose-600 shadow-red-500/30',
+  CREATE: 'from-dune-status-success to-dune-status-success shadow-dune-status-success/30',
+  UPDATE: 'from-dune-sky to-dune-sky-deep shadow-dune-sky-deep/30',
+  DELETE: 'from-dune-status-danger to-dune-status-danger shadow-dune-status-danger/30',
   APPROVE: 'from-teal-400 to-teal-600 shadow-teal-500/30',
-  DEDUCT: 'from-orange-400 to-amber-600 shadow-orange-500/30',
+  DEDUCT: 'from-dune-primary-light to-dune-status-warning shadow-dune-status-warning/30',
   LOGIN: 'from-indigo-400 to-indigo-600 shadow-indigo-500/30',
   LOGOUT: 'from-gray-400 to-gray-600 shadow-gray-500/30',
   REGISTER: 'from-purple-400 to-purple-600 shadow-purple-500/30',
   SHIPMENT_CREATED: 'from-cyan-400 to-teal-600 shadow-cyan-500/30',
-  ORDER_CREATED: 'from-amber-400 to-yellow-600 shadow-amber-500/30',
-  ENTRY_CREATED: 'from-green-400 to-emerald-600 shadow-green-500/30',
+  ORDER_CREATED: 'from-dune-status-warning to-dune-primary shadow-dune-status-warning/30',
+  ENTRY_CREATED: 'from-dune-status-success to-dune-status-success shadow-dune-status-success/30',
   RELATION_CREATED: 'from-pink-400 to-rose-600 shadow-pink-500/30',
 }
 

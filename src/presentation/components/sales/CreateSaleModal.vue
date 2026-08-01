@@ -368,7 +368,7 @@ onMounted(() => {
             </div>
             <div class="flex items-center justify-end gap-2">
               <span class="text-slate-500 dark:text-slate-300">IVA (19%):</span>
-              <span class="w-28 text-right font-medium text-amber-600 dark:text-amber-400">${{ formatCOP(vat) }}</span>
+              <span class="w-28 text-right font-medium text-dune-status-warning dark:text-dune-status-warning">${{ formatCOP(vat) }}</span>
             </div>
             <div class="flex items-center justify-end gap-2">
               <span class="text-slate-500 dark:text-slate-300">Descuento:</span>
@@ -662,8 +662,8 @@ onMounted(() => {
                     @change="selectWarehouse(winery)"
                   />
                 </div>
-                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-500/15">
-                  <svg class="h-5 w-5 text-amber-700 dark:text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+                <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-dune-surface dark:bg-dune-status-warning/15">
+                  <svg class="h-5 w-5 text-dune-primary-dark dark:text-dune-status-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
                 </div>
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-medium text-slate-900 dark:text-slate-100">{{ winery.area }}</p>

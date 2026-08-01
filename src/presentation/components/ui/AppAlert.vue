@@ -29,18 +29,18 @@ const variantStyles = computed(() => {
     { container: string; icon: string; headline: string; body: string; action: string }
   > = {
     error: {
-      container: 'border-red-400/25 bg-red-500/10',
-      icon: 'text-red-300',
-      headline: 'text-red-100',
-      body: 'text-red-200/85',
-      action: 'text-red-100 hover:text-white',
+      container: 'border-dune-status-danger/25 bg-dune-status-danger/10',
+      icon: 'text-dune-status-danger',
+      headline: 'text-dune-status-danger',
+      body: 'text-dune-status-danger/85',
+      action: 'text-dune-status-danger hover:text-white',
     },
     warning: {
       container: 'border-gold/25 bg-gold/10',
       icon: 'text-gold',
-      headline: 'text-amber-100',
-      body: 'text-amber-100/80',
-      action: 'text-gold hover:text-amber-100',
+      headline: 'text-dune-text-on-primary',
+      body: 'text-dune-text-on-primary/80',
+      action: 'text-gold hover:text-dune-text-on-primary',
     },
     info: {
       container: 'border-nebula-blue/25 bg-nebula-blue/10',
@@ -50,11 +50,11 @@ const variantStyles = computed(() => {
       action: 'text-nebula-blue hover:text-sky-100',
     },
     success: {
-      container: 'border-emerald-400/25 bg-emerald-500/10',
-      icon: 'text-emerald-300',
-      headline: 'text-emerald-100',
-      body: 'text-emerald-100/80',
-      action: 'text-emerald-200 hover:text-white',
+      container: 'border-dune-status-success/30 bg-dune-status-success/10',
+      icon: 'text-dune-status-success',
+      headline: 'text-dune-text-on-primary',
+      body: 'text-dune-text-on-primary/80',
+      action: 'text-dune-status-success hover:text-dune-text-on-primary',
     },
   }
 
