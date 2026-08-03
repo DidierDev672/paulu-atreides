@@ -2,6 +2,8 @@
 import { computed, onMounted, ref } from 'vue'
 import { filterMovementsByProductQuery } from '../application/filterMovementsByProductQuery'
 import { formatOrderReferenceLabel } from '../application/formatOrderReferenceLabel'
+import StockAssistantOpenButton from '../assistant/presentation/atoms/StockAssistantOpenButton.vue'
+import StockAssistantModal from '../assistant/presentation/organisms/StockAssistantModal.vue'
 import type { StockMovement } from '../domain/StockMovement'
 import StockMovementsEmptyState from './molecules/StockMovementsEmptyState.vue'
 import StockMovementsErrorBanner from './molecules/StockMovementsErrorBanner.vue'
@@ -13,6 +15,7 @@ import { useStockMovementStore } from './stockMovementStore'
 const store = useStockMovementStore()
 const pendingDelete = ref<StockMovement | null>(null)
 const detailOpen = ref(false)
+const assistantOpen = ref(false)
 const searchQuery = ref('')
 
 const orderLabelsById = computed(() => {
@@ -60,6 +63,14 @@ function closeDetail(): void {
 function onDetailClosed(): void {
   store.clearSelected()
 }
+
+function openAssistant(): void {
+  assistantOpen.value = true
+}
+
+function closeAssistant(): void {
+  assistantOpen.value = false
+}
 </script>
 
 <template>
@@ -74,25 +85,18 @@ function onDetailClosed(): void {
         </p>
       </div>
       <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
-        <StockMovementsSearchField
-          v-model="searchQuery"
-          :disabled="store.isLoading || store.movements.length === 0"
-        />
-        <button
-          type="button"
+        <StockMovementsSearchField v-model="searchQuery" :disabled="store.isLoading || store.movements.length === 0" />
+        <button type="button"
           class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-stellar-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-stellar-400"
-          :disabled="store.isLoading"
-          @click="store.fetchMovements()"
-        >
-          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
+          :disabled="store.isLoading" @click="store.fetchMovements()">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
           Actualizar
         </button>
+        <StockAssistantOpenButton @click="openAssistant" />
       </div>
     </div>
 
@@ -100,26 +104,16 @@ function onDetailClosed(): void {
       <div class="h-8 w-8 animate-spin rounded-full border-4 border-stellar-500 border-t-transparent" />
     </div>
 
-    <StockMovementsErrorBanner
-      v-else-if="store.error && store.movements.length === 0"
-      :message="store.error"
-      @retry="store.fetchMovements()"
-    />
+    <StockMovementsErrorBanner v-else-if="store.error && store.movements.length === 0" :message="store.error"
+      @retry="store.fetchMovements()" />
 
     <StockMovementsEmptyState v-else-if="store.movements.length === 0" />
 
     <template v-else>
-      <StockMovementsErrorBanner
-        v-if="store.error"
-        class="mb-4"
-        :message="store.error"
-        @retry="store.clearError()"
-      />
+      <StockMovementsErrorBanner v-if="store.error" class="mb-4" :message="store.error" @retry="store.clearError()" />
 
-      <div
-        v-if="filteredMovements.length === 0"
-        class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-200 py-16 text-center dark:border-slate-700"
-      >
+      <div v-if="filteredMovements.length === 0"
+        class="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-200 py-16 text-center dark:border-slate-700">
         <p class="text-sm font-medium text-slate-700 dark:text-slate-200">
           No hay movimientos que coincidan con tu búsqueda
         </p>
@@ -127,43 +121,26 @@ function onDetailClosed(): void {
           Prueba con otra palabra, una coincidencia parcial o el nombre completo del producto.
           Mayúsculas y minúsculas no importan.
         </p>
-        <button
-          type="button"
+        <button type="button"
           class="mt-2 text-sm font-medium text-stellar-600 transition hover:text-stellar-500 dark:text-stellar-400"
-          @click="searchQuery = ''"
-        >
+          @click="searchQuery = ''">
           Limpiar búsqueda
         </button>
       </div>
 
-      <StockMovementsTable
-        v-else
-        :movements="filteredMovements"
-        :products-by-id="store.productsById"
-        :order-labels-by-id="orderLabelsById"
-        :deleting="store.isDeleting"
-        @view="onView"
-        @remove="onRemoveRequest"
-      />
+      <StockMovementsTable v-else :movements="filteredMovements" :products-by-id="store.productsById"
+        :order-labels-by-id="orderLabelsById" :deleting="store.isDeleting" @view="onView" @remove="onRemoveRequest" />
     </template>
 
-    <StockMovementDetailModal
-      v-if="store.selected"
-      :visible="detailOpen"
-      :movement="store.selected"
-      :product="store.productForSelected"
-      :product-loading="store.isLoadingProductDetail"
-      :company-name="store.companyNameForSelected"
-      :company-loading="store.isLoadingCompanyDetail"
-      :provider-name="store.providerNameForSelected"
-      :provider-loading="store.isLoadingProviderDetail"
-      :winery-name="store.wineryNameForSelected"
-      :winery-loading="store.isLoadingWineryDetail"
-      :order-reference-label="store.orderLabelForSelected"
-      :order-loading="store.isLoadingOrderDetail"
-      @close="closeDetail"
-      @closed="onDetailClosed"
-    />
+    <StockMovementDetailModal v-if="store.selected" :visible="detailOpen" :movement="store.selected"
+      :product="store.productForSelected" :product-loading="store.isLoadingProductDetail"
+      :company-name="store.companyNameForSelected" :company-loading="store.isLoadingCompanyDetail"
+      :provider-name="store.providerNameForSelected" :provider-loading="store.isLoadingProviderDetail"
+      :winery-name="store.wineryNameForSelected" :winery-loading="store.isLoadingWineryDetail"
+      :order-reference-label="store.orderLabelForSelected" :order-loading="store.isLoadingOrderDetail"
+      @close="closeDetail" @closed="onDetailClosed" />
+
+    <StockAssistantModal :visible="assistantOpen" @close="closeAssistant" />
 
     <Teleport v-if="pendingDelete" to="body">
       <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm">
@@ -175,20 +152,14 @@ function onDetailClosed(): void {
             de tu historial. Si no estás seguro, puedes cancelar: tu inventario no se altera al cerrar este diálogo.
           </p>
           <div class="mt-6 flex justify-end gap-3">
-            <button
-              type="button"
+            <button type="button"
               class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
-              :disabled="store.isDeleting"
-              @click="cancelDelete"
-            >
+              :disabled="store.isDeleting" @click="cancelDelete">
               Cancelar
             </button>
-            <button
-              type="button"
+            <button type="button"
               class="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700 disabled:opacity-50"
-              :disabled="store.isDeleting"
-              @click="confirmDelete"
-            >
+              :disabled="store.isDeleting" @click="confirmDelete">
               {{ store.isDeleting ? 'Eliminando…' : 'Sí, eliminar' }}
             </button>
           </div>

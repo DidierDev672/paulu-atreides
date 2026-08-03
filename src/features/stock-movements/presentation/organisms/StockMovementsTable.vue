@@ -31,7 +31,7 @@ defineEmits<{
     <div class="overflow-x-auto">
       <table class="w-full min-w-[720px] text-left text-sm">
         <thead>
-          <tr class="border-b border-slate-200 bg-slate-50/80 text-[10px] font-medium uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:bg-slate-800/50 dark:text-slate-400">
+          <tr class="border-b border-slate-200 bg-slate-50/80 text-[10px] font-medium uppercase tracking-wider text-black dark:border-slate-800 dark:bg-slate-800/50 dark:text-white">
             <th class="px-4 py-3">Productos</th>
             <th class="px-4 py-3">Tipo de movimiento</th>
             <th class="px-4 py-3">Referencia a la entrada</th>

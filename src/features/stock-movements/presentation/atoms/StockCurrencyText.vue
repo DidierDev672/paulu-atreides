@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <span class="font-mono text-[12px] text-slate-700 dark:text-slate-200">
+  <span class="font-mono text-[12px] text-black dark:text-white">
     {{ formatCurrency(value) }}
   </span>
 </template>

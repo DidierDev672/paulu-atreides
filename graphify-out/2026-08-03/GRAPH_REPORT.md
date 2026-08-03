@@ -1,11 +1,11 @@
 # Graph Report - book-coffee-shop  (2026-08-03)
 
 ## Corpus Check
-- 287 files · ~148,948 words
+- 287 files · ~149,181 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2624 nodes · 3301 edges · 234 communities (188 shown, 46 thin omitted)
+- 2624 nodes · 3304 edges · 234 communities (189 shown, 45 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
@@ -23,7 +23,7 @@
 - vue-best-practices
 - KeepAlive
 - DashboardPage.vue
-- App.vue (Root Component)
+- Paulus (Vue 3 Frontend)
 - ProductRegistrationForm.vue
 - ProductEntryForm.vue
 - CreateSaleModal.vue
@@ -47,12 +47,12 @@
 - component data flow
 - ProductEditModal.vue
 - ShipmentList.vue
-- SaleDetailModal.vue
+- WineryRegistrationForm.vue
 - HistoryTimeline.vue
 - state management
 - directives concept
 - ProductList.vue
-- Paulus (Vue 3 Frontend)
+- SaleDetailModal.vue
 - OrdersPage.vue
 - Paulu Areides Project
 - App.vue
@@ -70,7 +70,7 @@
 - Single-File Component Structure, Styling, and Template Patterns
 - Built-in Components & Directives
 - productEntryService.ts
-- AxiosHttpClient.ts
+- container.ts
 - AxiosProviderLookup.ts
 - EntrySelectionModal.vue
 - TransitionGroup
@@ -165,9 +165,9 @@
 - 9.5 Asistente Paulu — *La Voz de Paulu Areides*
 - ProviderDocumentImportFab.vue
 - ShipmentDetailModal.vue
-- vue-router
+- AuthPage.vue
 - vue-best-practices/SKILL.md
-- RegisterUseCase.ts
+- invoiceService.js
 - StockProduct
 - ProductDocumentImportFab.vue
 - WinerySelectionModal.vue
@@ -227,7 +227,7 @@
 - 2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*
 - AxiosWineryLookup.ts
 - userService.ts
-- plugins concept
+- component-teleport
 - axiosInstance.ts
 - MissingProductsModal.vue
 - useProductDocumentImport.ts
@@ -267,7 +267,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (234 total, 46 thin omitted)
+## Communities (234 total, 45 thin omitted)
 
 ### Community 0 - "composables concept"
 Cohesion: 0.10
@@ -301,9 +301,9 @@ Nodes (13): defineOptions, onActivated, onDeactivated, GPU-Friendly Transform/Op
 Cohesion: 0.03
 Nodes (55): actionDot, actionLabels, activeNav, activities, authStore, averageExitPrice, companyStore, currentPage (+47 more)
 
-### Community 8 - "App.vue (Root Component)"
-Cohesion: 0.20
-Nodes (10): App.vue (Root Component), createGlobalState (VueUse), localStorage (Browser), main.ts (Entry Point), vue-markdown-render, @vueuse/motion, Pinia State Management, vue-markdown-render (+2 more)
+### Community 8 - "Paulus (Vue 3 Frontend)"
+Cohesion: 0.16
+Nodes (15): App.vue (Root Component), createGlobalState (VueUse), JWT Authentication (HS256), localStorage (Browser), main.ts (Entry Point), vue-markdown-render, vue-router, @vueuse/motion (+7 more)
 
 ### Community 9 - "ProductRegistrationForm.vue"
 Cohesion: 0.04
@@ -366,8 +366,8 @@ Cohesion: 0.06
 Nodes (33): `AppAlert.vue` — Alerta contextual reutilizable — *Voz Bene Gesserit*, `AuthButton.vue` — Botón con loading y variantes — *Grito de batalla fremen*, `AuthInput.vue` — Input de formulario con tema auth — *Prueba Bene Gesserit*, `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos — *Duke Leto funda la Casa*, `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida — *Shadout Mapes*, Componentes globales — *Arsenal del sietch*, `ConfirmDeleteModal.vue` — Confirmación de eliminación — *Agua derramada*, `DispatchSummaryModal.vue` — Resumen de despacho — *Informe post-batalla* (+25 more)
 
 ### Community 24 - "dependencies"
-Cohesion: 0.18
-Nodes (11): axios, mammoth, dependencies, axios, mammoth, pinia, @tailwindcss/typography, vue (+3 more)
+Cohesion: 0.22
+Nodes (9): mammoth, dependencies, mammoth, pinia, @tailwindcss/typography, vue, pinia, @tailwindcss/typography (+1 more)
 
 ### Community 25 - "SalesPage.vue"
 Cohesion: 0.06
@@ -397,9 +397,9 @@ Nodes (17): categoryFrequencies, emit, fieldErrors, filteredSuggestions, form, f
 Cohesion: 0.07
 Nodes (22): deleting, deletingShipmentId, detailShipment, editShipment, entryMovementLabels, entryMovementTypes, expandedId, filteredShipments (+14 more)
 
-### Community 32 - "SaleDetailModal.vue"
-Cohesion: 0.05
-Nodes (36): pdfmake, pdfmake, applyDiscount(), changeStatus(), clientInfo, clientNotFound, discountInput, emit (+28 more)
+### Community 32 - "WineryRegistrationForm.vue"
+Cohesion: 0.12
+Nodes (16): AREAS, authStore, companyLoaded, companyStore, emit, fieldErrors, form, formError (+8 more)
 
 ### Community 33 - "HistoryTimeline.vue"
 Cohesion: 0.11
@@ -417,9 +417,9 @@ Nodes (7): directives concept, getSSRProps, directives, v-focus directive, v-hig
 Cohesion: 0.12
 Nodes (13): companyName, companyStore, emit, fetchProducts(), filteredProducts, handleEditSaved(), { logDelete }, onImportedProductsSaved() (+5 more)
 
-### Community 37 - "Paulus (Vue 3 Frontend)"
-Cohesion: 0.22
-Nodes (9): JWT Authentication (HS256), tailwindcss, typescript, vite, Paulus (Vue 3 Frontend), tailwindcss, typescript, vite (+1 more)
+### Community 37 - "SaleDetailModal.vue"
+Cohesion: 0.14
+Nodes (14): applyDiscount(), changeStatus(), clientInfo, clientNotFound, discountInput, emit, { formatCurrency, formatDate }, handleDeleteSale() (+6 more)
 
 ### Community 38 - "OrdersPage.vue"
 Cohesion: 0.11
@@ -489,9 +489,9 @@ Nodes (15): Async Dependencies, Built-in Components & Directives, Custom Directi
 Cohesion: 0.13
 Nodes (5): CreateProductEntryRequest, Deduction, FinancialSummary, ProductEntryDetail, ProductEntryResponse
 
-### Community 55 - "AxiosHttpClient.ts"
-Cohesion: 0.19
-Nodes (5): AxiosHttpClient, HttpError, HttpRequestOptions, IHttpClient, AuthRepository
+### Community 55 - "container.ts"
+Cohesion: 0.14
+Nodes (10): authRepository, container, httpClient, AxiosHttpClient, HttpError, HttpRequestOptions, IHttpClient, AuthApiResponse (+2 more)
 
 ### Community 56 - "AxiosProviderLookup.ts"
 Cohesion: 0.32
@@ -586,8 +586,8 @@ Cohesion: 0.18
 Nodes (11): Avoid Directives on Components, Clean Up Side Effects in `unmounted`, Decide Between Directives and Components, Directive Best Practices, Handle SSR with `getSSRProps`, Prefer Declarative Templates When Possible, Prefer Function Shorthand for Single-Hook Directives, Task List (+3 more)
 
 ### Community 81 - "companyService.ts"
-Cohesion: 0.20
-Nodes (3): CompanyRequest, CompanyResponse, emit
+Cohesion: 0.17
+Nodes (4): CompanyRequest, CompanyResponse, emit, useCompanyStore
 
 ### Community 82 - "shipmentService.ts"
 Cohesion: 0.17
@@ -789,13 +789,17 @@ Nodes (19): emit, inputRef, onChange(), emit, emit, props, canSave, emit (+11 mo
 Cohesion: 0.29
 Nodes (4): emit, movementLabels, recipientLabels, statusLabels
 
-### Community 150 - "vue-router"
-Cohesion: 0.25
-Nodes (6): vue-router, authStore, AuthView, currentView, router, vue-router
+### Community 150 - "AuthPage.vue"
+Cohesion: 0.33
+Nodes (4): authStore, AuthView, currentView, router
 
 ### Community 151 - "vue-best-practices/SKILL.md"
 Cohesion: 0.15
 Nodes (9): Async Component Best Practices, Delay Guidelines, Prevent Loading Spinner Flicker, Task List, Use Lazy Hydration Strategies in SSR, Avoid Expensive Operations in Updated Hook, Prefer Computed Properties for Derived Data, Task List (+1 more)
+
+### Community 152 - "invoiceService.js"
+Cohesion: 0.33
+Nodes (5): pdfmake, pdfmake, generateInvoicePDF(), get(), paymentMethodLabels
 
 ### Community 153 - "StockProduct"
 Cohesion: 0.10
@@ -818,8 +822,8 @@ Cohesion: 0.33
 Nodes (5): render-functions, render functions, withDirectives, withKeys, withModifiers
 
 ### Community 158 - "devDependencies"
-Cohesion: 0.13
-Nodes (15): devDependencies, @tailwindcss/vite, @types/node, @types/pdfmake, vite-tsconfig-paths, @vitejs/plugin-vue, vue-tsc, @vue/tsconfig (+7 more)
+Cohesion: 0.10
+Nodes (21): devDependencies, tailwindcss, @tailwindcss/vite, @types/node, @types/pdfmake, typescript, vite, vite-tsconfig-paths (+13 more)
 
 ### Community 159 - "StockMovement.ts"
 Cohesion: 0.15
@@ -850,8 +854,8 @@ Cohesion: 0.40
 Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistFrequencies(), selectSuggestion()
 
 ### Community 167 - "IAuthRepository.ts"
-Cohesion: 0.25
-Nodes (7): AuthSession, User, IAuthRepository, LoginCredentials, RegisterData, AuthApiResponse, AuthApiUser
+Cohesion: 0.20
+Nodes (7): RegisterDto, RegisterUseCase, AuthSession, User, IAuthRepository, LoginCredentials, RegisterData
 
 ### Community 168 - "graphify reference: add a URL and watch a folder"
 Cohesion: 0.50
@@ -957,13 +961,13 @@ Nodes (5): 2.11.1 Problema — *La tormenta de arena de los IDs*, 2.11.2 Patrón
 Cohesion: 0.32
 Nodes (7): getWineryById(), IWineryLookup, StockWineryReference, asString(), AxiosWineryLookup, toStockWineryReference(), wineryLookup
 
-### Community 217 - "plugins concept"
+### Community 217 - "component-teleport"
 Cohesion: 0.67
-Nodes (3): plugins concept, plugins, useAuth composable
+Nodes (3): component-teleport, Teleport, useMediaQuery
 
 ### Community 222 - "axiosInstance.ts"
-Cohesion: 0.11
-Nodes (10): CreateEconomicActivityRequest, EconomicActivityResponse, CreateMainAddressRequest, MainAddressResponse, CreateTaxInformationRequest, TaxInformationResponse, authRepository, container (+2 more)
+Cohesion: 0.12
+Nodes (9): axios, axios, CreateEconomicActivityRequest, EconomicActivityResponse, CreateMainAddressRequest, MainAddressResponse, CreateTaxInformationRequest, TaxInformationResponse (+1 more)
 
 ### Community 230 - "Watchers"
 Cohesion: 0.50
@@ -984,14 +988,14 @@ Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistF
 ## Knowledge Gaps
 - **1244 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1239 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **46 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **45 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `useStockAssistantChat()` connect `App.vue` to `askStockAssistant.ts`?**
   _High betweenness centrality (0.102) - this node is a cross-community bridge._
-- **Why does `vue-router` connect `vue-router` to `Paulus (Vue 3 Frontend)`, `vue-best-practices`, `App.vue (Root Component)`, `authStore.ts`, `OrderList.vue`, `OrderForm.vue`?**
+- **Why does `vue-router` connect `Paulus (Vue 3 Frontend)` to `vue-best-practices`, `authStore.ts`, `OrderList.vue`, `OrderForm.vue`, `AuthPage.vue`?**
   _High betweenness centrality (0.087) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `composables concept` (e.g. with `component split triggers` and `reactivity concept`) actually correct?**
   _`composables concept` has 6 INFERRED edges - model-reasoned connections that need verification._

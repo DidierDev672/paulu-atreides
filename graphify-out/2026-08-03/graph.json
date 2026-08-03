@@ -143,7 +143,7 @@
       "_origin": "ast",
       "id": "package_dependencies_vueuse_motion",
       "community": 8,
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "@vueuse/motion"
     },
     {
@@ -154,7 +154,7 @@
       "_origin": "ast",
       "id": "vueuse_motion",
       "community": 8,
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "@vueuse/motion"
     },
     {
@@ -164,8 +164,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_dependencies_axios",
-      "community": 24,
-      "community_name": "dependencies",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "axios"
     },
     {
@@ -175,8 +175,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "axios",
-      "community": 24,
-      "community_name": "dependencies",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "axios"
     },
     {
@@ -208,8 +208,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "package_dependencies_pdfmake",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "pdfmake"
     },
     {
@@ -219,8 +219,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "pdfmake",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "pdfmake"
     },
     {
@@ -275,7 +275,7 @@
       "_origin": "ast",
       "id": "package_dependencies_vue_markdown_render",
       "community": 8,
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "vue-markdown-render"
     },
     {
@@ -286,7 +286,7 @@
       "_origin": "ast",
       "id": "vue_markdown_render",
       "community": 8,
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "vue-markdown-render"
     },
     {
@@ -296,8 +296,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_dependencies_vue_router",
-      "community": 150,
-      "community_name": "vue-router",
+      "community": 8,
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "vue-router"
     },
     {
@@ -307,8 +307,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "vue_router",
-      "community": 150,
-      "community_name": "vue-router",
+      "community": 8,
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "vue-router"
     },
     {
@@ -461,8 +461,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "tailwindcss"
     },
     {
@@ -472,8 +472,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "tailwindcss",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "tailwindcss"
     },
     {
@@ -483,8 +483,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "package_devdependencies_typescript",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "typescript"
     },
     {
@@ -494,8 +494,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "typescript",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "typescript"
     },
     {
@@ -505,8 +505,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_devdependencies_vite",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "vite"
     },
     {
@@ -516,8 +516,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "vite",
-      "community": 37,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 158,
+      "community_name": "devDependencies",
       "norm_label": "vite"
     },
     {
@@ -945,8 +945,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_dtos_registerdto_registerdto",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerdto"
     },
     {
@@ -3112,8 +3112,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerusecase.ts"
     },
     {
@@ -3123,8 +3123,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerusecase"
     },
     {
@@ -3134,8 +3134,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_constructor",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -3145,8 +3145,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_execute",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".execute()"
     },
     {
@@ -3156,8 +3156,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_validate",
-      "community": 152,
-      "community_name": "RegisterUseCase.ts",
+      "community": 167,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validate()"
     },
     {
@@ -4055,7 +4055,7 @@
       "label": "AskStockAssistantResult",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistantresult",
       "community": 190,
@@ -4066,7 +4066,7 @@
       "label": "askStockAssistant()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L24",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
       "community": 190,
@@ -4099,7 +4099,7 @@
       "label": "pickFocusedPayload()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L59",
+      "source_location": "L60",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_buildstockassistantcontext_pickfocusedpayload",
       "community": 190,
@@ -4110,7 +4110,7 @@
       "label": "resolveDetailById()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L102",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",
       "community": 190,
@@ -4121,7 +4121,7 @@
       "label": "summarizeList()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L125",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_buildstockassistantcontext_summarizelist",
       "community": 190,
@@ -4132,7 +4132,7 @@
       "label": "count()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L130",
+      "source_location": "L131",
       "_origin": "ast",
       "id": "src_features_stock_movements_assistant_application_buildstockassistantcontext_count",
       "community": 190,
@@ -6170,8 +6170,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_infrastructure_di_container",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "container.ts"
     },
     {
@@ -6181,8 +6181,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_httpclient",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "httpclient"
     },
     {
@@ -6192,8 +6192,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_authrepository",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "authrepository"
     },
     {
@@ -6203,8 +6203,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_container",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "container"
     },
     {
@@ -6215,7 +6215,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "axioshttpclient.ts"
     },
     {
@@ -6226,7 +6226,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "axioshttpclient"
     },
     {
@@ -6237,7 +6237,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient_constructor",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -6248,7 +6248,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient_request",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".request()"
     },
     {
@@ -6259,7 +6259,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "httperror.ts"
     },
     {
@@ -6270,7 +6270,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror_httperror",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "httperror"
     },
     {
@@ -6281,7 +6281,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror_httperror_constructor",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -6292,7 +6292,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "ihttpclient.ts"
     },
     {
@@ -6303,7 +6303,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_httprequestoptions",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "httprequestoptions"
     },
     {
@@ -6314,7 +6314,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_ihttpclient",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "ihttpclient"
     },
     {
@@ -6325,7 +6325,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_ihttpclient_request",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".request()"
     },
     {
@@ -6357,8 +6357,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository",
-      "community": 167,
-      "community_name": "IAuthRepository.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "authrepository.ts"
     },
     {
@@ -6368,8 +6368,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authapiuser",
-      "community": 167,
-      "community_name": "IAuthRepository.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "authapiuser"
     },
     {
@@ -6379,8 +6379,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authapiresponse",
-      "community": 167,
-      "community_name": "IAuthRepository.ts",
+      "community": 55,
+      "community_name": "container.ts",
       "norm_label": "authapiresponse"
     },
     {
@@ -6391,7 +6391,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": "authrepository"
     },
     {
@@ -6402,7 +6402,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_constructor",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -6413,7 +6413,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_login",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".login()"
     },
     {
@@ -6424,7 +6424,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_register",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".register()"
     },
     {
@@ -6435,7 +6435,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_maptosession",
       "community": 55,
-      "community_name": "AxiosHttpClient.ts",
+      "community_name": "container.ts",
       "norm_label": ".maptosession()"
     },
     {
@@ -13892,7 +13892,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "saledetailmodal.vue"
     },
@@ -13903,7 +13903,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_props",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "props"
     },
@@ -13914,7 +13914,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_emit",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "emit"
     },
@@ -13925,7 +13925,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_formatcurrency_formatdate",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "{ formatcurrency, formatdate }"
     },
@@ -13936,7 +13936,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_discountinput",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "discountinput"
     },
@@ -13947,7 +13947,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_selectedstatus",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "selectedstatus"
     },
@@ -13958,7 +13958,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_clientinfo",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "clientinfo"
     },
@@ -13969,7 +13969,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_clientnotfound",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "clientnotfound"
     },
@@ -13980,7 +13980,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_statuslabels",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "statuslabels"
     },
@@ -13991,7 +13991,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_statusconfig",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "statusconfig"
     },
@@ -14002,7 +14002,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_paymentmethodlabels",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "paymentmethodlabels"
     },
@@ -14013,7 +14013,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_applydiscount",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "applydiscount()"
     },
@@ -14024,7 +14024,7 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_downloadinvoice",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "downloadinvoice()"
     },
@@ -14035,7 +14035,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_changestatus",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "changestatus()"
     },
@@ -14046,7 +14046,7 @@
       "source_location": "L121",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_handleeditclient",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "handleeditclient()"
     },
@@ -14057,7 +14057,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "src_presentation_components_sales_saledetailmodal_handledeletesale",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "handledeletesale()"
     },
@@ -16313,7 +16313,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "wineryregistrationform.vue"
     },
     {
@@ -16324,7 +16324,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_emit",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "emit"
     },
     {
@@ -16335,7 +16335,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_winerystore",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "winerystore"
     },
     {
@@ -16346,7 +16346,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_authstore",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "authstore"
     },
     {
@@ -16357,7 +16357,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_companystore",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "companystore"
     },
     {
@@ -16368,7 +16368,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_areas",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "areas"
     },
     {
@@ -16379,7 +16379,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_unit_types",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "unit_types"
     },
     {
@@ -16390,7 +16390,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_form",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "form"
     },
     {
@@ -16401,7 +16401,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_saving",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "saving"
     },
     {
@@ -16412,7 +16412,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_formerror",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "formerror"
     },
     {
@@ -16423,7 +16423,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_showresultdialog",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "showresultdialog"
     },
     {
@@ -16434,7 +16434,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_resultmessage",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "resultmessage"
     },
     {
@@ -16445,7 +16445,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_resulttype",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "resulttype"
     },
     {
@@ -16456,7 +16456,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_fielderrors",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "fielderrors"
     },
     {
@@ -16467,7 +16467,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_companyloaded",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "companyloaded"
     },
     {
@@ -16478,7 +16478,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_validate",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "validate()"
     },
     {
@@ -16489,7 +16489,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_handlesubmit",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "handlesubmit()"
     },
     {
@@ -16500,7 +16500,7 @@
       "_origin": "ast",
       "id": "src_presentation_components_wineries_wineryregistrationform_closeresultdialog",
       "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community_name": "WineryRegistrationForm.vue",
       "norm_label": "closeresultdialog()"
     },
     {
@@ -16510,7 +16510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_composables_useformatters",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "useformatters.ts"
     },
@@ -16521,7 +16521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_composables_useformatters_useformatters",
-      "community": 32,
+      "community": 37,
       "community_name": "SaleDetailModal.vue",
       "norm_label": "useformatters()"
     },
@@ -16852,7 +16852,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "authpage.vue"
     },
     {
@@ -16863,7 +16863,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage_router",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "router"
     },
     {
@@ -16874,7 +16874,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage_authview",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "authview"
     },
     {
@@ -16885,7 +16885,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage_authstore",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "authstore"
     },
     {
@@ -16896,7 +16896,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage_currentview",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "currentview"
     },
     {
@@ -16907,7 +16907,7 @@
       "_origin": "ast",
       "id": "src_presentation_pages_authpage_switchview",
       "community": 150,
-      "community_name": "vue-router",
+      "community_name": "AuthPage.vue",
       "norm_label": "switchview()"
     },
     {
@@ -18083,8 +18083,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_stores_companystore",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 81,
+      "community_name": "companyService.ts",
       "norm_label": "companystore.ts"
     },
     {
@@ -18094,8 +18094,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_presentation_stores_companystore_usecompanystore",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 81,
+      "community_name": "companyService.ts",
       "norm_label": "usecompanystore"
     },
     {
@@ -18490,8 +18490,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_invoiceservice",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "invoiceservice.js"
     },
     {
@@ -18501,8 +18501,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_services_invoiceservice_get",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "get()"
     },
     {
@@ -18512,8 +18512,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_invoiceservice_paymentmethodlabels",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "paymentmethodlabels"
     },
     {
@@ -18523,8 +18523,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_services_invoiceservice_generateinvoicepdf",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "generateinvoicepdf()"
     },
     {
@@ -18677,8 +18677,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_utils_pdffonts",
-      "community": 32,
-      "community_name": "SaleDetailModal.vue",
+      "community": 152,
+      "community_name": "invoiceService.js",
       "norm_label": "pdffonts.js"
     },
     {
@@ -26783,9 +26783,9 @@
       "source_location": "references/plugins.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 217,
+      "community": 5,
       "norm_label": "plugins",
-      "community_name": "plugins concept",
+      "community_name": "vue-best-practices",
       "id": "vue_ref_plugins"
     },
     {
@@ -26860,9 +26860,9 @@
       "source_location": "references/component-teleport.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 5,
+      "community": 217,
       "norm_label": "component-teleport",
-      "community_name": "vue-best-practices",
+      "community_name": "component-teleport",
       "id": "vue_ref_component_teleport"
     },
     {
@@ -27025,9 +27025,9 @@
       "source_location": "references/plugins.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 217,
+      "community": 5,
       "norm_label": "plugins concept",
-      "community_name": "plugins concept",
+      "community_name": "vue-best-practices",
       "id": "vue_plugins_concept"
     },
     {
@@ -27102,9 +27102,9 @@
       "source_location": "references/component-teleport.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 5,
+      "community": 217,
       "norm_label": "teleport",
-      "community_name": "vue-best-practices",
+      "community_name": "component-teleport",
       "id": "vue_teleport"
     },
     {
@@ -27531,9 +27531,9 @@
       "source_location": "references/plugins.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 217,
+      "community": 5,
       "norm_label": "useauth composable",
-      "community_name": "plugins concept",
+      "community_name": "vue-best-practices",
       "id": "vue_use_auth"
     },
     {
@@ -27641,9 +27641,9 @@
       "source_location": "references/component-teleport.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 5,
+      "community": 217,
       "norm_label": "usemediaquery",
-      "community_name": "vue-best-practices",
+      "community_name": "component-teleport",
       "id": "vue_use_media_query"
     },
     {
@@ -27786,7 +27786,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "state management strategy",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "vue_state_management"
     },
     {
@@ -27962,7 +27962,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "pinia state management",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "pinia_store"
     },
     {
@@ -27971,7 +27971,7 @@
       "source_location": "package.json",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 37,
+      "community": 8,
       "norm_label": "vue 3 composition api",
       "community_name": "Paulus (Vue 3 Frontend)",
       "id": "vue3_composition_api"
@@ -27993,7 +27993,7 @@
       "source_location": "IMPLEMENTATION_GUIDE.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 37,
+      "community": 8,
       "norm_label": "paulus (vue 3 frontend)",
       "community_name": "Paulus (Vue 3 Frontend)",
       "id": "paulus_frontend"
@@ -28048,7 +28048,7 @@
       "source_location": "IMPLEMENTATION_GUIDE.md",
       "confidence": "EXTRACTED",
       "file_type": "concept",
-      "community": 37,
+      "community": 8,
       "norm_label": "jwt authentication (hs256)",
       "community_name": "Paulus (Vue 3 Frontend)",
       "id": "jwt_authentication"
@@ -28336,7 +28336,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "app.vue (root component)",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "app_vue"
     },
     {
@@ -28347,7 +28347,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "main.ts (entry point)",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "main_ts"
     },
     {
@@ -28402,7 +28402,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "localstorage (browser)",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "local_storage"
     },
     {
@@ -28490,7 +28490,7 @@
       "file_type": "concept",
       "community": 8,
       "norm_label": "createglobalstate (vueuse)",
-      "community_name": "App.vue (Root Component)",
+      "community_name": "Paulus (Vue 3 Frontend)",
       "id": "create_global_state"
     },
     {
@@ -36771,7 +36771,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant",
@@ -36782,7 +36782,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant",
@@ -36859,6 +36859,30 @@
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant",
       "target": "src_features_stock_movements_assistant_application_isstockdomainquestion_isstockdomainquestion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_stock_movements_assistant_application_askstockassistant",
+      "target": "src_features_stock_movements_assistant_application_parseassistantcontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_stock_movements_assistant_application_askstockassistant",
+      "target": "src_features_stock_movements_assistant_application_parseassistantcontent_hasrenderabletable",
       "confidence_score": 1.0
     },
     {
@@ -36975,7 +36999,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L50",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -36987,7 +37011,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -36999,7 +37023,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -37011,7 +37035,19 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L56",
+      "source_location": "L100",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
+      "target": "src_features_stock_movements_assistant_application_parseassistantcontent_hasrenderabletable"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
+      "source_location": "L59",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -37023,7 +37059,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L91",
+      "source_location": "L120",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -37035,7 +37071,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/askStockAssistant.ts",
-      "source_location": "L40",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_askstockassistant_askstockassistant",
@@ -37080,7 +37116,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L130",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext",
@@ -37091,7 +37127,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L59",
+      "source_location": "L60",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext",
@@ -37102,7 +37138,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L102",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext",
@@ -37113,7 +37149,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L125",
+      "source_location": "L126",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext",
@@ -37221,7 +37257,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L72",
+      "source_location": "L73",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_pickfocusedpayload",
@@ -37233,7 +37269,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L64",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_pickfocusedpayload",
@@ -37246,7 +37282,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L108",
+      "source_location": "L109",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",
@@ -37258,7 +37294,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",
@@ -37270,7 +37306,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L111",
+      "source_location": "L112",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",
@@ -37282,7 +37318,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L110",
+      "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",
@@ -37294,7 +37330,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts",
-      "source_location": "L107",
+      "source_location": "L108",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_assistant_application_buildstockassistantcontext_resolvedetailbyid",

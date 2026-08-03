@@ -1105,13 +1105,13 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/atoms/StockCurrencyText.vue": {
-    "mtime": 1785770911.1812537,
-    "ast_hash": "8e39922f0aa8f73e78bc1edeae6854a9",
+    "mtime": 1785769779.1231081,
+    "ast_hash": "08fefbdeb9f94ca8063518be56e07658",
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/molecules/StockMovementTableRow.vue": {
-    "mtime": 1785770911.1812537,
-    "ast_hash": "ab02f1142e020ac760ffd18df963286f",
+    "mtime": 1785769777.725597,
+    "ast_hash": "108310120716a9088fe5228758ae3dfe",
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/molecules/StockMovementsEmptyState.vue": {
@@ -1130,8 +1130,8 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/organisms/StockMovementsTable.vue": {
-    "mtime": 1785770906.9177406,
-    "ast_hash": "a8f31687397f9566d6a42ea323fbf414",
+    "mtime": 1785769773.0439494,
+    "ast_hash": "f8d3fdb0db6133759bef2faad9bb14ff",
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/stockMovementStore.ts": {
@@ -1330,13 +1330,13 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/application/askStockAssistant.ts": {
-    "mtime": 1785771539.8596432,
-    "ast_hash": "d6044570eac1d46f0eb10318b5da19d8",
+    "mtime": 1785769421.9578424,
+    "ast_hash": "dfd13b2ff4a51741582b06e4ee58260f",
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/application/buildStockAssistantContext.ts": {
-    "mtime": 1785771550.9662604,
-    "ast_hash": "1111994e9c364276cefafd1513a97574",
+    "mtime": 1785769426.2359138,
+    "ast_hash": "84ebf45e9c3a8bce998612a05c1b19e0",
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/application/ensureStockAssistantOllama.ts": {
@@ -1360,13 +1360,13 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/domain/pauluStockWelcome.ts": {
-    "mtime": 1785771544.5578916,
-    "ast_hash": "033d074bb5315d38362b8dfc0271f730",
+    "mtime": 1785768885.8392594,
+    "ast_hash": "5ca5d623fc248fc8b5bc047f2d8a13ba",
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/domain/stockAssistantSystemPrompt.ts": {
-    "mtime": 1785771538.332109,
-    "ast_hash": "d305aca6c0b11bc53726ab0efe59bbdf",
+    "mtime": 1785769413.922907,
+    "ast_hash": "83ada9a79d7b3ada6597746d9a8f81bc",
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/infrastructure/AxiosStockAssistantContextGateway.ts": {
@@ -1425,8 +1425,8 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/domain/pauluFriendlyMessages.ts": {
-    "mtime": 1785771544.678408,
-    "ast_hash": "e6d751bf5244f8646111223be8feff82",
+    "mtime": 1785768867.8418906,
+    "ast_hash": "8f7076dcc8504b96e5f75d13698e28f6",
     "semantic_hash": ""
   },
   "src/features/stock-movements/assistant/application/parseAssistantContent.ts": {

@@ -40,25 +40,25 @@ const { initial, enter } = useStaggerMotion(
   >
     <td class="px-4 py-3">
       <template v-if="product">
-        <p class="text-sm font-medium text-slate-800 dark:text-slate-100">{{ product.name }}</p>
-        <p class="mt-0.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+        <p class="text-sm font-medium text-black dark:text-white">{{ product.name }}</p>
+        <p class="mt-0.5 font-mono text-[11px] text-black dark:text-white">
           {{ product.product_code || movement.product_id }}
         </p>
       </template>
-      <span v-else class="font-mono text-[12px] text-slate-600 dark:text-slate-300">
+      <span v-else class="font-mono text-[12px] text-black dark:text-white">
         {{ movement.product_id }}
       </span>
     </td>
     <td class="px-4 py-3">
       <MovementTypePill :type="movement.movement_type" />
     </td>
-    <td class="px-4 py-3 text-[12px] text-slate-500 dark:text-slate-400">
+    <td class="px-4 py-3 text-[12px] text-black dark:text-white">
       {{ orderReferenceLabel || movement.reference_id || '—' }}
     </td>
     <td class="px-4 py-3 text-right">
       <StockCurrencyText :value="movement.unit_cost" />
     </td>
-    <td class="px-4 py-3 text-right font-mono text-[12px] text-slate-700 dark:text-slate-200">
+    <td class="px-4 py-3 text-right font-mono text-[12px] text-black dark:text-white">
       {{ movement.quantity }}
     </td>
     <td class="px-4 py-3">
