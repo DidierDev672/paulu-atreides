@@ -1,11 +1,11 @@
 # Graph Report - book-coffee-shop  (2026-08-02)
 
 ## Corpus Check
-- 265 files · ~144,757 words
+- 262 files · ~144,345 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2547 nodes · 3165 edges · 240 communities (190 shown, 50 thin omitted)
+- 2539 nodes · 3146 edges · 239 communities (187 shown, 52 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.53)
 - Token cost: 0 input · 0 output
 
@@ -70,7 +70,7 @@
 - Single-File Component Structure, Styling, and Template Patterns
 - Built-in Components & Directives
 - productEntryService.ts
-- container.ts
+- IAuthRepository.ts
 - stock-movements/index.ts
 - EntrySelectionModal.vue
 - TransitionGroup
@@ -98,7 +98,7 @@
 - Directive Best Practices
 - companyService.ts
 - shipmentService.ts
-- Paulus — Guía de usuario
+- Guía de instalación — *Primer vuelo en ornitóptero*
 - Symbol Injection Keys
 - State-driven Animations with CSS Transitions and Style Bindings
 - Script Setup & Macros
@@ -180,9 +180,9 @@
 - 5. Graphify — Análisis de grafos de código — *Mentat Thufir*
 - userService.ts
 - runVerification
-- historyService.ts
+- useHistoryLogger.ts
 - addCategory
-- IAuthRepository.ts
+- addCategory
 - graphify reference: add a URL and watch a folder
 - graphify reference: commit hook and native CLAUDE.md integration
 - graphify reference: query, path, explain
@@ -209,7 +209,7 @@
 - checkWineries
 - handleSubmit
 - updateFinancialSummary
-- LoginUseCase.ts
+- vite
 - closeMobileSidebar
 - handleSubmit
 - vite-plugin-ollama-ensure.ts
@@ -226,30 +226,30 @@
 - StockMovementsPage.vue
 - 2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*
 - AxiosWineryLookup.ts
-- ProductSelectionModal.vue
+- historyService.ts
 - plugins concept
 - axiosInstance.ts
 - MissingProductsModal.vue
-- Dune Lore — Paul Atreides y el Ecosistema Paulu
+- mainAddressService.ts
 - useProductDocumentImport.ts
 - extractTextFromProviderDocument
 - StockMovementsErrorModal.vue
-- StockMovementTableRow.vue
+- Paulus — Guía de usuario
 - deductEntryQuantities
 - Watchers
 - closeProviderModal
 - closeWarehouseModal
 - emit
 - recalcRow
-- calcSellingPrice
+- taxInformationService.ts
 - useModalMotion.ts
-- RegisterUseCase.ts
+- main.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `Componentes globales — *Arsenal del sietch*` - 33 edges
 2. `compilerOptions` - 25 edges
-3. `StockMovement` - 20 edges
-4. `StockProduct` - 17 edges
+3. `StockMovement` - 19 edges
+4. `StockProduct` - 16 edges
 5. `compilerOptions` - 16 edges
 6. `IStockMovementRepository` - 14 edges
 7. `Guía de Implementación — Paulu Areides` - 12 edges
@@ -272,7 +272,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (240 total, 50 thin omitted)
+## Communities (239 total, 52 thin omitted)
 
 ### Community 0 - "composables concept"
 Cohesion: 0.10
@@ -308,15 +308,15 @@ Nodes (55): actionDot, actionLabels, activeNav, activities, authStore, averageEx
 
 ### Community 8 - "Paulus (Vue 3 Frontend)"
 Cohesion: 0.12
-Nodes (19): App.vue (Root Component), createGlobalState (VueUse), JWT Authentication (HS256), localStorage (Browser), main.ts (Entry Point), vue-markdown-render, @vueuse/motion, tailwindcss (+11 more)
+Nodes (19): App.vue (Root Component), axios, createGlobalState (VueUse), JWT Authentication (HS256), localStorage (Browser), main.ts (Entry Point), axios, vue-markdown-render (+11 more)
 
 ### Community 9 - "ProductRegistrationForm.vue"
 Cohesion: 0.04
 Nodes (39): authStore, autoEntry, autoEntryError, autoEntrySaving, autoFixedMarkup, autoSuggestedPrice, categoryFrequencies, checkingWineries (+31 more)
 
 ### Community 10 - "ProductEntryForm.vue"
-Cohesion: 0.09
-Nodes (19): authStore, companyStore, detailsError, emitPage, entryStore, fieldErrors, form, formError (+11 more)
+Cohesion: 0.05
+Nodes (37): authStore, calcDetailSubtotal(), calcFixedMarkup(), calcSellingPrice(), companyStore, detailsError, emitPage, entryStore (+29 more)
 
 ### Community 11 - "CreateSaleModal.vue"
 Cohesion: 0.05
@@ -371,16 +371,16 @@ Cohesion: 0.06
 Nodes (33): `AppAlert.vue` — Alerta contextual reutilizable — *Voz Bene Gesserit*, `AuthButton.vue` — Botón con loading y variantes — *Grito de batalla fremen*, `AuthInput.vue` — Input de formulario con tema auth — *Prueba Bene Gesserit*, `CompanyRegistrationForm.vue` — Formulario multi-step de 6 pasos — *Duke Leto funda la Casa*, `CompanyRequiredModal.vue` — Modal persuasivo de empresa requerida — *Shadout Mapes*, Componentes globales — *Arsenal del sietch*, `ConfirmDeleteModal.vue` — Confirmación de eliminación — *Agua derramada*, `DispatchSummaryModal.vue` — Resumen de despacho — *Informe post-batalla* (+25 more)
 
 ### Community 24 - "dependencies"
-Cohesion: 0.22
-Nodes (9): mammoth, dependencies, mammoth, pinia, @tailwindcss/typography, vue, pinia, @tailwindcss/typography (+1 more)
+Cohesion: 0.18
+Nodes (11): mammoth, dependencies, mammoth, pinia, @tailwindcss/typography, vue, xlsx, pinia (+3 more)
 
 ### Community 25 - "SalesPage.vue"
 Cohesion: 0.06
 Nodes (26): authStore, confirmDelete(), editDiscount, editingProviderId, editPaymentMethod, editStatus, filteredSales, handleDeleteFromDetail() (+18 more)
 
 ### Community 26 - "Paulus — El Primer Miembro de Paulu Areides"
-Cohesion: 0.14
-Nodes (14): Arquitectura Vue — *La Casa Paulu Areides*, Asistente Paulu — *La Voz de Paulu Areides*, Build, Conexión con el backend — *La Casa Paulu Areides*, Documentación, Inicio rápido, Inteligencia Artificial — *El Mentat de Paulu Areides*, Modelo Local — *El Mentat del Sietch* (+6 more)
+Cohesion: 0.07
+Nodes (26): Cómo usar este documento, Dune Lore — Paul Atreides y el Ecosistema Paulu, El Juramento Paulu, La Casa Paulu, La especia debe fluir — El inventario debe controlarse, Paralelismos técnicos — Backend Paulu (Go API), Paralelismos técnicos — Herramientas y convenciones, Paralelismos técnicos — Módulos de negocio (+18 more)
 
 ### Community 27 - "/graphify"
 Cohesion: 0.08
@@ -395,16 +395,16 @@ Cohesion: 0.25
 Nodes (8): component data flow, defineEmits, defineModel, defineProps, InjectionKey, props down events up, provide/inject, component-data-flow
 
 ### Community 30 - "ProductEditModal.vue"
-Cohesion: 0.08
-Nodes (22): addCategory(), categoryFrequencies, emit, fieldErrors, filteredSuggestions, form, formError, handleCategoryKeydown() (+14 more)
+Cohesion: 0.09
+Nodes (17): categoryFrequencies, emit, fieldErrors, filteredSuggestions, form, formError, handleSave(), productStore (+9 more)
 
 ### Community 31 - "ShipmentList.vue"
 Cohesion: 0.07
 Nodes (22): deleting, deletingShipmentId, detailShipment, editShipment, entryMovementLabels, entryMovementTypes, expandedId, filteredShipments (+14 more)
 
 ### Community 32 - "WineryRegistrationForm.vue"
-Cohesion: 0.11
-Nodes (17): AREAS, authStore, companyLoaded, companyStore, emit, fieldErrors, form, formError (+9 more)
+Cohesion: 0.12
+Nodes (16): AREAS, authStore, companyLoaded, companyStore, emit, fieldErrors, form, formError (+8 more)
 
 ### Community 33 - "HistoryTimeline.vue"
 Cohesion: 0.11
@@ -435,8 +435,8 @@ Cohesion: 0.33
 Nodes (6): Go Language Backend, Graphify Code Analysis Tool, Mentat AI System, Paulu (Go API Backend), Paulu Areides Project, PostgreSQL Database
 
 ### Community 40 - "App.vue"
-Cohesion: 0.09
-Nodes (31): authStore, chatContainer, chatOpen, detectIntentAndFetch(), fetchEntries(), fetchEntryById(), fetchOrderById(), fetchOrders() (+23 more)
+Cohesion: 0.10
+Nodes (30): authStore, chatContainer, chatOpen, detectIntentAndFetch(), fetchEntries(), fetchEntryById(), fetchOrderById(), fetchOrders() (+22 more)
 
 ### Community 41 - "updated hook performance"
 Cohesion: 0.33
@@ -494,9 +494,9 @@ Nodes (15): Async Dependencies, Built-in Components & Directives, Custom Directi
 Cohesion: 0.13
 Nodes (5): CreateProductEntryRequest, Deduction, FinancialSummary, ProductEntryDetail, ProductEntryResponse
 
-### Community 55 - "container.ts"
-Cohesion: 0.15
-Nodes (8): authRepository, container, httpClient, AxiosHttpClient, HttpError, HttpRequestOptions, IHttpClient, AuthRepository
+### Community 55 - "IAuthRepository.ts"
+Cohesion: 0.06
+Nodes (20): LoginDto, RegisterDto, LoginUseCase, RegisterUseCase, AuthSession, User, IAuthRepository, LoginCredentials (+12 more)
 
 ### Community 56 - "stock-movements/index.ts"
 Cohesion: 0.23
@@ -591,16 +591,16 @@ Cohesion: 0.18
 Nodes (11): Avoid Directives on Components, Clean Up Side Effects in `unmounted`, Decide Between Directives and Components, Directive Best Practices, Handle SSR with `getSSRProps`, Prefer Declarative Templates When Possible, Prefer Function Shorthand for Single-Hook Directives, Task List (+3 more)
 
 ### Community 81 - "companyService.ts"
-Cohesion: 0.20
-Nodes (3): CompanyRequest, CompanyResponse, emit
+Cohesion: 0.17
+Nodes (4): CompanyRequest, CompanyResponse, emit, useCompanyStore
 
 ### Community 82 - "shipmentService.ts"
 Cohesion: 0.17
 Nodes (6): CreateShipmentRequest, Recipient, ShipmentDetail, ShipmentFinancialSummary, ShipmentResponse, SourceDocument
 
-### Community 83 - "Paulus — Guía de usuario"
-Cohesion: 0.17
-Nodes (12): 1. Clonar y acceder al proyecto, 2. Instalar dependencias, 3. Configurar variables de entorno, 4. Iniciar servidor de desarrollo, 5. Compilar para producción, Convenciones del proyecto — *Código de honor Atreides*, Estructura de carpetas — *Caladan: arquitectura noble antes de Arrakis*, Flujo de autenticación — *Duncan Idaho guarda la puerta* (+4 more)
+### Community 83 - "Guía de instalación — *Primer vuelo en ornitóptero*"
+Cohesion: 0.33
+Nodes (6): 1. Clonar y acceder al proyecto, 2. Instalar dependencias, 3. Configurar variables de entorno, 4. Iniciar servidor de desarrollo, 5. Compilar para producción, Guía de instalación — *Primer vuelo en ornitóptero*
 
 ### Community 85 - "State-driven Animations with CSS Transitions and Style Bindings"
 Cohesion: 0.18
@@ -807,7 +807,7 @@ Cohesion: 0.33
 Nodes (5): pdfmake, pdfmake, generateInvoicePDF(), get(), paymentMethodLabels
 
 ### Community 153 - "StockProduct"
-Cohesion: 0.16
+Cohesion: 0.13
 Nodes (15): getProductById(), getProductCatalog(), indexProductsById(), IProductCatalog, StockProduct, asCategories(), asNumber(), asString() (+7 more)
 
 ### Community 154 - "ProductDocumentImportFab.vue"
@@ -850,17 +850,17 @@ Nodes (5): 5.1 Herramienta, 5.2 Resultados, 5.3 Archivos generados, 5.4 Skills d
 Cohesion: 0.33
 Nodes (6): handleRetry(), handleSave(), persistModels(), removeModel(), resetForm(), runVerification()
 
-### Community 165 - "historyService.ts"
-Cohesion: 0.17
-Nodes (13): createHistoryEntry(), CreateHistoryRequest, extractDocumentName(), getHistoryEntries(), getHistoryEntriesByEntity(), HistoryApiResponse, mapToHistoryEntry(), HistoryAction (+5 more)
+### Community 165 - "useHistoryLogger.ts"
+Cohesion: 0.25
+Nodes (6): HistoryAction, HistoryChange, HistoryEntry, useHistoryLogger(), useAuthStore, useHistoryStore
 
 ### Community 166 - "addCategory"
 Cohesion: 0.40
 Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistFrequencies(), selectSuggestion()
 
-### Community 167 - "IAuthRepository.ts"
-Cohesion: 0.23
-Nodes (7): AuthSession, User, IAuthRepository, LoginCredentials, RegisterData, AuthApiResponse, AuthApiUser
+### Community 167 - "addCategory"
+Cohesion: 0.40
+Nodes (5): addCategory(), handleCategoryKeydown(), incrementCategory(), persistFrequencies(), selectSuggestion()
 
 ### Community 168 - "graphify reference: add a URL and watch a folder"
 Cohesion: 0.50
@@ -914,21 +914,21 @@ Nodes (7): getCompanyById(), ICompanyLookup, StockCompanyReference, asString(), 
 Cohesion: 0.33
 Nodes (6): handleDiscountInput(), handleEntriesSelected(), parseCOP(), removeDetail(), updateDetailSubtotal(), updateFinancialSummary()
 
-### Community 195 - "LoginUseCase.ts"
-Cohesion: 0.21
-Nodes (6): LoginDto, LoginUseCase, ILoginValidator, LoginFieldErrors, LoginValidationResult, LoginValidator
+### Community 195 - "vite"
+Cohesion: 0.50
+Nodes (3): vite, vite, ollamaEnsurePlugin()
 
 ### Community 197 - "handleSubmit"
 Cohesion: 0.40
 Nodes (5): detailsHaveProductCodes(), handleSubmit(), registerStockMovementsInBackground(), resolveStockProductsFromDetails(), validateForm()
 
 ### Community 202 - "vite-plugin-ollama-ensure.ts"
-Cohesion: 0.29
-Nodes (13): createEnsureMiddleware(), ensureOllamaAndLlama3(), hasLlama3(), httpGetJson(), isOllamaUp(), json(), listModels(), ollamaEnsurePlugin() (+5 more)
+Cohesion: 0.35
+Nodes (12): createEnsureMiddleware(), ensureOllamaAndLlama3(), hasLlama3(), httpGetJson(), isOllamaUp(), json(), listModels(), runLlama3() (+4 more)
 
 ### Community 203 - "documentTextExtractor.ts"
-Cohesion: 0.33
-Nodes (8): xlsx, EXT_MAP, extractDocx(), extractSpreadsheet(), extractTextFromDocument(), fileToArrayBuffer(), resolveDocumentKind(), xlsx
+Cohesion: 0.48
+Nodes (6): EXT_MAP, extractDocx(), extractSpreadsheet(), extractTextFromDocument(), fileToArrayBuffer(), resolveDocumentKind()
 
 ### Community 206 - "ollamaService.ts"
 Cohesion: 0.47
@@ -952,7 +952,7 @@ Nodes (13): buildEntryDetail(), draftToProductRequest(), EMPTY_FALLBACK_DRAFT, f
 
 ### Community 213 - "StockMovementsPage.vue"
 Cohesion: 0.10
-Nodes (10): filterMovementsByProductQuery(), matchProductSearchQuery(), model, detailOpen, filteredMovements, orderLabelsById, pendingDelete, searchQuery (+2 more)
+Nodes (11): classes, label, props, emit, { panelMotion, backdropTransition }, requestClose(), detailOpen, orderLabelsById (+3 more)
 
 ### Community 214 - "2.11 Tarjetas en capas y resolución de nombres — *Cómo Muad'Dib lee el desierto*"
 Cohesion: 0.40
@@ -962,52 +962,44 @@ Nodes (5): 2.11.1 Problema — *La tormenta de arena de los IDs*, 2.11.2 Patrón
 Cohesion: 0.32
 Nodes (7): getWineryById(), IWineryLookup, StockWineryReference, asString(), AxiosWineryLookup, toStockWineryReference(), wineryLookup
 
-### Community 216 - "ProductSelectionModal.vue"
-Cohesion: 0.17
-Nodes (10): allSelected, emit, error, filteredProducts, handleConfirm(), loading, products, props (+2 more)
+### Community 216 - "historyService.ts"
+Cohesion: 0.39
+Nodes (7): createHistoryEntry(), CreateHistoryRequest, extractDocumentName(), getHistoryEntries(), getHistoryEntriesByEntity(), HistoryApiResponse, mapToHistoryEntry()
 
 ### Community 217 - "plugins concept"
 Cohesion: 0.67
 Nodes (3): plugins concept, plugins, useAuth composable
 
 ### Community 222 - "axiosInstance.ts"
-Cohesion: 0.12
-Nodes (9): axios, axios, CreateEconomicActivityRequest, EconomicActivityResponse, CreateMainAddressRequest, MainAddressResponse, CreateTaxInformationRequest, TaxInformationResponse (+1 more)
+Cohesion: 0.20
+Nodes (6): CreateEconomicActivityRequest, EconomicActivityResponse, authRepository, container, httpClient, axiosInstance
 
-### Community 224 - "Dune Lore — Paul Atreides y el Ecosistema Paulu"
-Cohesion: 0.17
-Nodes (12): Cómo usar este documento, Dune Lore — Paul Atreides y el Ecosistema Paulu, El Juramento Paulu, La Casa Paulu, La especia debe fluir — El inventario debe controlarse, Paralelismos técnicos — Backend Paulu (Go API), Paralelismos técnicos — Herramientas y convenciones, Paralelismos técnicos — Módulos de negocio (+4 more)
-
-### Community 228 - "StockMovementTableRow.vue"
-Cohesion: 0.17
-Nodes (6): classes, label, props, { initial, enter }, props, props
+### Community 228 - "Paulus — Guía de usuario"
+Cohesion: 0.33
+Nodes (6): Convenciones del proyecto — *Código de honor Atreides*, Estructura de carpetas — *Caladan: arquitectura noble antes de Arrakis*, Flujo de autenticación — *Duncan Idaho guarda la puerta*, Paulus — Guía de usuario, Stack tecnológico — *Arsenal de Muad'Dib*, Variables de entorno (`.env`) — *Coordenadas del Guild Navigator*
 
 ### Community 230 - "Watchers"
 Cohesion: 0.50
 Nodes (4): Flush Timing, watch, watchEffect, Watchers
 
-### Community 235 - "calcSellingPrice"
-Cohesion: 0.25
-Nodes (8): calcDetailSubtotal(), calcFixedMarkup(), calcSellingPrice(), onFixedMarkupInput(), onUnitCostInput(), parseCOP(), recalcFinancials(), removeDetail()
-
 ## Knowledge Gaps
-- **1232 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1227 more)
+- **1229 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1224 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **52 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `vue-router` connect `vue-router` to `Paulus (Vue 3 Frontend)`, `OrderForm.vue`, `vue-best-practices`, `OrderList.vue`?**
-  _High betweenness centrality (0.088) - this node is a cross-community bridge._
-- **Why does `axios` connect `axiosInstance.ts` to `Paulus (Vue 3 Frontend)`, `companyService.ts`, `container.ts`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
+- **Why does `axios` connect `Paulus (Vue 3 Frontend)` to `companyService.ts`, `axiosInstance.ts`, `IAuthRepository.ts`?**
   _High betweenness centrality (0.028) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `Paulus (Vue 3 Frontend)`, `documentTextExtractor.ts`, `package.json`, `vue-router`, `invoiceService.js`, `axiosInstance.ts`?**
+- **Why does `dependencies` connect `dependencies` to `Paulus (Vue 3 Frontend)`, `package.json`, `invoiceService.js`, `vue-router`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `composables concept` (e.g. with `component split triggers` and `reactivity concept`) actually correct?**
   _`composables concept` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _1232 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1229 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `composables concept` be split into smaller, more focused modules?**
   _Cohesion score 0.1 - nodes in this community are weakly interconnected._
 - **Should `ProviderFormModal.vue` be split into smaller, more focused modules?**

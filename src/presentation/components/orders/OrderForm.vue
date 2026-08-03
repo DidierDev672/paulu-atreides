@@ -16,11 +16,20 @@ import ProviderSelectionModal from '@/presentation/components/providers/Provider
 import WinerySelectionModal from '@/presentation/components/products/WinerySelectionModal.vue'
 import AutomationConfirmModal from '@/presentation/components/orders/AutomationConfirmModal.vue'
 import DispatchSummaryModal from '@/presentation/components/orders/DispatchSummaryModal.vue'
+import MissingProductsModal from '@/presentation/components/orders/MissingProductsModal.vue'
+import StockMovementsErrorModal from '@/presentation/components/orders/StockMovementsErrorModal.vue'
 import { getCompanyById } from '@/application/services/companyService'
+import { getProductsByCompany } from '@/application/services/productService'
 import type { CreateOrderRequest, OrderDetail, OrderResponse } from '@/application/services/orderService'
 import type { ProductEntryResponse } from '@/application/services/productEntryService'
 import type { ProviderResponse } from '@/application/services/providerService'
 import type { WineryResponse } from '@/application/services/wineryService'
+import {
+  registerStockMovementsForOrder,
+  resolveProductIdsFromCodes,
+  stockMovementRepository,
+  type StockMovementProductInput,
+} from '@/features/stock-movements'
 
 const router = useRouter()
 const emit = defineEmits<{ saved: []; goToProviderRegistration: [] }>()
@@ -55,6 +64,8 @@ const dispatchRecipient = ref<{ recipient_type: string; recipient_id: string } |
 const saleNotification = ref('')
 const showRegisterSale = ref(false)
 const showPrintReceipt = ref(false)
+const showMissingProductsModal = ref(false)
+const showStockMovementsErrorModal = ref(false)
 
 const form = ref<CreateOrderRequest>({
   order_numeric: '',
@@ -187,8 +198,71 @@ function validateForm(): boolean {
   return Object.keys(formErrors).length === 0
 }
 
+function detailsHaveProductCodes(): boolean {
+  return (
+    form.value.details.length > 0 &&
+    form.value.details.every((d) => Boolean(String(d.code ?? '').trim()))
+  )
+}
+
+/**
+ * Resolves order detail `code` (product_code) → catalog product `id`
+ * for stock_movements.product_id.
+ */
+async function resolveStockProductsFromDetails(
+  details: OrderDetail[],
+  companyId: string,
+): Promise<StockMovementProductInput[] | null> {
+  const catalog = await getProductsByCompany(companyId)
+  return resolveProductIdsFromCodes(
+    details.map((d) => ({
+      code: d.code,
+      quantity: d.quantity_requested,
+      unit_cost: d.estimated_cost,
+    })),
+    catalog,
+  )
+}
+
+/** Fire-and-forget stock movements; never blocks order save or UI flow. */
+function registerStockMovementsInBackground(
+  orderId: string,
+  orderType: string,
+  products: StockMovementProductInput[],
+): void {
+  void registerStockMovementsForOrder(stockMovementRepository, products, orderType, orderId)
+    .then((outcome) => {
+      if (outcome.failed > 0) {
+        showStockMovementsErrorModal.value = true
+      }
+    })
+    .catch((err) => {
+      console.error('[stock-movements] Error inesperado al registrar movimientos:', err)
+      showStockMovementsErrorModal.value = true
+    })
+}
+
 async function handleSubmit(): Promise<void> {
+  if (!detailsHaveProductCodes()) {
+    showMissingProductsModal.value = true
+    return
+  }
+
   if (!validateForm()) return
+
+  let stockProducts: StockMovementProductInput[] | null = null
+  try {
+    stockProducts = await resolveStockProductsFromDetails(form.value.details, form.value.company_id)
+  } catch (err) {
+    console.error('[stock-movements] No se pudieron resolver los product_id:', err)
+    showMissingProductsModal.value = true
+    return
+  }
+
+  if (!stockProducts) {
+    showMissingProductsModal.value = true
+    return
+  }
 
   const result = await orderStore.createOrder(form.value)
   if (result) {
@@ -198,6 +272,7 @@ async function handleSubmit(): Promise<void> {
       entityId: result.order.id,
       details: `Orden ${result.order.order_numeric} creada por ${form.value.requested_by || form.value.user_id} con ${form.value.details.length} producto(s).`,
     })
+    registerStockMovementsInBackground(result.order.id, form.value.order_type, stockProducts)
     showAutomationConfirm.value = true
   } else {
     dialogResult.value = { success: false, error: orderStore.error || 'Error desconocido al registrar la orden.' }
@@ -607,6 +682,16 @@ function formatCOP(value: number): string {
       @confirm="onProviderSelected"
       @close="showProviderModal = false"
       @go-to-provider-registration="emit('goToProviderRegistration')"
+    />
+
+    <MissingProductsModal
+      v-if="showMissingProductsModal"
+      @close="showMissingProductsModal = false"
+    />
+
+    <StockMovementsErrorModal
+      v-if="showStockMovementsErrorModal"
+      @close="showStockMovementsErrorModal = false"
     />
 
     <AutomationConfirmModal

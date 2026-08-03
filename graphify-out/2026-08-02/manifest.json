@@ -1080,8 +1080,8 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/index.ts": {
-    "mtime": 1785731374.2547212,
-    "ast_hash": "dfff64e58670d9821dd24e50a39be5b3",
+    "mtime": 1785730359.367066,
+    "ast_hash": "3bc2c2fdb983dcaef68f4e26efaafda2",
     "semantic_hash": ""
   },
   "src/features/stock-movements/infrastructure/AxiosStockMovementRepository.ts": {
@@ -1090,8 +1090,8 @@
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/StockMovementsPage.vue": {
-    "mtime": 1785731367.054777,
-    "ast_hash": "7fa2946d4f8b65821aecc4be8c52174e",
+    "mtime": 1785730965.6750696,
+    "ast_hash": "efd1fe33bc62ba347b3f4fd362a3c7ec",
     "semantic_hash": ""
   },
   "src/features/stock-movements/presentation/atoms/MovementTypePill.vue": {
@@ -1312,21 +1312,6 @@
   "src/presentation/motion/presets.ts": {
     "mtime": 1785730938.9671352,
     "ast_hash": "f87a8237b530df6a557f96d4af22525c",
-    "semantic_hash": ""
-  },
-  "src/features/stock-movements/application/filterMovementsByProductQuery.ts": {
-    "mtime": 1785731353.1622036,
-    "ast_hash": "d9848e72dd1d74f006ff5d3dc355de77",
-    "semantic_hash": ""
-  },
-  "src/features/stock-movements/application/matchProductSearchQuery.ts": {
-    "mtime": 1785731347.470302,
-    "ast_hash": "56f7a6191dd0d330690cc98cce07cbd3",
-    "semantic_hash": ""
-  },
-  "src/features/stock-movements/presentation/molecules/StockMovementsSearchField.vue": {
-    "mtime": 1785731356.2022734,
-    "ast_hash": "2398c7c3d81ed237e79101571951eddc",
     "semantic_hash": ""
   }
 }

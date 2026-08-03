@@ -164,8 +164,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_dependencies_axios",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 8,
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "axios"
     },
     {
@@ -175,8 +175,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "axios",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 8,
+      "community_name": "Paulus (Vue 3 Frontend)",
       "norm_label": "axios"
     },
     {
@@ -318,8 +318,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "package_dependencies_xlsx",
-      "community": 203,
-      "community_name": "documentTextExtractor.ts",
+      "community": 24,
+      "community_name": "dependencies",
       "norm_label": "xlsx"
     },
     {
@@ -329,8 +329,8 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "xlsx",
-      "community": 203,
-      "community_name": "documentTextExtractor.ts",
+      "community": 24,
+      "community_name": "dependencies",
       "norm_label": "xlsx"
     },
     {
@@ -505,8 +505,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_devdependencies_vite",
-      "community": 8,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 195,
+      "community_name": "vite",
       "norm_label": "vite"
     },
     {
@@ -516,8 +516,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "vite",
-      "community": 8,
-      "community_name": "Paulus (Vue 3 Frontend)",
+      "community": 195,
+      "community_name": "vite",
       "norm_label": "vite"
     },
     {
@@ -912,8 +912,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_dtos_logindto",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "logindto.ts"
     },
     {
@@ -923,8 +923,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_dtos_logindto_logindto",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "logindto"
     },
     {
@@ -945,8 +945,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_dtos_registerdto_registerdto",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerdto"
     },
     {
@@ -1253,7 +1253,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_services_historyservice",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "historyservice.ts"
     },
@@ -1264,7 +1264,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_application_services_historyservice_historyapiresponse",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "historyapiresponse"
     },
@@ -1275,7 +1275,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_application_services_historyservice_createhistoryrequest",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "createhistoryrequest"
     },
@@ -1286,7 +1286,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_application_services_historyservice_extractdocumentname",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "extractdocumentname()"
     },
@@ -1297,7 +1297,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_application_services_historyservice_maptohistoryentry",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "maptohistoryentry()"
     },
@@ -1308,7 +1308,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "src_application_services_historyservice_createhistoryentry",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "createhistoryentry()"
     },
@@ -1319,7 +1319,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_application_services_historyservice_gethistoryentries",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "gethistoryentries()"
     },
@@ -1330,7 +1330,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_application_services_historyservice_gethistoryentriesbyentity",
-      "community": 165,
+      "community": 216,
       "community_name": "historyService.ts",
       "norm_label": "gethistoryentriesbyentity()"
     },
@@ -1341,8 +1341,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_services_mainaddressservice",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 224,
+      "community_name": "mainAddressService.ts",
       "norm_label": "mainaddressservice.ts"
     },
     {
@@ -1352,8 +1352,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_application_services_mainaddressservice_mainaddressresponse",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 224,
+      "community_name": "mainAddressService.ts",
       "norm_label": "mainaddressresponse"
     },
     {
@@ -1363,8 +1363,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_application_services_mainaddressservice_createmainaddressrequest",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 224,
+      "community_name": "mainAddressService.ts",
       "norm_label": "createmainaddressrequest"
     },
     {
@@ -1374,8 +1374,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_application_services_mainaddressservice_createmainaddress",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 224,
+      "community_name": "mainAddressService.ts",
       "norm_label": "createmainaddress()"
     },
     {
@@ -2859,8 +2859,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_services_taxinformationservice",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 235,
+      "community_name": "taxInformationService.ts",
       "norm_label": "taxinformationservice.ts"
     },
     {
@@ -2870,8 +2870,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_application_services_taxinformationservice_taxinformationresponse",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 235,
+      "community_name": "taxInformationService.ts",
       "norm_label": "taxinformationresponse"
     },
     {
@@ -2881,8 +2881,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_application_services_taxinformationservice_createtaxinformationrequest",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 235,
+      "community_name": "taxInformationService.ts",
       "norm_label": "createtaxinformationrequest"
     },
     {
@@ -2892,8 +2892,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_application_services_taxinformationservice_createtaxinformation",
-      "community": 222,
-      "community_name": "axiosInstance.ts",
+      "community": 235,
+      "community_name": "taxInformationService.ts",
       "norm_label": "createtaxinformation()"
     },
     {
@@ -3068,8 +3068,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_use_cases_loginusecase",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginusecase.ts"
     },
     {
@@ -3079,8 +3079,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_application_use_cases_loginusecase_loginusecase",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginusecase"
     },
     {
@@ -3090,8 +3090,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_application_use_cases_loginusecase_loginusecase_constructor",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -3101,7 +3101,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_application_use_cases_loginusecase_loginusecase_execute",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": ".execute()"
     },
@@ -3112,8 +3112,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerusecase.ts"
     },
     {
@@ -3123,8 +3123,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "registerusecase"
     },
     {
@@ -3134,8 +3134,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_constructor",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -3145,8 +3145,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_execute",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".execute()"
     },
     {
@@ -3156,8 +3156,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_application_use_cases_registerusecase_registerusecase_validate",
-      "community": 237,
-      "community_name": "RegisterUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validate()"
     },
     {
@@ -3167,7 +3167,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_entities_authsession",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "authsession.ts"
     },
@@ -3178,7 +3178,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_domain_entities_authsession_authsession",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "authsession"
     },
@@ -3190,7 +3190,7 @@
       "_origin": "ast",
       "id": "src_domain_entities_historyentry",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "historyentry.ts"
     },
     {
@@ -3201,7 +3201,7 @@
       "_origin": "ast",
       "id": "src_domain_entities_historyentry_historychange",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "historychange"
     },
     {
@@ -3212,7 +3212,7 @@
       "_origin": "ast",
       "id": "src_domain_entities_historyentry_historyaction",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "historyaction"
     },
     {
@@ -3223,7 +3223,7 @@
       "_origin": "ast",
       "id": "src_domain_entities_historyentry_historyentry",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "historyentry"
     },
     {
@@ -3233,7 +3233,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_entities_user",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "user.ts"
     },
@@ -3244,7 +3244,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_entities_user_user",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "user"
     },
@@ -3497,7 +3497,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_repositories_iauthrepository",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "iauthrepository.ts"
     },
@@ -3508,7 +3508,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_domain_repositories_iauthrepository_iauthrepository",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "iauthrepository"
     },
@@ -3519,7 +3519,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_domain_repositories_iauthrepository_iauthrepository_login",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": ".login()"
     },
@@ -3530,7 +3530,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_domain_repositories_iauthrepository_iauthrepository_register",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": ".register()"
     },
@@ -3541,7 +3541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_value_objects_logincredentials",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "logincredentials.ts"
     },
@@ -3552,7 +3552,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_value_objects_logincredentials_logincredentials",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "logincredentials"
     },
@@ -3563,7 +3563,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_value_objects_registerdata",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "registerdata.ts"
     },
@@ -3574,7 +3574,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_domain_value_objects_registerdata_registerdata",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "registerdata"
     },
@@ -3643,28 +3643,6 @@
       "community": 159,
       "community_name": "StockMovement.ts",
       "norm_label": "deletestockmovement()"
-    },
-    {
-      "label": "filterMovementsByProductQuery.ts",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "filtermovementsbyproductquery.ts"
-    },
-    {
-      "label": "filterMovementsByProductQuery()",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L9",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_application_filtermovementsbyproductquery_filtermovementsbyproductquery",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "filtermovementsbyproductquery()"
     },
     {
       "label": "formatOrderReferenceLabel.ts",
@@ -3918,28 +3896,6 @@
       "community": 159,
       "community_name": "StockMovement.ts",
       "norm_label": "mapordertypetomovementtype()"
-    },
-    {
-      "label": "matchProductSearchQuery.ts",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/application/matchProductSearchQuery.ts",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_application_matchproductsearchquery",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "matchproductsearchquery.ts"
-    },
-    {
-      "label": "matchProductSearchQuery()",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/application/matchProductSearchQuery.ts",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_application_matchproductsearchquery_matchproductsearchquery",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "matchproductsearchquery()"
     },
     {
       "label": "registerStockMovementsForOrder.ts",
@@ -4935,7 +4891,7 @@
       "label": "store",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L13",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_store",
       "community": 213,
@@ -4946,7 +4902,7 @@
       "label": "pendingDelete",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L14",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_pendingdelete",
       "community": 213,
@@ -4957,7 +4913,7 @@
       "label": "detailOpen",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L15",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_detailopen",
       "community": 213,
@@ -4965,21 +4921,10 @@
       "norm_label": "detailopen"
     },
     {
-      "label": "searchQuery",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L16",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_presentation_stockmovementspage_searchquery",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "searchquery"
-    },
-    {
       "label": "orderLabelsById",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L18",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_orderlabelsbyid",
       "community": 213,
@@ -4987,21 +4932,10 @@
       "norm_label": "orderlabelsbyid"
     },
     {
-      "label": "filteredMovements",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L27",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_presentation_stockmovementspage_filteredmovements",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "filteredmovements"
-    },
-    {
       "label": "onView()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L35",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_onview",
       "community": 213,
@@ -5012,7 +4946,7 @@
       "label": "onRemoveRequest()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L41",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_onremoverequest",
       "community": 213,
@@ -5023,7 +4957,7 @@
       "label": "confirmDelete()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L45",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_confirmdelete",
       "community": 213,
@@ -5034,7 +4968,7 @@
       "label": "cancelDelete()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L52",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_canceldelete",
       "community": 213,
@@ -5045,7 +4979,7 @@
       "label": "closeDetail()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L56",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_closedetail",
       "community": 213,
@@ -5056,7 +4990,7 @@
       "label": "onDetailClosed()",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L60",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_stockmovementspage_ondetailclosed",
       "community": 213,
@@ -5070,8 +5004,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_movementtypepill",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "movementtypepill.vue"
     },
     {
@@ -5081,8 +5015,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_movementtypepill_props",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "props"
     },
     {
@@ -5092,8 +5026,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_movementtypepill_label",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "label"
     },
     {
@@ -5103,8 +5037,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_movementtypepill_classes",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "classes"
     },
     {
@@ -5114,8 +5048,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_stockactioniconbutton",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "stockactioniconbutton.vue"
     },
     {
@@ -5125,8 +5059,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_atoms_stockcurrencytext",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "stockcurrencytext.vue"
     },
     {
@@ -5147,8 +5081,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_molecules_stockmovementtablerow",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "stockmovementtablerow.vue"
     },
     {
@@ -5158,8 +5092,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_molecules_stockmovementtablerow_props",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "props"
     },
     {
@@ -5169,8 +5103,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_molecules_stockmovementtablerow_initial_enter",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "{ initial, enter }"
     },
     {
@@ -5196,36 +5130,14 @@
       "norm_label": "stockmovementserrorbanner.vue"
     },
     {
-      "label": "StockMovementsSearchField.vue",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/presentation/molecules/StockMovementsSearchField.vue",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_presentation_molecules_stockmovementssearchfield",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "stockmovementssearchfield.vue"
-    },
-    {
-      "label": "model",
-      "file_type": "code",
-      "source_file": "src/features/stock-movements/presentation/molecules/StockMovementsSearchField.vue",
-      "source_location": "L2",
-      "_origin": "ast",
-      "id": "src_features_stock_movements_presentation_molecules_stockmovementssearchfield_model",
-      "community": 213,
-      "community_name": "StockMovementsPage.vue",
-      "norm_label": "model"
-    },
-    {
       "label": "StockMovementDetailModal.vue",
       "file_type": "code",
       "source_file": "src/features/stock-movements/presentation/organisms/StockMovementDetailModal.vue",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementdetailmodal",
-      "community": 153,
-      "community_name": "StockProduct",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "stockmovementdetailmodal.vue"
     },
     {
@@ -5235,8 +5147,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementdetailmodal_emit",
-      "community": 153,
-      "community_name": "StockProduct",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "emit"
     },
     {
@@ -5246,8 +5158,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementdetailmodal_panelmotion_backdroptransition",
-      "community": 153,
-      "community_name": "StockProduct",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "{ panelmotion, backdroptransition }"
     },
     {
@@ -5257,8 +5169,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementdetailmodal_requestclose",
-      "community": 153,
-      "community_name": "StockProduct",
+      "community": 213,
+      "community_name": "StockMovementsPage.vue",
       "norm_label": "requestclose()"
     },
     {
@@ -5268,8 +5180,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementstable",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "stockmovementstable.vue"
     },
     {
@@ -5279,8 +5191,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementstable_props",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "props"
     },
     {
@@ -5290,8 +5202,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_features_stock_movements_presentation_organisms_stockmovementstable_orderlabelfor",
-      "community": 228,
-      "community_name": "StockMovementTableRow.vue",
+      "community": 153,
+      "community_name": "StockProduct",
       "norm_label": "orderlabelfor()"
     },
     {
@@ -5323,8 +5235,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_infrastructure_di_container",
-      "community": 55,
-      "community_name": "container.ts",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "container.ts"
     },
     {
@@ -5334,8 +5246,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_httpclient",
-      "community": 55,
-      "community_name": "container.ts",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "httpclient"
     },
     {
@@ -5345,8 +5257,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_authrepository",
-      "community": 55,
-      "community_name": "container.ts",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "authrepository"
     },
     {
@@ -5356,8 +5268,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_infrastructure_di_container_container",
-      "community": 55,
-      "community_name": "container.ts",
+      "community": 222,
+      "community_name": "axiosInstance.ts",
       "norm_label": "container"
     },
     {
@@ -5368,7 +5280,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "axioshttpclient.ts"
     },
     {
@@ -5379,7 +5291,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "axioshttpclient"
     },
     {
@@ -5390,7 +5302,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient_constructor",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -5401,7 +5313,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_axioshttpclient_axioshttpclient_request",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".request()"
     },
     {
@@ -5412,7 +5324,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "httperror.ts"
     },
     {
@@ -5423,7 +5335,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror_httperror",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "httperror"
     },
     {
@@ -5434,7 +5346,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_httperror_httperror_constructor",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -5445,7 +5357,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "ihttpclient.ts"
     },
     {
@@ -5456,7 +5368,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_httprequestoptions",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "httprequestoptions"
     },
     {
@@ -5467,7 +5379,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_ihttpclient",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "ihttpclient"
     },
     {
@@ -5478,7 +5390,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_http_ihttpclient_ihttpclient_request",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".request()"
     },
     {
@@ -5510,7 +5422,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "authrepository.ts"
     },
@@ -5521,7 +5433,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authapiuser",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "authapiuser"
     },
@@ -5532,7 +5444,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authapiresponse",
-      "community": 167,
+      "community": 55,
       "community_name": "IAuthRepository.ts",
       "norm_label": "authapiresponse"
     },
@@ -5544,7 +5456,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": "authrepository"
     },
     {
@@ -5555,7 +5467,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_constructor",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".constructor()"
     },
     {
@@ -5566,7 +5478,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_login",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".login()"
     },
     {
@@ -5577,7 +5489,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_register",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".register()"
     },
     {
@@ -5588,7 +5500,7 @@
       "_origin": "ast",
       "id": "src_infrastructure_repositories_authrepository_authrepository_maptosession",
       "community": 55,
-      "community_name": "container.ts",
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".maptosession()"
     },
     {
@@ -5598,8 +5510,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 40,
-      "community_name": "App.vue",
+      "community": 237,
+      "community_name": "main.ts",
       "norm_label": "main.ts"
     },
     {
@@ -5609,8 +5521,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_main_app",
-      "community": 40,
-      "community_name": "App.vue",
+      "community": 237,
+      "community_name": "main.ts",
       "norm_label": "app"
     },
     {
@@ -8359,8 +8271,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_parsecop",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "parsecop()"
     },
     {
@@ -8601,8 +8513,8 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_removedetail",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "removedetail()"
     },
     {
@@ -8612,8 +8524,8 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_onunitcostinput",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "onunitcostinput()"
     },
     {
@@ -8623,8 +8535,8 @@
       "source_location": "L172",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_onfixedmarkupinput",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "onfixedmarkupinput()"
     },
     {
@@ -8634,8 +8546,8 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_calcdetailsubtotal",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "calcdetailsubtotal()"
     },
     {
@@ -8645,8 +8557,8 @@
       "source_location": "L185",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_calcfixedmarkup",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "calcfixedmarkup()"
     },
     {
@@ -8656,8 +8568,8 @@
       "source_location": "L192",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_calcsellingprice",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "calcsellingprice()"
     },
     {
@@ -8667,8 +8579,8 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productentryform_recalcfinancials",
-      "community": 235,
-      "community_name": "calcSellingPrice",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "recalcfinancials()"
     },
     {
@@ -8821,8 +8733,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "productselectionmodal.vue"
     },
     {
@@ -8832,8 +8744,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_props",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "props"
     },
     {
@@ -8843,8 +8755,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_emit",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "emit"
     },
     {
@@ -8854,8 +8766,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_products",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "products"
     },
     {
@@ -8865,8 +8777,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_selectedids",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "selectedids"
     },
     {
@@ -8876,8 +8788,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_loading",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "loading"
     },
     {
@@ -8887,8 +8799,8 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_error",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "error"
     },
     {
@@ -8898,8 +8810,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_search",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "search"
     },
     {
@@ -8909,8 +8821,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_filteredproducts",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "filteredproducts"
     },
     {
@@ -8920,8 +8832,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_allselected",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "allselected"
     },
     {
@@ -8931,8 +8843,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_toggleall",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "toggleall()"
     },
     {
@@ -8942,8 +8854,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_toggle",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "toggle()"
     },
     {
@@ -8953,8 +8865,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_presentation_components_productentries_productselectionmodal_handleconfirm",
-      "community": 216,
-      "community_name": "ProductSelectionModal.vue",
+      "community": 10,
+      "community_name": "ProductEntryForm.vue",
       "norm_label": "handleconfirm()"
     },
     {
@@ -9151,8 +9063,8 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "src_presentation_components_products_producteditmodal_persistfrequencies",
-      "community": 30,
-      "community_name": "ProductEditModal.vue",
+      "community": 167,
+      "community_name": "addCategory",
       "norm_label": "persistfrequencies()"
     },
     {
@@ -9162,8 +9074,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_presentation_components_products_producteditmodal_incrementcategory",
-      "community": 30,
-      "community_name": "ProductEditModal.vue",
+      "community": 167,
+      "community_name": "addCategory",
       "norm_label": "incrementcategory()"
     },
     {
@@ -9184,8 +9096,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_presentation_components_products_producteditmodal_selectsuggestion",
-      "community": 30,
-      "community_name": "ProductEditModal.vue",
+      "community": 167,
+      "community_name": "addCategory",
       "norm_label": "selectsuggestion()"
     },
     {
@@ -9195,8 +9107,8 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_presentation_components_products_producteditmodal_addcategory",
-      "community": 30,
-      "community_name": "ProductEditModal.vue",
+      "community": 167,
+      "community_name": "addCategory",
       "norm_label": "addcategory()"
     },
     {
@@ -9217,8 +9129,8 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_presentation_components_products_producteditmodal_handlecategorykeydown",
-      "community": 30,
-      "community_name": "ProductEditModal.vue",
+      "community": 167,
+      "community_name": "addCategory",
       "norm_label": "handlecategorykeydown()"
     },
     {
@@ -15686,7 +15598,7 @@
       "_origin": "ast",
       "id": "src_presentation_composables_usehistorylogger",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "usehistorylogger.ts"
     },
     {
@@ -15697,7 +15609,7 @@
       "_origin": "ast",
       "id": "src_presentation_composables_usehistorylogger_usehistorylogger",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "usehistorylogger()"
     },
     {
@@ -17226,7 +17138,7 @@
       "_origin": "ast",
       "id": "src_presentation_stores_authstore_useauthstore",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "useauthstore"
     },
     {
@@ -17236,8 +17148,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_stores_companystore",
-      "community": 32,
-      "community_name": "WineryRegistrationForm.vue",
+      "community": 81,
+      "community_name": "companyService.ts",
       "norm_label": "companystore.ts"
     },
     {
@@ -17247,8 +17159,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_presentation_stores_companystore_usecompanystore",
-      "community": 32,
-      "community_name": "WineryRegistrationForm.vue",
+      "community": 81,
+      "community_name": "companyService.ts",
       "norm_label": "usecompanystore"
     },
     {
@@ -17259,7 +17171,7 @@
       "_origin": "ast",
       "id": "src_presentation_stores_historystore",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "historystore.ts"
     },
     {
@@ -17270,7 +17182,7 @@
       "_origin": "ast",
       "id": "src_presentation_stores_historystore_usehistorystore",
       "community": 165,
-      "community_name": "historyService.ts",
+      "community_name": "useHistoryLogger.ts",
       "norm_label": "usehistorystore"
     },
     {
@@ -17434,8 +17346,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_validators_iloginvalidator",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "iloginvalidator.ts"
     },
     {
@@ -17445,8 +17357,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_presentation_validators_iloginvalidator_loginfielderrors",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginfielderrors"
     },
     {
@@ -17456,8 +17368,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_presentation_validators_iloginvalidator_loginvalidationresult",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginvalidationresult"
     },
     {
@@ -17467,8 +17379,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_presentation_validators_iloginvalidator_iloginvalidator",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "iloginvalidator"
     },
     {
@@ -17478,8 +17390,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_presentation_validators_iloginvalidator_iloginvalidator_validate",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validate()"
     },
     {
@@ -17533,8 +17445,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_presentation_validators_loginvalidator",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginvalidator.ts"
     },
     {
@@ -17544,8 +17456,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_presentation_validators_loginvalidator_loginvalidator",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": "loginvalidator"
     },
     {
@@ -17555,8 +17467,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_presentation_validators_loginvalidator_loginvalidator_validate",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validate()"
     },
     {
@@ -17566,8 +17478,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_presentation_validators_loginvalidator_loginvalidator_validateemail",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validateemail()"
     },
     {
@@ -17577,8 +17489,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_presentation_validators_loginvalidator_loginvalidator_validatepassword",
-      "community": 195,
-      "community_name": "LoginUseCase.ts",
+      "community": 55,
+      "community_name": "IAuthRepository.ts",
       "norm_label": ".validatepassword()"
     },
     {
@@ -18622,8 +18534,8 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "vite_plugin_ollama_ensure_ollamaensureplugin",
-      "community": 202,
-      "community_name": "vite-plugin-ollama-ensure.ts",
+      "community": 195,
+      "community_name": "vite",
       "norm_label": "ollamaensureplugin()"
     },
     {
@@ -18633,8 +18545,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vite_config",
-      "community": 202,
-      "community_name": "vite-plugin-ollama-ensure.ts",
+      "community": 195,
+      "community_name": "vite",
       "norm_label": "vite.config.ts"
     },
     {
@@ -23484,8 +23396,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "implementation_guide",
-      "community": 239,
-      "community_name": "dune-lore-paul-atreides.md",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "implementation_guide.md"
     },
     {
@@ -24221,8 +24133,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "paulu_user_guide",
-      "community": 239,
-      "community_name": "dune-lore-paul-atreides.md",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paulu_user_guide.md"
     },
     {
@@ -24232,7 +24144,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "paulu_user_guide_paulus_gu\u00eda_de_usuario",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "paulus \u2014 guia de usuario"
     },
@@ -24243,7 +24155,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "paulu_user_guide_stack_tecnol\u00f3gico_arsenal_de_muad_dib",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "stack tecnologico \u2014 *arsenal de muad'dib*"
     },
@@ -24255,7 +24167,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_gu\u00eda_de_instalaci\u00f3n_primer_vuelo_en_ornit\u00f3ptero",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "guia de instalacion \u2014 *primer vuelo en ornitoptero*"
     },
     {
@@ -24266,7 +24178,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_1_clonar_y_acceder_al_proyecto",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "1. clonar y acceder al proyecto"
     },
     {
@@ -24277,7 +24189,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_2_instalar_dependencias",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "2. instalar dependencias"
     },
     {
@@ -24288,7 +24200,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_3_configurar_variables_de_entorno",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "3. configurar variables de entorno"
     },
     {
@@ -24299,7 +24211,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_4_iniciar_servidor_de_desarrollo",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "4. iniciar servidor de desarrollo"
     },
     {
@@ -24310,7 +24222,7 @@
       "_origin": "ast",
       "id": "paulu_user_guide_5_compilar_para_producci\u00f3n",
       "community": 83,
-      "community_name": "Paulus \u2014 Gu\u00eda de usuario",
+      "community_name": "Gu\u00eda de instalaci\u00f3n \u2014 *Primer vuelo en ornit\u00f3ptero*",
       "norm_label": "5. compilar para produccion"
     },
     {
@@ -24320,7 +24232,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "paulu_user_guide_estructura_de_carpetas_caladan_arquitectura_noble_antes_de_arrakis",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "estructura de carpetas \u2014 *caladan: arquitectura noble antes de arrakis*"
     },
@@ -24331,7 +24243,7 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "paulu_user_guide_variables_de_entorno_env_coordenadas_del_guild_navigator",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "variables de entorno (`.env`) \u2014 *coordenadas del guild navigator*"
     },
@@ -24705,7 +24617,7 @@
       "source_location": "L994",
       "_origin": "ast",
       "id": "paulu_user_guide_flujo_de_autenticaci\u00f3n_duncan_idaho_guarda_la_puerta",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "flujo de autenticacion \u2014 *duncan idaho guarda la puerta*"
     },
@@ -24804,7 +24716,7 @@
       "source_location": "L1120",
       "_origin": "ast",
       "id": "paulu_user_guide_convenciones_del_proyecto_c\u00f3digo_de_honor_atreides",
-      "community": 83,
+      "community": 228,
       "community_name": "Paulus \u2014 Gu\u00eda de usuario",
       "norm_label": "convenciones del proyecto \u2014 *codigo de honor atreides*"
     },
@@ -24815,8 +24727,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 239,
-      "community_name": "dune-lore-paul-atreides.md",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "readme.md"
     },
     {
@@ -24991,8 +24903,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides",
-      "community": 239,
-      "community_name": "dune-lore-paul-atreides.md",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "dune-lore-paul-atreides.md"
     },
     {
@@ -25002,8 +24914,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_dune_lore_paul_atreides_y_el_ecosistema_paulu",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "dune lore \u2014 paul atreides y el ecosistema paulu"
     },
     {
@@ -25013,8 +24925,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paul_atreides_el_fundador_muad_dib",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paul atreides \u2014 el fundador (*muad'dib*)"
     },
     {
@@ -25024,8 +24936,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_la_casa_paulu",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "la casa paulu"
     },
     {
@@ -25035,8 +24947,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_el_juramento_paulu",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "el juramento paulu"
     },
     {
@@ -25046,8 +24958,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_la_especia_debe_fluir_el_inventario_debe_controlarse",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "la especia debe fluir \u2014 el inventario debe controlarse"
     },
     {
@@ -25057,8 +24969,8 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paulus_el_primer_miembro",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paulus \u2014 el primer miembro"
     },
     {
@@ -25068,8 +24980,8 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_personajes_y_conceptos_de_la_saga_glosario_paulu",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "personajes y conceptos de la saga \u2014 glosario paulu"
     },
     {
@@ -25079,8 +24991,8 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_stack_y_arquitectura",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paralelismos tecnicos \u2014 stack y arquitectura"
     },
     {
@@ -25090,8 +25002,8 @@
       "source_location": "L152",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_m\u00f3dulos_de_negocio",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paralelismos tecnicos \u2014 modulos de negocio"
     },
     {
@@ -25101,8 +25013,8 @@
       "source_location": "L207",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_backend_paulu_go_api",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paralelismos tecnicos \u2014 backend paulu (go api)"
     },
     {
@@ -25112,8 +25024,8 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_paralelismos_t\u00e9cnicos_herramientas_y_convenciones",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "paralelismos tecnicos \u2014 herramientas y convenciones"
     },
     {
@@ -25123,8 +25035,8 @@
       "source_location": "L250",
       "_origin": "ast",
       "id": "raw_dune_lore_paul_atreides_c\u00f3mo_usar_este_documento",
-      "community": 224,
-      "community_name": "Dune Lore \u2014 Paul Atreides y el Ecosistema Paulu",
+      "community": 26,
+      "community_name": "Paulus \u2014 El Primer Miembro de Paulu Areides",
       "norm_label": "como usar este documento"
     },
     {
@@ -34215,149 +34127,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_application_filtermovementsbyproductquery_filtermovementsbyproductquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_application_matchproductsearchquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_application_matchproductsearchquery_matchproductsearchquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_domain_stockmovement",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_domain_stockmovement_stockmovement",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_domain_stockproduct",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_domain_stockproduct_stockproduct",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L20",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_index",
-      "target": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_stockmovementspage",
-      "target": "src_features_stock_movements_application_filtermovementsbyproductquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/features/stock-movements/application/filterMovementsByProductQuery.ts",
-      "source_location": "L20",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_filtermovementsbyproductquery_filtermovementsbyproductquery",
-      "target": "src_features_stock_movements_application_matchproductsearchquery_matchproductsearchquery"
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L20",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_index",
-      "target": "src_features_stock_movements_application_filtermovementsbyproductquery_filtermovementsbyproductquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_stockmovementspage",
-      "target": "src_features_stock_movements_application_filtermovementsbyproductquery_filtermovementsbyproductquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/application/formatOrderReferenceLabel.ts",
       "source_location": "L6",
       "weight": 1.0,
@@ -34395,7 +34164,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34407,7 +34176,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -34431,7 +34200,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L21",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34443,7 +34212,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L4",
+      "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -34526,7 +34295,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L23",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34562,7 +34331,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L23",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34657,7 +34426,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L24",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34717,7 +34486,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L24",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34800,7 +34569,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L25",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34836,7 +34605,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L25",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34919,7 +34688,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L26",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -34955,7 +34724,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L26",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35038,7 +34807,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L27",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35074,7 +34843,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L27",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35347,7 +35116,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L28",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35383,7 +35152,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L28",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35524,7 +35293,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L29",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35560,46 +35329,11 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L29",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
       "target": "src_features_stock_movements_application_mapordertypetomovementtype_mapordertypetomovementtype",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/application/matchProductSearchQuery.ts",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_application_matchproductsearchquery",
-      "target": "src_features_stock_movements_application_matchproductsearchquery_matchproductsearchquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_index",
-      "target": "src_features_stock_movements_application_matchproductsearchquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "re_exports",
-      "context": "re-export",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_index",
-      "target": "src_features_stock_movements_application_matchproductsearchquery_matchproductsearchquery",
       "confidence_score": 1.0
     },
     {
@@ -35677,7 +35411,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L30",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35689,7 +35423,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L30",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35760,7 +35494,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L31",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35784,7 +35518,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L31",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35865,7 +35599,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L32",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35877,7 +35611,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L33",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35889,7 +35623,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L33",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -35901,7 +35635,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L32",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -36924,7 +36658,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -37056,7 +36790,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L5",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -37616,7 +37350,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L37",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37628,7 +37362,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L37",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37640,7 +37374,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L38",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37652,7 +37386,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L38",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37664,7 +37398,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L39",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37676,7 +37410,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L39",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37688,7 +37422,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L40",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37700,7 +37434,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L40",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37712,7 +37446,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L42",
+      "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37724,7 +37458,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L42",
+      "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37736,7 +37470,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L41",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37748,7 +37482,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L41",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37760,7 +37494,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L44",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37772,7 +37506,7 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L43",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -37784,7 +37518,7 @@
       "context": "re-export",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/index.ts",
-      "source_location": "L43",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_index",
@@ -38528,7 +38262,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38540,7 +38274,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38552,19 +38286,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_stockmovementspage",
-      "target": "src_features_stock_movements_presentation_molecules_stockmovementssearchfield",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L9",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38576,7 +38298,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L10",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38587,7 +38309,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L52",
+      "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38598,7 +38320,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L56",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38609,7 +38331,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L45",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38620,7 +38342,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L15",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38631,18 +38353,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L27",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_stockmovementspage",
-      "target": "src_features_stock_movements_presentation_stockmovementspage_filteredmovements",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L60",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38653,7 +38364,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L41",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38664,7 +38375,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L35",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38675,7 +38386,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L18",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38686,7 +38397,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L14",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38697,18 +38408,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L16",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_stockmovementspage",
-      "target": "src_features_stock_movements_presentation_stockmovementspage_searchquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L13",
+      "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38720,7 +38420,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L11",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38732,7 +38432,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/features/stock-movements/presentation/StockMovementsPage.vue",
-      "source_location": "L11",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_stockmovementspage",
@@ -38864,17 +38564,6 @@
       "_origin": "ast",
       "source": "src_features_stock_movements_presentation_organisms_stockmovementstable",
       "target": "src_features_stock_movements_presentation_molecules_stockmovementtablerow",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/features/stock-movements/presentation/molecules/StockMovementsSearchField.vue",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "src_features_stock_movements_presentation_molecules_stockmovementssearchfield",
-      "target": "src_features_stock_movements_presentation_molecules_stockmovementssearchfield_model",
       "confidence_score": 1.0
     },
     {

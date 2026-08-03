@@ -26,6 +26,7 @@ import OrderForm from '@/presentation/components/orders/OrderForm.vue'
 import OrderList from '@/presentation/components/orders/OrderList.vue'
 import ShipmentForm from '@/presentation/components/shipments/ShipmentForm.vue'
 import ShipmentList from '@/presentation/components/shipments/ShipmentList.vue'
+import { StockMovementsPage } from '@/features/stock-movements'
 import { useHistoryStore } from '@/presentation/stores/historyStore'
 import HistoryTimeline from '@/presentation/components/history/HistoryTimeline.vue'
 import { useProductEntryStore } from '@/presentation/stores/productEntryStore'
@@ -382,6 +383,7 @@ const navGroups: NavGroup[] = [
           { id: 'register-shipment', label: 'Registrar salida' },
         ],
       },
+      { id: 'stock-movements', label: 'Movimientos de stock' },
     ],
   },
   {
@@ -1348,6 +1350,11 @@ const searchQuery = ref('')
         :enter="{ opacity: 1, y: 0, transition: { duration: 350 } }"
       >
         <ShipmentForm @saved="activeNav = 'register-shipment'" @go-to-product-registration="activeNav = 'register-product'" @go-to-provider-registration="activeNav = 'register-provider'" />
+      </div>
+
+      <!-- Stock movements list (vertical slice) -->
+      <div v-else-if="activeNav === 'stock-movements'">
+        <StockMovementsPage />
       </div>
 
       <!-- Sales view -->
